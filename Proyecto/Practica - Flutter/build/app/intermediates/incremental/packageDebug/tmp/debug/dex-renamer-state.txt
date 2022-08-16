@@ -1,4 +1,0 @@
-#Tue Aug 16 00:03:33 CST 2022
-base.0=F\:\\Documentos Mariana\\Github\\Proyecto-OpcionTEC\\Proyecto\\Practica - Flutter\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
