@@ -22,9 +22,10 @@ class _PrototipoBarra extends State<PrototipoBarra> {
       title: "Pez Prueba",
       theme: ThemeData(primarySwatch: Colors.cyan),
       home: Scaffold(
+        /*
         appBar: AppBar(
           title: Text("Pez pantalla 2"),
-        ),
+        ),*/
         body: _children[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
