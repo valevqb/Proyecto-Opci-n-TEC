@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Pez1_Screen.dart';
+import 'Carreras/views/home.dart';
 
 class PrototipoBarra extends StatefulWidget {
   State<StatefulWidget> createState() => _PrototipoBarra();
@@ -11,7 +12,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
   final List<Widget> _children = [
     Plantilla(),
     Plantilla2(),
-    PezColumn(),
+    Home(),
     PezText(),
     PezPading(),
   ];
