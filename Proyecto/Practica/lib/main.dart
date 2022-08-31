@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Servicios/servicios/datos_servicio.dart';
 //import 'Pez1_Screen.dart';
 import 'Barra.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'locators.dart';
-import 'Carreras/services/user_data_service.dart';
+import 'Carreras/servicios/datos_carrera.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,8 @@ void main() {
       /// on the service classes
       /// learn more: https://pub.dev/packages/provider
       providers: [
-        ChangeNotifierProvider(create: (_) => locator<UserDataService>()),
+        ChangeNotifierProvider(create: (_) => locator<DatosCarrera>()),
+        ChangeNotifierProvider(create: (_) => locator<DatosServicio>()),
       ],
       child: PrototipoBarra(),
     ),
