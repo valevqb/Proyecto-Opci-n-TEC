@@ -23,12 +23,6 @@ class _InicioServicioState extends State<InicioServicio> {
     List<DataServicio>? users = Provider.of<DatosServicio>(context).servicios;
     bool isLoading = Provider.of<DatosServicio>(context).isLoading;
     return Scaffold(
-      /*appBar: AppBar(
-        title: Text('Servicios'),
-        elevation: 0,
-        backgroundColor: Colors.red,
-        toolbarHeight: ,
-      ),*/
       body: (isLoading)
           ? Container(
 
@@ -46,14 +40,26 @@ class _InicioServicioState extends State<InicioServicio> {
                     children: [
                       Container(
                         height: 286,
+                        width: (MediaQuery.of(context).size.width),
+                        padding: EdgeInsets.only(
+                          top: 7.76, left: 24.5
+                        ),
                         decoration: BoxDecoration(
+                          color: Color(0xFF2B436D),
                           image: DecorationImage(
-                            image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0m5aY2oIKILiSLtlWgKyaHLDfgqqXVuRtnhkiLrXT_5rmM7Chm8XBjeKbwC1fcOeexuU&usqp=CAU'),
+                            image: NetworkImage(''), //Aca va la imagen
                           )
+                        ),
+                        child: Text ('Servicios',
+                          style:TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 24,
+                            fontWeight: FontWeight. bold,
+                            color: Colors.white),
                         ),
                       ),
                       SizedBox(
-                        child: Container(
+                        child: Container( //Lista
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6.0)),
                           ),
