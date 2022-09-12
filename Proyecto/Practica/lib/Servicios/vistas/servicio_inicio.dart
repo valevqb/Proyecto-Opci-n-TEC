@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/Servicios/modelos/servicio.dart';
 import 'package:untitled/Servicios/servicios/datos_servicio.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled/Servicios/vistas/servicio_informacion.dart';
 
 import '../../locators.dart';
 
@@ -38,7 +39,7 @@ class _InicioServicioState extends State<InicioServicio> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      Container( //La imagen donde dice servicios
                         height: 286,
                         width: (MediaQuery.of(context).size.width),
                         padding: EdgeInsets.only(
@@ -58,7 +59,7 @@ class _InicioServicioState extends State<InicioServicio> {
                             color: Colors.white),
                         ),
                       ),
-                      SizedBox(
+                      SizedBox( //La parte en donde se muestran los servicios
                         child: Container( //Lista
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(6.0)),
@@ -78,16 +79,16 @@ class _InicioServicioState extends State<InicioServicio> {
                                         children: [
                                           Container(
                                             margin: const EdgeInsets.only(bottom: 16.0),
-                                            child: Text(
+                                            child: Text( //Titutlo de cada tipo de servicio
                                             users[index].firstName!,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                             fontFamily: 'Poppins',
                                             fontSize: 18,
                                             fontWeight: FontWeight. bold,
                                             color: Color(0xFFB2B436D))
                                             ),
                                           ),
-                                          SizedBox(
+                                          SizedBox( //lista de los tipos de servicios
                                             height: 168,
                                             child: ListView.builder(
                                               scrollDirection: Axis.horizontal,
@@ -105,7 +106,12 @@ class _InicioServicioState extends State<InicioServicio> {
                                                       ),
                                                       child: new InkWell(
                                                         onTap: () {
-                                                          print("tapped " +  users[index].firstName!);
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (context) => InformacionServicio()),
+                                                          );
+                                                          //print("tapped " +  users[index].firstName!);
                                                           },
                                                         child: Container(
                                                           child: Row(
@@ -119,7 +125,7 @@ class _InicioServicioState extends State<InicioServicio> {
                                                                       topLeft: Radius.circular(20),
                                                                       topRight: Radius.circular(20),
                                                                     ),
-                                                                    child: Image.network( // Imagen principal
+                                                                    child: Image.network( // Imagen del servicio
                                                                       users[index].avatar!,
                                                                       fit: BoxFit.fill,
                                                                       width: 143,
@@ -128,7 +134,7 @@ class _InicioServicioState extends State<InicioServicio> {
                                                                   ),
                                                                   Container(
                                                                       margin: const EdgeInsets.only(top: 8.0, left: 16),
-                                                                      child: CircleAvatar (
+                                                                      child: CircleAvatar ( //avatar representativo del servicio
                                                                         radius: 16,
                                                                         backgroundImage: NetworkImage(
                                                                           users[index].avatar!,
@@ -137,7 +143,7 @@ class _InicioServicioState extends State<InicioServicio> {
                                                                   ),
                                                                   Container(
                                                                     margin: const EdgeInsets.only(top: 8.0, left: 16),
-                                                                    child: Text (
+                                                                    child: Text ( //nombre del servicio
                                                                       users[index].firstName!,
                                                                       style: TextStyle(fontFamily: 'Mulish',
                                                                           fontSize: 14, fontWeight: FontWeight. bold),
@@ -169,102 +175,6 @@ class _InicioServicioState extends State<InicioServicio> {
               );
             }
           )
-            /*child: ListView.builder(
-            itemCount: users!.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                  height: 208,
-                  margin: EdgeInsets.only(left: 21.4, top: 32),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [ ///////////
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 16.0),
-                        child: Text(
-                          users[index].firstName!,
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 18,
-                              fontWeight: FontWeight. bold,
-                              color: Color(0xFFB2B436D))
-                        )
-                      ),
-                      SizedBox(
-                          height: 168,
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: users!.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Align( /////////
-                                  alignment: Alignment.topLeft,
-                                  child: Container(
-                                      width: 151,
-                                      height: 168,
-                                      child: Card(
-                                          semanticContainer: true,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(24),
-                                          ),
-                                        child: new InkWell(
-                                            onTap: () {
-                                              print("tapped " +  users[index].firstName!);
-                                            },
-                                          child: Container( //////
-                                            child: Row(
-                                              children: [
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    ClipRRect(
-                                                      borderRadius: BorderRadius.only(
-                                                        topLeft: Radius.circular(20),
-                                                        topRight: Radius.circular(20),
-                                                      ),
-                                                      child: Image.network( // Imagen principal
-                                                        users[index].avatar!,
-                                                        fit: BoxFit.fill,
-                                                        width: 143,
-                                                        height: 90,
-                                                      ),
-                                                    ), ----------------------------------------------
-                                                    Container(
-                                                        margin: const EdgeInsets.only(top: 8.0, left: 16),
-                                                        child: CircleAvatar (
-                                                          radius: 16,
-                                                          backgroundImage: NetworkImage(
-                                                            users[index].avatar!,
-                                                          ),
-                                                        )
-                                                    ),
-                                                    Container(
-                                                      margin: const EdgeInsets.only(top: 8.0, left: 16),
-                                                      child: Text (
-                                                        users[index].firstName!,
-                                                        style: TextStyle(fontFamily: 'Mulish',
-                                                            fontSize: 14, fontWeight: FontWeight. bold),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            })*/
       )
     );
   }
