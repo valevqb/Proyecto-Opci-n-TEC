@@ -110,10 +110,7 @@ class _InicioServicioState extends State<InicioServicio> {
             image: NetworkImage(''), //Aca va la imagen
           )
       ),
-      child: Text('Servicios', style: Theme
-          .of(context)
-          .textTheme
-          .titleLarge),
+      child: Text('Servicios', style: Theme.of(context).textTheme.titleLarge),
     );
   }
 

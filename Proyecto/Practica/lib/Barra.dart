@@ -25,9 +25,11 @@ class _PrototipoBarra extends State<PrototipoBarra> {
       title: "Pez Prueba",
       theme: ThemeData(
         textTheme: TextTheme(
-          titleLarge: pantallaPrincipal,
-          titleMedium: titulosTipos,
-          titleSmall: tituloContenedor
+          titleLarge: pantallaPrincipal, //titulo mas grande
+          titleMedium: titulosTipos, //tipos de carreras, etc
+          titleSmall: tituloContenedor, //el titulo principal de las cartas
+          bodyLarge: titulosCuerpo, //subtitulos de carreras, servicios, ect
+          bodySmall: descripciones
         )
       ),
       //ThemeData(primarySwatch: Colors.cyan),

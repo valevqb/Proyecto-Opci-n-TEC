@@ -16,3 +16,15 @@ const titulosTipos = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight. bold,
     color: Color(0xFFB2B436D));
+
+const titulosCuerpo = TextStyle(
+    fontFamily: 'Mulish',
+    fontSize: 16,
+    fontWeight: FontWeight. bold,
+    color: Color(0xFF2B436D));
+
+const descripciones = TextStyle(
+    fontFamily: 'Mulish',
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    color: Color(0xFF2B436D));
