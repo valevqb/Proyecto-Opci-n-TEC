@@ -39,26 +39,7 @@ class _InicioServicioState extends State<InicioServicio> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container( //La imagen donde dice servicios
-                        height: 286,
-                        width: (MediaQuery.of(context).size.width),
-                        padding: EdgeInsets.only(
-                          top: 7.76, left: 24.5
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF2B436D),
-                          image: DecorationImage(
-                            image: NetworkImage(''), //Aca va la imagen
-                          )
-                        ),
-                        child: Text ('Servicios',
-                          style:TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 24,
-                            fontWeight: FontWeight. bold,
-                            color: Colors.white),
-                        ),
-                      ),
+                      tituloImagenPrincipal(context),
                       SizedBox( //La parte en donde se muestran los servicios
                         child: Container( //Lista
                           decoration: BoxDecoration(
@@ -77,17 +58,7 @@ class _InicioServicioState extends State<InicioServicio> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Container(
-                                            margin: const EdgeInsets.only(bottom: 16.0),
-                                            child: Text( //Titutlo de cada tipo de servicio
-                                            users[index].firstName!,
-                                            style: const TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                            fontWeight: FontWeight. bold,
-                                            color: Color(0xFFB2B436D))
-                                            ),
-                                          ),
+                                          tipoServicio(context, users[index]),
                                           SizedBox( //lista de los tipos de servicios
                                             height: 168,
                                             child: ListView.builder(
@@ -99,63 +70,7 @@ class _InicioServicioState extends State<InicioServicio> {
                                                   child: Container(
                                                     width: 151,
                                                     height: 168,
-                                                    child: Card(
-                                                      semanticContainer: true,
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(24),
-                                                      ),
-                                                      child: new InkWell(
-                                                        onTap: () {
-                                                          Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                  builder: (context) => InformacionServicio()),
-                                                          );
-                                                          //print("tapped " +  users[index].firstName!);
-                                                          },
-                                                        child: Container(
-                                                          child: Row(
-                                                            children: [
-                                                              Column(
-                                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: [
-                                                                  ClipRRect(
-                                                                    borderRadius: BorderRadius.only(
-                                                                      topLeft: Radius.circular(20),
-                                                                      topRight: Radius.circular(20),
-                                                                    ),
-                                                                    child: Image.network( // Imagen del servicio
-                                                                      users[index].avatar!,
-                                                                      fit: BoxFit.fill,
-                                                                      width: 143,
-                                                                      height: 90,
-                                                                    ),
-                                                                  ),
-                                                                  Container(
-                                                                      margin: const EdgeInsets.only(top: 8.0, left: 16),
-                                                                      child: CircleAvatar ( //avatar representativo del servicio
-                                                                        radius: 16,
-                                                                        backgroundImage: NetworkImage(
-                                                                          users[index].avatar!,
-                                                                        ),
-                                                                      )
-                                                                  ),
-                                                                  Container(
-                                                                    margin: const EdgeInsets.only(top: 8.0, left: 16),
-                                                                    child: Text ( //nombre del servicio
-                                                                      users[index].firstName!,
-                                                                      style: TextStyle(fontFamily: 'Mulish',
-                                                                          fontSize: 14, fontWeight: FontWeight. bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
+                                                    child: cartas(context, users[index]),
                                                   ),
                                                 );
                                               }
@@ -176,6 +91,103 @@ class _InicioServicioState extends State<InicioServicio> {
             }
           )
       )
+    );
+  }
+
+  Widget tituloImagenPrincipal (BuildContext context) { //titulo de la pagina e imagen
+    return Container( //La imagen donde dice servicios
+      height: 286,
+      width: (MediaQuery
+          .of(context)
+          .size
+          .width),
+      padding: EdgeInsets.only(
+          top: 7.76, left: 24.5
+      ),
+      decoration: BoxDecoration(
+          color: Color(0xFF2B436D),
+          image: DecorationImage(
+            image: NetworkImage(''), //Aca va la imagen
+          )
+      ),
+      child: Text('Servicios', style: Theme
+          .of(context)
+          .textTheme
+          .titleLarge),
+    );
+  }
+
+  Widget tipoServicio (BuildContext context, tipoServicio) { //tipos de servicio
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16.0),
+      child: Text( //Titutlo de cada tipo de servicio
+          tipoServicio.firstName!,
+          style: Theme.of(context).textTheme.titleMedium
+      ),
+    );
+  }
+
+  Widget cartas (BuildContext context, servicio) { //cartas de cada tipo de servicio
+    return Card(
+      semanticContainer: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: new InkWell(
+        onTap: () {
+          if(servicio.firstName != "Eve"){ //validacion de si son buses o no
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => InformacionServicio()),
+            );
+          }
+          else{
+            ;
+          }
+          //print("tapped " +  users[index].firstName!);
+        },
+        child: Container(
+          child: Row(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                    child: Image.network( // Imagen del servicio
+                      servicio.avatar!,
+                      fit: BoxFit.fill,
+                      width: 143,
+                      height: 90,
+                    ),
+                  ),
+                  Container(
+                      margin: const EdgeInsets.only(top: 8.0, left: 16),
+                      child: CircleAvatar ( //avatar representativo del servicio
+                        radius: 16,
+                        backgroundImage: NetworkImage(
+                          servicio.avatar!,
+                        ),
+                      )
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 8.0, left: 16),
+                    child: Text ( //nombre del servicio
+                      servicio.firstName!,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
