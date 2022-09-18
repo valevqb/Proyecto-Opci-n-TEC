@@ -28,7 +28,6 @@
       <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Carreras/modelos/usuario.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Carreras/modelos/Carrera.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Carreras/servicios/datos_carrera.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Carreras/servicios/datos_carrera.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Carreras/vistas/carrera_inicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Carreras/vistas/carrera_inicio.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Servicios/servicios/datos_servicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/servicios/datos_servicio.dart" afterDir="false" />
