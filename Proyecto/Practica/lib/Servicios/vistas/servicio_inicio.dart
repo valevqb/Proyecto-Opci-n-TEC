@@ -3,6 +3,7 @@ import 'package:untitled/Servicios/modelos/servicio.dart';
 import 'package:untitled/Servicios/servicios/datos_servicio.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/Servicios/vistas/servicio_informacion.dart';
+import 'package:untitled/Servicios/vistas/servicio_bus.dart';
 
 import '../../locators.dart';
 
@@ -140,7 +141,11 @@ class _InicioServicioState extends State<InicioServicio> {
             );
           }
           else{
-            ;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => InformacionBus()),
+            );
           }
           //print("tapped " +  users[index].firstName!);
         },
