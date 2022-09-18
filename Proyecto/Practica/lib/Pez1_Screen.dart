@@ -11,6 +11,7 @@ class Plantilla extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text("Pez pantalla "),
+          elevation: 0.0,
         ),
         body: Center(
             child: Container(
