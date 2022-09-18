@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Pez1_Screen.dart';
 import 'Carreras/vistas/carrera_inicio.dart';
 import 'Servicios/vistas/servicio_inicio.dart';
+import 'Estilos/Estilos.dart';
 
 class PrototipoBarra extends StatefulWidget {
   State<StatefulWidget> createState() => _PrototipoBarra();
@@ -22,7 +23,16 @@ class _PrototipoBarra extends State<PrototipoBarra> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Pez Prueba",
-      theme: ThemeData(primarySwatch: Colors.cyan),
+      theme: ThemeData(
+        textTheme: TextTheme(
+          titleLarge: pantallaPrincipal, //titulo mas grande
+          titleMedium: titulosTipos, //tipos de carreras, etc
+          titleSmall: tituloContenedor, //el titulo principal de las cartas
+          bodyLarge: titulosCuerpo, //subtitulos de carreras, servicios, ect
+          bodySmall: descripciones
+        )
+      ),
+      //ThemeData(primarySwatch: Colors.cyan),
       home: Scaffold(
         /*
         appBar: AppBar(
