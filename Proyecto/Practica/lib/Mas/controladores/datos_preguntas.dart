@@ -1,20 +1,20 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:untitled/Carreras/modelos/Carrera.dart';
+import 'package:untitled/Mas/modelos/Preguntas.dart';
 import 'package:http/http.dart' as http;
 
-class DatosCarrera extends ChangeNotifier {
-  String userUrl = 'http://localhost:3000/api/carreras';
+class DatosPreguntas extends ChangeNotifier {
+  String userUrl = 'http://localhost:3000/api/preguntas';
 
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
 
-  List<DataCarrera>? carreras = [];
+  List<DatosPreguntas>? preguntas = [];
 
 
-  Future<List<DataCarrera>?> fetchUsers() async {
+  Future<List<DatosPreguntas>?> fetchUsers() async {
     _isLoading = true;
     notifyListeners();
 
@@ -26,15 +26,15 @@ class DatosCarrera extends ChangeNotifier {
     if(result.statusCode == 200){
       Map<String, dynamic> _datos = json.decode(result.body);
 
-      var _carreras = _datos["Datos"];
+      var _preguntas = _datos["Datos"];
 
-      if (_carreras != null) {
-        carreras = Carreras.fromJson(_datos).datos;
+      if (_preguntas != null) {
+        preguntas = Preguntas.fromJson(_datos).datos;
       }
 
       _isLoading = false;
       notifyListeners();
-      return carreras;
+      return preguntas;
     }
     else{
       _isLoading = false;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Pez1_Screen.dart';
+import 'Mas/vistas/mas_inicio.dart';
 import 'Carreras/vistas/carrera_inicio.dart';
 import 'Servicios/vistas/servicio_inicio.dart';
 import 'Estilos/Estilos.dart';
@@ -16,6 +17,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
     Plantilla2(),
     InicioCarrera(),
     InicioServicio(),
+    InicioMas(),
     PezPading(),
   ];
 
