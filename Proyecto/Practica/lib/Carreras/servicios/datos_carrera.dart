@@ -5,7 +5,7 @@ import 'package:untitled/Carreras/modelos/Carrera.dart';
 import 'package:http/http.dart' as http;
 
 class DatosCarrera extends ChangeNotifier {
-  String userUrl = 'http://localhost:3000/api/carreras';
+  String userUrl = 'http://192.168.18.13:3000/api/carreras';
 
   bool _isLoading = false;
 

@@ -1,4 +1,3 @@
-import 'package:tuple/tuple.dart';
 class Costos {
   List<DataCostos>? datos;
   int? total;
@@ -22,7 +21,7 @@ class Costos {
 class DataCostos {
   String? Nombre;
   String? Un_Credito;
-  Int? Tope;
+  int? Tope;
   String? Matricula;
   String? BienestarEstudiantil;
   String? Descripcion;

@@ -1,9 +1,11 @@
 import 'package:get_it/get_it.dart';
+import 'package:untitled/Mas/controladores/datos_preguntas.dart';
+import 'package:untitled/Mas/controladores/datos_becas.dart';
 import 'package:untitled/Servicios/servicios/datos_servicio.dart';
 
 import 'Carreras/servicios/datos_carrera.dart';
 
-
+var ServerDir="10.147.19.78";
 /// Locators to get instances of classes mostly singletons
 GetIt locator = GetIt.I;
 
@@ -15,5 +17,11 @@ void setupLocators() {
   );
   locator.registerLazySingleton<DatosServicio>(
         () => DatosServicio(),
+  );
+  locator.registerLazySingleton<DatosPreguntas>(
+        () => DatosPreguntas(),
+  );
+  locator.registerLazySingleton<DatosBecas>(
+        () => DatosBecas(),
   );
 }
