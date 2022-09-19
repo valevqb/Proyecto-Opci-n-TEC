@@ -57,7 +57,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
                 icon: Icon(Icons.school), label: "Carreras"
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.synagogue), label: "Campus"
+              icon: Icon(Icons.volunteer_activism_outlined), label: "Servicios"
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.dehaze_rounded), label: "Mas"

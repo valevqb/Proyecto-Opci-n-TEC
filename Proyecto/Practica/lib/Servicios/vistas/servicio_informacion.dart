@@ -128,7 +128,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
                 height: 168,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: users!.length,
+                    itemCount: users.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Align(
                         child: Container(

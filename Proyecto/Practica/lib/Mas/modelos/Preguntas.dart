@@ -1,4 +1,3 @@
-import 'package:tuple/tuple.dart';
 class Preguntas {
   List<DataPreguntas>? datos;
   int? total;
@@ -13,8 +12,6 @@ class Preguntas {
         datos!.add(new DataPreguntas.fromJson(v));
       });
     }
-    ///  support =
-    // json['support'] != null ? new Support.fromJson(json['support']) : null;
   }
 
 }
@@ -27,12 +24,12 @@ class DataPreguntas {
   String? Categoria;
   int? id;
 
-  DataPreguntas({this.Pregunta, this.Respuesta, this.Descripcion, this.IMG, this.Enlaces,this.Categoria});
+  DataPreguntas({this.Pregunta, this.Respuesta, this.IMG, this.Enlaces,this.Categoria});
 
   DataPreguntas.fromJson(Map<String, dynamic> json) {
 
     id = json['id'];
-    Pregunta = json['info']['Acreditacion'];
+    Pregunta = json['info']['Pregunta'];
     Respuesta = json['info']['Respuesta'];
     IMG = json['info']['IMG'];
     Enlaces= json['info']['Enlaces'];
