@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Servicios/modelos/servicio.dart';
-import 'package:untitled/Servicios/servicios/datos_servicio.dart';
+import 'package:untitled/Servicios/servicios/datos_bus.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled/Servicios/vistas/servicio_inicio.dart';
-import 'package:untitled/Servicios/modelos/servicio.dart';
+import 'package:untitled/Servicios/modelos/servicioBus.dart';
 
 import '../../locators.dart';
 
@@ -19,6 +18,7 @@ class _InformacionBusState extends State<InformacionBus> {
   late DataServicio _valor;
   late String _destino;
   late String _origen;
+  late int _index;
 
   @override
   void initState() {
@@ -26,12 +26,13 @@ class _InformacionBusState extends State<InformacionBus> {
     _valor = this.widget.servicioSeleccionado;
     _destino = "Destino";
     _origen = "Origen";
-    locator<DatosServicio>().fetchServicios();
+    _index = 0;
+    locator<DatosBus>().fetchUsers();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool isLoading = Provider.of<DatosServicio>(context).isLoading;
+    bool isLoading = Provider.of<DatosBus>(context).isLoading;
     return Scaffold(
         body: (isLoading)
             ? Container(
@@ -50,7 +51,7 @@ class _InformacionBusState extends State<InformacionBus> {
                           children: [
                             seleccionOrigen(context),
                             SizedBox(
-                              child: Container( //Lista
+                              child: Container(//Lista
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(6.0)),
                                 ),
@@ -89,7 +90,17 @@ class _InformacionBusState extends State<InformacionBus> {
             image: NetworkImage(''), //Aca va la imagen
           )
       ),
-      child: nombreDestino(context),
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 44.00),
+            child: Text("Buses",
+                style: Theme.of(context).textTheme.titleLarge,
+                textAlign: TextAlign.center,),
+          ),
+          //nombreDestino(context),
+        ],
+      )
     );
   }
 
@@ -99,29 +110,79 @@ class _InformacionBusState extends State<InformacionBus> {
         borderRadius: BorderRadius.all(Radius.circular(16)),
         color: Colors.white,
       ),
-      margin: const EdgeInsets.only(
-          top: 45.7, bottom: 70.3, left: 24, right: 24),
-      child: Column(
-      children: [
-        DropdownButton(
-          isExpanded: true,
-          value: _origen,
-          items: ["Origen","1","2","3"].map((String lists)
-          => DropdownMenuItem(
-            value: lists,
-            child: Text(
-              lists,
-              style: Theme.of(context).textTheme.bodyLarge),
-          ),
-          ).toList(),
-          onChanged: (String? newValue){
-            setState(() {
-              _origen = newValue.toString();
-            });
-          },
+      margin: EdgeInsets.only(
+          top: 34.7, bottom: 59.5, left: 24, right: 24),
+      child: Align (
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(
+                left: 13, right: 74
+            ),
+            child: Column(
+              children: [
+                Container(
+                  height: 56,
+                  child: dropInformacionOrigen (context, ["Origen","1","2","3"]),
+                ),
+                Container(
+                  height: 56,
+                  child: dropInformacionDestino (context, ["Destino","1","2","3"]),
+                )
+              ],
+            ),
+          )
+        ],
+        ),
+      ),
+    );
+  }
+
+  Widget dropInformacionOrigen (BuildContext context, List informacion){ //Informacion de cada dropdown
+    return DropdownButton(
+      isExpanded: true,
+      value: _origen,
+      items: informacion.map((dynamic lists)
+      => DropdownMenuItem(
+        value: lists.toString(),
+        child: Padding(
+          padding: EdgeInsets.only(left: 8),
+          child: Text(
+            lists.toString(),
+            style: Theme.of(context).textTheme.bodyLarge),
         )
-      ],
-    ),
+      ),
+      ).toList(),
+      onChanged: (String? newValue){
+        setState(() {
+          _origen = newValue.toString();
+        });
+      },
+    );
+  }
+
+  Widget dropInformacionDestino (BuildContext context, List informacion){ //Informacion de cada dropdown
+    return DropdownButton(
+      isExpanded: true,
+      value: _destino,
+      items: informacion.map((dynamic lists)
+      => DropdownMenuItem(
+          value: lists.toString(),
+          child: Padding(
+            padding: EdgeInsets.only(left: 8),
+            child: Text(
+                lists.toString(),
+                style: Theme.of(context).textTheme.bodyLarge),
+          )
+      ),
+      ).toList(),
+      onChanged: (String? newValue){
+        setState(() {
+          _destino = newValue.toString();
+        });
+      },
     );
   }
 
@@ -132,72 +193,75 @@ class _InformacionBusState extends State<InformacionBus> {
         children: [
           Container(
             padding: EdgeInsets.only(
-                top: 30.75, left: 24, right: 24
+                top: 23.39, left: 24, right: 24
             ),
-            child: Text (servicioSeleccion.Nombre, //Nombre del servicio
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(
-                top: 24, left: 24, right: 24
-            ),
-            child: Text ('Su labor', //Labor del servicio
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(
-                top: 4, left: 24, right: 24
-            ),
-            child: Text (servicioSeleccion.Descripcion, //Labor del servicio
+            child: Text (
+              "Aquí podés encontrar todas las rutas de buses para movilizarte al TEC de Cartago. ", //Labor del servicio
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(
-                top: 24, left: 24, right: 24
-            ),
-            child: Text ('Fotos', //Labor del servicio
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
+          Row(
+            children: [
+              Container(
+                  padding: EdgeInsets.only(
+                      top: 20.60, left: 24
+                  ),
+                  alignment: Alignment.topLeft,
+                  child: dataBusServicio(context, "Precio", 0, 'lib/Fotos/Precio.jpg')
+              ),
+              Container(
+                  padding: EdgeInsets.only(
+                      top: 20.60, left: 24
+                  ),
+                  alignment: Alignment.topLeft,
+                  child: dataBusServicio(context, "Salida", "Blablabla", 'lib/Fotos/Salida.jpg')
+              ),
+            ],
           ),
           Container(
-            padding: EdgeInsets.only(
-                left: 24
-            ),
-            child: SizedBox( //lista de los tipos de servicios
-                height: 168,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: servicioSeleccion?.Fotos.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Align(
-                        child: Container(
-                            width: 120,
-                            height: 120,
-                            child: Container(
-                              child: Card(
-                                semanticContainer: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                                  child: Image.network( // Imagen del servicio
-                                    servicioSeleccion?.Fotos[index]!,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
-                            )
-                        ),
-                      );
-                    }
-                )
-            ),
+              padding: EdgeInsets.only(
+                  top: 20.60, left: 24
+              ),
+              alignment: Alignment.topLeft,
+              child: dataBusServicio(context, "Paradas", "Blablabla", 'lib/Fotos/Paradas.jpg')
+          ),
+          Container(
+              padding: EdgeInsets.only(
+                  top: 20.60, left: 24
+              ),
+              alignment: Alignment.topLeft,
+              child: dataBusServicio(context, "Horarios", "Blablabla", 'lib/Fotos/Horarios.jpg')
           ),
         ]
+    );
+  }
+
+  Widget dataBusServicio (BuildContext context, titulo, cantidad, imagen){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Image(
+            width: 24,
+            height: 24,
+            image: AssetImage(imagen)
+        ),
+        Container(
+          margin: const EdgeInsets.only(left: 5.5),
+          child: Column(
+            children: [
+              Text (
+                titulo.toString(), //Labor del servicio
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+              Text (
+                cantidad.toString(), //Labor del servicio
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }
