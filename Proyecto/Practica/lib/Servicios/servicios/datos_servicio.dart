@@ -5,14 +5,13 @@ import 'package:untitled/Servicios/modelos/servicio.dart';
 import 'package:http/http.dart' as http;
 
 class DatosServicio extends ChangeNotifier{
-  String userUrl = 'https://reqres.in/api/users';
+  String userUrl = 'http://10.147.19.78:3000/api/Servicios';
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+  List<List<DataServicio>>? servicios = [];
 
-  List<DataServicio>? servicios = [];
-
-  Future<List<DataServicio>?> fetchServicios() async {
+  Future<List<List<DataServicio>>?> fetchServicios() async {
     _isLoading = true;
     notifyListeners();
 
@@ -22,9 +21,11 @@ class DatosServicio extends ChangeNotifier{
 
     if(result.statusCode == 200){
       Map<String, dynamic> data = json.decode(result.body);
-      var _users = data["data"];
-      if (_users != null) {
-        servicios = Servicio.fromJson(data).data;
+
+      var _servicios = data["Datos"];
+
+      if (_servicios != null) {
+        servicios = Servicios.fromJson(data).servicios;
       }
       _isLoading = false;
       notifyListeners();

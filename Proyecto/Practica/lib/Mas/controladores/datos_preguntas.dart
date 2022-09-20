@@ -5,7 +5,7 @@ import 'package:untitled/Mas/modelos/Preguntas.dart';
 import 'package:http/http.dart' as http;
 
 class DatosPreguntas extends ChangeNotifier {
-  String userUrl = 'http://192.168.18.13:3000/api/preguntas';
+  String userUrl = 'http://10.147.19.78:3000/api/preguntas';
 
   bool _isLoading = false;
 

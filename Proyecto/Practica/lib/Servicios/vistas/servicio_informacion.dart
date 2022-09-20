@@ -3,25 +3,30 @@ import 'package:untitled/Servicios/modelos/servicio.dart';
 import 'package:untitled/Servicios/servicios/datos_servicio.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/Servicios/vistas/servicio_inicio.dart';
+import 'package:untitled/Servicios/modelos/servicio.dart';
 
 import '../../locators.dart';
 
 class InformacionServicio extends StatefulWidget {
+  final DataServicio servicioSeleccionado;
+  InformacionServicio(this.servicioSeleccionado);
+
   @override
   _InformacionServicioState createState() => _InformacionServicioState();
 }
 
 class _InformacionServicioState extends State<InformacionServicio> {
+  late DataServicio _valor;
 
   @override
   void initState() {
     super.initState();
+    _valor = this.widget.servicioSeleccionado;
     locator<DatosServicio>().fetchServicios();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<DataServicio>? users = Provider.of<DatosServicio>(context).servicios;
     bool isLoading = Provider.of<DatosServicio>(context).isLoading;
     return Scaffold(
       body: (isLoading)
@@ -51,7 +56,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
                               itemBuilder: (BuildContext context, int index) {
                                 return Align(
                                   alignment: Alignment.topLeft,
-                                  child: informacionServicio(context, users!),
+                                  child: informacionServicio(context, _valor),
                                 );
                               }
                           ),
@@ -83,7 +88,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
     );
   }
 
-  Widget informacionServicio (BuildContext context, List users){ //list users son las imagenes, carga la info de los servicios
+  Widget informacionServicio (BuildContext context, servicioSeleccion){ //list users son las imagenes, carga la info de los servicios
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +97,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
             padding: EdgeInsets.only(
                 top: 30.75, left: 24, right: 24
             ),
-            child: Text ('Servicio N', //Nombre del servicio
+            child: Text (servicioSeleccion.Nombre, //Nombre del servicio
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
@@ -108,7 +113,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
             padding: EdgeInsets.only(
                 top: 4, left: 24, right: 24
             ),
-            child: Text ('La labor es.............................................................................................................................................................', //Labor del servicio
+            child: Text (servicioSeleccion.Descripcion, //Labor del servicio
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -128,7 +133,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
                 height: 168,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: users.length,
+                    itemCount: servicioSeleccion?.Fotos.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Align(
                         child: Container(
@@ -143,7 +148,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.all(Radius.circular(8)),
                                   child: Image.network( // Imagen del servicio
-                                    users[index].avatar!,
+                                    servicioSeleccion?.Fotos[index]!,
                                     fit: BoxFit.fill,
                                   ),
                                 ),

@@ -22,7 +22,7 @@ class _InicioServicioState extends State<InicioServicio> {
 
   @override
   Widget build(BuildContext context) {
-    List<DataServicio>? users = Provider.of<DatosServicio>(context).servicios;
+    List<List<DataServicio>>? servicio = Provider.of<DatosServicio>(context).servicios;
     bool isLoading = Provider.of<DatosServicio>(context).isLoading;
     return Scaffold(
       body: (isLoading)
@@ -41,49 +41,36 @@ class _InicioServicioState extends State<InicioServicio> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       tituloImagenPrincipal(context),
-                      SizedBox( //La parte en donde se muestran los servicios
-                        child: Container( //Lista
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                          ),
-                          child: ListView.builder(
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                              margin: EdgeInsets.only(left: 21.4),
+                              child: ListView.builder(
                               shrinkWrap: true,
-                              itemCount: users!.length,
-                              itemBuilder: (BuildContext context, int index){
+                              itemCount: 1,
+                              itemBuilder: (BuildContext context, int index) {
                                 return Align(
-                                  alignment: Alignment.topLeft,
-                                    child: Container(
-                                      height: 208,
-                                      margin: EdgeInsets.only(left: 21.4, top: 32),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          tipoServicio(context, users[index]),
-                                          SizedBox( //lista de los tipos de servicios
-                                            height: 168,
-                                            child: ListView.builder(
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount: users.length,
-                                              itemBuilder: (BuildContext context, int index) {
-                                                return Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Container(
-                                                    width: 151,
-                                                    height: 168,
-                                                    child: cartas(context, users[index]),
-                                                  ),
-                                                );
-                                              }
-                                            )
-                                          )
-                                        ],
-                                      )
-                                    ),
+                                    alignment: Alignment.topLeft,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        tipoServicio(context, "Facilidades"),
+                                        listaServicios(context, servicio?[0]),
+                                        tipoServicio(context, "Categoría"),
+                                        listaServicios(context, servicio?[0]),
+                                        tipoServicio(context, "Salud y Bienestar"),
+                                        listaServicios(context, servicio?[0]),
+                                        tipoServicio(context, "Para el Estudio"),
+                                        listaServicios(context, servicio?[0]),
+                                        tipoServicio(context, "Más servicios"),
+                                        listaServicios(context, servicio?[0]),
+                                      ]
+                                    )
                                 );
                               }
-                          ),
-                        ),
+                              )
+                      ),
                       )
                     ]
                   ),
@@ -117,11 +104,31 @@ class _InicioServicioState extends State<InicioServicio> {
 
   Widget tipoServicio (BuildContext context, tipoServicio) { //tipos de servicio
     return Container(
-      margin: const EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0, top: 32.00),
       child: Text( //Titutlo de cada tipo de servicio
-          tipoServicio.firstName!,
+          tipoServicio,
           style: Theme.of(context).textTheme.titleMedium
       ),
+    );
+  }
+
+  Widget listaServicios (BuildContext context, servicio){
+    return SizedBox(
+        height: 168,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: servicio?.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  width: 151,
+                  height: 168,
+                  child: cartas(context, servicio![index]),
+                ),
+              );
+            }
+        )
     );
   }
 
@@ -133,19 +140,19 @@ class _InicioServicioState extends State<InicioServicio> {
       ),
       child: new InkWell(
         onTap: () {
-          if(servicio.firstName != "Eve"){ //validacion de si son buses o no
+          if(servicio.Nombre.toString() != "Buses"){ //validacion de si son buses o no
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => InformacionServicio()),
+                  builder: (context) => InformacionServicio(servicio)),
             );
           }
           else{
-            Navigator.push(
+            /*Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => InformacionBus()),
-            );
+            );*/
           }
           //print("tapped " +  users[index].firstName!);
         },
@@ -162,7 +169,7 @@ class _InicioServicioState extends State<InicioServicio> {
                       topRight: Radius.circular(20),
                     ),
                     child: Image.network( // Imagen del servicio
-                      servicio.avatar!,
+                      servicio.Fotos![0].toString(),
                       fit: BoxFit.fill,
                       width: 143,
                       height: 90,
@@ -173,14 +180,14 @@ class _InicioServicioState extends State<InicioServicio> {
                       child: CircleAvatar ( //avatar representativo del servicio
                         radius: 16,
                         backgroundImage: NetworkImage(
-                          servicio.avatar!,
+                          servicio.Fotos![0].toString(),
                         ),
                       )
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 8.0, left: 16),
                     child: Text ( //nombre del servicio
-                      servicio.firstName!,
+                      servicio.Nombre!,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
