@@ -138,9 +138,9 @@ class _InicioServicioState extends State<InicioServicio> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
       ),
-      child: new InkWell(
+      child: InkWell(
         onTap: () {
-          if(servicio.Nombre.toString() != "Buses"){ //validacion de si son buses o no
+          if(servicio.Nombre.toString() != "Comedor"){ //validacion de si son buses o no
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -148,11 +148,11 @@ class _InicioServicioState extends State<InicioServicio> {
             );
           }
           else{
-            /*Navigator.push(
+            Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => InformacionBus()),
-            );*/
+                  builder: (context) => InformacionBus(servicio)),
+            );
           }
           //print("tapped " +  users[index].firstName!);
         },

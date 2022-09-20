@@ -41,12 +41,12 @@ class DataServicio {
   String? Nombre;
   String? Categoria;
   String? Descripcion;
-  String? Origen;
-  String? Destino;
-  String? Precio;
-  String? Ubicacion;
-  List<dynamic>? Horarios;
-  List<dynamic>? Paradas;
+  List<dynamic>? Origen;
+  List<dynamic>? Destino;
+  List<dynamic>? Precio;
+  List<dynamic>? Ubicacion;
+  List<List<dynamic>?>? Horarios;
+  List<List<dynamic>?>? Paradas;
   List<dynamic>? Fotos;
   DataServicio({this.Nombre, this.Categoria, this.Descripcion, this.Origen, this.Destino, this.Precio, this.Ubicacion, this.Horarios , this.Paradas, this.Fotos});
 
