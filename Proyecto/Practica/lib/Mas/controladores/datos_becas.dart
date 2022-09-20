@@ -11,8 +11,8 @@ class DatosBecas extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  List<List<DataBecas>>? becas = [];
 
+  List<List<DataBecas>>? becas = [];
 
 
   Future<List<List<DataBecas>>?> fetchUsers() async {

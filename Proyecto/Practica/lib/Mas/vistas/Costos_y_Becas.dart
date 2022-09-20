@@ -3,6 +3,7 @@ import 'package:untitled/Mas/modelos/Costos.dart';
 import 'package:untitled/Mas/modelos/Becas.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/Mas/controladores/datos_becas.dart';
+import 'package:untitled/Mas/vistas/Info_Costos.dart';
 import '../../locators.dart';
 
 class Costos_y_Becas extends StatefulWidget {
@@ -82,7 +83,9 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                               icon: const Icon(Icons.arrow_circle_right_rounded,
                                   size: 40.0, color: Colors.lightBlue),
                               onPressed: () {
-                                print('Comenta algo');
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Info_Costos(),
+                                  ));
                               },
                             ),
 

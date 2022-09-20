@@ -12,8 +12,7 @@ class Costos {
         datos!.add(new DataCostos.fromJson(v));
       });
     }
-    ///  support =
-    // json['support'] != null ? new Support.fromJson(json['support']) : null;
+
   }
 
 }
@@ -21,10 +20,11 @@ class Costos {
 class DataCostos {
   String? Nombre;
   String? Un_Credito;
-  int? Tope;
+  String? Tope;
   String? Matricula;
   String? BienestarEstudiantil;
   String? Descripcion;
+  String? Color;
   int? id;
 
   DataCostos({this.Nombre, this.Un_Credito, this.Tope, this.Matricula, this.BienestarEstudiantil,this.Descripcion});
@@ -38,6 +38,7 @@ class DataCostos {
     Matricula= json['info']['Matricula'];
     BienestarEstudiantil = json['info']['BienestarEstudiantil'];
     Descripcion = json['info']['Descripcion'];
+    Color = json['info']['Color'];
   }
 
   Map<String, dynamic> toJson() {
@@ -49,6 +50,7 @@ class DataCostos {
     data[ 'Matricula' ]= Matricula;
     data[ 'BienestarEstudiantil' ] = BienestarEstudiantil;
     data[ 'Descripcion' ] = Descripcion;
+    data[ 'Color' ] = Color;
     return data;
   }
 }

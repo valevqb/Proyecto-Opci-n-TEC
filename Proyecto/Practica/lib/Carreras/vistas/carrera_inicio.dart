@@ -103,7 +103,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                         TextSpan(
                                           text: users[index].Nombre!,
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: 14,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black87),
                                         ),
@@ -112,10 +112,9 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                     subtitle: Text(
                                       users[index].Descripcion!,
                                       style: TextStyle(
-                                          fontSize: 16, color: Colors.black54),
+                                          fontSize: 12, color: Colors.black54),
                                     ),
-                                    trailing: Text(
-                                        'ID: ' + users[index].id.toString()),
+
                                   ),
    /* child: new InkWell(
     onTap: () {
