@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Pez1_Screen.dart';
+import 'Mas/vistas/mas_inicio.dart';
 import 'Carreras/vistas/carrera_inicio.dart';
 import 'Servicios/vistas/servicio_inicio.dart';
 import 'Estilos/Estilos.dart';
@@ -16,6 +17,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
     Plantilla2(),
     InicioCarrera(),
     InicioServicio(),
+    InicioMas(),
     PezPading(),
   ];
 
@@ -55,7 +57,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
                 icon: Icon(Icons.school), label: "Carreras"
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.synagogue), label: "Campus"
+              icon: Icon(Icons.volunteer_activism_outlined), label: "Servicios"
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.dehaze_rounded), label: "Mas"

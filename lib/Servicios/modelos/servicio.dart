@@ -1,93 +1,73 @@
-class Servicio {
-  int? page;
-  int? perPage;
+class Servicios {
+  List<List<DataServicio>>? servicios = [];
   int? total;
-  int? totalPages;
-  List<DataServicio>? data;
-  SupportServicio? support;
 
-  Servicio(
-      {this.page,
-        this.perPage,
-        this.total,
-        this.totalPages,
-        this.data,
-        this.support});
+  Servicios();
 
-  Servicio.fromJson(Map<String, dynamic> json) {
-    page = json['page'];
-    perPage = json['per_page'];
-    total = json['total'];
-    totalPages = json['total_pages'];
-    if (json['data'] != null) {
-      data = [];
-      json['data'].forEach((v) {
-        data!.add(new DataServicio.fromJson(v));
+  Servicios.fromJson(Map<String, dynamic> json) {
+    total = json['Cantidad'];
+    List<DataServicio> facilidades = [];
+    List<DataServicio> saludBienestar = [];
+    List<DataServicio> estudio = [];
+    List<DataServicio> masServicios = [];
+    if (json['Datos'] != null) {
+      servicios = [];
+      json['Datos'].forEach((v) {
+        if(v['info']['Categoria'] == "Facilidades"){
+          facilidades.add(new DataServicio.fromJson(v));
+        } else if(v['info']['Categoria'] == "Salud y Bienestar"){
+          saludBienestar.add(new DataServicio.fromJson(v));
+        } else  if(v['info']['Categoria'] == "Para el estudio"){
+          estudio.add(new DataServicio.fromJson(v));
+        } else{
+          masServicios.add(new DataServicio.fromJson(v));
+        }
       });
-    }
-    support =
-    json['support'] != null ? new SupportServicio.fromJson(json['support']) : null;
-  }
+      servicios?.add(facilidades);
+      servicios?.add(saludBienestar);
+      servicios?.add(estudio);
+      servicios?.add(masServicios);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['page'] = this.page;
-    data['per_page'] = this.perPage;
-    data['total'] = this.total;
-    data['total_pages'] = this.totalPages;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+      print("JOO");
+      print(servicios);
     }
-    if (this.support != null) {
-      data['support'] = this.support!.toJson();
-    }
-    return data;
+
   }
 }
 
 class DataServicio {
   int? id;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? avatar;
-
-  DataServicio({this.id, this.email, this.firstName, this.lastName, this.avatar});
+  String? Nombre;
+  String? Categoria;
+  String? Descripcion;
+  String? Precio;
+  List<dynamic>? Ubicacion;
+  List<dynamic>? Horarios;
+  List<dynamic>? Fotos;
+  DataServicio({this.Nombre, this.Categoria, this.Descripcion, this.Precio, this.Ubicacion, this.Horarios, this.Fotos});
 
   DataServicio.fromJson(Map<String, dynamic> json) {
+
     id = json['id'];
-    email = json['email'];
-    firstName = json['first_name'];
-    lastName = json['last_name'];
-    avatar = json['avatar'];
+    Nombre = json['info']['Nombre'];
+    Categoria = json['info']['Categoria'];
+    Descripcion = json['info']['Descripcion'];
+    Precio = json['info']['Precio'];
+    Ubicacion = json['info']['Ubicacion'];
+    Horarios = json['info']['Horarios'];
+    Fotos = json['info']['IMG'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['email'] = this.email;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['avatar'] = this.avatar;
-    return data;
-  }
-}
-
-class SupportServicio {
-  String? url;
-  String? text;
-
-  SupportServicio({this.url, this.text});
-
-  SupportServicio.fromJson(Map<String, dynamic> json) {
-    url = json['url'];
-    text = json['text'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['text'] = this.text;
+    data[ 'id' ] = id;
+    data[ 'Nombre' ] = Nombre;
+    data[ 'Categoria' ] = Categoria;
+    data[ 'Descripcion' ] = Descripcion;
+    data[ 'Precio' ] = Precio;
+    data[ 'Ubicacion' ] = Ubicacion;
+    data[ 'Horarios' ] = Horarios;
+    data[ 'IMG' ] = Fotos;
     return data;
   }
 }
