@@ -1,4 +1,4 @@
-import 'package:tuple/tuple.dart';
+
 class Carreras {
   List<DataCarrera>? datos;
   int? total;
@@ -13,8 +13,7 @@ class Carreras {
         datos!.add(new DataCarrera.fromJson(v));
       });
     }
-  ///  support =
-   // json['support'] != null ? new Support.fromJson(json['support']) : null;
+
   }
   /*
   Map<String, dynamic> toJson() {

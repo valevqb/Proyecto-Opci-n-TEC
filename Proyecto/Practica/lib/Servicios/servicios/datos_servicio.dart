@@ -5,7 +5,7 @@ import 'package:untitled/Servicios/modelos/servicio.dart';
 import 'package:http/http.dart' as http;
 
 class DatosServicio extends ChangeNotifier{
-  String userUrl = 'http://localhost:3000/api/Carreras';
+  String userUrl = 'https://reqres.in/api/users';
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
