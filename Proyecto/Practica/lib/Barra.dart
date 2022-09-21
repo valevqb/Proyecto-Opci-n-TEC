@@ -3,6 +3,8 @@ import 'Pez1_Screen.dart';
 import 'Mas/vistas/mas_inicio.dart';
 import 'Carreras/vistas/carrera_inicio.dart';
 import 'Servicios/vistas/servicio_inicio.dart';
+import 'Servicios/vistas/servicio_informacion.dart';
+import 'Servicios/vistas/servicio_bus.dart';
 import 'Estilos/Estilos.dart';
 
 class PrototipoBarra extends StatefulWidget {
@@ -19,6 +21,8 @@ class _PrototipoBarra extends State<PrototipoBarra> {
     InicioServicio(),
     InicioMas(),
     PezPading(),
+    //InformacionServicio(),
+    InformacionBus(),
   ];
 
   @override

@@ -44,10 +44,10 @@ class _InformacionServicioState extends State<InformacionServicio> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      tituloImagenPrincipal(context),
+                      tituloImagenPrincipal(context, _valor),
                       SizedBox(
                         child: Container( //Lista
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(6.0)),
                           ),
                           child: ListView.builder(
@@ -72,18 +72,16 @@ class _InformacionServicioState extends State<InformacionServicio> {
     );
   }
 
-  Widget tituloImagenPrincipal (BuildContext context) { //titulo de la pagina e imagen
+  Widget tituloImagenPrincipal (BuildContext context, servicioSeleccion) { //titulo de la pagina e imagen
     return Container( //La imagen donde dice servicios
       height: 286,
       width: (MediaQuery.of(context).size.width),
-      padding: EdgeInsets.only(
-          top: 7.76, left: 24.5
-      ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Color(0xFF2B436D),
-          image: DecorationImage(
-            image: NetworkImage(''), //Aca va la imagen
-          )
+      ),
+      child: Image.network( // Imagen del servicio
+        servicioSeleccion?.Fotos[0]!,
+        fit: BoxFit.fill,
       ),
     );
   }
@@ -94,7 +92,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 top: 30.75, left: 24, right: 24
             ),
             child: Text (servicioSeleccion.Nombre, //Nombre del servicio
@@ -102,7 +100,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 top: 24, left: 24, right: 24
             ),
             child: Text ('Su labor', //Labor del servicio
@@ -110,7 +108,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 top: 4, left: 24, right: 24
             ),
             child: Text (servicioSeleccion.Descripcion, //Labor del servicio
@@ -118,7 +116,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 top: 24, left: 24, right: 24
             ),
             child: Text ('Fotos', //Labor del servicio
@@ -126,7 +124,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 left: 24
             ),
             child: SizedBox( //lista de los tipos de servicios

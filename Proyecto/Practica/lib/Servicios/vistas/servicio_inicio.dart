@@ -24,34 +24,27 @@ class _InicioServicioState extends State<InicioServicio> {
   Widget build(BuildContext context) {
     List<List<DataServicio>>? servicio = Provider.of<DatosServicio>(context).servicios;
     bool isLoading = Provider.of<DatosServicio>(context).isLoading;
-    return Scaffold(
+    return MaterialApp(
+      home: Scaffold(
       body: (isLoading)
           ? Container(
 
         )
-          : Container(
-            child: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (BuildContext context, int index) {
-              return Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      tituloImagenPrincipal(context),
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: Container(
-                              margin: EdgeInsets.only(left: 21.4),
-                              child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: 1,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Column(
+          : SingleChildScrollView(
+            child: Column(
+                children: [
+                  tituloImagenPrincipal(context),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                        margin: const EdgeInsets.only(left: 21.4),
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: 1,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Column(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -64,19 +57,17 @@ class _InicioServicioState extends State<InicioServicio> {
                                         tipoServicio(context, "Más servicios"),
                                         listaServicios(context, servicio?[3])
                                       ]
-                                    )
-                                );
-                              }
-                              )
-                      ),
-                      )
-                    ]
-                  ),
-                ),
-              );
-            }
-          )
+                                  )
+                              );
+                            }
+                        )
+                    ),
+                  )
+                ]
+            ),
+
       )
+    )
     );
   }
 
@@ -87,13 +78,13 @@ class _InicioServicioState extends State<InicioServicio> {
           .of(context)
           .size
           .width),
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
           top: 7.76, left: 24.5
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Color(0xFF2B436D),
           image: DecorationImage(
-            image: NetworkImage(''), //Aca va la imagen
+            image: AssetImage('lib/Fotos/Servicios.png'), //Aca va la imagen
           )
       ),
       child: Text('Servicios', style: Theme.of(context).textTheme.titleLarge),
@@ -138,7 +129,7 @@ class _InicioServicioState extends State<InicioServicio> {
       ),
       child: InkWell(
         onTap: () {
-          if(servicio.Nombre.toString() != "Comedor"){ //validacion de si son buses o no
+          if(servicio.Nombre.toString() != "Buses"){ //validacion de si son buses o no
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -162,12 +153,12 @@ class _InicioServicioState extends State<InicioServicio> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
                     ),
                     child: Image.network( // Imagen del servicio
-                      servicio.Fotos![0].toString(),
+                      servicio.Fotos![1].toString(),
                       fit: BoxFit.fill,
                       width: 143,
                       height: 90,
@@ -178,7 +169,7 @@ class _InicioServicioState extends State<InicioServicio> {
                       child: CircleAvatar ( //avatar representativo del servicio
                         radius: 16,
                         backgroundImage: NetworkImage(
-                          servicio.Fotos![0].toString(),
+                          servicio.Fotos![1].toString(), //HAY QUE PONERLE CERO
                         ),
                       )
                   ),

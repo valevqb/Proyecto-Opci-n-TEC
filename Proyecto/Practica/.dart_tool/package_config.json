@@ -194,6 +194,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "video_player",
+      "rootUri": "file:///C:/AndroidStudio/flutter/.pub-cache/hosted/pub.dartlang.org/video_player-0.5.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "web_socket_channel",
       "rootUri": "file:///C:/AndroidStudio/flutter/.pub-cache/hosted/pub.dartlang.org/web_socket_channel-2.2.0",
       "packageUri": "lib/",
@@ -206,7 +212,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-09-21T06:26:35.212878Z",
+  "generated": "2022-09-21T12:47:30.380941Z",
   "generator": "pub",
   "generatorVersion": "2.17.6"
 }
