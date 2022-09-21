@@ -98,7 +98,11 @@ class _InformacionServicioState extends State<InformacionServicio> {
                 top: 30.75, left: 24, right: 24
             ),
             child: Text (servicioSeleccion.Nombre, //Nombre del servicio
-              style: Theme.of(context).textTheme.titleMedium,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 18,
+                  fontWeight: FontWeight. bold,
+                  color: Color(0xFFB2B436D)),
             ),
           ),
           Container(
@@ -106,7 +110,11 @@ class _InformacionServicioState extends State<InformacionServicio> {
                 top: 24, left: 24, right: 24
             ),
             child: Text ('Su labor', //Labor del servicio
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: TextStyle(
+                  fontFamily: 'Mulish',
+                  fontSize: 16,
+                  fontWeight: FontWeight. bold,
+                  color: Color(0xFF2B436D)),
             ),
           ),
           Container(
@@ -114,7 +122,10 @@ class _InformacionServicioState extends State<InformacionServicio> {
                 top: 4, left: 24, right: 24
             ),
             child: Text (servicioSeleccion.Descripcion, //Labor del servicio
-              style: Theme.of(context).textTheme.bodySmall,
+              style: TextStyle(
+                  fontFamily: 'Mulish',
+                  fontSize: 14,
+                  fontWeight: FontWeight. bold),
             ),
           ),
           Container(
@@ -122,7 +133,11 @@ class _InformacionServicioState extends State<InformacionServicio> {
                 top: 24, left: 24, right: 24
             ),
             child: Text ('Fotos', //Labor del servicio
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: TextStyle(
+                  fontFamily: 'Mulish',
+                  fontSize: 16,
+                  fontWeight: FontWeight. bold,
+                  color: Color(0xFF2B436D)),
             ),
           ),
           Container(

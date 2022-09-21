@@ -88,7 +88,11 @@ class _InicioServicioState extends State<InicioServicio> {
             image: AssetImage('lib/Fotos/Servicios.png'), //Aca va la imagen
           )
       ),
-      child: Text('Servicios', style: Theme.of(context).textTheme.titleLarge),
+      child: Text('Servicios', style: TextStyle( //Titulo principal
+          fontFamily: 'Poppins',
+          fontSize: 24,
+          fontWeight: FontWeight. bold,
+          color: Colors.white)),
     );
   }
 
@@ -97,7 +101,11 @@ class _InicioServicioState extends State<InicioServicio> {
       margin: const EdgeInsets.only(bottom: 16.0, top: 32.00),
       child: Text( //Titutlo de cada tipo de servicio
           tipoServicio,
-          style: Theme.of(context).textTheme.titleMedium
+          style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 18,
+              fontWeight: FontWeight. bold,
+              color: Color(0xFFB2B436D))
       ),
     );
   }
@@ -170,7 +178,7 @@ class _InicioServicioState extends State<InicioServicio> {
                       child: CircleAvatar ( //avatar representativo del servicio
                         radius: 16,
                         backgroundImage: NetworkImage(
-                          servicio.Fotos![1].toString(), //HAY QUE PONERLE CERO
+                          servicio.Icon.toString(), //HAY QUE PONERLE CERO
                         ),
                       )
                   ),
@@ -178,7 +186,10 @@ class _InicioServicioState extends State<InicioServicio> {
                     margin: const EdgeInsets.only(top: 8.0, left: 16),
                     child: Text ( //nombre del servicio
                       servicio.Nombre!,
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: TextStyle(
+                          fontFamily: 'Mulish',
+                          fontSize: 14,
+                          fontWeight: FontWeight. bold),
                     ),
                   ),
                 ],

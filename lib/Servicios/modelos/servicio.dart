@@ -44,7 +44,8 @@ class DataServicio {
   List<dynamic>? Ubicacion;
   List<dynamic>? Horarios;
   List<dynamic>? Fotos;
-  DataServicio({this.Nombre, this.Categoria, this.Descripcion, this.Precio, this.Ubicacion, this.Horarios, this.Fotos});
+  String? Icon;
+  DataServicio({this.Nombre, this.Categoria, this.Descripcion, this.Precio, this.Ubicacion, this.Horarios, this.Fotos, this.Icon});
 
   DataServicio.fromJson(Map<String, dynamic> json) {
 
@@ -56,6 +57,7 @@ class DataServicio {
     Ubicacion = json['info']['Ubicacion'];
     Horarios = json['info']['Horarios'];
     Fotos = json['info']['IMG'];
+    Icon = json['info']['Icon'];
   }
 
   Map<String, dynamic> toJson() {
@@ -68,6 +70,7 @@ class DataServicio {
     data[ 'Ubicacion' ] = Ubicacion;
     data[ 'Horarios' ] = Horarios;
     data[ 'IMG' ] = Fotos;
+    data[ 'Icon' ] = Icon;
     return data;
   }
 }
