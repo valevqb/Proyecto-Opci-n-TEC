@@ -13,8 +13,13 @@ class InicioCarrera extends StatefulWidget {
 }
 
 class _InicioCarreraState extends State<InicioCarrera> {
+  List<DataCarrera>? busquedaActiva;
+  var textoFinal;
+  final controller = TextEditingController();
+
   @override
   void initState() {
+    textoFinal = "Nombre de la carrera";
     super.initState();
     locator<DatosCarrera>().fetchUsers();
   }
@@ -25,8 +30,10 @@ class _InicioCarreraState extends State<InicioCarrera> {
     double width = MediaQuery.of(context).size.width;
     List<DataCarrera>? users = Provider.of<DatosCarrera>(context).carreras;
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
+    busquedaActiva = users;
+
     return MaterialApp(
-        title: "Pez carreras",
+        title: "Carreras",
         theme: ThemeData(primarySwatch: Colors.cyan),
         home: Scaffold(
           appBar: AppBar(
@@ -58,7 +65,37 @@ class _InicioCarreraState extends State<InicioCarrera> {
                       bottom: 0,
                       left:0,
                       right: 0,
-                      child: Busqueda(texto: 'nombre de la carreras', tamano: 14.0, width: width),),
+                      child: Container(
+                          height: 42,
+                          width: width-25,
+                          padding: const EdgeInsets.only(left: 20),
+                          margin: EdgeInsets.symmetric(horizontal: width/15),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF0F2F5),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: TextField(
+                              controller: controller,
+                              textAlignVertical: TextAlignVertical.center,
+                              onChanged: buscarCarrera,
+                              decoration: InputDecoration(
+                                //isCollapsed: true,
+                                  hintText: textoFinal,
+                                  hintStyle: TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black.withOpacity(0.5)),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  prefixIcon: const Icon(Icons.search_rounded,
+                                      size: 20.0, color: Colors.lightBlue)
+                              ),
+                            ),
+                          )
+                      ),
+                    ),
                     SizedBox(
                         height: height - 50,
                         child: Container(
@@ -69,7 +106,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                           ),
                           child: ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: users!.length,
+                              itemCount: busquedaActiva!.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Card(
                                   shape: RoundedRectangleBorder(
@@ -77,11 +114,11 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                   margin: const EdgeInsets.all(15),
                                   elevation: 10,
                                   child: InkWell(
-                                  onTap: () {//validacion de si son buses o no
+                                  onTap: () {//validacion carrera
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => InformacionCarrera(users[index])),
+                                        builder: (context) => InformacionCarrera(busquedaActiva![index])),
                                       );
                                   },
                                   child: ListTile(
@@ -91,7 +128,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                         maxHeight: 104,
                                       ),
                                       child: Image.network(
-                                        users[index].IMG!,
+                                        busquedaActiva![index].IMG!,
                                         isAntiAlias: true,
                                         fit: BoxFit.fill,
                                       ),
@@ -102,7 +139,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                       text: ' ', // default text style
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: users[index].Categoria!,
+                                            text: busquedaActiva![index].Categoria!,
                                             style: TextStyle(
                                               fontStyle: FontStyle.italic,
                                               backgroundColor:
@@ -112,7 +149,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                             )),
                                         const TextSpan(text: ' \n '),
                                         TextSpan(
-                                          text: users[index].Nombre!,
+                                          text: busquedaActiva![index].Nombre!,
                                           style: const TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,
@@ -121,7 +158,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                       ],
                                     )),
                                     subtitle: Text(
-                                      users[index].Resumen!,
+                                      busquedaActiva![index].Resumen!,
                                       style: const TextStyle(
                                           fontSize: 16, color: Colors.black54),
                                     ),
@@ -134,6 +171,25 @@ class _InicioCarreraState extends State<InicioCarrera> {
                 )),
         ));
   }
+
+  void buscarCarrera(String carreraE){
+    final sugerencias = busquedaActiva?.where((element) {
+      final sugerencia = element.Nombre?.toLowerCase();
+      final escrito = carreraE.toLowerCase();
+
+      print("Tiene sugerencias");
+      print(escrito);
+      print(sugerencia.toString());
+
+      return sugerencia!.contains(escrito);
+    }).toList();
+
+    setState(() {
+      busquedaActiva = sugerencias;
+      print("Cambia");
+    });
+  }
+
 }
 
 class Secciones extends StatelessWidget {
@@ -162,6 +218,7 @@ class Busqueda extends StatelessWidget {
   final String texto;
   var tamano = 24.0;
   double width = 50;
+  final controller = TextEditingController();
 
   Busqueda({
     required this.texto,
@@ -174,34 +231,30 @@ class Busqueda extends StatelessWidget {
     return Container(
         height: 42,
         width: width-25,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.only(left: 20, bottom: 15),
         margin: EdgeInsets.symmetric(horizontal: width/15),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xFFF0F2F5),
           borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              offset: Offset(0, 5),
-              blurRadius: 5,
-            ),
-          ],
         ),
       child: Align(
         //alignment: Alignment.center,
         child: TextField(
+          controller: controller,
           //textAlignVertical: TextAlignVertical.center,
-          onChanged: (value) {},
           decoration: InputDecoration(
             //isCollapsed: true,
             hintText: texto,
             hintStyle: TextStyle(
                 fontSize: tamano,
                 fontWeight: FontWeight.bold,
-                color: Colors.blue.shade900),
+                color: Colors.black.withOpacity(0.5)),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            suffixIcon: const Icon(Icons.search_rounded,
-                        size: 24.0, color: Colors.lightBlue)),
+            prefixIcon: const Icon(Icons.search_rounded,
+                        size: 40.0, color: Colors.lightBlue)
+          ),
+          //onChanged: buscarCarrera,
           ),
         )
         );

@@ -207,6 +207,7 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
           informacionTextLista(context, _valor.Habilidades),
           titulos(context, "Area laboral"),
           informacionTextListaLista(context, _valor.AreaLaboral?.areas),
+          titulos(context, "Plan de Estudios"),
         ]
     );
   }
