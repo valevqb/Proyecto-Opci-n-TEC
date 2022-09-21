@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Mas/modelos/Costos.dart';
-import 'package:untitled/Mas/modelos/Becas.dart';
+import 'package:opciontec/Mas/modelos/Costos.dart';
+import 'package:opciontec/Mas/modelos/Becas.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled/Mas/controladores/datos_becas.dart';
-import 'package:untitled/Mas/vistas/Info_Becas.dart';
-import 'package:untitled/Mas/vistas/Info_Costos.dart';
+import 'package:opciontec/Mas/controladores/datos_becas.dart';
+import 'package:opciontec/Mas/vistas/Info_Becas.dart';
+import 'package:opciontec/Mas/vistas/Info_Costos.dart';
 import '../../locators.dart';
 
 class Costos_y_Becas extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/Carreras/modelos/Carrera.dart';
-import 'package:untitled/Carreras/modelos/usuario.dart';
-import 'package:untitled/Carreras/servicios/datos_carrera.dart';
+import 'package:opciontec/Carreras/modelos/Carrera.dart';
+import 'package:opciontec/Carreras/modelos/usuario.dart';
+import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';

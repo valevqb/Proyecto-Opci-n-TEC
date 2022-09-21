@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Servicios/modelos/servicioBus.dart';
-import 'package:untitled/Servicios/servicios/datos_bus.dart';
+import 'package:opciontec/Servicios/modelos/servicioBus.dart';
+import 'package:opciontec/Servicios/servicios/datos_bus.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';

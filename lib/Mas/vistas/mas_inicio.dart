@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Mas/modelos/Preguntas.dart';
-import 'package:untitled/Mas/controladores/datos_preguntas.dart';
-import 'package:untitled/Mas/vistas/Costos_y_Becas.dart';
+import 'package:opciontec/Mas/modelos/Preguntas.dart';
+import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
+import 'package:opciontec/Mas/vistas/Costos_y_Becas.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';

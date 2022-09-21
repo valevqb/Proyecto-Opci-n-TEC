@@ -1,6 +1,6 @@
-# untitled
+# opciontec
 
-A new Flutter project.
+Proyecto OpcionTec
 
 ## Getting Started
 

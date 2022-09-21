@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Mas/controladores/datos_costos.dart';
-import 'package:untitled/Mas/modelos/Costos.dart';
+import 'package:opciontec/Mas/controladores/datos_costos.dart';
+import 'package:opciontec/Mas/modelos/Costos.dart';
 import 'package:provider/provider.dart';
 import '../../locators.dart';
 

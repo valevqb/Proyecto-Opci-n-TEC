@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:untitled/Servicios//modelos/servicioBus.dart';
+import 'package:opciontec/Servicios//modelos/servicioBus.dart';
 import 'package:http/http.dart' as http;
 
+import '../../Config.dart';
+
 class DatosBus extends ChangeNotifier {
-  String userUrl = 'http://10.147.19.78:3000/api/Buses';
+  String userUrl = Config.dirServer+'Buses';
 
   bool _isLoading = false;
 

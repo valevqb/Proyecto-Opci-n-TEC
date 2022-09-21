@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:untitled/Carreras/modelos/Carrera.dart';
+import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:http/http.dart' as http;
 
+import '../../Config.dart';
+
 class DatosCarrera extends ChangeNotifier {
-  String userUrl = 'http://10.147.19.78:3000/api/carreras';
+  String userUrl = Config.dirServer+'carreras';
 
   bool _isLoading = false;
 

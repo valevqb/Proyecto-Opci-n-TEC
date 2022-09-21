@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Servicios/modelos/servicio.dart';
-import 'package:untitled/Servicios/servicios/datos_servicio.dart';
+import 'package:opciontec/Servicios/modelos/servicio.dart';
+import 'package:opciontec/Servicios/servicios/datos_servicio.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled/Servicios/vistas/servicio_inicio.dart';
-import 'package:untitled/Servicios/modelos/servicio.dart';
+import 'package:opciontec/Servicios/vistas/servicio_inicio.dart';
+import 'package:opciontec/Servicios/modelos/servicio.dart';
 
 import '../../locators.dart';
 

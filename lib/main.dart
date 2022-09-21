@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Mas/controladores/datos_becas.dart';
-import 'package:untitled/Mas/controladores/datos_costos.dart';
-import 'package:untitled/Mas/controladores/datos_preguntas.dart';
-import 'package:untitled/Servicios/servicios/datos_bus.dart';
-import 'package:untitled/Servicios/servicios/datos_servicio.dart';
+import 'package:opciontec/Mas/controladores/datos_becas.dart';
+import 'package:opciontec/Mas/controladores/datos_costos.dart';
+import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
+import 'package:opciontec/Servicios/servicios/datos_bus.dart';
+import 'package:opciontec/Servicios/servicios/datos_servicio.dart';
 //import 'Pez1_Screen.dart';
 import 'Barra.dart';
 import 'package:flutter/services.dart';
