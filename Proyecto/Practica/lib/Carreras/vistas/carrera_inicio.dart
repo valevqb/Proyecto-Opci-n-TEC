@@ -68,6 +68,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                 BorderRadius.all(Radius.circular(6.0)),
                           ),
                           child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: users!.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Card(

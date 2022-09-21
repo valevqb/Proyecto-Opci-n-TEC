@@ -35,6 +35,7 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
         )
             : Container(
             child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 1,
                 itemBuilder: (BuildContext context, int index) {
                   return Align(
@@ -51,6 +52,7 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
                                   borderRadius: BorderRadius.all(Radius.circular(6.0)),
                                 ),
                                 child: ListView.builder(
+                                    physics: const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: 1,
                                     itemBuilder: (BuildContext context, int index) {
@@ -106,6 +108,7 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
     return Container(
         child: SizedBox( //lista de los tipos de servicios
             child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: texto.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -142,6 +145,7 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
         ),
         child: SizedBox( //lista de los tipos de servicios
             child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: texto.length,
                 itemBuilder: (BuildContext context, int index) {

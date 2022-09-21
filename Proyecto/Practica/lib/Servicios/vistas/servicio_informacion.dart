@@ -35,6 +35,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
         )
           : Container(
             child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 1,
             itemBuilder: (BuildContext context, int index) {
               return Align(
@@ -51,6 +52,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
                           borderRadius: BorderRadius.all(Radius.circular(6.0)),
                           ),
                           child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: 1,
                               itemBuilder: (BuildContext context, int index) {
@@ -130,6 +132,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
             child: SizedBox( //lista de los tipos de servicios
                 height: 168,
                 child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemCount: servicioSeleccion?.Fotos.length,
                     itemBuilder: (BuildContext context, int index) {

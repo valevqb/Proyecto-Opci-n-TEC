@@ -46,6 +46,7 @@ class _InformacionBusState extends State<InformacionBus> {
         )
             : Container(
             child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 1,
                 itemBuilder: (BuildContext context, int index) {
                   return Align(
@@ -62,6 +63,7 @@ class _InformacionBusState extends State<InformacionBus> {
                                   borderRadius: BorderRadius.all(Radius.circular(6.0)),
                                 ),
                                 child: ListView.builder(
+                                    physics: const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: 1,
                                     itemBuilder: (BuildContext context, int index) {

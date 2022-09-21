@@ -39,6 +39,7 @@ class _InicioServicioState extends State<InicioServicio> {
                     child: Container(
                         margin: const EdgeInsets.only(left: 21.4),
                         child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: 1,
                             itemBuilder: (BuildContext context, int index) {
@@ -105,6 +106,7 @@ class _InicioServicioState extends State<InicioServicio> {
     return SizedBox(
         height: 168,
         child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: servicio?.length,
             itemBuilder: (BuildContext context, int index) {
