@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/physics.dart';
 import 'package:untitled/Mas/modelos/Becas.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:untitled/Config.dart';
 class DatosBecas extends ChangeNotifier {
-  String userUrl = 'http://192.168.18.13:3000/api/becas';
+  String userUrl = Config.dirServer+'becas';
 
   bool _isLoading = false;
 
@@ -18,7 +19,7 @@ class DatosBecas extends ChangeNotifier {
   Future<List<List<DataBecas>>?> fetchUsers() async {
     _isLoading = true;
     notifyListeners();
-
+    print(userUrl);
     final result = await http.get(Uri.parse(userUrl)).catchError((e) {
       print("Error Fetching Users" + e.toString());
     });

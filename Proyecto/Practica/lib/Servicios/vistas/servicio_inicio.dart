@@ -24,10 +24,13 @@ class _InicioServicioState extends State<InicioServicio> {
   Widget build(BuildContext context) {
     List<List<DataServicio>>? servicio = Provider.of<DatosServicio>(context).servicios;
     bool isLoading = Provider.of<DatosServicio>(context).isLoading;
-    return Scaffold(
+    return MaterialApp(
+        title: "Pez Prueba",
+        theme: ThemeData(primarySwatch: Colors.cyan),
+    home: Scaffold(
       body: (isLoading)
           ? Container(
-
+        child: CircularProgressIndicator(),
         )
           : Container(
             child: ListView.builder(
@@ -79,7 +82,7 @@ class _InicioServicioState extends State<InicioServicio> {
             }
           )
       )
-    );
+    ));
   }
 
   Widget tituloImagenPrincipal (BuildContext context) { //titulo de la pagina e imagen

@@ -7,7 +7,7 @@ import 'package:untitled/Servicios/servicios/datos_servicio.dart';
 
 import 'Carreras/servicios/datos_carrera.dart';
 
- var  ServerDir="10.147.19.78:3000";
+
 /// Locators to get instances of classes mostly singletons
 GetIt locator = GetIt.I;
 

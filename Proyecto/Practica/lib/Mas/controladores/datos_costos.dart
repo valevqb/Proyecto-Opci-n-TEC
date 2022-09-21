@@ -4,8 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:untitled/Mas/modelos/Costos.dart';
 import 'package:http/http.dart' as http;
 
+import '../../Config.dart';
+
 class DatosCostos extends ChangeNotifier {
-  String userUrl = 'http://192.168.18.13:3000/api/costes';
+  String userUrl = Config.dirServer+'costes';
 
   bool _isLoading = false;
 
