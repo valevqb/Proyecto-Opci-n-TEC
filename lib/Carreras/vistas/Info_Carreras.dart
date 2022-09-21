@@ -4,6 +4,7 @@ import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:opciontec/Carreras/modelos/usuario.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../locators.dart';
 
@@ -102,6 +103,8 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
                   return Align(
                       alignment: Alignment.topLeft,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
                               padding: const EdgeInsets.only(
@@ -208,7 +211,30 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
           titulos(context, "Area laboral"),
           informacionTextListaLista(context, _valor.AreaLaboral?.areas),
           titulos(context, "Plan de Estudios"),
+          Container(
+            padding: const EdgeInsets.only(
+            top: 4, left: 24, right: 24, bottom: 20
+            ),
+            child: (
+              ElevatedButton(
+                onPressed: _launchURLApp,
+                child: Text('Ver plan'),
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF2B436D),
+                )
+              )
+            )
+          )
         ]
     );
+  }
+
+  _launchURLApp() async {
+    var url = Uri.parse("https://github.com/valevqb/Fotografias/blob/main/Computacion.jpg?raw=true/");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

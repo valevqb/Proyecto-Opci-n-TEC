@@ -30,8 +30,9 @@ class DataCarrera {
   String? Nombre;
   String? Sede;
   String? IMG;
+  String? Plan;
   int? id;
-  DataCarrera({this.Grado, this.Categoria, this.AreaLaboral, this.Resumen, this.Acreditacion, this.Corte, this.Descripcion, this.Habilidades, this.Horario,this.Intereses,this.Nombre,this.Sede,this.IMG});
+  DataCarrera({this.Plan, this.Grado, this.Categoria, this.AreaLaboral, this.Resumen, this.Acreditacion, this.Corte, this.Descripcion, this.Habilidades, this.Horario,this.Intereses,this.Nombre,this.Sede,this.IMG});
 
   DataCarrera.fromJson(Map<String, dynamic> json) {
 
@@ -49,6 +50,7 @@ class DataCarrera {
     Nombre = json['info']['Nombre'];
     Sede = json['info']['Sede'];
     IMG = json['info']['IMG'];
+    Plan = json['info']['Plan'];
   }
 
   Map<String, dynamic> toJson() {
@@ -67,6 +69,7 @@ class DataCarrera {
     data[ 'Nombre' ] = Nombre;
     data[ 'Sede' ] = Sede;
     data[ 'IMG' ] = IMG;
+    data[ 'Plan' ] = Plan;
     return data;
 
   }
