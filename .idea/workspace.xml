@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9a7fb00d-5b86-414e-a4e4-c301b0d7dbda" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Carreras/modelos/Carrera.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Carreras/modelos/Carrera.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Carreras/vistas/Info_Carreras.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Carreras/vistas/Info_Carreras.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Config.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_inicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_inicio.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

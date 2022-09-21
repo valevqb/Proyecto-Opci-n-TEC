@@ -106,7 +106,6 @@ class _InicioServicioState extends State<InicioServicio> {
     return SizedBox(
         height: 168,
         child: ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: servicio?.length,
             itemBuilder: (BuildContext context, int index) {
