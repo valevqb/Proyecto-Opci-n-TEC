@@ -38,9 +38,6 @@ class _InformacionBusState extends State<InformacionBus> {
   Widget build(BuildContext context) {
     bool isLoading = Provider.of<DatosBus>(context).isLoading;
     List<dynamic>? servicioBus = Provider.of<DatosBus>(context).servicioBus;
-    //print("Origen");
-    //print(servicioBus?[0].Origen);
-    //print(servicioBus?[0].Destinos?.destinos?[0].Nombre.toString());
 
     return Scaffold(
         body: (isLoading)
@@ -49,6 +46,7 @@ class _InformacionBusState extends State<InformacionBus> {
         )
             : Container(
             child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 1,
                 itemBuilder: (BuildContext context, int index) {
                   return Align(
@@ -61,10 +59,11 @@ class _InformacionBusState extends State<InformacionBus> {
                             seleccionOrigen(context, servicioBus),
                             SizedBox(
                               child: Container(//Lista
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(6.0)),
                                 ),
                                 child: ListView.builder(
+                                    physics: const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: 1,
                                     itemBuilder: (BuildContext context, int index) {
@@ -90,10 +89,10 @@ class _InformacionBusState extends State<InformacionBus> {
     return Container( //La imagen donde dice servicios
       height: 286,
       width: (MediaQuery.of(context).size.width),
-      padding: EdgeInsets.only(
-          top: 7.76, left: 24.5
+      padding: const EdgeInsets.only(
+          top: 7.8, left: 24.5
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Color(0xFF2B436D),
           image: DecorationImage(
             image: NetworkImage(''), //Aca va la imagen
@@ -131,11 +130,11 @@ class _InformacionBusState extends State<InformacionBus> {
     });
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(16)),
         color: Colors.white,
       ),
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
           top: 34.7, bottom: 59.5, left: 24, right: 24),
       child: Align (
         child: Column(
@@ -197,9 +196,7 @@ class _InformacionBusState extends State<InformacionBus> {
   }
 
   Widget dropInformacionDestino (BuildContext context, List<List<dynamic>> informaciones){ //Informacion de cada dropdown
-    print(informaciones[1]);
     List<dynamic> informacion = informaciones[_index];
-    print(informacion.toString());
 
     return DropdownButton(
       isExpanded: true,
@@ -241,7 +238,7 @@ class _InformacionBusState extends State<InformacionBus> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 top: 23.39, left: 24, right: 24
             ),
             child: Text (
@@ -254,7 +251,7 @@ class _InformacionBusState extends State<InformacionBus> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       top: 20.60, left: 24
                   ),
                   alignment: Alignment.topLeft,
@@ -264,7 +261,7 @@ class _InformacionBusState extends State<InformacionBus> {
                       'lib/Fotos/Precio.jpg')
               ),
               Container(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       top: 20.60, left: 24
                   ),
                   alignment: Alignment.topLeft,
@@ -276,7 +273,7 @@ class _InformacionBusState extends State<InformacionBus> {
             ],
           ),
           Container(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                   top: 20.60, left: 24
               ),
               alignment: Alignment.topLeft,
@@ -285,7 +282,7 @@ class _InformacionBusState extends State<InformacionBus> {
                   'lib/Fotos/Paradas.jpg')
           ),
           Container(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                   top: 20.60, left: 24
               ),
               alignment: Alignment.topLeft,

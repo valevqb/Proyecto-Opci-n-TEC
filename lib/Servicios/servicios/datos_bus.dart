@@ -4,10 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:untitled/Servicios//modelos/servicioBus.dart';
 import 'package:http/http.dart' as http;
 
-import '../../Config.dart';
-
 class DatosBus extends ChangeNotifier {
-  String userUrl = Config.dirServer+'Buses';
+  String userUrl = 'http://10.147.19.78:3000/api/Buses';
 
   bool _isLoading = false;
 

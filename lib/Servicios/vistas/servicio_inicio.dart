@@ -25,64 +25,51 @@ class _InicioServicioState extends State<InicioServicio> {
     List<List<DataServicio>>? servicio = Provider.of<DatosServicio>(context).servicios;
     bool isLoading = Provider.of<DatosServicio>(context).isLoading;
     return MaterialApp(
-        title: "Pez Prueba",
-        theme: ThemeData(primarySwatch: Colors.cyan),
-    home: Scaffold(
+      home: Scaffold(
       body: (isLoading)
           ? Container(
-        child: CircularProgressIndicator(),
+
         )
-          : Container(
-            child: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (BuildContext context, int index) {
-              return Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      tituloImagenPrincipal(context),
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: Container(
-                              margin: EdgeInsets.only(left: 21.4),
-                              child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: 1,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Column(
+          : SingleChildScrollView(
+            child: Column(
+                children: [
+                  tituloImagenPrincipal(context),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                        margin: const EdgeInsets.only(left: 21.4),
+                        child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: 1,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Column(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         tipoServicio(context, "Facilidades"),
                                         listaServicios(context, servicio?[0]),
-                                        tipoServicio(context, "Categoría"),
-                                        listaServicios(context, servicio?[0]),
                                         tipoServicio(context, "Salud y Bienestar"),
-                                        listaServicios(context, servicio?[0]),
+                                        listaServicios(context, servicio?[1]),
                                         tipoServicio(context, "Para el Estudio"),
-                                        listaServicios(context, servicio?[0]),
+                                        listaServicios(context, servicio?[2]),
                                         tipoServicio(context, "Más servicios"),
-                                        listaServicios(context, servicio?[0]),
+                                        listaServicios(context, servicio?[3])
                                       ]
-                                    )
-                                );
-                              }
-                              )
-                      ),
-                      )
-                    ]
-                  ),
-                ),
-              );
-            }
-          )
+                                  )
+                              );
+                            }
+                        )
+                    ),
+                  )
+                ]
+            ),
+
       )
-    ));
+    )
+    );
   }
 
   Widget tituloImagenPrincipal (BuildContext context) { //titulo de la pagina e imagen
@@ -92,13 +79,13 @@ class _InicioServicioState extends State<InicioServicio> {
           .of(context)
           .size
           .width),
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
           top: 7.76, left: 24.5
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Color(0xFF2B436D),
           image: DecorationImage(
-            image: NetworkImage(''), //Aca va la imagen
+            image: AssetImage('lib/Fotos/Servicios.png'), //Aca va la imagen
           )
       ),
       child: Text('Servicios', style: Theme.of(context).textTheme.titleLarge),
@@ -119,6 +106,7 @@ class _InicioServicioState extends State<InicioServicio> {
     return SizedBox(
         height: 168,
         child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: servicio?.length,
             itemBuilder: (BuildContext context, int index) {
@@ -143,7 +131,7 @@ class _InicioServicioState extends State<InicioServicio> {
       ),
       child: InkWell(
         onTap: () {
-          if(servicio.Nombre.toString() != "Comedor"){ //validacion de si son buses o no
+          if(servicio.Nombre.toString() != "Buses"){ //validacion de si son buses o no
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -167,12 +155,12 @@ class _InicioServicioState extends State<InicioServicio> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
                     ),
                     child: Image.network( // Imagen del servicio
-                      servicio.Fotos![0].toString(),
+                      servicio.Fotos![1].toString(),
                       fit: BoxFit.fill,
                       width: 143,
                       height: 90,
@@ -183,7 +171,7 @@ class _InicioServicioState extends State<InicioServicio> {
                       child: CircleAvatar ( //avatar representativo del servicio
                         radius: 16,
                         backgroundImage: NetworkImage(
-                          servicio.Fotos![0].toString(),
+                          servicio.Fotos![1].toString(), //HAY QUE PONERLE CERO
                         ),
                       )
                   ),
