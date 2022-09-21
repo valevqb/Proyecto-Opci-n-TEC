@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/Carreras/modelos/Carrera.dart';
+import 'package:untitled/Carreras/vistas/Info_Carreras.dart';
 import 'package:untitled/Carreras/servicios/datos_carrera.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +13,13 @@ class InicioCarrera extends StatefulWidget {
 }
 
 class _InicioCarreraState extends State<InicioCarrera> {
+  List<DataCarrera>? busquedaActiva;
+  var textoFinal;
+  final controller = TextEditingController();
+
   @override
   void initState() {
+    textoFinal = "Nombre de la carrera";
     super.initState();
     locator<DatosCarrera>().fetchUsers();
   }
@@ -24,8 +30,10 @@ class _InicioCarreraState extends State<InicioCarrera> {
     double width = MediaQuery.of(context).size.width;
     List<DataCarrera>? users = Provider.of<DatosCarrera>(context).carreras;
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
+    busquedaActiva = users;
+
     return MaterialApp(
-        title: "Pez carreras",
+        title: "Carreras",
         theme: ThemeData(primarySwatch: Colors.cyan),
         home: Scaffold(
           appBar: AppBar(
@@ -39,48 +47,88 @@ class _InicioCarreraState extends State<InicioCarrera> {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.account_circle_sharp,
+                icon: const Icon(Icons.account_circle_sharp,
                     size: 40.0, color: Colors.lightBlue),
               )
             ],
           ),
           body: (isLoading)
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : SingleChildScrollView(
                   child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Secciones(texto: ' ', tamano: 14.0),
                     Positioned(
                       bottom: 0,
                       left:0,
                       right: 0,
-                      child: Busqueda(texto: 'nombre de la carreras', tamano: 14.0, width: width),),
-                    Secciones(texto: 'Carreras', tamano: 14.0),
+                      child: Container(
+                          height: 42,
+                          width: width-25,
+                          padding: const EdgeInsets.only(left: 20),
+                          margin: EdgeInsets.symmetric(horizontal: width/15),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF0F2F5),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: TextField(
+                              controller: controller,
+                              textAlignVertical: TextAlignVertical.center,
+                              onChanged: buscarCarrera,
+                              decoration: InputDecoration(
+                                //isCollapsed: true,
+                                  hintText: textoFinal,
+                                  hintStyle: TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black.withOpacity(0.5)),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  prefixIcon: const Icon(Icons.search_rounded,
+                                      size: 20.0, color: Colors.lightBlue)
+                              ),
+                            ),
+                          )
+                      ),
+                    ),
                     SizedBox(
                         height: height - 50,
                         child: Container(
-                          decoration: BoxDecoration(
+                          margin: const EdgeInsets.only(left: 24, right: 24, top: 32),
+                          decoration: const BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(6.0)),
                           ),
                           child: ListView.builder(
-                              itemCount: users!.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: busquedaActiva!.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Card(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30)),
-                                  margin: EdgeInsets.all(15),
+                                  margin: const EdgeInsets.all(15),
                                   elevation: 10,
+                                  child: InkWell(
+                                  onTap: () {//validacion carrera
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => InformacionCarrera(busquedaActiva![index])),
+                                      );
+                                  },
                                   child: ListTile(
                                     leading: ConstrainedBox(
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         maxWidth: 104,
                                         maxHeight: 104,
                                       ),
                                       child: Image.network(
-                                        users[index].IMG!,
+                                        busquedaActiva![index].IMG!,
                                         isAntiAlias: true,
                                         fit: BoxFit.fill,
                                       ),
@@ -91,48 +139,61 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                       text: ' ', // default text style
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: users[index].Horario!,
+                                            text: busquedaActiva![index].Categoria!,
                                             style: TextStyle(
                                               fontStyle: FontStyle.italic,
                                               backgroundColor:
-                                                  Colors.orangeAccent.shade100,
+                                                  const Color(0xFF388E9F).withOpacity(0.5),
                                               color:
-                                                  Colors.orangeAccent.shade700,
+                                                  const Color(0xFF388E9F),
                                             )),
-                                        TextSpan(text: ' \n '),
+                                        const TextSpan(text: ' \n '),
                                         TextSpan(
-                                          text: users[index].Nombre!,
-                                          style: TextStyle(
-                                              fontSize: 14,
+                                          text: busquedaActiva![index].Nombre!,
+                                          style: const TextStyle(
+                                              fontSize: 18,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black87),
                                         ),
                                       ],
                                     )),
                                     subtitle: Text(
-                                      users[index].Descripcion!,
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.black54),
+                                      busquedaActiva![index].Resumen!,
+                                      style: const TextStyle(
+                                          fontSize: 16, color: Colors.black54),
                                     ),
-
                                   ),
-   /* child: new InkWell(
-    onTap: () {
-    if(servicio.firstName != "Eve"){ //validacion de si son buses o no
-    Navigator.push(
-    context,
-    MaterialPageRoute(
-    builder: (context) => InformacionServicio()),
-    );
-    }}),*/
+                                ),
                                 );
                               }),
                         )),
                   ],
-                  crossAxisAlignment: CrossAxisAlignment.start,
                 )),
         ));
   }
+
+  void buscarCarrera(String carreraE){
+    var sugerencias = busquedaActiva?.where((element) {
+      var sugerencia = element.Nombre?.toLowerCase();
+      var escrito = carreraE.toLowerCase();
+
+      print("object");
+      print(escrito.toString());
+      print(sugerencia.toString());
+      //print("Tiene sugerencias");
+      //print(escrito);
+      //print(sugerencia.toString());
+
+      return sugerencia!.contains(escrito);
+    }).toList();
+
+    setState(() {
+      busquedaActiva = sugerencias;
+      print("Cambia");
+      print(busquedaActiva![0].Nombre.toString());
+    });
+  }
+
 }
 
 class Secciones extends StatelessWidget {
@@ -147,10 +208,10 @@ class Secciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Text(this.texto,
+      padding: const EdgeInsets.all(20),
+      child: Text(texto,
           style: TextStyle(
-              fontSize: this.tamano,
+              fontSize: tamano,
               fontWeight: FontWeight.bold,
               color: Colors.blue.shade900)),
     );
@@ -161,6 +222,7 @@ class Busqueda extends StatelessWidget {
   final String texto;
   var tamano = 24.0;
   double width = 50;
+  final controller = TextEditingController();
 
   Busqueda({
     required this.texto,
@@ -173,31 +235,32 @@ class Busqueda extends StatelessWidget {
     return Container(
         height: 42,
         width: width-25,
-        padding: EdgeInsets.all(20),
-        margin: new EdgeInsets.symmetric(horizontal: width/15),
+        padding: const EdgeInsets.only(left: 20, bottom: 15),
+        margin: EdgeInsets.symmetric(horizontal: width/15),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xFFF0F2F5),
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0, 5),
-              blurRadius: 5,
-            ),
-          ],
         ),
-      child: TextField(
-        onChanged: (value) {},
-        decoration: InputDecoration(
-          hintText: this.texto,
-          hintStyle: TextStyle(
-              fontSize: this.tamano,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue.shade900),
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          suffixIcon: Icon(Icons.search_rounded,
-                      size: 24.0, color: Colors.lightBlue)),
-        ),
+      child: Align(
+        //alignment: Alignment.center,
+        child: TextField(
+          controller: controller,
+          //textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(
+            //isCollapsed: true,
+            hintText: texto,
+            hintStyle: TextStyle(
+                fontSize: tamano,
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.5)),
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            prefixIcon: const Icon(Icons.search_rounded,
+                        size: 40.0, color: Colors.lightBlue)
+          ),
+          //onChanged: buscarCarrera,
+          ),
+        )
         );
   }
 }
