@@ -151,7 +151,7 @@ class _InicioServicioState extends State<InicioServicio> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => InformacionBus(servicio)),
+                  builder: (context) => InformacionBus()),
             );
           }
           //print("tapped " +  users[index].firstName!);

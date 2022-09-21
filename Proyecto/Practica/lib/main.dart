@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/Mas/controladores/datos_becas.dart';
 import 'package:untitled/Mas/controladores/datos_preguntas.dart';
 import 'package:untitled/Servicios/servicios/datos_servicio.dart';
-//import 'Pez1_Screen.dart';
+import 'package:untitled/Servicios/servicios/datos_bus.dart';
 import 'Barra.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +24,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => locator<DatosCarrera>()),
         ChangeNotifierProvider(create: (_) => locator<DatosServicio>()),
         ChangeNotifierProvider(create: (_) => locator<DatosPreguntas>()),
-        ChangeNotifierProvider(create: (_) => locator<DatosBecas>())
+        ChangeNotifierProvider(create: (_) => locator<DatosBecas>()),
+        ChangeNotifierProvider(create: (_) => locator<DatosBus>())
       ],
       child: PrototipoBarra(),
     ),

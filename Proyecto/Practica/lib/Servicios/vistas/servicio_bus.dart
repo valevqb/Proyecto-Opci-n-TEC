@@ -1,38 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Servicios/modelos/servicio.dart';
+import 'package:untitled/Servicios/modelos/servicioBus.dart';
 import 'package:untitled/Servicios/servicios/datos_bus.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled/Servicios/modelos/servicioBus.dart';
 
 import '../../locators.dart';
 
 class InformacionBus extends StatefulWidget {
-  final DataServicio servicioSeleccionado;
-  InformacionBus(this.servicioSeleccionado);
+  //final DataServicioBus servicioSeleccionado;
+  //InformacionBus(this.servicioSeleccionado);
 
   @override
   _InformacionBusState createState() => _InformacionBusState();
 }
 
 class _InformacionBusState extends State<InformacionBus> {
-  late DataServicio _valor;
   late String _destino;
   late String _origen;
   late int _index;
+  late int _index2;
+
+  List _destinos = [];
+  DependenciaDestino(indice, lista){
+
+  }
 
   @override
   void initState() {
     super.initState();
-    _valor = this.widget.servicioSeleccionado;
     _destino = "Destino";
     _origen = "Origen";
     _index = 0;
-    locator<DatosBus>().fetchUsers();
+    _index2 = 0;
+    locator<DatosBus>().fetchServicioBus();
   }
 
   @override
   Widget build(BuildContext context) {
     bool isLoading = Provider.of<DatosBus>(context).isLoading;
+    List<dynamic>? servicioBus = Provider.of<DatosBus>(context).servicioBus;
+    //print("Origen");
+    //print(servicioBus?[0].Origen);
+    //print(servicioBus?[0].Destinos?.destinos?[0].Nombre.toString());
+
     return Scaffold(
         body: (isLoading)
             ? Container(
@@ -49,7 +58,7 @@ class _InformacionBusState extends State<InformacionBus> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            seleccionOrigen(context),
+                            seleccionOrigen(context, servicioBus),
                             SizedBox(
                               child: Container(//Lista
                                 decoration: BoxDecoration(
@@ -61,7 +70,7 @@ class _InformacionBusState extends State<InformacionBus> {
                                     itemBuilder: (BuildContext context, int index) {
                                       return Align(
                                         alignment: Alignment.topLeft,
-                                        child: informacionServicio(context, _valor),
+                                        child: informacionServicio(context, servicioBus),
                                       );
                                     }
                                 ),
@@ -77,7 +86,7 @@ class _InformacionBusState extends State<InformacionBus> {
     );
   }
 
-  Widget seleccionOrigen (BuildContext context) { //titulo de la pagina e imagen
+  Widget seleccionOrigen (BuildContext context, List<dynamic>? servicioBus) { //titulo de la pagina e imagen
     return Container( //La imagen donde dice servicios
       height: 286,
       width: (MediaQuery.of(context).size.width),
@@ -98,13 +107,29 @@ class _InformacionBusState extends State<InformacionBus> {
                 style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,),
           ),
-          //nombreDestino(context),
+          nombreDestino(context, servicioBus),
         ],
       )
     );
   }
 
-  Widget nombreDestino (BuildContext context){
+  Widget nombreDestino (BuildContext context, List<dynamic>? servicioBus){
+    List<dynamic> listaOrigenes = ["Origen"];
+    List<List<dynamic>> listaDestino = [["Destino"]];
+
+    servicioBus?.forEach((element) {
+      listaOrigenes.add(element.Origen.toString());
+    });
+
+    servicioBus?.forEach((element) {
+      List<dynamic> listas = [];
+      element?.Destinos.destinos.forEach((elemento){
+        listas.add(elemento.Nombre.toString());
+      });
+      listas.add("Destino".toString());
+      listaDestino.add(listas);
+    });
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -125,11 +150,16 @@ class _InformacionBusState extends State<InformacionBus> {
               children: [
                 Container(
                   height: 56,
-                  child: dropInformacionOrigen (context, ["Origen","1","2","3"]),
+                  child: dropInformacionOrigen (
+                      context,
+                      listaOrigenes,
+                      servicioBus),
                 ),
                 Container(
                   height: 56,
-                  child: dropInformacionDestino (context, ["Destino","1","2","3"]),
+                  child: dropInformacionDestino (
+                      context,
+                      listaDestino),
                 )
               ],
             ),
@@ -140,11 +170,11 @@ class _InformacionBusState extends State<InformacionBus> {
     );
   }
 
-  Widget dropInformacionOrigen (BuildContext context, List informacion){ //Informacion de cada dropdown
+  Widget dropInformacionOrigen (BuildContext context, List<dynamic>? informacion, List<dynamic>? servicioBus){ //Informacion de cada dropdown
     return DropdownButton(
       isExpanded: true,
       value: _origen,
-      items: informacion.map((dynamic lists)
+      items: informacion?.map((lists)
       => DropdownMenuItem(
         value: lists.toString(),
         child: Padding(
@@ -154,20 +184,27 @@ class _InformacionBusState extends State<InformacionBus> {
             style: Theme.of(context).textTheme.bodyLarge),
         )
       ),
-      ).toList(),
+      )?.toList(),
       onChanged: (String? newValue){
         setState(() {
+          _destino = "Destino";
           _origen = newValue.toString();
+          _index = informacion!.indexWhere((element)
+          => element.toString() == _origen);
         });
       },
     );
   }
 
-  Widget dropInformacionDestino (BuildContext context, List informacion){ //Informacion de cada dropdown
+  Widget dropInformacionDestino (BuildContext context, List<List<dynamic>> informaciones){ //Informacion de cada dropdown
+    print(informaciones[1]);
+    List<dynamic> informacion = informaciones[_index];
+    print(informacion.toString());
+
     return DropdownButton(
       isExpanded: true,
       value: _destino,
-      items: informacion.map((dynamic lists)
+      items: informacion?.map((lists)
       => DropdownMenuItem(
           value: lists.toString(),
           child: Padding(
@@ -177,16 +214,28 @@ class _InformacionBusState extends State<InformacionBus> {
                 style: Theme.of(context).textTheme.bodyLarge),
           )
       ),
-      ).toList(),
+      )?.toList(),
       onChanged: (String? newValue){
         setState(() {
           _destino = newValue.toString();
+          _index2 = informacion!.indexWhere((element)
+          => element.toString() == _destino);
         });
       },
     );
   }
 
-  Widget informacionServicio (BuildContext context, servicioSeleccion){ //list users son las imagenes, carga la info de los servicios
+  Widget informacionServicio (BuildContext context, List<dynamic>? servicioBus){ //list users son las imagenes, carga la info de los servicios
+    var servicioInformacion;
+    if(_index-1 < 0){
+      return Column();
+    }
+    if(_index-1 > servicioBus!.length){
+      return Column();
+    }
+    else{
+      servicioInformacion = servicioBus?[_index-1].Destinos;
+    }
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,20 +250,28 @@ class _InformacionBusState extends State<InformacionBus> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                   padding: EdgeInsets.only(
                       top: 20.60, left: 24
                   ),
                   alignment: Alignment.topLeft,
-                  child: dataBusServicio(context, "Precio", 0, 'lib/Fotos/Precio.jpg')
+                  child: dataBusServicio(context,
+                      "Precio",
+                      servicioInformacion.destinos[_index2].Precio,
+                      'lib/Fotos/Precio.jpg')
               ),
               Container(
                   padding: EdgeInsets.only(
                       top: 20.60, left: 24
                   ),
                   alignment: Alignment.topLeft,
-                  child: dataBusServicio(context, "Salida", "Blablabla", 'lib/Fotos/Salida.jpg')
+                  child: dataBusServicio(context,
+                      "Salida",
+                      servicioInformacion.destinos[_index2].Ubicacion,
+                      'lib/Fotos/Salida.jpg')
               ),
             ],
           ),
@@ -223,14 +280,18 @@ class _InformacionBusState extends State<InformacionBus> {
                   top: 20.60, left: 24
               ),
               alignment: Alignment.topLeft,
-              child: dataBusServicio(context, "Paradas", "Blablabla", 'lib/Fotos/Paradas.jpg')
+              child: dataBusServicio(context, "Paradas",
+                  servicioInformacion.destinos[_index2].Paradas.join("\n"),
+                  'lib/Fotos/Paradas.jpg')
           ),
           Container(
               padding: EdgeInsets.only(
                   top: 20.60, left: 24
               ),
               alignment: Alignment.topLeft,
-              child: dataBusServicio(context, "Horarios", "Blablabla", 'lib/Fotos/Horarios.jpg')
+              child: dataBusServicio(context, "Horarios",
+                  servicioInformacion.destinos[_index2].Horarios.join("\n"),
+                  'lib/Fotos/Horarios.jpg')
           ),
         ]
     );
@@ -249,6 +310,8 @@ class _InformacionBusState extends State<InformacionBus> {
         Container(
           margin: const EdgeInsets.only(left: 5.5),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text (
                 titulo.toString(), //Labor del servicio

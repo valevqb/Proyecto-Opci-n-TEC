@@ -11,9 +11,9 @@ class DatosBus extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  List<DataServicioBus>? buses = [];
+  List<dynamic>? servicioBus = [];
 
-  Future<List<DataServicioBus>?> fetchUsers() async {
+  Future<List<dynamic>?> fetchServicioBus() async {
     _isLoading = true;
     notifyListeners();
 
@@ -28,12 +28,13 @@ class DatosBus extends ChangeNotifier {
       var _buses = _datos["Datos"];
 
       if (_buses != null) {
-        buses = ServicioBus.fromJson(_datos).servicioBus;
+        servicioBus = ServicioBus.fromJson(_datos).servicioBus;
+        print("0000000");
       }
 
       _isLoading = false;
       notifyListeners();
-      return buses;
+      return servicioBus;
     }
     else{
       _isLoading = false;

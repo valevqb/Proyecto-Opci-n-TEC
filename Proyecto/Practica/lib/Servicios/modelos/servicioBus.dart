@@ -17,16 +17,17 @@ class ServicioBus {
 }
 
 class DataServicioBus {
+
   int? id;
   String? Origen;
-  DataDestino? Destinos;
+  Destino? Destinos;
   DataServicioBus({this.Origen, this.Destinos});
 
   DataServicioBus.fromJson(Map<String, dynamic> json) {
-
     id = json['id'];
-    Origen= json['info']['Origen'];
-    Destinos = DataDestino.fromJson(json['info']['Destino']);
+    Origen = json['info']['Origen'];
+    Destinos = Destino.fromJson(json['info']['Destino']);
+    //print(Destinos?.destinos?.toString())//[0].Nombre);
   }
 
   Map<String, dynamic> toJson() {
@@ -38,24 +39,39 @@ class DataServicioBus {
   }
 }
 
+class Destino {
+  List<DataDestino>? destinos = [];
+  int? total;
+
+  Destino();
+
+  Destino.fromJson(List<dynamic> json) {
+    if(json.isNotEmpty) {
+      json.forEach((v) {
+        destinos!.add(new DataDestino.fromJson(v));
+      });
+    }
+  }
+}
+
 class DataDestino {
-  String? Destino;
-  List<dynamic>? Precio;
-  List<dynamic>? Ubicacion;
+  String? Nombre;
+  String? Precio;
+  String? Ubicacion;
   List<dynamic>? Horarios;
   List<dynamic>? Paradas;
-  DataDestino({this.Destino, this.Precio, this.Ubicacion, this.Horarios , this.Paradas});
+  DataDestino({this.Nombre, this.Precio, this.Ubicacion, this.Horarios , this.Paradas});
 
   DataDestino.fromJson(Map<String, dynamic> json) {
-    Destino = json['info']['Destino'];
-    Precio = json['info']['Precio'];
-    Ubicacion = json['info']['Ubicacion'];
-    Horarios = json['info']['Horarios'];
-    Paradas = json['info']['Paradas'];
+    Nombre = json['Nombre'];
+    Precio = json['Precio'];
+    Ubicacion = json['Ubicacion'];
+    Horarios = json['Horarios'];
+    Paradas = json['Paradas'];
 
     Map<String, dynamic> toJson() {
       final Map<String, dynamic> data = new Map<String, dynamic>();
-      data[ 'Destino' ] = Destino;
+      data[ 'Nombre' ] = Nombre;
       data[ 'Precio' ] = Precio;
       data[ 'Ubicacion' ] = Ubicacion;
       data[ 'Horarios' ] = Horarios;
