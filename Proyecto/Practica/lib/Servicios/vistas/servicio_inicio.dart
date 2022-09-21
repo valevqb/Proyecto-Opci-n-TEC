@@ -57,14 +57,12 @@ class _InicioServicioState extends State<InicioServicio> {
                                       children: [
                                         tipoServicio(context, "Facilidades"),
                                         listaServicios(context, servicio?[0]),
-                                        tipoServicio(context, "Categoría"),
-                                        listaServicios(context, servicio?[0]),
                                         tipoServicio(context, "Salud y Bienestar"),
-                                        listaServicios(context, servicio?[0]),
+                                        listaServicios(context, servicio?[1]),
                                         tipoServicio(context, "Para el Estudio"),
-                                        listaServicios(context, servicio?[0]),
+                                        listaServicios(context, servicio?[2]),
                                         tipoServicio(context, "Más servicios"),
-                                        listaServicios(context, servicio?[0]),
+                                        listaServicios(context, servicio?[3])
                                       ]
                                     )
                                 );
