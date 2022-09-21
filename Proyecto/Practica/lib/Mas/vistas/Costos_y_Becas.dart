@@ -3,6 +3,7 @@ import 'package:untitled/Mas/modelos/Costos.dart';
 import 'package:untitled/Mas/modelos/Becas.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/Mas/controladores/datos_becas.dart';
+import 'package:untitled/Mas/vistas/Info_Becas.dart';
 import 'package:untitled/Mas/vistas/Info_Costos.dart';
 import '../../locators.dart';
 
@@ -30,10 +31,12 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {Navigator.of(context).pop();},
-            icon: const Icon(Icons.arrow_circle_left_rounded, size: 40.0, color: Colors.lightBlue),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_circle_left_rounded,
+                size: 40.0, color: Colors.lightBlue),
           ),
-
           title: Text('Costos y becas',
               style: TextStyle(
                   fontSize: 24.0,
@@ -63,7 +66,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                               width: (width - 50) / 5,
                             ),
                             Container(
-                              width: 3*(width - 50)/ 5,
+                              width: 3 * (width - 50) / 5,
                               child: Column(
                                 children: <Widget>[
                                   Text('¿Sabes cuánto cuestan los cursos?',
@@ -83,9 +86,9 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                               icon: const Icon(Icons.arrow_circle_right_rounded,
                                   size: 40.0, color: Colors.lightBlue),
                               onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Info_Costos(),
-                                  ));
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Info_Costos(),
+                                ));
                               },
                             ),
 
@@ -110,7 +113,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                     ),
                     Secciones(texto: 'Becas socioeconomicas', tamano: 20.0),
                     SizedBox(
-                        height: height/3,
+                      height: height / 3,
                       child: Container(
                           decoration: BoxDecoration(
                             borderRadius:
@@ -129,9 +132,17 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black87),
                                     ),
-                                    trailing: Icon(
-                                      Icons.arrow_circle_right_rounded,
-                                      color: Colors.lightBlue,
+                                    trailing: IconButton(
+                                      icon: const Icon(
+                                        Icons.arrow_circle_right_rounded,
+                                        color: Colors.lightBlue,
+                                      ),
+                                      //tooltip: 'Increase volume by 10',
+                                      onPressed: () {
+                                        Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => Info_Becas(),
+                                        ));
+                                      },
                                     ),
                                   ),
                                 );
@@ -139,7 +150,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                     ),
                     Secciones(texto: 'Becas de estimulo', tamano: 20.0),
                     SizedBox(
-                      height: height/3,
+                      height: height / 3,
                       child: Container(
                           decoration: BoxDecoration(
                             borderRadius:

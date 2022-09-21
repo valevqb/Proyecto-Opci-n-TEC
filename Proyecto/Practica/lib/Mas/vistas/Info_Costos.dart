@@ -23,7 +23,7 @@ class _Info_CostosState extends State<Info_Costos> {
     List<DataCostos>? Costos = Provider.of<DatosCostos>(context).costos;
     bool isLoading = Provider.of<DatosCostos>(context).isLoading;
     return MaterialApp(
-      title: "Pez Costos",
+      title: "Pez Info Costos",
       theme: ThemeData(primarySwatch: Colors.cyan),
       home: Scaffold(
         appBar: AppBar(
@@ -60,7 +60,7 @@ class _Info_CostosState extends State<Info_Costos> {
                     ),*/
                     Center(
                       child: Container(
-                        width: width,
+                        width: width-50,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(6.0)),
                           color: Colors.grey.shade100,
@@ -131,7 +131,7 @@ class _Info_CostosState extends State<Info_Costos> {
                                                         .BienestarEstudiantil! +
                                                     '\n',
                                                 style: TextStyle(
-                                                    fontSize: 16,
+                                                    fontSize: 14,
                                                     color: Colors.white),
                                               ),
                                               Center(
