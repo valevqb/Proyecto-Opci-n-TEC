@@ -173,13 +173,16 @@ class _InicioCarreraState extends State<InicioCarrera> {
   }
 
   void buscarCarrera(String carreraE){
-    final sugerencias = busquedaActiva?.where((element) {
-      final sugerencia = element.Nombre?.toLowerCase();
-      final escrito = carreraE.toLowerCase();
+    var sugerencias = busquedaActiva?.where((element) {
+      var sugerencia = element.Nombre?.toLowerCase();
+      var escrito = carreraE.toLowerCase();
 
-      print("Tiene sugerencias");
-      print(escrito);
+      print("object");
+      print(escrito.toString());
       print(sugerencia.toString());
+      //print("Tiene sugerencias");
+      //print(escrito);
+      //print(sugerencia.toString());
 
       return sugerencia!.contains(escrito);
     }).toList();
@@ -187,6 +190,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
     setState(() {
       busquedaActiva = sugerencias;
       print("Cambia");
+      print(busquedaActiva![0].Nombre.toString());
     });
   }
 
