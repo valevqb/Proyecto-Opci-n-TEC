@@ -28,26 +28,17 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
   @override
   Widget build(BuildContext context) {
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
-    return Scaffold(
+    return MaterialApp(
+        home: Scaffold(
         body: (isLoading)
             ? Container(
 
         )
-            : Container(
-            child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 1,
-                itemBuilder: (BuildContext context, int index) {
-                  return Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            tituloImagenPrincipal(context),
-                            SizedBox(
-                              child: Container( //Lista
+            : SingleChildScrollView(
+            child: Column(
+                children: [
+                  tituloImagenPrincipal(context),
+                  Container( //Lista
                                 decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(6.0)),
                                 ),
@@ -63,15 +54,11 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
                                     }
                                 ),
                               ),
-                            )
                           ]
                       ),
                     ),
-                  );
-                }
             )
-        )
-    );
+        );
   }
 
   Widget tituloImagenPrincipal (BuildContext context) { //titulo de la pagina e imagen
