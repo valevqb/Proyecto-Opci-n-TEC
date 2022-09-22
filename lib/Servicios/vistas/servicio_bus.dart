@@ -103,7 +103,11 @@ class _InformacionBusState extends State<InformacionBus> {
           Container(
             margin: const EdgeInsets.only(top: 44.00),
             child: Text("Buses",
-                style: Theme.of(context).textTheme.titleLarge,
+                style: TextStyle( //Titulo principal
+                    fontFamily: 'Poppins',
+                    fontSize: 24,
+                    fontWeight: FontWeight. bold,
+                    color: Colors.white),
                 textAlign: TextAlign.center,),
           ),
           nombreDestino(context, servicioBus),
@@ -122,10 +126,10 @@ class _InformacionBusState extends State<InformacionBus> {
 
     servicioBus?.forEach((element) {
       List<dynamic> listas = [];
+      listas.add("Destino".toString());
       element?.Destinos.destinos.forEach((elemento){
         listas.add(elemento.Nombre.toString());
       });
-      listas.add("Destino".toString());
       listaDestino.add(listas);
     });
 
@@ -187,6 +191,7 @@ class _InformacionBusState extends State<InformacionBus> {
       onChanged: (String? newValue){
         setState(() {
           _destino = "Destino";
+          _index2 = 0;
           _origen = newValue.toString();
           _index = informacion!.indexWhere((element)
           => element.toString() == _origen);
@@ -215,6 +220,7 @@ class _InformacionBusState extends State<InformacionBus> {
       onChanged: (String? newValue){
         setState(() {
           _destino = newValue.toString();
+          print(_index2.toString());
           _index2 = informacion!.indexWhere((element)
           => element.toString() == _destino);
         });
@@ -225,6 +231,9 @@ class _InformacionBusState extends State<InformacionBus> {
   Widget informacionServicio (BuildContext context, List<dynamic>? servicioBus){ //list users son las imagenes, carga la info de los servicios
     var servicioInformacion;
     if(_index-1 < 0){
+      return Column();
+    }
+    if(_index2-1 < 0){
       return Column();
     }
     if(_index-1 > servicioBus!.length){
@@ -257,7 +266,7 @@ class _InformacionBusState extends State<InformacionBus> {
                   alignment: Alignment.topLeft,
                   child: dataBusServicio(context,
                       "Precio",
-                      servicioInformacion.destinos[_index2].Precio,
+                      servicioInformacion.destinos[_index2-1].Precio,
                       'lib/Fotos/Precio.jpg')
               ),
               Container(
@@ -267,7 +276,7 @@ class _InformacionBusState extends State<InformacionBus> {
                   alignment: Alignment.topLeft,
                   child: dataBusServicio(context,
                       "Salida",
-                      servicioInformacion.destinos[_index2].Ubicacion,
+                      servicioInformacion.destinos[_index2-1].Ubicacion,
                       'lib/Fotos/Salida.jpg')
               ),
             ],
@@ -278,7 +287,7 @@ class _InformacionBusState extends State<InformacionBus> {
               ),
               alignment: Alignment.topLeft,
               child: dataBusServicio(context, "Paradas",
-                  servicioInformacion.destinos[_index2].Paradas.join("\n"),
+                  servicioInformacion.destinos[_index2-1].Paradas.join("\n"),
                   'lib/Fotos/Paradas.jpg')
           ),
           Container(
@@ -287,7 +296,7 @@ class _InformacionBusState extends State<InformacionBus> {
               ),
               alignment: Alignment.topLeft,
               child: dataBusServicio(context, "Horarios",
-                  servicioInformacion.destinos[_index2].Horarios.join("\n"),
+                  servicioInformacion.destinos[_index2-1].Horarios.join("\n"),
                   'lib/Fotos/Horarios.jpg')
           ),
         ]
