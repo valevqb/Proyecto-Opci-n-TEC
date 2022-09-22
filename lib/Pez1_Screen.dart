@@ -10,8 +10,19 @@ class Plantilla extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.cyan),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Pez pantalla "),
-          elevation: 0.0,
+          title: Text('Inicio',
+              style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue.shade900)),
+          elevation: 0,
+          backgroundColor: Colors.white,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.account_circle_sharp, size: 40.0, color: Colors.lightBlue),
+            ),
+          ],
         ),
         body: Center(
             child: Container(
@@ -28,7 +39,7 @@ class Plantilla extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(300)),
           child: Text(
-            "Pez ",
+            "Panel de Inicio ",
             /*style: TextStyle(
                   fontSize: 15,*/
           ),
@@ -48,7 +59,19 @@ class Plantilla2 extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.cyan),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Pez pantalla 2"),
+          title: Text('Admisión',
+              style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue.shade900)),
+          elevation: 0,
+          backgroundColor: Colors.white,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.account_circle_sharp, size: 40.0, color: Colors.lightBlue),
+            ),
+          ],
         ),
         body: Center(
           child: Container(
@@ -71,7 +94,7 @@ class Plantilla2 extends StatelessWidget {
                     blurRadius: 4,
                   ),
                 ]),
-            child: Text("Pez vol"),
+            child: Text("Panel de Admisión"),
             padding: EdgeInsets.all(20),
             //modifica el cuadro
             //constraints:BoxConstraints(
@@ -111,6 +134,7 @@ class PezPading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       home: Padding(
         padding: EdgeInsets.all(20),
         child: Container(

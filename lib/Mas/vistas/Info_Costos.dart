@@ -170,6 +170,31 @@ class _Info_CostosState extends State<Info_Costos> {
                                 })),
                       ),
                     ),
+                    Center(
+                        child: SizedBox(
+                          width: width - 40,
+                          child: FloatingActionButton.extended(
+                            heroTag: UniqueKey(),
+                            label: Text('Calcular costo total',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue.shade900)),
+                            // <-- Text
+                            backgroundColor: Colors.lightBlue.shade100,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(15.0))),
+                            icon: Icon(
+                              // <-- Icon
+                              Icons.monetization_on_outlined,
+                              size: 24.0,
+                            ),
+                            onPressed: () {
+
+                            },
+                          ),
+                        ))
                   ],
                 ),
               ),

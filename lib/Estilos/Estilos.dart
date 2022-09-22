@@ -28,9 +28,3 @@ const descripciones = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
     color: Color(0xFF2B436D));
-
-const subtitulosBuses = TextStyle(
-    fontFamily: 'Mulish',
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-    color: Colors.grey);

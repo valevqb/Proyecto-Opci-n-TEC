@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:opciontec/Mas/modelos/Preguntas.dart';
 import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
 import 'package:opciontec/Mas/vistas/Costos_y_Becas.dart';
+import 'package:opciontec/Mas/vistas/Info_Preguntas.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';
@@ -22,7 +23,7 @@ class _InicioMasState extends State<InicioMas> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    List<DataPreguntas>? Preguntas =
+    List<List<DataPreguntas>>? Preguntas =
         Provider.of<DatosPreguntas>(context).preguntas;
     bool isLoading = Provider.of<DatosPreguntas>(context).isLoading;
     return MaterialApp(
@@ -129,28 +130,37 @@ class _InicioMasState extends State<InicioMas> {
                     Secciones(texto: 'Preguntas frecuentes', tamano: 24.0),
                     Secciones(texto: 'Admisión', tamano: 14.0),
                     SizedBox(
-                      height: 350,
+                      height: 230,
                       child: Container(
                           decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(6.0)),
                           ),
                           child: ListView.builder(
-                              itemCount: Preguntas!.length,
+                              itemCount: Preguntas![1].length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Card(
                                   elevation: 5,
                                   child: ListTile(
                                     title: Text(
-                                      Preguntas[index].Pregunta!,
+                                      Preguntas[1][index].Pregunta!,
                                       style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black87),
                                     ),
-                                    trailing: Icon(
-                                      Icons.arrow_circle_right_rounded,
-                                      color: Colors.lightBlue,
+                                    trailing: IconButton(
+                                      icon: const Icon(
+                                        Icons.arrow_circle_right_rounded,
+                                        color: Colors.lightBlue,
+                                      ),
+                                      //tooltip: 'Increase volume by 10',
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) => Info_Pregunta(Preguntas![1][index]),
+                                        ));
+                                      },
                                     ),
                                   ),
                                 );
@@ -165,21 +175,30 @@ class _InicioMasState extends State<InicioMas> {
                                 BorderRadius.all(Radius.circular(6.0)),
                           ),
                           child: ListView.builder(
-                              itemCount: Preguntas.length,
+                              itemCount: Preguntas![0].length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Card(
                                   elevation: 5,
                                   child: ListTile(
                                     title: Text(
-                                      Preguntas[index].Pregunta!,
+                                      Preguntas[1][index].Pregunta!,
                                       style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black87),
                                     ),
-                                    trailing: Icon(
-                                      Icons.arrow_circle_right_rounded,
-                                      color: Colors.lightBlue,
+                                    trailing: IconButton(
+                                      icon: const Icon(
+                                        Icons.arrow_circle_right_rounded,
+                                        color: Colors.lightBlue,
+                                      ),
+                                      //tooltip: 'Increase volume by 10',
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) => Info_Pregunta(Preguntas![0][index]),
+                                        ));
+                                      },
                                     ),
                                   ),
                                 );

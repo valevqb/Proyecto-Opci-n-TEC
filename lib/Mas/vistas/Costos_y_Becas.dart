@@ -139,8 +139,9 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                       ),
                                       //tooltip: 'Increase volume by 10',
                                       onPressed: () {
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => Info_Becas(),
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) => Info_Becas(Becas![0][index]),
                                         ));
                                       },
                                     ),
@@ -169,9 +170,18 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black87),
                                     ),
-                                    trailing: Icon(
-                                      Icons.arrow_circle_right_rounded,
-                                      color: Colors.lightBlue,
+                                    trailing: IconButton(
+                                      icon: const Icon(
+                                        Icons.arrow_circle_right_rounded,
+                                        color: Colors.lightBlue,
+                                      ),
+                                      //tooltip: 'Increase volume by 10',
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) => Info_Becas(Becas![1][index]),
+                                        ));
+                                      },
                                     ),
                                   ),
                                 );

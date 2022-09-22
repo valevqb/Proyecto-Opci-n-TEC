@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a7fb00d-5b86-414e-a4e4-c301b0d7dbda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_bus.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_bus.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Config.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Estilos/Estilos.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Estilos/Estilos.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Fotos/Servicios.png" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Fotos/Servicios.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/controladores/datos_preguntas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/controladores/datos_preguntas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/modelos/Becas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/modelos/Becas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/modelos/Costos.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/modelos/Costos.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/modelos/Preguntas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/modelos/Preguntas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/vistas/Costos_y_Becas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/vistas/Costos_y_Becas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/vistas/Info_Becas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/vistas/Info_Becas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/vistas/Info_Costos.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/vistas/Info_Costos.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/vistas/mas_inicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/vistas/mas_inicio.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Pez1_Screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Pez1_Screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

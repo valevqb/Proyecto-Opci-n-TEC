@@ -1,38 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:opciontec/Mas/controladores/datos_becas.dart';
-import 'package:opciontec/Mas/modelos/Becas.dart';
+import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
+import 'package:opciontec/Mas/modelos/Preguntas.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../locators.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Info_Becas extends StatefulWidget {
-  final DataBecas BecaSelec_par;
+class Info_Pregunta extends StatefulWidget {
+  final DataPreguntas PreguntaSelec_par;
 
-  Info_Becas(this.BecaSelec_par);
+  Info_Pregunta(this.PreguntaSelec_par);
 
   @override
-  _Info_BecasState createState() => _Info_BecasState();
+  _Info_PreguntaState createState() => _Info_PreguntaState();
 }
 
-class _Info_BecasState extends State<Info_Becas> {
-  late DataBecas BecaSelec;
+class _Info_PreguntaState extends State<Info_Pregunta> {
+  late DataPreguntas PreguntaSelec;
 
   @override
   void initState() {
     super.initState();
-    BecaSelec = this.widget.BecaSelec_par;
-    locator<DatosBecas>().fetchUsers();
+    PreguntaSelec = this.widget.PreguntaSelec_par;
+    locator<DatosPreguntas>().fetchUsers();
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    String Categoria = BecaSelec.Categoria.toString();
-    List<dynamic>? InfoBeneficios = BecaSelec.Beneficios;
+    String Categoria = "Pregunta frecuente de " + PreguntaSelec.Categoria.toString();
 
-    bool isLoading = Provider.of<DatosBecas>(context).isLoading;
+    bool isLoading = Provider.of<DatosPreguntas>(context).isLoading;
     return MaterialApp(
       title: "Pez Info becas",
       theme: ThemeData(primarySwatch: Colors.cyan),
@@ -45,7 +44,7 @@ class _Info_BecasState extends State<Info_Becas> {
             icon: const Icon(Icons.arrow_circle_left_rounded,
                 size: 40.0, color: Colors.lightBlue),
           ),
-          title: Text('Beca ' + Categoria,
+          title: Text(Categoria,
               style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -95,50 +94,17 @@ class _Info_BecasState extends State<Info_Becas> {
               ),
               Center(
                   child: Secciones(
-                      texto: BecaSelec.Nombre.toString(),
+                      texto: PreguntaSelec.Pregunta.toString(),
                       tamano: 20.0,
                       width: width - 25,
                       color: Colors.blue.shade900)),
               Center(
                   child: Secciones(
-                      texto: BecaSelec.Descripcion.toString(),
+                      texto: PreguntaSelec.Respuesta.toString(),
                       tamano: 12.0,
                       width: width - 25,
                       color: Colors.black87)),
-              Center(
-                  child: Secciones(
-                      texto: "Requisitos",
-                      tamano: 16.0,
-                      width: width - 25,
-                      color: Colors.blue.shade900)),
-              Center(
-                  child: Secciones(
-                      texto: BecaSelec.Requisitos.toString(),
-                      tamano: 12.0,
-                      width: width - 25,
-                      color: Colors.black87)),
-              Center(
-                  child: Secciones(
-                      texto: "Beneficios",
-                      tamano: 16.0,
-                      width: width - 25,
-                      color: Colors.blue.shade900)),
-              Center(
-                  child: Secciones(
-                      texto: BecaSelec.Beneficios.toString(),
-                      tamano: 12.0,
-                      width: width - 25,
-                      color: Colors.black87)),
-              /*ListView.builder(
-                        itemCount: InfoBeneficios!.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Secciones(
-                              texto:
-                                  "   - " + InfoBeneficios![index].toString(),
-                              tamano: 12.0,
-                              width: width - 25,
-                              color: Colors.black87);
-                        }),*/
+
               Center(
                   child: SizedBox(
                     width: width - 40,
@@ -161,7 +127,7 @@ class _Info_BecasState extends State<Info_Becas> {
                       ),
                       onPressed: () {
                         launchUrlString(
-                            "https://www.tec.ac.cr/beca-total-mauricio-campos");
+                            "https://www.tec.ac.cr/preguntas-frecuentes");
                       },
                     ),
                   ))

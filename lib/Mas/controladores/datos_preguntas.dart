@@ -13,10 +13,10 @@ class DatosPreguntas extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  List<DataPreguntas>? preguntas = [];
+  List<List<DataPreguntas>>? preguntas = [];
 
 
-  Future<List<DataPreguntas>?> fetchUsers() async {
+  Future<List<List<DataPreguntas>>?> fetchUsers() async {
     _isLoading = true;
     notifyListeners();
 

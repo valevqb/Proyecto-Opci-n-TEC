@@ -20,8 +20,14 @@ class Becas {
 
       becas?.add(Sociecionomica);
       becas?.add(estimulo);
-      print(becas);
     }
+
+
+    becas!.forEach((v) {
+      v.forEach((e) {
+        print(e.Nombre);
+      });
+    });
 
 
   }
