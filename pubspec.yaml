@@ -36,6 +36,10 @@ dependencies:
   web_socket_channel: ^2.1.0 # Add this line to it.
   flutter_screenutil: ^0.4.2
   url_launcher: ^6.1.5
+<<<<<<< Updated upstream
+=======
+  xen_popup_card: ^0.0.1
+>>>>>>> Stashed changes
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
 
@@ -63,10 +67,27 @@ flutter:
   uses-material-design: true
 
   assets:
+<<<<<<< Updated upstream
     - lib/Fotos/Precio.jpg
     - lib/Fotos/Salida.jpg
     - lib/Fotos/Paradas.jpg
     - lib/Fotos/Horarios.jpg
+=======
+     - lib/Fotos/Precio.jpg
+     - lib/Fotos/Salida.jpg
+     - lib/Fotos/Paradas.jpg
+     - lib/Fotos/Horarios.jpg
+     - lib/Fotos/ApoyoSocial.jpg
+     - lib/Fotos/Buses.jpg
+     - lib/Fotos/Medicina.jpg
+     - lib/Fotos/Residencia.jpg
+     - lib/Fotos/Servicios.png
+     - lib/Fotos/Admision.png
+     - lib/Fotos/Inicio1.png
+     - lib/Fotos/CalCostos.png
+     - lib/Fotos/Costo.png
+     - lib/Fotos/Start.png
+>>>>>>> Stashed changes
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

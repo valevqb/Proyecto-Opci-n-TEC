@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'Pez1_Screen.dart';
 import 'Mas/vistas/mas_inicio.dart';
 import 'Carreras/vistas/carrera_inicio.dart';
+import 'Inicio/vistas/inicio_start.dart';
 import 'Servicios/vistas/servicio_inicio.dart';
+import 'Admision/vistas/Admision_inicio.dart';
 import 'Estilos/Estilos.dart';
 
 class PrototipoBarra extends StatefulWidget {
@@ -13,8 +15,10 @@ class PrototipoBarra extends StatefulWidget {
 class _PrototipoBarra extends State<PrototipoBarra> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    Plantilla(),
-    Plantilla2(),
+    //Plantilla(),
+    //Plantilla2(),
+    Inicio(),
+    InicioAdmision(),
     InicioCarrera(),
     InicioServicio(),
     InicioMas(),

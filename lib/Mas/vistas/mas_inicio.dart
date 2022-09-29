@@ -28,20 +28,20 @@ class _InicioMasState extends State<InicioMas> {
     bool isLoading = Provider.of<DatosPreguntas>(context).isLoading;
     return MaterialApp(
         title: "Pez Prueba",
-        theme: ThemeData(primarySwatch: Colors.cyan),
+        //theme: ThemeData(scaffoldBackgroundColor:Color(0xFFCBEFF7) ),
         home: Scaffold(
           appBar: AppBar(
             title: Text('Más Información',
                 style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue.shade900)),
+                    color: Color(0xFF1C2D4B))),
             elevation: 0,
             backgroundColor: Colors.white,
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.account_circle_sharp, size: 40.0, color: Colors.lightBlue),
+                icon: Icon(Icons.account_circle_sharp, size: 40.0, color : Color(0xBE5CC6DE)),
               ),
             ],
           ),
@@ -50,7 +50,8 @@ class _InicioMasState extends State<InicioMas> {
               : SingleChildScrollView(
                   child: Column(
                   children: <Widget>[
-                    Secciones(texto: 'Te pueden interesar', tamano: 24.0),
+                    Secciones(texto: 'Te pueden interesar', tamano: 24.0, color: Color(
+                        0xFF1C2D4B)),
                     Row(
                         children: <Widget>[
                           SizedBox(
@@ -62,9 +63,9 @@ class _InicioMasState extends State<InicioMas> {
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.blue.shade900)),
+                                      color:Color(0xFF1C2D4B))),
                               // <-- Text
-                              backgroundColor: Colors.amber.shade100,
+                              backgroundColor: Color(0xFFF3E8CB),
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15.0))),
@@ -72,6 +73,7 @@ class _InicioMasState extends State<InicioMas> {
                                 // <-- Icon
                                 Icons.monetization_on_outlined,
                                 size: 24.0,
+                                  color : Color(0xFFF1AE03)
                               ),
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
@@ -110,7 +112,7 @@ class _InicioMasState extends State<InicioMas> {
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.blue.shade900)),
+                                      color: Color(0xFF1C2D4B))),
                               // <-- Text
                               backgroundColor: Colors.indigo.shade50,
                               shape: RoundedRectangleBorder(
@@ -120,6 +122,7 @@ class _InicioMasState extends State<InicioMas> {
                                 // <-- Icon
                                 Icons.calendar_month_rounded,
                                 size: 24.0,
+                                  color : Color(0xBE3154E5)
                               ),
                               onPressed: () {},
                             ),
@@ -127,8 +130,9 @@ class _InicioMasState extends State<InicioMas> {
                         ],
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         mainAxisSize: MainAxisSize.max),
-                    Secciones(texto: 'Preguntas frecuentes', tamano: 24.0),
-                    Secciones(texto: 'Admisión', tamano: 14.0),
+                    Secciones(texto: 'Preguntas frecuentes', tamano: 24.0, color: Color(
+                        0xFF1C2D4B)),
+                    Secciones(texto: 'Admisión', tamano: 14.0, color:  Color(0xFF1C2D4B)),
                     SizedBox(
                       height: 230,
                       child: Container(
@@ -147,12 +151,12 @@ class _InicioMasState extends State<InicioMas> {
                                       style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.black87),
+                                          color: Color(0xFF1C2D4B)),
                                     ),
                                     trailing: IconButton(
                                       icon: const Icon(
                                         Icons.arrow_circle_right_rounded,
-                                        color: Colors.lightBlue,
+                                        color: Color(0xBE5CC6DE),
                                       ),
                                       //tooltip: 'Increase volume by 10',
                                       onPressed: () {
@@ -166,7 +170,7 @@ class _InicioMasState extends State<InicioMas> {
                                 );
                               })),
                     ),
-                    Secciones(texto: 'Matricula', tamano: 14.0),
+                    Secciones(texto: 'Matricula', tamano: 14.0, color:  Color(0xFF1C2D4B)),
                     SizedBox(
                       height: height/4,
                       child: Container(
@@ -181,16 +185,17 @@ class _InicioMasState extends State<InicioMas> {
                                   elevation: 5,
                                   child: ListTile(
                                     title: Text(
-                                      Preguntas[1][index].Pregunta!,
+                                      Preguntas[0
+                                      ][index].Pregunta!,
                                       style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.black87),
+                                          color: Color(0xFF1C2D4B)),
                                     ),
                                     trailing: IconButton(
                                       icon: const Icon(
                                         Icons.arrow_circle_right_rounded,
-                                        color: Colors.lightBlue,
+                                        color: Color(0xBE5CC6DE),
                                       ),
                                       //tooltip: 'Increase volume by 10',
                                       onPressed: () {
@@ -214,10 +219,12 @@ class _InicioMasState extends State<InicioMas> {
 class Secciones extends StatelessWidget {
   final String texto;
   var tamano = 24.0;
+  Color color = Colors.lightBlue;
 
   Secciones({
     required this.texto,
     required this.tamano,
+    required this.color,
   });
 
   @override
@@ -228,7 +235,7 @@ class Secciones extends StatelessWidget {
           style: TextStyle(
               fontSize: this.tamano,
               fontWeight: FontWeight.bold,
-              color: Colors.blue.shade900)),
+              color: this.color)),
     );
   }
 }
