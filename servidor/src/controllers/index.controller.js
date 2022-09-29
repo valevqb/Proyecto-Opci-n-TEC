@@ -50,6 +50,14 @@ const getBus =  async (req,res) => {
     res.json(newJson)
 }
 
+const getAdmisiones =  async (req,res) => {
+    var newJson = {"Cantidad":2,"Datos":[{}]}
+    const response =  await pool.query('SELECT * FROM Admisiones');
+    newJson["Datos"]=response.rows
+    res.json(newJson)
+}
+
+
 
 module.exports = {
     getPreguntas,
@@ -57,5 +65,6 @@ module.exports = {
     getBecas,
     getServicios,
     getCostes,
-    getBus
+    getBus,
+    getAdmisiones
 }
