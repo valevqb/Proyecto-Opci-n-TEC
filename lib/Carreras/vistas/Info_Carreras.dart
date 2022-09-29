@@ -30,8 +30,21 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
   Widget build(BuildContext context) {
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
     return MaterialApp(
+        title: "Pez Info Carreras",
+        theme: ThemeData(primarySwatch: Colors.cyan),
         home: Scaffold(
-        body: (isLoading)
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(Icons.arrow_circle_left_rounded,
+                  size: 40.0, color: Color(0xBE5CC6DE)),
+            ),
+            elevation: 0,
+            backgroundColor: Colors.white,
+          ),
+          body:(isLoading)
             ? Container(
 
         )
@@ -238,3 +251,4 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
     }
   }
 }
+

@@ -79,10 +79,11 @@ class _Info_BecasState extends State<Info_Becas> {
                   width: width - 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                    color: Colors.grey.shade100,
+                    color: Color(0xFFCBEFF7),
                   ),
                   child: Row(
                     children: <Widget>[
+
                       new Image.network(
                         'https://picsum.photos/250?image=9',
                         width: (width - 50) / 5,

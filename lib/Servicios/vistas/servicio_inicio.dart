@@ -26,7 +26,23 @@ class _InicioServicioState extends State<InicioServicio> {
     bool isLoading = Provider.of<DatosServicio>(context).isLoading;
     return MaterialApp(
       home: Scaffold(
-      body: (isLoading)
+          appBar: AppBar(
+            title: Text('Servicios',
+                style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white)),
+            elevation: 0,
+            backgroundColor: Color(0xFF1C2D4B),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.account_circle_sharp,
+                    size: 40.0, color: Color(0xFFCBEFF7)),
+              ),
+            ],
+          ),
+          body: (isLoading)
           ? Container(
 
         )
@@ -88,11 +104,7 @@ class _InicioServicioState extends State<InicioServicio> {
             image: AssetImage('lib/Fotos/Servicios.png'), //Aca va la imagen
           )
       ),
-      child: Text('Servicios', style: TextStyle( //Titulo principal
-          fontFamily: 'Poppins',
-          fontSize: 24,
-          fontWeight: FontWeight. bold,
-          color: Colors.white)),
+
     );
   }
 

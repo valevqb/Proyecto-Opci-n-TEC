@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:http/http.dart' as http;
-
+import '';
 import '../../Config.dart';
-
 class DatosCarrera extends ChangeNotifier {
+
+
   String userUrl = Config.dirServer+'carreras';
 
   bool _isLoading = false;

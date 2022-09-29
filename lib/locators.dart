@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:opciontec/Admision/controladores/datos_Admision.dart';
 import 'package:opciontec/Mas/controladores/datos_costos.dart';
 import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
 import 'package:opciontec/Mas/controladores/datos_becas.dart';
@@ -31,5 +32,8 @@ void setupLocators() {
   );
   locator.registerLazySingleton<DatosBus>(
         () => DatosBus()
+  );
+  locator.registerLazySingleton<DatosAdmisiones>(
+          () => DatosAdmisiones()
   );
 }

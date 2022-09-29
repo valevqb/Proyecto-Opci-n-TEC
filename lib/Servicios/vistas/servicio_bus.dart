@@ -40,6 +40,22 @@ class _InformacionBusState extends State<InformacionBus> {
     List<dynamic>? servicioBus = Provider.of<DatosBus>(context).servicioBus;
 
     return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_circle_left_rounded,
+                size: 40.0, color: Color(0xFFCBEFF7)),
+          ),
+          title: Text("Buses",
+              style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white)),
+          elevation: 0,
+          backgroundColor: Color(0xFF1C2D4B),
+        ),
         body: (isLoading)
             ? Container(
 

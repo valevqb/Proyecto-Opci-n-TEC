@@ -1,3 +1,4 @@
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
@@ -41,15 +42,14 @@ class _InicioCarreraState extends State<InicioCarrera> {
                 style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue.shade900)),
+                    color: Color(0xFF1C2D4B))),
             elevation: 0,
             backgroundColor: Colors.white,
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.account_circle_sharp,
-                    size: 40.0, color: Colors.lightBlue),
-              )
+                icon: Icon(Icons.account_circle_sharp, size: 40.0, color : Color(0xBE5CC6DE)),
+              ),
             ],
           ),
           body: (isLoading)
@@ -71,8 +71,13 @@ class _InicioCarreraState extends State<InicioCarrera> {
                           padding: const EdgeInsets.only(left: 20),
                           margin: EdgeInsets.symmetric(horizontal: width/15),
                           decoration: BoxDecoration(
-                            color: Color(0xFFF0F2F5),
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Color(0xFFDCDCDC),
+                              //style: BorderStyle.solid,
+                              width: 1,
+                            ),
                           ),
                           child: Align(
                             alignment: Alignment.center,
@@ -90,7 +95,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   prefixIcon: const Icon(Icons.search_rounded,
-                                      size: 20.0, color: Colors.lightBlue)
+                                      size: 20.0, color: Color(0xBE5CC6DE))
                               ),
                             ),
                           )
@@ -102,7 +107,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                           margin: const EdgeInsets.only(left: 24, right: 24, top: 32),
                           decoration: const BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(6.0)),
+                                BorderRadius.all(Radius.circular(2.0)),
                           ),
                           child: ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
@@ -153,14 +158,14 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                           style: const TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.black87),
+                                              color: Color(0xFF1C2D4B)),
                                         ),
                                       ],
                                     )),
                                     subtitle: Text(
                                       busquedaActiva![index].Resumen!,
                                       style: const TextStyle(
-                                          fontSize: 16, color: Colors.black54),
+                                          fontSize: 16, color: Color(0xFF1C2D4B)),
                                     ),
                                   ),
                                 ),
@@ -264,3 +269,4 @@ class Busqueda extends StatelessWidget {
         );
   }
 }
+

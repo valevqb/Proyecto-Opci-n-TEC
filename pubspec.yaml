@@ -30,11 +30,11 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.3
-  provider: ^6.0.3
+  provider: ^5.0.0
   get_it: ^7.2.0
   cupertino_icons: ^1.0.2
   web_socket_channel: ^2.1.0 # Add this line to it.
-  flutter_screenutil: ^5.5.4
+  flutter_screenutil: ^0.4.2
   url_launcher: ^6.1.5
 
   # The following adds the Cupertino Icons font to your application.
@@ -73,6 +73,12 @@ flutter:
      - lib/Fotos/Medicina.jpg
      - lib/Fotos/Residencia.jpg
      - lib/Fotos/Servicios.png
+     - lib/Fotos/Admision.png
+     - lib/Fotos/Inicio1.png
+     - lib/Fotos/CalCostos.png
+     - lib/Fotos/Costo.png
+     - lib/Fotos/Start.png
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

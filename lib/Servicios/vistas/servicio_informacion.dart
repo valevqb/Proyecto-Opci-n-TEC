@@ -29,7 +29,18 @@ class _InformacionServicioState extends State<InformacionServicio> {
   Widget build(BuildContext context) {
     bool isLoading = Provider.of<DatosServicio>(context).isLoading;
     return Scaffold(
-      body: (isLoading)
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_circle_left_rounded,
+                size: 40.0, color: Color(0xFFCBEFF7)),
+          ),
+          elevation: 0,
+          backgroundColor: Color(0xFF1C2D4B),
+        ),
+        body: (isLoading)
           ? Container(
 
         )
