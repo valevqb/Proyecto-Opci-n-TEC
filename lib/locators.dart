@@ -1,18 +1,10 @@
 import 'package:get_it/get_it.dart';
-<<<<<<< Updated upstream
-import 'package:untitled/Mas/controladores/datos_costos.dart';
-import 'package:untitled/Mas/controladores/datos_preguntas.dart';
-import 'package:untitled/Mas/controladores/datos_becas.dart';
-import 'package:untitled/Servicios/servicios/datos_bus.dart';
-import 'package:untitled/Servicios/servicios/datos_servicio.dart';
-=======
 import 'package:opciontec/Admision/controladores/datos_Admision.dart';
 import 'package:opciontec/Mas/controladores/datos_costos.dart';
 import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
 import 'package:opciontec/Mas/controladores/datos_becas.dart';
 import 'package:opciontec/Servicios/servicios/datos_bus.dart';
 import 'package:opciontec/Servicios/servicios/datos_servicio.dart';
->>>>>>> Stashed changes
 
 import 'Carreras/servicios/datos_carrera.dart';
 

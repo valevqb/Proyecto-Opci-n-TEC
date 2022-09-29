@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Mas/controladores/datos_preguntas.dart';
-import 'package:untitled/Mas/modelos/Preguntas.dart';
+import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
+import 'package:opciontec/Mas/modelos/Preguntas.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../locators.dart';

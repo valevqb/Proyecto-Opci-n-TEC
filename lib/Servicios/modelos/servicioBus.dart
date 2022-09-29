@@ -12,8 +12,6 @@ class ServicioBus {
         servicioBus!.add(new DataServicioBus.fromJson(v));
       });
     }
-    servicioBus!.forEach((v) { print(v.Origen);
-    });
 
   }
 }

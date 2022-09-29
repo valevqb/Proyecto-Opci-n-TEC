@@ -227,7 +227,7 @@ class _InicioState extends State<Inicio> {
                                   mainAxisAlignment:
                                   MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
-                                    Image.asset(width :(width/2)-50 ,'lib/Fotos/Start.png'),
+                                    Image.asset(width :(width/2)-75 ,'lib/Fotos/Start.png'),
                                     Container(
                                       width: 3 * (width - 80) / 5,
                                       child: Column(
@@ -237,7 +237,7 @@ class _InicioState extends State<Inicio> {
 
                                           Text('¿Harás el examen de admisión?',
                                               style: TextStyle(
-                                                  fontSize: 18,
+                                                  fontSize: 16,
                                                   fontWeight: FontWeight.bold,
                                                   color: Color(0xFF1C2D4B))),
                                           Text(

@@ -5,20 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0eac88bf-ae16-4a95-a7b0-51e426c414b4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/Admision/controladores/datos_Admision.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Admision/modelos/Admisiones.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Admision/vistas/Admision_inicio.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Admision/vistas/Info_Admin.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Inicio/vistas/inicio_start.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Barra.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Barra.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Carreras/modelos/Carrera.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Carreras/modelos/Carrera.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Carreras/servicios/datos_carrera.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Carreras/servicios/datos_carrera.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Carreras/vistas/Info_Carreras.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Carreras/vistas/Info_Carreras.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Carreras/vistas/carrera_inicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Carreras/vistas/carrera_inicio.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Inicio/vistas/inicio_start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Inicio/vistas/inicio_start.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/controladores/datos_becas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/controladores/datos_becas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/controladores/datos_costos.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/controladores/datos_costos.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/controladores/datos_preguntas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/controladores/datos_preguntas.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Mas/vistas/Costos_y_Becas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/vistas/Costos_y_Becas.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Mas/vistas/Info_Becas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/vistas/Info_Becas.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Mas/vistas/Info_Costos.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/vistas/Info_Costos.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Mas/vistas/Info_Preguntas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/vistas/Info_Preguntas.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Mas/vistas/mas_inicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Mas/vistas/mas_inicio.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Servicios/modelos/servicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/modelos/servicio.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Servicios/modelos/servicioBus.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/modelos/servicioBus.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Servicios/servicios/datos_bus.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/servicios/datos_bus.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Servicios/servicios/datos_servicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/servicios/datos_servicio.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_bus.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_bus.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_informacion.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_informacion.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_inicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Servicios/vistas/servicio_inicio.dart" afterDir="false" />

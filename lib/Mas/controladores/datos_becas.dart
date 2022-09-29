@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/physics.dart';
-import 'package:untitled/Mas/modelos/Becas.dart';
+import 'package:opciontec/Mas/modelos/Becas.dart';
 import 'package:http/http.dart' as http;
-import 'package:untitled/Config.dart';
+import 'package:opciontec/Config.dart';
 class DatosBecas extends ChangeNotifier {
   String userUrl = Config.dirServer+'becas';
 

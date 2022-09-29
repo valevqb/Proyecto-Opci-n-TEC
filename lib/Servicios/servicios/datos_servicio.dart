@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:untitled/Servicios/modelos/servicio.dart';
+import 'package:opciontec/Servicios/modelos/servicio.dart';
 import 'package:http/http.dart' as http;
 
 import '../../Config.dart';

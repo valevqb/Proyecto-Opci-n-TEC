@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:untitled/Carreras/modelos/Carrera.dart';
+import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:http/http.dart' as http;
 import '';
 import '../../Config.dart';

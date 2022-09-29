@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Mas/controladores/datos_costos.dart';
-import 'package:untitled/Mas/modelos/Costos.dart';
+import 'package:opciontec/Mas/controladores/datos_costos.dart';
+import 'package:opciontec/Mas/modelos/Costos.dart';
 import 'package:provider/provider.dart';
 import '../../locators.dart';
 
@@ -26,8 +26,6 @@ class _Info_CostosState extends State<Info_Costos> {
     double height = MediaQuery.of(context).size.height;
     List<DataCostos>? Costos = Provider.of<DatosCostos>(context).costos;
     bool isLoading = Provider.of<DatosCostos>(context).isLoading;
-
-
 
     /*
     void changeText() {
@@ -120,7 +118,7 @@ class _Info_CostosState extends State<Info_Costos> {
                   Text("Créditos                ",
                       style:
                           TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
-                  Text('₡ '+_costos_creditos.toString(),
+                  Text('₡ ' + _costos_creditos.toString(),
                       style:
                           TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
                 ],
@@ -135,7 +133,7 @@ class _Info_CostosState extends State<Info_Costos> {
                         fontWeight: FontWeight.bold,
                         //color: Colors.blue.shade900
                       )),
-                  Text('₡  '+_costos_matricula.toString(),
+                  Text('₡  ' + _costos_matricula.toString(),
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -170,7 +168,10 @@ class _Info_CostosState extends State<Info_Costos> {
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue)),
-                  Text('₡'+(_costos_creditos+_costos_matricula+1915).toString(),
+                  Text(
+                      '₡' +
+                          (_costos_creditos + _costos_matricula + 1915)
+                              .toString(),
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -344,20 +345,6 @@ class _Info_CostosState extends State<Info_Costos> {
                     ),
                     Center(
                         child: SizedBox(
-<<<<<<< Updated upstream
-                          width: width - 40,
-                          child: FloatingActionButton.extended(
-                            heroTag: UniqueKey(),
-                            label: Text('Calcular costo total',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue.shade900)),
-                            // <-- Text
-                            backgroundColor: Colors.lightBlue.shade200,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-=======
                       width: width - 40,
                       child: FloatingActionButton.extended(
                         heroTag: UniqueKey(),
@@ -370,7 +357,6 @@ class _Info_CostosState extends State<Info_Costos> {
                         backgroundColor: Color(0xFFCBEFF7),
                         shape: RoundedRectangleBorder(
                             borderRadius:
->>>>>>> Stashed changes
                                 BorderRadius.all(Radius.circular(15.0))),
                         icon: Icon(
                           // <-- Icon
