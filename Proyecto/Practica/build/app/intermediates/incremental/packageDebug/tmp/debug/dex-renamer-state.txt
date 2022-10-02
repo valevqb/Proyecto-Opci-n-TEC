@@ -1,4 +1,0 @@
-#Wed Sep 21 00:28:01 CST 2022
-base.0=C\:\\Users\\valev\\Documents\\GitHub\\Proyecto-OpcionTEC\\Proyecto\\Practica\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
