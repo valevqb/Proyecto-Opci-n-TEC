@@ -9,12 +9,12 @@ import 'package:provider/provider.dart';
 
 import '../../locators.dart';
 
-class LogIn extends StatefulWidget {
+class Registro extends StatefulWidget {
   @override
-  _LogInState createState() => _LogInState();
+  _RegistroState createState() => _RegistroState();
 }
 
-class _LogInState extends State<LogIn> {
+class _RegistroState extends State<Registro> {
   final controller = TextEditingController();
   var width = 0.0;
 
@@ -32,7 +32,7 @@ class _LogInState extends State<LogIn> {
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
 
     return MaterialApp(
-        title: "Iniciar sesión",
+        title: "Crear cuenta",
         theme: ThemeData(primaryColor: Colors.white),
         home: Scaffold(
             appBar: AppBar(
@@ -71,56 +71,28 @@ class _LogInState extends State<LogIn> {
                         width: 234.25,
                         child: FittedBox(
                           fit: BoxFit.fill,
-                          child: Image.asset('lib/Fotos/LogIn.png'),
+                          child: Image.asset('lib/Fotos/Registro.png'),
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(top: 33.0),
-                        child: Text('Completa la siguiente información',
-                            style: TextStyle(
-                                fontFamily: 'Mulish',
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.normal,
-                                color: Color(0xFF2B436D)))
+                          margin: const EdgeInsets.only(top: 33.0),
+                          child: Text('Completa la siguiente información',
+                              style: TextStyle(
+                                  fontFamily: 'Mulish',
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.normal,
+                                  color: Color(0xFF2B436D)))
                       ),
+                      letter(context, "Nombre completo"),
+                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      boxText(context, "Escribe tu nombre"),
                       letter(context, "Correo"),
                       Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxText(context, "Escribe tu correo"),
                       letter(context, "Contraseña"),
                       Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxText(context, "Escribe tu contraseña"),
-                      logInBotton(context),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                            child: Text('¿Olvidaste la contraseña?',
-                                style: TextStyle(
-                                    fontFamily: 'Mulish',
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.normal,
-                                    decoration: TextDecoration.underline,
-                                    color: Color(0xFF2B436D)))
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Registro()),
-                          );
-                        },
-                        child: Container(
-                                child: Text('Registrarme',
-                                    style: TextStyle(
-                                        fontFamily: 'Mulish',
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.normal,
-                                        color: Color(0xFF2B436D)))
-                              ),
-                      )
+                      RegistroBotton(context)
                     ],
                   )),
             )));
@@ -152,21 +124,21 @@ class _LogInState extends State<LogIn> {
             fillColor: Color(0xFFF0F2F5),
             hintText: palabras,
             hintStyle: TextStyle(
-              fontFamily: 'Mulish',
-              fontSize: 14.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black.withOpacity(0.5)
+                fontFamily: 'Mulish',
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.5)
             ),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
             //prefixIcon: const Icon(Icons.search_rounded,
             //size: 20.0, color: Color(0xBE5CC6DE))
-            ),
+          ),
         )
-      );
+    );
   }
 
-  Widget logInBotton(BuildContext context){
+  Widget RegistroBotton(BuildContext context){
     return SizedBox(
       width: width-24,
       child: Card(
@@ -182,7 +154,7 @@ class _LogInState extends State<LogIn> {
           child: Container(
             alignment: Alignment.center,
             height: 60,
-            child: Text( "Iniciar sesión",
+            child: Text( "Registrarme",
               style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 14,

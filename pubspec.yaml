@@ -78,6 +78,8 @@ flutter:
      - lib/Fotos/CalCostos.png
      - lib/Fotos/Costo.png
      - lib/Fotos/Start.png
+     - lib/Fotos/LogIn.png
+     - lib/Fotos/Registro.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
