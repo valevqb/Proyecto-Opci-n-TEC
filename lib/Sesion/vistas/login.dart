@@ -17,7 +17,7 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   final controller = TextEditingController();
   var width = 0.0;
-
+  TextEditingController _textFieldController = TextEditingController();
 
   @override
   void initState() {
@@ -75,13 +75,13 @@ class _LogInState extends State<LogIn> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(top: 33.0),
-                        child: Text('Completa la siguiente información',
-                            style: TextStyle(
-                                fontFamily: 'Mulish',
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.normal,
-                                color: Color(0xFF2B436D)))
+                          margin: const EdgeInsets.only(top: 33.0),
+                          child: Text('Completa la siguiente información',
+                              style: TextStyle(
+                                  fontFamily: 'Mulish',
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.normal,
+                                  color: Color(0xFF2B436D)))
                       ),
                       letter(context, "Correo"),
                       Padding(padding: EdgeInsets.only(top: 12.0)),
@@ -92,7 +92,9 @@ class _LogInState extends State<LogIn> {
                       logInBotton(context),
                       Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          olvideContrasenia(context);
+                        },
                         child: Container(
                             child: Text('¿Olvidaste la contraseña?',
                                 style: TextStyle(
@@ -113,13 +115,13 @@ class _LogInState extends State<LogIn> {
                           );
                         },
                         child: Container(
-                                child: Text('Registrarme',
-                                    style: TextStyle(
-                                        fontFamily: 'Mulish',
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.normal,
-                                        color: Color(0xFF2B436D)))
-                              ),
+                            child: Text('Registrarme',
+                                style: TextStyle(
+                                    fontFamily: 'Mulish',
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.normal,
+                                    color: Color(0xFF2B436D)))
+                        ),
                       )
                     ],
                   )),
@@ -152,18 +154,18 @@ class _LogInState extends State<LogIn> {
             fillColor: Color(0xFFF0F2F5),
             hintText: palabras,
             hintStyle: TextStyle(
-              fontFamily: 'Mulish',
-              fontSize: 14.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black.withOpacity(0.5)
+                fontFamily: 'Mulish',
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.5)
             ),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
             //prefixIcon: const Icon(Icons.search_rounded,
             //size: 20.0, color: Color(0xBE5CC6DE))
-            ),
+          ),
         )
-      );
+    );
   }
 
   Widget logInBotton(BuildContext context){
@@ -195,4 +197,46 @@ class _LogInState extends State<LogIn> {
     );
 
   }
+
+  Future<void> olvideContrasenia(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Recuperar contraseña',
+                style: TextStyle(
+                fontFamily: 'Mulish',
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF1C2D4B))),
+            content: TextField(
+              onChanged: (value) {
+
+              },
+              controller: _textFieldController,
+              decoration: InputDecoration(hintText: "Escribe tu correo",
+                hintStyle: TextStyle(
+                    fontFamily: 'Mulish',
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.5)
+                )),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                color: Color(0xFF2B436D),
+                textColor: Colors.white,
+                child: Text('OK'),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+            ],
+          );
+        });
+  }
 }
+
+
