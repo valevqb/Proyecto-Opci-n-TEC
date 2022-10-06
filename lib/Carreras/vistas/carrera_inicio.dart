@@ -15,6 +15,8 @@ class InicioCarrera extends StatefulWidget {
 
 class _InicioCarreraState extends State<InicioCarrera> {
   List<DataCarrera>? busquedaActiva;
+  List<DataCarrera>? users;
+  var firstime = 0;
   var textoFinal;
   final controller = TextEditingController();
 
@@ -29,9 +31,12 @@ class _InicioCarreraState extends State<InicioCarrera> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    List<DataCarrera>? users = Provider.of<DatosCarrera>(context).carreras;
+    users = Provider.of<DatosCarrera>(context).carreras;
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
-    busquedaActiva = users;
+    if(firstime == 0){
+      busquedaActiva = users;
+    }
+    firstime = 1;
 
     return MaterialApp(
         title: "Carreras",
@@ -178,24 +183,14 @@ class _InicioCarreraState extends State<InicioCarrera> {
   }
 
   void buscarCarrera(String carreraE){
-    var sugerencias = busquedaActiva?.where((element) {
-      var sugerencia = element.Nombre?.toLowerCase();
-      var escrito = carreraE.toLowerCase();
-
-      print("object");
-      print(escrito.toString());
-      print(sugerencia.toString());
-      //print("Tiene sugerencias");
-      //print(escrito);
-      //print(sugerencia.toString());
-
+    var sugerencias = users?.where((element) {
+      var sugerencia = element.Nombre?.toString().toLowerCase();
+      var escrito = carreraE.toString().toLowerCase();
       return sugerencia!.contains(escrito);
     }).toList();
 
     setState(() {
       busquedaActiva = sugerencias;
-      print("Cambia");
-      print(busquedaActiva![0].Nombre.toString());
     });
   }
 
@@ -220,53 +215,6 @@ class Secciones extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Colors.blue.shade900)),
     );
-  }
-}
-
-class Busqueda extends StatelessWidget {
-  final String texto;
-  var tamano = 24.0;
-  double width = 50;
-  final controller = TextEditingController();
-
-  Busqueda({
-    required this.texto,
-    required this.tamano,
-    required this.width,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        height: 42,
-        width: width-25,
-        padding: const EdgeInsets.only(left: 20, bottom: 15),
-        margin: EdgeInsets.symmetric(horizontal: width/15),
-        decoration: BoxDecoration(
-          color: Color(0xFFF0F2F5),
-          borderRadius: BorderRadius.circular(20),
-        ),
-      child: Align(
-        //alignment: Alignment.center,
-        child: TextField(
-          controller: controller,
-          //textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            //isCollapsed: true,
-            hintText: texto,
-            hintStyle: TextStyle(
-                fontSize: tamano,
-                fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)),
-            enabledBorder: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            prefixIcon: const Icon(Icons.search_rounded,
-                        size: 40.0, color: Colors.lightBlue)
-          ),
-          //onChanged: buscarCarrera,
-          ),
-        )
-        );
   }
 }
 
