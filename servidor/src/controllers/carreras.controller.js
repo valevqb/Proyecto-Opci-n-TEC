@@ -1,9 +1,7 @@
 const {pool} = require('../database/postgeSQL');
 const getCarreras =  async (req,res) => {
-    var newJson = {"Cantidad":2,"Datos":[{}]}
-    const response =  await pool.query('SELECT * FROM Carreras');
-    newJson["Datos"]=response.rows
-    res.json(newJson)
+    const response =  await pool.query('SELECT  getcarreras()');
+    res.json(JSON.parse(response.rows[0]["getcarreras"]))
 }
 
 const postCarrera = async(req,res) => {
