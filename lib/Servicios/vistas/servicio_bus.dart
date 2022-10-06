@@ -256,7 +256,7 @@ class _InformacionBusState extends State<InformacionBus> {
       return Column();
     }
     else{
-      servicioInformacion = servicioBus?[_index-1].Destinos;
+      servicioInformacion = servicioBus![_index-1].Destinos;
     }
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,

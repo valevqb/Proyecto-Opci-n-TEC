@@ -4,6 +4,7 @@ import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:opciontec/Carreras/vistas/Info_Carreras.dart';
 import 'package:opciontec/Admision/vistas/Admision_inicio.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
+import 'package:opciontec/Sesion/vistas/login.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';
@@ -42,7 +43,13 @@ class _InicioState extends State<Inicio> {
               backgroundColor: Color(0xFF1C2D4B),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LogIn()),
+                    );
+                  },
                   icon: Icon(Icons.account_circle_sharp,
                       size: 40.0, color: Color(0xFFCBEFF7)),
                 ),
