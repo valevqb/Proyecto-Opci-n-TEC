@@ -8,7 +8,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
 // routes
-app.use("/api",require('./routes/index'))
+app.use("/api",require('../routes/admisiones.routes'))
+app.use("/api",require('../routes/becas.routes'))
+app.use("/api",require('../routes/buses.routes'))
+app.use("/api",require('../routes/carreras.routes'))
+app.use("/api",require('../routes/costes.routes'))
+app.use("/api",require('../routes/preguntas.routes'))
+app.use("/api",require('../routes/servicios.routes'))
+
 
 app.use('/', function (req, res, next) {
     res.sendStatus(404);
