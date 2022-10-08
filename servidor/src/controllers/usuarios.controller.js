@@ -1,11 +1,25 @@
 const {pool} = require('../database/postgeSQL');
 
-const getBus =  async (req,res) => {
-    var Cantidad =  await pool.query('SELECT count(id) FROM Servicios_Bus');
-    var newJson = {"Cantidad":Cantidad,"Datos":[{}]}
-    const response =  await pool.query('SELECT * FROM Servicios_Bus');
-    newJson["Datos"]=response.rows
-    res.json(newJson)
+const postLogeo =  async (req,res) => {
+    var usuario = req["query"]["usuario"];
+    var contrasena = req["query"]["contrasena"];
+    console.debug("SELECT Inicio_Secion("+usuario+","+contrasena+")");
+    const response =  await pool.query("SELECT Inicio_Secion("+"'"+usuario+"'"+","+"'"+contrasena+"'"+")");
+    res.json({"Estado":response.rows})
 }
 
-module.exports = {getBus};
+
+const postRegistro = async(req,res) => {
+    var nombre = req["query"]["nombre"];
+    var apellido = req["query"]["apellido"];
+    var correo = req["query"]["correo"];
+    var contrasena = req["query"]["contrasena"];
+    
+    Consulta= "Select registrar("+"'"+nombre+"'"+","+"'"+apellido+"'"+","+"'"+correo+"'"+","+"'"+contrasena+"'"+")";
+    const response =  await pool.query(Consulta);
+    res.json({"Estado":response.rows})
+  
+    };
+
+
+module.exports = {postLogeo,postRegistro};
