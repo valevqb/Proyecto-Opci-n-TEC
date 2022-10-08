@@ -15,7 +15,8 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  final controller = TextEditingController();
+  var email = TextEditingController();
+  var contra = TextEditingController();
   var width = 0.0;
   TextEditingController _textFieldController = TextEditingController();
 
@@ -85,10 +86,10 @@ class _LogInState extends State<LogIn> {
                       ),
                       letter(context, "Correo"),
                       Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxText(context, "Escribe tu correo"),
+                      boxTextCorreo(context, "Escribe tu correo"),
                       letter(context, "Contraseña"),
                       Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxText(context, "Escribe tu contraseña"),
+                      boxTextContra(context, "Escribe tu contraseña"),
                       logInBotton(context),
                       Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
@@ -140,15 +141,15 @@ class _LogInState extends State<LogIn> {
     );
   }
 
-  Widget boxText(BuildContext context, palabras){
+  Widget boxTextCorreo(BuildContext context, palabras){
     return SizedBox(
         width: width-24.0,
         child: TextField(
+          controller: email,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.0),
-              //color: Color(0xFFF0F2F5),
             ),
             filled: true,
             fillColor: Color(0xFFF0F2F5),
@@ -161,8 +162,34 @@ class _LogInState extends State<LogIn> {
             ),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            //prefixIcon: const Icon(Icons.search_rounded,
-            //size: 20.0, color: Color(0xBE5CC6DE))
+          ),
+        )
+    );
+  }
+
+  Widget boxTextContra(BuildContext context, palabras){
+    print("Es el nombre");
+    print(email.text.toString());
+    return SizedBox(
+        width: width-24.0,
+        child: TextField(
+          controller: contra,
+          textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            filled: true,
+            fillColor: Color(0xFFF0F2F5),
+            hintText: palabras,
+            hintStyle: TextStyle(
+                fontFamily: 'Mulish',
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.5)
+            ),
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
           ),
         )
     );
@@ -180,6 +207,7 @@ class _LogInState extends State<LogIn> {
         ),
         child: InkWell(
           onTap: () {
+            //codigo al presionarse
           },
           child: Container(
             alignment: Alignment.center,
