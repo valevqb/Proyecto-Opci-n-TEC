@@ -15,7 +15,9 @@ class Registro extends StatefulWidget {
 }
 
 class _RegistroState extends State<Registro> {
-  final controller = TextEditingController();
+  var email = TextEditingController();
+  var contra = TextEditingController();
+  var nombreCompleto = TextEditingController();
   var width = 0.0;
 
 
@@ -85,13 +87,13 @@ class _RegistroState extends State<Registro> {
                       ),
                       letter(context, "Nombre completo"),
                       Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxText(context, "Escribe tu nombre"),
+                      boxTextNombre(context, "Escribe tu nombre"),
                       letter(context, "Correo"),
                       Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxText(context, "Escribe tu correo"),
+                      boxTextCorreo(context, "Escribe tu correo"),
                       letter(context, "Contraseña"),
                       Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxText(context, "Escribe tu contraseña"),
+                      boxTextContra(context, "Escribe tu contraseña"),
                       RegistroBotton(context)
                     ],
                   )),
@@ -110,15 +112,15 @@ class _RegistroState extends State<Registro> {
     );
   }
 
-  Widget boxText(BuildContext context, palabras){
+  Widget boxTextNombre(BuildContext context, palabras){
     return SizedBox(
         width: width-24.0,
         child: TextField(
+          controller: nombreCompleto,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.0),
-              //color: Color(0xFFF0F2F5),
             ),
             filled: true,
             fillColor: Color(0xFFF0F2F5),
@@ -131,8 +133,60 @@ class _RegistroState extends State<Registro> {
             ),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            //prefixIcon: const Icon(Icons.search_rounded,
-            //size: 20.0, color: Color(0xBE5CC6DE))
+          ),
+        )
+    );
+  }
+
+  Widget boxTextCorreo(BuildContext context, palabras){
+    print("Es el nombre");
+    print(nombreCompleto.text.toString());
+    return SizedBox(
+        width: width-24.0,
+        child: TextField(
+          controller: email,
+          textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            filled: true,
+            fillColor: Color(0xFFF0F2F5),
+            hintText: palabras,
+            hintStyle: TextStyle(
+                fontFamily: 'Mulish',
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.5)
+            ),
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+          ),
+        )
+    );
+  }
+
+  Widget boxTextContra(BuildContext context, palabras){
+    return SizedBox(
+        width: width-24.0,
+        child: TextField(
+          controller: contra,
+          textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            filled: true,
+            fillColor: Color(0xFFF0F2F5),
+            hintText: palabras,
+            hintStyle: TextStyle(
+                fontFamily: 'Mulish',
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.5)
+            ),
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
           ),
         )
     );
@@ -150,6 +204,7 @@ class _RegistroState extends State<Registro> {
         ),
         child: InkWell(
           onTap: () {
+            //escribe codigo
           },
           child: Container(
             alignment: Alignment.center,
