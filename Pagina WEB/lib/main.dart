@@ -32,7 +32,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => locator<DatosBus>()),
         ChangeNotifierProvider(create: (_) => locator<DatosAdmisiones>()),
       ],
-      child: PrototipoBarra(),
+      child: MaterialApp(home: LogIn()),
     ),
   );
 

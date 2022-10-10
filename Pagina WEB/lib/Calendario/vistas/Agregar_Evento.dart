@@ -2,21 +2,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:opciontec/Sesion/vistas/Registrarme.dart';
-import 'package:opciontec/Calendario/vistas/Agregar_Evento.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';
 
-class LogIn extends StatefulWidget {
+class AgregarEvento extends StatefulWidget {
   @override
-  _LogInState createState() => _LogInState();
+  _AgregarEventoState createState() => _AgregarEventoState();
 }
 
-class _LogInState extends State<LogIn> {
-  var email = TextEditingController();
-  var contra = TextEditingController();
+class _AgregarEventoState extends State<AgregarEvento> {
+  var nombre = "";
+  var detalles = "";
+  var enlace = "";
   var width = 0.0;
-  TextEditingController _textFieldController = TextEditingController();
+  GlobalKey llave = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -57,8 +57,19 @@ class _LogInState extends State<LogIn> {
               child: CircularProgressIndicator(),
             )
                 : SingleChildScrollView(
-              child: SizedBox(
-                  height: height,
+              child: Container(
+                margin: EdgeInsets.all(10.0),
+                child: Form(
+                  child: Column(
+                    children: [
+                      textForms(context, "Nombre del evento", 0),
+                      textForms(context, "Detalles del evento", 1),
+                      textForms(context, "Enlace del evento", 2),
+                    ],
+                  ),
+                ),
+              )/*SizedBox(
+                  /*height: height,
                   width: width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,7 +81,7 @@ class _LogInState extends State<LogIn> {
                         width: 234.25,
                         child: FittedBox(
                           fit: BoxFit.fill,
-                          child: Image.asset('lib/Fotos/LogIn.png'),
+                          child: Image.asset('lib/Fotos/AgregarEvento.png'),
                         ),
                       ),
                       Container(
@@ -88,7 +99,7 @@ class _LogInState extends State<LogIn> {
                       letter(context, "Contraseña"),
                       Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxTextContra(context, "Escribe tu contraseña"),
-                      logInBotton(context),
+                      AgregarEventoBotton(context),
                       Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
                         onTap: () {
@@ -123,8 +134,44 @@ class _LogInState extends State<LogIn> {
                         ),
                       )
                     ],
-                  )),
+                  )*/),*/
             )));
+  }
+
+  Widget textForms(BuildContext context, palabras, tipo){
+    return Container(
+      margin: EdgeInsets.only(top: 25.0),
+        child: TextFormField(
+        decoration: InputDecoration(
+            filled: true,
+            fillColor: Color(0xFFF0F2F5),
+            hintText: palabras.toString(),
+            hintStyle: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.5)),
+            contentPadding: const EdgeInsets.all(8.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            )),
+        onSaved: (value){
+          if(tipo == 0){
+            nombre = value.toString();
+          }
+          else if (tipo == 1){
+            detalles = value.toString();
+          }
+          else if(tipo == 2){
+            enlace = value.toString();
+          }
+        },
+        validator: (value){
+          if(value.toString().isEmpty){
+            return "Llenar este campo";
+          }
+        },
+      )
+    );
   }
 
   Widget letter(BuildContext context, palabras){
@@ -139,7 +186,7 @@ class _LogInState extends State<LogIn> {
     );
   }
 
-  Widget boxTextCorreo(BuildContext context, palabras){
+  /*Widget boxTextCorreo(BuildContext context, palabras){
     return SizedBox(
         width: width-24.0,
         child: TextField(
@@ -191,9 +238,9 @@ class _LogInState extends State<LogIn> {
           ),
         )
     );
-  }
+  }*/
 
-  Widget logInBotton(BuildContext context){
+  Widget AgregarEventoBotton(BuildContext context){
     return SizedBox(
       width: width-24,
       child: Card(
@@ -205,11 +252,7 @@ class _LogInState extends State<LogIn> {
         ),
         child: InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AgregarEvento()),
-            );//codigo al presionarse
+            //codigo al presionarse
           },
           child: Container(
             alignment: Alignment.center,
@@ -235,23 +278,23 @@ class _LogInState extends State<LogIn> {
           return AlertDialog(
             title: Text('Recuperar contraseña',
                 style: TextStyle(
-                fontFamily: 'Mulish',
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1C2D4B))),
-            content: TextField(
+                    fontFamily: 'Mulish',
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF1C2D4B))),
+            /*content: TextField(
               onChanged: (value) {
 
               },
               controller: _textFieldController,
               decoration: InputDecoration(hintText: "Escribe tu correo",
-                hintStyle: TextStyle(
-                    fontFamily: 'Mulish',
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black.withOpacity(0.5)
-                )),
-            ),
+                  hintStyle: TextStyle(
+                      fontFamily: 'Mulish',
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black.withOpacity(0.5)
+                  )),
+            ),*/
             actions: <Widget>[
               /*FlatButton(
                 color: Color(0xFF2B436D),
