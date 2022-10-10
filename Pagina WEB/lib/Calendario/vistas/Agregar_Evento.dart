@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:opciontec/Sesion/vistas/Registrarme.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 import '../../locators.dart';
 
@@ -12,9 +13,11 @@ class AgregarEvento extends StatefulWidget {
 }
 
 class _AgregarEventoState extends State<AgregarEvento> {
-  var nombre = "";
-  var detalles = "";
-  var enlace = "";
+  var nombre;
+  var detalles;
+  var enlace;
+  TextEditingController fechaInicial = TextEditingController(); //se obtiene con fechaInicial.text.toString()
+  TextEditingController fechaFinal = TextEditingController(); //se obtiene con fechaFinal.text.toString()
   var width = 0.0;
   GlobalKey llave = GlobalKey<FormState>();
 
@@ -31,12 +34,12 @@ class _AgregarEventoState extends State<AgregarEvento> {
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
 
     return MaterialApp(
-        title: "Iniciar sesión",
+        title: "Agregar Evento",
         theme: ThemeData(primaryColor: Colors.white),
         home: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text('Iniciar sesión',
+              title: const Text('Agregar evento',
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -46,7 +49,7 @@ class _AgregarEventoState extends State<AgregarEvento> {
                 IconButton(
                   onPressed: () {
                   },
-                  icon: Icon(Icons.account_circle_sharp,
+                  icon: const Icon(Icons.account_circle_sharp,
                       size: 40.0, color: Color(0xFFCBEFF7)),
                 ),
               ],
@@ -58,89 +61,151 @@ class _AgregarEventoState extends State<AgregarEvento> {
             )
                 : SingleChildScrollView(
               child: Container(
-                margin: EdgeInsets.all(10.0),
+                margin: const EdgeInsets.all(10.0),
                 child: Form(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      const Text("* Información Obligatoria",
+                            style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF2B436D))),
+                      textTittle(context, "* Fecha"),
+                      textInfo(context, "Utilice solo uno de los formatos"),
+                      const SizedBox(height: 10),
+                      textTittle2(context, "Primer formato"),
+                      textInfo(context, "Fecha única"),
+                      fechas(context, 0, fechaInicial),
+                      const SizedBox(height: 10),
+                      textTittle2(context, "Segundo formato"),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                            textInfo(context, "Fecha inicio"),
+                            fechas(context, 0, fechaInicial),
+                            ]
+                          ),
+                          SizedBox(width: 25),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                textInfo(context, "Fecha Fin"),
+                                fechas(context, 1, fechaFinal),
+                              ]
+                          )
+                        ]
+                      ),
+                      textTittle(context, "* Nombre"),
+                      textInfo(context, "Escriba el nombre del evento"),
                       textForms(context, "Nombre del evento", 0),
+                      textTittle(context, "* Detalle"),
+                      textInfo(context, "Escriba los detalles del evento"),
                       textForms(context, "Detalles del evento", 1),
+                      textTittle(context, "Enlace"),
+                      textInfo(context, "Escriba el enlace del evento"),
                       textForms(context, "Enlace del evento", 2),
+                      AgregarEventoBotton(context),
                     ],
                   ),
                 ),
-              )/*SizedBox(
-                  /*height: height,
-                  width: width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        margin: const EdgeInsets.only(top: 23.0),
-                        height: 181.95,
-                        width: 234.25,
-                        child: FittedBox(
-                          fit: BoxFit.fill,
-                          child: Image.asset('lib/Fotos/AgregarEvento.png'),
-                        ),
-                      ),
-                      Container(
-                          margin: const EdgeInsets.only(top: 33.0),
-                          child: Text('Completa la siguiente información',
-                              style: TextStyle(
-                                  fontFamily: 'Mulish',
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color(0xFF2B436D)))
-                      ),
-                      letter(context, "Correo"),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxTextCorreo(context, "Escribe tu correo"),
-                      letter(context, "Contraseña"),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxTextContra(context, "Escribe tu contraseña"),
-                      AgregarEventoBotton(context),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
-                      InkWell(
-                        onTap: () {
-                          olvideContrasenia(context);
-                        },
-                        child: Container(
-                            child: Text('¿Olvidaste la contraseña?',
-                                style: TextStyle(
-                                    fontFamily: 'Mulish',
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.normal,
-                                    decoration: TextDecoration.underline,
-                                    color: Color(0xFF2B436D)))
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Registro()),
-                          );
-                        },
-                        child: Container(
-                            child: Text('Registrarme',
-                                style: TextStyle(
-                                    fontFamily: 'Mulish',
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Color(0xFF2B436D)))
-                        ),
-                      )
-                    ],
-                  )*/),*/
+              )
             )));
   }
 
-  Widget textForms(BuildContext context, palabras, tipo){
+  Widget fechas(BuildContext context, tipo, controlador){
     return Container(
-      margin: EdgeInsets.only(top: 25.0),
+        margin: const EdgeInsets.only(top: 5.0),
+        width: (width/2) - 25,
+        child: TextField(
+          controller: controlador,  //editing controller of this TextField
+          decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color(0xFFF0F2F5),
+              hintText: "Seleccione una fecha",
+              hintStyle: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.5)),
+              contentPadding: const EdgeInsets.all(8.0),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.0),
+              )
+          ),
+          readOnly: true,
+          onTap: () async {
+            DateTime? fechaTomada = await showDatePicker(
+                context: context, initialDate: DateTime.now(),
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100)
+            );
+
+            if(fechaTomada != null ){
+              String formattedDate = DateFormat('yyyy-MM-dd').format(fechaTomada);
+
+              setState(() {
+                if(tipo == 0){
+                  fechaInicial.text = formattedDate;
+                }
+                else{
+                  fechaFinal.text = formattedDate;
+                }
+              });
+            }else{
+              print("Date is not selected");
+            }
+          },
+        ),
+    );
+  }
+
+  Widget textTittle(BuildContext context, titulo){
+    return Container(
+      margin: const EdgeInsets.only(top: 30.0),
+      child: Text(titulo,
+        style: const TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF2B436D))
+      )
+    );
+  }
+
+  Widget textTittle2(BuildContext context, titulo){
+    return Container(
+        margin: const EdgeInsets.only(top: 10.0),
+        child: Text(titulo,
+            style: const TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2B436D))
+        )
+    );
+  }
+
+  Widget textInfo(BuildContext context, titulo){
+    return Container(
+        margin: const EdgeInsets.only(top: 5.0),
+        child: Text(titulo,
+            style: const TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.normal,
+                color: Color(0xFF2B436D))
+        )
+    );
+  }
+
+  Widget textForms(BuildContext context, palabras, tipo){
+    print(fechaFinal.text.toString());
+    return Container(
+      margin: const EdgeInsets.only(top: 5.0),
         child: TextFormField(
         decoration: InputDecoration(
             filled: true,
@@ -178,7 +243,7 @@ class _AgregarEventoState extends State<AgregarEvento> {
     return Container(
         margin: const EdgeInsets.only(top: 32.0),
         child: Text(palabras.toString(),
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontSize: 14.0,
                 fontWeight: FontWeight.normal,
@@ -186,81 +251,36 @@ class _AgregarEventoState extends State<AgregarEvento> {
     );
   }
 
-  /*Widget boxTextCorreo(BuildContext context, palabras){
-    return SizedBox(
-        width: width-24.0,
-        child: TextField(
-          controller: email,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            filled: true,
-            fillColor: Color(0xFFF0F2F5),
-            hintText: palabras,
-            hintStyle: TextStyle(
-                fontFamily: 'Mulish',
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
-            ),
-            enabledBorder: InputBorder.none,
-            focusedBorder: InputBorder.none,
-          ),
-        )
-    );
-  }
-
-  Widget boxTextContra(BuildContext context, palabras){
-    print("Es el nombre");
-    print(email.text.toString());
-    return SizedBox(
-        width: width-24.0,
-        child: TextField(
-          controller: contra,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            filled: true,
-            fillColor: Color(0xFFF0F2F5),
-            hintText: palabras,
-            hintStyle: TextStyle(
-                fontFamily: 'Mulish',
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
-            ),
-            enabledBorder: InputBorder.none,
-            focusedBorder: InputBorder.none,
-          ),
-        )
-    );
-  }*/
-
   Widget AgregarEventoBotton(BuildContext context){
     return SizedBox(
       width: width-24,
       child: Card(
-        color: Color(0xFFCBEFF7),
+        color: const Color(0xFFCBEFF7),
         elevation: 5,
-        margin: EdgeInsets.only(top: 60.0),
+        margin: const EdgeInsets.only(top: 60.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
         child: InkWell(
           onTap: () {
+            if(nombre.toString().isEmpty || fechaInicial.text.isEmpty || detalles.toString().isEmpty){
+              print("No hay nada de nada");
+              showDialog(
+                  context: context,
+                builder: (BuildContext context) {
+                    return validaciones(context);
+                },
+              );
+            }
             //codigo al presionarse
           },
           child: Container(
             alignment: Alignment.center,
             height: 60,
-            child: Text( "Iniciar sesión",
+            child: const Text( "Agregar evento",
               style: TextStyle(
                   fontFamily: 'Mulish',
-                  fontSize: 14,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF1C2D4B)),
             ),
@@ -271,45 +291,22 @@ class _AgregarEventoState extends State<AgregarEvento> {
 
   }
 
-  Future<void> olvideContrasenia(BuildContext context) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Recuperar contraseña',
-                style: TextStyle(
-                    fontFamily: 'Mulish',
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1C2D4B))),
-            /*content: TextField(
-              onChanged: (value) {
-
-              },
-              controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Escribe tu correo",
-                  hintStyle: TextStyle(
-                      fontFamily: 'Mulish',
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black.withOpacity(0.5)
-                  )),
-            ),*/
-            actions: <Widget>[
-              /*FlatButton(
-                color: Color(0xFF2B436D),
-                textColor: Colors.white,
-                child: Text('OK'),
-                onPressed: () {
-                  setState(() {
-                    Navigator.pop(context);
-                  });
-                },
-              ),*/
-            ],
-          );
-        });
+  Widget validaciones(BuildContext context) {
+    print("entra");
+    return AlertDialog(
+      title: Text('Error'),
+      content:
+      Text("Todas las casillas deben tener contenido"),
+      actions: <Widget>[
+        TextButton(
+            child: Text("Aceptar"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+      ],
+    );
   }
+
 }
 
 
