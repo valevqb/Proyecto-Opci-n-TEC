@@ -39,7 +39,7 @@ class _EditarSesionState extends State<EditarSesion> {
         home: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text('Iniciar sesión',
+              title: const Text('Iniciar sesión',
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class _EditarSesionState extends State<EditarSesion> {
                 IconButton(
                   onPressed: () {
                   },
-                  icon: Icon(Icons.account_circle_sharp,
+                  icon: const Icon(Icons.account_circle_sharp,
                       size: 40.0, color: Color(0xFFCBEFF7)),
                 ),
               ],
@@ -78,21 +78,21 @@ class _EditarSesionState extends State<EditarSesion> {
                       ),
                       Container(
                           margin: const EdgeInsets.only(top: 33.0),
-                          child: Text('Completa la siguiente información',
+                          child: const Text('Completa la siguiente información',
                               style: TextStyle(
                                   fontFamily: 'Mulish',
-                                  fontSize: 14.0,
+                                  fontSize: 16.0,
                                   fontWeight: FontWeight.normal,
                                   color: Color(0xFF2B436D)))
                       ),
                       letter(context, "Nombre completo"),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxTextNombre(context, "Escribe tu nombre"),
                       letter(context, "Correo"),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxTextCorreo(context, "Escribe tu correo"),
                       letter(context, "Contraseña"),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxTextContra(context, "Escribe tu contraseña"),
                       EditarSesionBotton(context)
                     ],
@@ -104,9 +104,9 @@ class _EditarSesionState extends State<EditarSesion> {
     return Container(
         margin: const EdgeInsets.only(top: 32.0),
         child: Text(palabras.toString(),
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: 'Mulish',
-                fontSize: 14.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.normal,
                 color: Color(0xFF2B436D)))
     );
@@ -127,7 +127,7 @@ class _EditarSesionState extends State<EditarSesion> {
             hintText: palabras,
             hintStyle: TextStyle(
                 fontFamily: 'Mulish',
-                fontSize: 14.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.black.withOpacity(0.5)
             ),
@@ -139,8 +139,6 @@ class _EditarSesionState extends State<EditarSesion> {
   }
 
   Widget boxTextCorreo(BuildContext context, palabras){
-    print("Es el nombre");
-    print(nombreCompleto.text.toString());
     return SizedBox(
         width: width-24.0,
         child: TextField(
@@ -155,7 +153,7 @@ class _EditarSesionState extends State<EditarSesion> {
             hintText: palabras,
             hintStyle: TextStyle(
                 fontFamily: 'Mulish',
-                fontSize: 14.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.black.withOpacity(0.5)
             ),
@@ -177,11 +175,11 @@ class _EditarSesionState extends State<EditarSesion> {
               borderRadius: BorderRadius.circular(16.0),
             ),
             filled: true,
-            fillColor: Color(0xFFF0F2F5),
+            fillColor: const Color(0xFFF0F2F5),
             hintText: palabras,
             hintStyle: TextStyle(
                 fontFamily: 'Mulish',
-                fontSize: 14.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.black.withOpacity(0.5)
             ),
@@ -196,9 +194,9 @@ class _EditarSesionState extends State<EditarSesion> {
     return SizedBox(
       width: width-24,
       child: Card(
-        color: Color(0xFFCBEFF7),
+        color: const Color(0xFFCBEFF7),
         elevation: 5,
-        margin: EdgeInsets.only(top: 60.0),
+        margin: const EdgeInsets.only(top: 60.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
@@ -208,10 +206,10 @@ class _EditarSesionState extends State<EditarSesion> {
           child: Container(
             alignment: Alignment.center,
             height: 60,
-            child: Text( "Editar Datos",
+            child: const Text( "Editar Datos",
               style: TextStyle(
                   fontFamily: 'Mulish',
-                  fontSize: 14,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF1C2D4B)),
             ),

@@ -45,14 +45,6 @@ class _AgregarEventoState extends State<AgregarEvento> {
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF1C2D4B))),
               elevation: 0,
-              actions: [
-                IconButton(
-                  onPressed: () {
-                  },
-                  icon: const Icon(Icons.account_circle_sharp,
-                      size: 40.0, color: Color(0xFFCBEFF7)),
-                ),
-              ],
               backgroundColor: Colors.white,
             ),
             body: (isLoading)
@@ -135,9 +127,10 @@ class _AgregarEventoState extends State<AgregarEvento> {
                   fontWeight: FontWeight.bold,
                   color: Colors.black.withOpacity(0.5)),
               contentPadding: const EdgeInsets.all(8.0),
-              border: OutlineInputBorder(
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Color(0xFFF0F2F5)),
                 borderRadius: BorderRadius.circular(5.0),
-              )
+              ),
           ),
           readOnly: true,
           onTap: () async {
@@ -203,7 +196,6 @@ class _AgregarEventoState extends State<AgregarEvento> {
   }
 
   Widget textForms(BuildContext context, palabras, tipo){
-    print(fechaFinal.text.toString());
     return Container(
       margin: const EdgeInsets.only(top: 5.0),
         child: TextFormField(
@@ -214,12 +206,14 @@ class _AgregarEventoState extends State<AgregarEvento> {
             hintStyle: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)),
+                color: Colors.black.withOpacity(0.5)
+            ),
             contentPadding: const EdgeInsets.all(8.0),
-            border: OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Color(0xFFF0F2F5)),
               borderRadius: BorderRadius.circular(5.0),
             )),
-        onSaved: (value){
+        onChanged: (value){
           if(tipo == 0){
             nombre = value.toString();
           }
@@ -241,11 +235,11 @@ class _AgregarEventoState extends State<AgregarEvento> {
 
   Widget letter(BuildContext context, palabras){
     return Container(
-        margin: const EdgeInsets.only(top: 32.0),
+        margin: const EdgeInsets.only(top: 10.0),
         child: Text(palabras.toString(),
             style: const TextStyle(
                 fontFamily: 'Mulish',
-                fontSize: 14.0,
+                fontSize: 18.0,
                 fontWeight: FontWeight.normal,
                 color: Color(0xFF2B436D)))
     );
@@ -263,12 +257,23 @@ class _AgregarEventoState extends State<AgregarEvento> {
         ),
         child: InkWell(
           onTap: () {
-            if(nombre.toString().isEmpty || fechaInicial.text.isEmpty || detalles.toString().isEmpty){
-              print("No hay nada de nada");
+            print("Bucar");
+            print(nombre.toString());
+            print(detalles.toString());
+            print(fechaInicial.toString().isEmpty);
+            if(nombre.toString() == "null" || fechaInicial.toString().isEmpty || detalles.toString() == "null"){
               showDialog(
                   context: context,
                 builder: (BuildContext context) {
                     return validaciones(context);
+                },
+              );
+            }
+            else{
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return aceptacion(context);
                 },
               );
             }
@@ -292,18 +297,58 @@ class _AgregarEventoState extends State<AgregarEvento> {
   }
 
   Widget validaciones(BuildContext context) {
-    print("entra");
     return AlertDialog(
-      title: Text('Error'),
+      contentPadding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      title: Container(
+          margin: EdgeInsets.only(bottom: 15),
+          child: Text('Error')
+      ),
       content:
-      Text("Todas las casillas deben tener contenido"),
+      const Text("Todas las casillas deben tener contenido"),
       actions: <Widget>[
         TextButton(
-            child: Text("Aceptar"),
+            child: const Text("Aceptar"),
             onPressed: () {
               Navigator.of(context).pop();
             }),
       ],
+    );
+  }
+
+  Widget aceptacion(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      title: Container(
+        margin: EdgeInsets.only(bottom: 15),
+        child: Text('Confirmar datos'),
+      ),
+      content:
+      Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            letter(context, "* Confirme que los datos sean correctos *"),
+            letter(context, "Fecha inicial: " + fechaInicial.text.toString()),
+            letter(context, "Fecha final (si es diferente a la inicial): " + fechaFinal.text.toString()),
+            letter(context, "Nombre: " + nombre.toString()),
+            letter(context, "Detalles: " + detalles.toString()),
+            letter(context, "Enlaces extras: " + enlace.toString()),
+            const SizedBox(height: 30),
+            Row(
+              children: [
+                TextButton(
+                    child: Text("Aceptar"),
+                    onPressed: () {
+                      //Navigator.of(context).pop();
+                    }),
+                TextButton(
+                    child: Text("Modificar"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    })
+              ],
+            ),
+          ]
+      ),
     );
   }
 
