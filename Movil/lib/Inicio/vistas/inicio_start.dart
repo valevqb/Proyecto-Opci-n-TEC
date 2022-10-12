@@ -1,13 +1,13 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
-import 'package:opciontec/Carreras/vistas/Info_Carreras.dart';
 import 'package:opciontec/Admision/vistas/Admision_inicio.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
-import 'package:opciontec/Sesion/vistas/login.dart';
+import 'package:opciontec/Sesion/vistas/Login.dart';
+import 'package:opciontec/Sesion/vistas/Editar_Sesion.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';
+import '../../Config.dart';
 
 class Inicio extends StatefulWidget {
   @override
@@ -44,13 +44,21 @@ class _InicioState extends State<Inicio> {
               actions: [
                 IconButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LogIn()),
-                    );
+                    if(Config.Sesion.contrasena.toString() == "null"){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LogIn()),
+                      );
+                    } else{
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditarSesion()),
+                      );
+                    }
                   },
-                  icon: Icon(Icons.account_circle_sharp,
+                  icon: const Icon(Icons.account_circle_sharp,
                       size: 40.0, color: Color(0xFFCBEFF7)),
                 ),
               ],
@@ -225,7 +233,7 @@ class _InicioState extends State<Inicio> {
                             Center(
                               child: Container(
                                 width: width - 50,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(6.0)),
                                   color: Color(0xFFCBEFF7),

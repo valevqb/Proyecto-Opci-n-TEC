@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:opciontec/Servicios/modelos/servicioBus.dart';
 import 'package:opciontec/Servicios/servicios/datos_bus.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';
 
 class InformacionBus extends StatefulWidget {
-  //final DataServicioBus servicioSeleccionado;
-  //InformacionBus(this.servicioSeleccionado);
 
   @override
   _InformacionBusState createState() => _InformacionBusState();
@@ -48,56 +45,52 @@ class _InformacionBusState extends State<InformacionBus> {
             icon: const Icon(Icons.arrow_circle_left_rounded,
                 size: 40.0, color: Color(0xFFCBEFF7)),
           ),
-          title: Text("Buses",
+          title: const Text("Buses",
               style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.white)),
           elevation: 0,
-          backgroundColor: Color(0xFF1C2D4B),
+          backgroundColor: const Color(0xFF1C2D4B),
         ),
         body: (isLoading)
             ? Container(
 
         )
-            : Container(
-            child: ListView.builder(
+            : ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 1,
                 itemBuilder: (BuildContext context, int index) {
                   return Align(
                     alignment: Alignment.topLeft,
-                    child: Container(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            seleccionOrigen(context, servicioBus),
-                            SizedBox(
-                              child: Container(//Lista
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                                ),
-                                child: ListView.builder(
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: 1,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return Align(
-                                        alignment: Alignment.topLeft,
-                                        child: informacionServicio(context, servicioBus),
-                                      );
-                                    }
-                                ),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          seleccionOrigen(context, servicioBus),
+                          SizedBox(
+                            child: Container(//Lista
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(6.0)),
                               ),
-                            )
-                          ]
-                      ),
+                              child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 1,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return Align(
+                                      alignment: Alignment.topLeft,
+                                      child: informacionServicio(context, servicioBus),
+                                    );
+                                  }
+                              ),
+                            ),
+                          )
+                        ]
                     ),
                   );
                 }
             )
-        )
     );
   }
 
@@ -118,7 +111,7 @@ class _InformacionBusState extends State<InformacionBus> {
         children: [
           Container(
             margin: const EdgeInsets.only(top: 44.00),
-            child: Text("Buses",
+            child: const Text("Buses",
                 style: TextStyle( //Titulo principal
                     fontFamily: 'Poppins',
                     fontSize: 24,
@@ -167,14 +160,14 @@ class _InformacionBusState extends State<InformacionBus> {
             ),
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 56,
                   child: dropInformacionOrigen (
                       context,
                       listaOrigenes,
                       servicioBus),
                 ),
-                Container(
+                SizedBox(
                   height: 56,
                   child: dropInformacionDestino (
                       context,
@@ -197,7 +190,7 @@ class _InformacionBusState extends State<InformacionBus> {
       => DropdownMenuItem(
         value: lists.toString(),
         child: Padding(
-          padding: EdgeInsets.only(left: 8),
+          padding: const EdgeInsets.only(left: 8),
           child: Text(
             lists.toString(),
             style: Theme.of(context).textTheme.bodyLarge),
@@ -226,7 +219,7 @@ class _InformacionBusState extends State<InformacionBus> {
       => DropdownMenuItem(
           value: lists.toString(),
           child: Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: const EdgeInsets.only(left: 8),
             child: Text(
                 lists.toString(),
                 style: Theme.of(context).textTheme.bodyLarge),

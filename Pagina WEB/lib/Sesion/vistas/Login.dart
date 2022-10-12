@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:opciontec/Sesion/vistas/Registrarme.dart';
 import 'package:opciontec/Sesion/servicios/datos_Usuarios.dart';
 import 'package:opciontec/Barra.dart';
 
@@ -16,6 +15,7 @@ class _LogInState extends State<LogIn> {
   var contra = TextEditingController();
   var width = 0.0;
   final TextEditingController _textFieldController = TextEditingController();
+
   @override
   void initState() {
     width = 0.0;
@@ -26,6 +26,7 @@ class _LogInState extends State<LogIn> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
+
     return MaterialApp(
         title: "Iniciar sesión",
         theme: ThemeData(primaryColor: Colors.white),
@@ -85,20 +86,6 @@ class _LogInState extends State<LogIn> {
                                   decoration: TextDecoration.underline,
                                   color: Color(0xFF2B436D)))),
                       const Padding(padding: EdgeInsets.only(top: 20.0)),
-                      InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Registro()),
-                            );
-                          },
-                          child: const Text('Registrarme',
-                              style: TextStyle(
-                                  fontFamily: 'Mulish',
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color(0xFF2B436D)))),
                     ],
                   )),
             )));
@@ -277,21 +264,4 @@ class _LogInState extends State<LogIn> {
       ],
     );
   }
-
-  /*Future<void> changeWindow(BuildContext context, error){
-    if (error.toString() == "Error credenciales"){
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return validaciones(context, "Contraseña o correo incorrecto");
-        },
-      );
-    } else{
-      return Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => LogIn()),
-      );
-    }
-  }*/
 }

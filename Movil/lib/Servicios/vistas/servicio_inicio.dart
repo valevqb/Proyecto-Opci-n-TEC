@@ -27,7 +27,14 @@ class _InicioServicioState extends State<InicioServicio> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Servicios',
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(Icons.arrow_circle_left_rounded,
+                  size: 40.0, color: Color(0xFFCBEFF7)),
+            ),
+            title: const Text('Servicios',
                 style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
@@ -37,7 +44,7 @@ class _InicioServicioState extends State<InicioServicio> {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.account_circle_sharp,
+                icon: const Icon(Icons.account_circle_sharp,
                     size: 40.0, color: Color(0xFFCBEFF7)),
               ),
             ],

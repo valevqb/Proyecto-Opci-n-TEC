@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
-import 'package:opciontec/Sesion/vistas/Registrarme.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 

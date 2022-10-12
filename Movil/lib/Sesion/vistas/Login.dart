@@ -1,13 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:opciontec/Carreras/modelos/Carrera.dart';
-import 'package:opciontec/Carreras/vistas/Info_Carreras.dart';
-import 'package:opciontec/Admision/vistas/Admision_inicio.dart';
-import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:opciontec/Sesion/vistas/Registrarme.dart';
-import 'package:provider/provider.dart';
+import 'package:opciontec/Sesion/servicios/datos_Usuarios.dart';
+import 'package:opciontec/Barra.dart';
 
-import '../../locators.dart';
+import '../../Config.dart';
 
 class LogIn extends StatefulWidget {
   @override
@@ -15,6 +11,7 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  var usuarios = Usuarios();
   var email = TextEditingController();
   var contra = TextEditingController();
   var width = 0.0;
@@ -30,35 +27,29 @@ class _LogInState extends State<LogIn> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
 
     return MaterialApp(
         title: "Iniciar sesión",
         theme: ThemeData(primaryColor: Colors.white),
         home: Scaffold(
             appBar: AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(Icons.arrow_circle_left_rounded,
+                    size: 40.0, color: Color(0xFF1C2D4B)),
+              ),
               centerTitle: true,
-              title: Text('Iniciar sesión',
+              title: const Text('Iniciar sesión',
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF1C2D4B))),
               elevation: 0,
-              actions: [
-                IconButton(
-                  onPressed: () {
-                  },
-                  icon: Icon(Icons.account_circle_sharp,
-                      size: 40.0, color: Color(0xFFCBEFF7)),
-                ),
-              ],
               backgroundColor: Colors.white,
             ),
-            body: (isLoading)
-                ? const Center(
-              child: CircularProgressIndicator(),
-            )
-                : SingleChildScrollView(
+            body: SingleChildScrollView(
               child: SizedBox(
                   height: height,
                   width: width,
@@ -77,7 +68,7 @@ class _LogInState extends State<LogIn> {
                       ),
                       Container(
                           margin: const EdgeInsets.only(top: 33.0),
-                          child: Text('Completa la siguiente información',
+                          child: const Text('Completa la siguiente información',
                               style: TextStyle(
                                   fontFamily: 'Mulish',
                                   fontSize: 14.0,
@@ -85,28 +76,26 @@ class _LogInState extends State<LogIn> {
                                   color: Color(0xFF2B436D)))
                       ),
                       letter(context, "Correo"),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxTextCorreo(context, "Escribe tu correo"),
                       letter(context, "Contraseña"),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxTextContra(context, "Escribe tu contraseña"),
                       logInBotton(context),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
+                      const Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
                         onTap: () {
                           olvideContrasenia(context);
                         },
-                        child: Container(
-                            child: Text('¿Olvidaste la contraseña?',
+                            child: const Text('¿Olvidaste la contraseña?',
                                 style: TextStyle(
                                     fontFamily: 'Mulish',
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.normal,
                                     decoration: TextDecoration.underline,
                                     color: Color(0xFF2B436D)))
-                        ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
+                      const Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
                         onTap: () {
                           Navigator.push(
@@ -115,15 +104,13 @@ class _LogInState extends State<LogIn> {
                                 builder: (context) => Registro()),
                           );
                         },
-                        child: Container(
-                            child: Text('Registrarme',
+                            child: const Text('Registrarme',
                                 style: TextStyle(
                                     fontFamily: 'Mulish',
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.normal,
                                     color: Color(0xFF2B436D)))
                         ),
-                      )
                     ],
                   )),
             )));
@@ -133,7 +120,7 @@ class _LogInState extends State<LogIn> {
     return Container(
         margin: const EdgeInsets.only(top: 32.0),
         child: Text(palabras.toString(),
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontSize: 14.0,
                 fontWeight: FontWeight.normal,
@@ -173,6 +160,8 @@ class _LogInState extends State<LogIn> {
     return SizedBox(
         width: width-24.0,
         child: TextField(
+          obscureText: true,
+          obscuringCharacter: '*',
           controller: contra,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
@@ -206,13 +195,42 @@ class _LogInState extends State<LogIn> {
           borderRadius: BorderRadius.circular(24),
         ),
         child: InkWell(
-          onTap: () {
-            //codigo al presionarse
-          },
+        onTap: () {
+          if (contra.text.toString().isEmpty || email.text.toString().isEmpty) {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return validaciones(
+                    context, "Debe escribir el email y la contraseña");
+              },
+            );
+          } else {
+            usuarios
+                .inicia_secion(email.text.toString(), contra.text.toString())
+                .then((value) {
+              if (Config.error.toString() == "Error credenciales") {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return validaciones(
+                        context, "Contraseña o correo incorrecto");
+                  },
+                );
+              }
+              else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PrototipoBarra()),
+                );
+              }
+            });
+          }
+        },//codigo al presionarse
           child: Container(
             alignment: Alignment.center,
             height: 60,
-            child: Text( "Iniciar sesión",
+            child: const Text( "Iniciar sesión",
               style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 14,
@@ -231,7 +249,7 @@ class _LogInState extends State<LogIn> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Recuperar contraseña',
+            title: const Text('Recuperar contraseña',
                 style: TextStyle(
                 fontFamily: 'Mulish',
                 fontSize: 16.0,
@@ -265,6 +283,34 @@ class _LogInState extends State<LogIn> {
           );
         });
   }
+
+  Widget validaciones(BuildContext context, message) {
+    return AlertDialog(
+      contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      title: Container(
+          margin: const EdgeInsets.only(bottom: 15),
+          child: const Text('Error',
+              style: TextStyle(
+                  fontFamily: 'Mulish',
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1C2D4B)))),
+      content: Text(message.toString(),
+          style: const TextStyle(
+              fontFamily: 'Mulish',
+              fontSize: 14.0,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF1C2D4B))),
+      actions: <Widget>[
+        TextButton(
+            child: const Text("Aceptar"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+      ],
+    );
+  }
+
 }
 
 
