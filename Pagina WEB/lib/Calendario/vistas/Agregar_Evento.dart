@@ -84,7 +84,7 @@ class _AgregarEventoState extends State<AgregarEvento> {
                             fechas(context, 0, fechaInicial),
                             ]
                           ),
-                          SizedBox(width: 25),
+                          const SizedBox(width: 25),
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -152,7 +152,7 @@ class _AgregarEventoState extends State<AgregarEvento> {
                 }
               });
             }else{
-              print("Date is not selected");
+              //print("Date is not selected");
             }
           },
         ),
@@ -201,7 +201,7 @@ class _AgregarEventoState extends State<AgregarEvento> {
         child: TextFormField(
         decoration: InputDecoration(
             filled: true,
-            fillColor: Color(0xFFF0F2F5),
+            fillColor: const Color(0xFFF0F2F5),
             hintText: palabras.toString(),
             hintStyle: TextStyle(
                 fontSize: 16.0,
@@ -257,10 +257,6 @@ class _AgregarEventoState extends State<AgregarEvento> {
         ),
         child: InkWell(
           onTap: () {
-            print("Bucar");
-            print(nombre.toString());
-            print(detalles.toString());
-            print(fechaInicial.toString().isEmpty);
             if(nombre.toString() == "null" || fechaInicial.toString().isEmpty || detalles.toString() == "null"){
               showDialog(
                   context: context,
@@ -298,10 +294,10 @@ class _AgregarEventoState extends State<AgregarEvento> {
 
   Widget validaciones(BuildContext context) {
     return AlertDialog(
-      contentPadding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
-          margin: EdgeInsets.only(bottom: 15),
-          child: Text('Error')
+          margin: const EdgeInsets.only(bottom: 15),
+          child: const Text('Error')
       ),
       content:
       const Text("Todas las casillas deben tener contenido"),
@@ -317,10 +313,10 @@ class _AgregarEventoState extends State<AgregarEvento> {
 
   Widget aceptacion(BuildContext context) {
     return AlertDialog(
-      contentPadding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
-        margin: EdgeInsets.only(bottom: 15),
-        child: Text('Confirmar datos'),
+        margin: const EdgeInsets.only(bottom: 15),
+        child: const Text('Confirmar datos'),
       ),
       content:
       Column(
@@ -336,12 +332,12 @@ class _AgregarEventoState extends State<AgregarEvento> {
             Row(
               children: [
                 TextButton(
-                    child: Text("Aceptar"),
+                    child: const Text("Aceptar"),
                     onPressed: () {
                       //Navigator.of(context).pop();
                     }),
                 TextButton(
-                    child: Text("Modificar"),
+                    child: const Text("Modificar"),
                     onPressed: () {
                       Navigator.of(context).pop();
                     })

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:opciontec/Sesion/vistas/Registrarme.dart';
 import 'package:opciontec/Calendario/vistas/Agregar_Evento.dart';
+import 'package:opciontec/Calendario/vistas/ModificarEliminar_Evento.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';
@@ -28,7 +29,7 @@ class _LogInState extends State<LogIn> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
+    bool isLoading = true;
 
     return MaterialApp(
         title: "Iniciar sesión",
@@ -44,11 +45,7 @@ class _LogInState extends State<LogIn> {
               elevation: 0,
               backgroundColor: Colors.white,
             ),
-            body: (isLoading)
-                ? const Center(
-              child: CircularProgressIndicator(),
-            )
-                : SingleChildScrollView(
+            body: SingleChildScrollView(
               child: SizedBox(
                   height: height,
                   width: width,
@@ -202,7 +199,8 @@ class _LogInState extends State<LogIn> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => AgregarEvento()),
+                    builder: (context) => ModificarEliminarEvento()),
+                    //builder: (context) => AgregarEvento()),
               );
             }//codigo al presionarse
           },
