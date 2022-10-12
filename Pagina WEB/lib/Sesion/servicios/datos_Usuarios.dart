@@ -18,7 +18,7 @@ class Usuarios extends ChangeNotifier {
 
   static String error = "";
 
-  Future<String?> inicia_secion(correo, contrasena) async {
+  Future<void> inicia_secion(correo, contrasena) async {
     final result = await http.post(Uri.parse(login),
         body: {'correo': correo, 'contrasena': contrasena}).catchError((e) {
       if (kDebugMode) {
@@ -27,15 +27,15 @@ class Usuarios extends ChangeNotifier {
     });
 
     if (result.body == "6000" || result.body == "5000") {
-      return "Error credenciales";
+      Config.error = "Error credenciales";
     } else {
       Config.Secion = Usuario.fromJson(jsonDecode(result.body));
       Config.Secion.contrasena = contrasena;
-      return "Inicio de sesión exitoso";
+      Config.error = "Inicio de sesión exitoso";
     }
   }
 
-  registrar(nombre, correo, contrasena) async {
+  Future<void> registrar(nombre, correo, contrasena) async {
     final result = await http.post(Uri.parse(register), body: {
       'nombre': nombre,
       'correo': correo,

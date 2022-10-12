@@ -37,8 +37,8 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
             icon: const Icon(Icons.arrow_circle_left_rounded,
                 size: 40.0, color: Colors.lightBlueAccent),
           ),
-          title: Text('Costos y becas',
-              style: const TextStyle(
+          title: const Text('Costos y becas',
+              style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF1C2D4B))),
@@ -46,20 +46,22 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
           backgroundColor: Colors.white,
         ),
         body: (isLoading)
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(''),
+                    const Text(''),
                     Center(
                       child: Container(
                         width: width - 50,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(6.0)),
                           color: Color(0xFFCBEFF7),
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
                             Image.asset('lib/Fotos/Costo.png'),
                             /*
@@ -108,8 +110,6 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                               onPressed: () {},
                             ),*/
                           ],
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          mainAxisSize: MainAxisSize.max,
                         ),
                       ),
                     ),

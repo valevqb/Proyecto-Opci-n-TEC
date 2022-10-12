@@ -272,10 +272,10 @@ class _RegistroState extends State<Registro> {
                 child: const Text("Aceptar"),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  usuarios.registrar(nombreCompleto.text.toString(),
-                      email.text.toString(), contra.text.toString());
-
-                  print(Config.error);
+                  usuarios
+                      .registrar(nombreCompleto.text.toString(),
+                          email.text.toString(), contra.text.toString())
+                      .then((value) => print(Config.error));
                 }),
             TextButton(
                 child: const Text("Modificar"),

@@ -183,9 +183,9 @@ class _LogInState extends State<LogIn> {
                 },
               );
             } else {
-              print(usuarios
+              usuarios
                   .inicia_secion(email.text.toString(), contra.text.toString())
-                  .toString());
+                  .then((value) => print(Config.error));
             } //codigo al presionarse
           },
           child: Container(
