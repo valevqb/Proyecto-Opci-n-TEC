@@ -1,9 +1,13 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Sesion/vistas/Registrarme.dart';
 import 'package:opciontec/Sesion/servicios/datos_Usuarios.dart';
 import 'package:opciontec/Barra.dart';
-
 import '../../Config.dart';
+import 'package:http/http.dart' as http;
+import 'dart:math';
+import 'dart:convert';
 
 class LogIn extends StatefulWidget {
   @override
@@ -13,6 +17,7 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   var usuarios = Usuarios();
   var email = TextEditingController();
+  var emailRecuperacion = TextEditingController();
   var contra = TextEditingController();
   var width = 0.0;
   TextEditingController _textFieldController = TextEditingController();
@@ -85,7 +90,12 @@ class _LogInState extends State<LogIn> {
                       const Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
                         onTap: () {
-                          olvideContrasenia(context);
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return olvideContrasenia(context);
+                            },
+                          );
                         },
                             child: const Text('¿Olvidaste la contraseña?',
                                 style: TextStyle(
@@ -244,44 +254,47 @@ class _LogInState extends State<LogIn> {
 
   }
 
-  Future<void> olvideContrasenia(BuildContext context) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('Recuperar contraseña',
-                style: TextStyle(
-                fontFamily: 'Mulish',
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1C2D4B))),
-            content: TextField(
-              onChanged: (value) {
-
-              },
-              controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Escribe tu correo",
-                hintStyle: TextStyle(
-                    fontFamily: 'Mulish',
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black.withOpacity(0.5)
-                )),
-            ),
-            actions: <Widget>[
-              /*FlatButton(
-                color: Color(0xFF2B436D),
-                textColor: Colors.white,
-                child: Text('OK'),
-                onPressed: () {
-                  setState(() {
-                    Navigator.pop(context);
-                  });
-                },
-              ),*/
-            ],
-          );
-        });
+  Widget olvideContrasenia(BuildContext context) {
+    return AlertDialog(
+      contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      title: Container(
+          margin: const EdgeInsets.only(bottom: 15),
+          child: const Text('Cambiar contraseña',
+              style: TextStyle(
+                  fontFamily: 'Mulish',
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1C2D4B)))),
+      content: TextField(
+        controller: emailRecuperacion,
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          filled: true,
+          fillColor: Color(0xFFF0F2F5),
+          hintText: "Escriba su correo",
+          hintStyle: TextStyle(
+              fontFamily: 'Mulish',
+              fontSize: 14.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black.withOpacity(0.5)
+          ),
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+            child: const Text("Aceptar"),
+            onPressed: (){
+              var contrasenaNueva =  String.fromCharCodes(List.generate(8, (index)=> Random().nextInt(33) + 89));
+              sendE(contrasenaNueva.toString());
+              Navigator.of(context).pop();
+            }),
+      ],
+    );
   }
 
   Widget validaciones(BuildContext context, message) {
@@ -308,6 +321,28 @@ class _LogInState extends State<LogIn> {
               Navigator.of(context).pop();
             }),
       ],
+    );
+  }
+
+  Future sendE(password) async {
+    final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
+    final respuesta = await http.post(
+      url,
+      headers: {
+        "origin" : "http://localhost",
+        "Content-Type": "application/json",
+      },
+      body: json.encode({
+        'service_id': "service_qju8wtt",
+        'template_id': "template_erpv19v",
+        'user_id': "jMQLpyk_PI7R3m6_v",
+        'template_params':{
+          "reply_to": emailRecuperacion.text.toString(),
+          "subject": "Recuperación de contraseña",
+          "to_name": "usuario(a)",
+          "message": "Su nueva contraseña es: " + password
+        }
+      })
     );
   }
 

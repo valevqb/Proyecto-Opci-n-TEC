@@ -61,7 +61,7 @@ class _EditarSesionState extends State<EditarSesion> {
                         width: 234.25,
                         child: FittedBox(
                           fit: BoxFit.fill,
-                          child: Image.asset('lib/Fotos/EditarSesion.png'),
+                          child: Image.asset('lib/Fotos/Registro.png'),
                         ),
                       ),
                       Container(
@@ -75,13 +75,13 @@ class _EditarSesionState extends State<EditarSesion> {
                       ),
                       letter(context, "Nombre completo"),
                       const Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxTextNombre(context, "Escribe tu nombre"),
+                      boxTextNombre(context, Config.Sesion.nombre),
                       letter(context, "Correo"),
                       const Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxTextCorreo(context, "Escribe tu correo"),
+                      boxTextCorreo(context, Config.Sesion.correo),
                       letter(context, "Contraseña"),
                       const Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxTextContra(context, "Escribe tu contraseña"),
+                      boxTextContra(context, Config.Sesion.contrasena),
                       EditarSesionBotton(context)
                     ],
                   )),
@@ -125,11 +125,10 @@ class _EditarSesionState extends State<EditarSesion> {
             filled: true,
             fillColor: const Color(0xFFF0F2F5),
             hintText: palabras,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
                 fontFamily: 'Mulish',
                 fontSize: 14.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
             ),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
@@ -151,11 +150,10 @@ class _EditarSesionState extends State<EditarSesion> {
             filled: true,
             fillColor: const Color(0xFFF0F2F5),
             hintText: palabras,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
                 fontFamily: 'Mulish',
                 fontSize: 14.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
             ),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
@@ -165,6 +163,7 @@ class _EditarSesionState extends State<EditarSesion> {
   }
 
   Widget boxTextContra(BuildContext context, palabras){
+    String caracter = "*" * palabras.toString().length;
     return SizedBox(
         width: width-24.0,
         child: TextField(
@@ -178,12 +177,11 @@ class _EditarSesionState extends State<EditarSesion> {
             ),
             filled: true,
             fillColor: const Color(0xFFF0F2F5),
-            hintText: palabras,
-            hintStyle: TextStyle(
+            hintText: caracter,
+            hintStyle: const TextStyle(
                 fontFamily: 'Mulish',
                 fontSize: 14.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
             ),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
@@ -208,7 +206,7 @@ class _EditarSesionState extends State<EditarSesion> {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return validaciones(context, "Debe escribir el email, la contraseña y el nombre");
+                  return validaciones(context, "Ningún dato fue cambiado");
                 },
               );
             } else {
@@ -285,8 +283,8 @@ class _EditarSesionState extends State<EditarSesion> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
-                  /*Navigator.of(context).pop();
                   Navigator.of(context).pop();
+                  /*Navigator.of(context).pop();
                   usuarios
                       .registrar(nombreCompleto.text.toString(),
                       email.text.toString(), contra.text.toString())
