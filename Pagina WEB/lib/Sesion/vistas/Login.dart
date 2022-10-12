@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:opciontec/Sesion/vistas/Registrarme.dart';
 import 'package:opciontec/Sesion/servicios/datos_Usuarios.dart';
+import 'package:opciontec/Barra.dart';
 
 import '../../Config.dart';
 
@@ -179,13 +180,29 @@ class _LogInState extends State<LogIn> {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return validaciones(context);
+                  return validaciones(context, "Debe escribir el email y la contraseña");
                 },
               );
             } else {
               usuarios
                   .inicia_secion(email.text.toString(), contra.text.toString())
-                  .then((value) => print(Config.error));
+                  .then((value) {
+                    if (Config.error.toString() == "Error credenciales"){
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return validaciones(context, "Contraseña o correo incorrecto");
+                        },
+                      );
+                    }
+                    else{
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PrototipoBarra()),
+                      );
+                    }
+                  });
             } //codigo al presionarse
           },
           child: Container(
@@ -244,13 +261,13 @@ class _LogInState extends State<LogIn> {
         });
   }
 
-  Widget validaciones(BuildContext context) {
+  Widget validaciones(BuildContext context, message) {
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
           child: const Text('Error')),
-      content: const Text("Debe escribir el email y la contraseña"),
+      content: Text(message.toString()),
       actions: <Widget>[
         TextButton(
             child: const Text("Aceptar"),
@@ -260,4 +277,21 @@ class _LogInState extends State<LogIn> {
       ],
     );
   }
+
+  /*Future<void> changeWindow(BuildContext context, error){
+    if (error.toString() == "Error credenciales"){
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return validaciones(context, "Contraseña o correo incorrecto");
+        },
+      );
+    } else{
+      return Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => LogIn()),
+      );
+    }
+  }*/
 }
