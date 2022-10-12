@@ -1,12 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:opciontec/Sesion/vistas/Registrarme.dart';
-import 'package:opciontec/Calendario/vistas/Agregar_Evento.dart';
-import 'package:opciontec/Calendario/vistas/ModificarEliminar_Evento.dart';
-import 'package:provider/provider.dart';
+import 'package:opciontec/Sesion/servicios/datos_Usuarios.dart';
 
-import '../../locators.dart';
+import '../../Config.dart';
 
 class LogIn extends StatefulWidget {
   @override
@@ -14,11 +10,11 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  var usuarios = Usuarios();
   var email = TextEditingController();
   var contra = TextEditingController();
   var width = 0.0;
-  TextEditingController _textFieldController = TextEditingController();
-
+  final TextEditingController _textFieldController = TextEditingController();
   @override
   void initState() {
     width = 0.0;
@@ -29,8 +25,6 @@ class _LogInState extends State<LogIn> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    bool isLoading = true;
-
     return MaterialApp(
         title: "Iniciar sesión",
         theme: ThemeData(primaryColor: Colors.white),
@@ -69,8 +63,7 @@ class _LogInState extends State<LogIn> {
                                   fontFamily: 'Mulish',
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.normal,
-                                  color: Color(0xFF2B436D)))
-                      ),
+                                  color: Color(0xFF2B436D)))),
                       letter(context, "Correo"),
                       const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxTextCorreo(context, "Escribe tu correo"),
@@ -80,39 +73,37 @@ class _LogInState extends State<LogIn> {
                       logInBotton(context),
                       const Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
-                        onTap: () {
-                          olvideContrasenia(context);
-                        },
-                        child: const Text('¿Olvidaste la contraseña?',
-                                style: TextStyle(
-                                    fontFamily: 'Mulish',
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.normal,
-                                    decoration: TextDecoration.underline,
-                                    color: Color(0xFF2B436D)))
-                      ),
+                          onTap: () {
+                            olvideContrasenia(context);
+                          },
+                          child: const Text('¿Olvidaste la contraseña?',
+                              style: TextStyle(
+                                  fontFamily: 'Mulish',
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.underline,
+                                  color: Color(0xFF2B436D)))),
                       const Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Registro()),
-                          );
-                        },
-                        child: const Text('Registrarme',
-                                style: TextStyle(
-                                    fontFamily: 'Mulish',
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Color(0xFF2B436D)))
-                        ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Registro()),
+                            );
+                          },
+                          child: const Text('Registrarme',
+                              style: TextStyle(
+                                  fontFamily: 'Mulish',
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.normal,
+                                  color: Color(0xFF2B436D)))),
                     ],
                   )),
             )));
   }
 
-  Widget letter(BuildContext context, palabras){
+  Widget letter(BuildContext context, palabras) {
     return Container(
         margin: const EdgeInsets.only(top: 32.0),
         child: Text(palabras.toString(),
@@ -120,13 +111,12 @@ class _LogInState extends State<LogIn> {
                 fontFamily: 'Mulish',
                 fontSize: 16.0,
                 fontWeight: FontWeight.normal,
-                color: Color(0xFF2B436D)))
-    );
+                color: Color(0xFF2B436D))));
   }
 
-  Widget boxTextCorreo(BuildContext context, palabras){
+  Widget boxTextCorreo(BuildContext context, palabras) {
     return SizedBox(
-        width: width-24.0,
+        width: width - 24.0,
         child: TextField(
           controller: email,
           textAlignVertical: TextAlignVertical.center,
@@ -141,18 +131,16 @@ class _LogInState extends State<LogIn> {
                 fontFamily: 'Mulish',
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
-            ),
+                color: Colors.black.withOpacity(0.5)),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
           ),
-        )
-    );
+        ));
   }
 
-  Widget boxTextContra(BuildContext context, palabras){
+  Widget boxTextContra(BuildContext context, palabras) {
     return SizedBox(
-        width: width-24.0,
+        width: width - 24.0,
         child: TextField(
           controller: contra,
           textAlignVertical: TextAlignVertical.center,
@@ -167,18 +155,16 @@ class _LogInState extends State<LogIn> {
                 fontFamily: 'Mulish',
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
-            ),
+                color: Colors.black.withOpacity(0.5)),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
           ),
-        )
-    );
+        ));
   }
 
-  Widget logInBotton(BuildContext context){
+  Widget logInBotton(BuildContext context) {
     return SizedBox(
-      width: width-24,
+      width: width - 24,
       child: Card(
         color: const Color(0xFFCBEFF7),
         elevation: 5,
@@ -188,26 +174,25 @@ class _LogInState extends State<LogIn> {
         ),
         child: InkWell(
           onTap: () {
-            if(contra.text.toString().isEmpty || email.text.toString().isEmpty){
+            if (contra.text.toString().isEmpty ||
+                email.text.toString().isEmpty) {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
                   return validaciones(context);
                 },
               );
-            } else{
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ModificarEliminarEvento()),
-                    //builder: (context) => AgregarEvento()),
-              );
-            }//codigo al presionarse
+            } else {
+              usuarios
+                  .inicia_secion(email.text.toString(), contra.text.toString())
+                  .then((value) => print(Config.error));
+            } //codigo al presionarse
           },
           child: Container(
             alignment: Alignment.center,
             height: 60,
-            child: const Text( "Iniciar sesión",
+            child: const Text(
+              "Iniciar sesión",
               style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 16.0,
@@ -218,7 +203,6 @@ class _LogInState extends State<LogIn> {
         ),
       ),
     );
-
   }
 
   Future<void> olvideContrasenia(BuildContext context) async {
@@ -229,22 +213,20 @@ class _LogInState extends State<LogIn> {
             contentPadding: const EdgeInsets.only(bottom: 0),
             title: const Text('Recuperar contraseña',
                 style: TextStyle(
-                fontFamily: 'Mulish',
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1C2D4B))),
-            content: TextField(
-              onChanged: (value) {
-
-              },
-              controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Escribe tu correo",
-                hintStyle: TextStyle(
                     fontFamily: 'Mulish',
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black.withOpacity(0.5)
-                )),
+                    color: Color(0xFF1C2D4B))),
+            content: TextField(
+              onChanged: (value) {},
+              controller: _textFieldController,
+              decoration: InputDecoration(
+                  hintText: "Escribe tu correo",
+                  hintStyle: TextStyle(
+                      fontFamily: 'Mulish',
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black.withOpacity(0.5))),
             ),
             actions: const <Widget>[
               /*FlatButton(
@@ -267,10 +249,8 @@ class _LogInState extends State<LogIn> {
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
-          child: const Text('Error')
-      ),
-      content:
-      const Text("Debe escribir el email y la contraseña"),
+          child: const Text('Error')),
+      content: const Text("Debe escribir el email y la contraseña"),
       actions: <Widget>[
         TextButton(
             child: const Text("Aceptar"),
@@ -281,5 +261,3 @@ class _LogInState extends State<LogIn> {
     );
   }
 }
-
-
