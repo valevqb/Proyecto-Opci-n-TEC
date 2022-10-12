@@ -1,5 +1,3 @@
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:opciontec/Carreras/vistas/Info_Carreras.dart';
@@ -33,7 +31,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
     double width = MediaQuery.of(context).size.width;
     users = Provider.of<DatosCarrera>(context).carreras;
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
-    if(firstime == 0){
+    if (firstime == 0) {
       busquedaActiva = users;
     }
     firstime = 1;
@@ -44,7 +42,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
         home: Scaffold(
           appBar: AppBar(
             title: Text('Conocé las carreras',
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF1C2D4B))),
@@ -53,7 +51,8 @@ class _InicioCarreraState extends State<InicioCarrera> {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.account_circle_sharp, size: 40.0, color : Color(0xBE5CC6DE)),
+                icon: const Icon(Icons.account_circle_sharp,
+                    size: 40.0, color: Color(0xBE5CC6DE)),
               ),
             ],
           ),
@@ -68,18 +67,18 @@ class _InicioCarreraState extends State<InicioCarrera> {
                     Secciones(texto: ' ', tamano: 14.0),
                     Positioned(
                       bottom: 0,
-                      left:0,
+                      left: 0,
                       right: 0,
                       child: Container(
                           height: 42,
-                          width: width-25,
+                          width: width - 25,
                           padding: const EdgeInsets.only(left: 20),
-                          margin: EdgeInsets.symmetric(horizontal: width/15),
+                          margin: EdgeInsets.symmetric(horizontal: width / 15),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: Color(0xFFDCDCDC),
+                              color: const Color(0xFFDCDCDC),
                               //style: BorderStyle.solid,
                               width: 1,
                             ),
@@ -91,7 +90,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                               textAlignVertical: TextAlignVertical.center,
                               onChanged: buscarCarrera,
                               decoration: InputDecoration(
-                                //isCollapsed: true,
+                                  //isCollapsed: true,
                                   hintText: textoFinal,
                                   hintStyle: TextStyle(
                                       fontSize: 16.0,
@@ -100,16 +99,15 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   prefixIcon: const Icon(Icons.search_rounded,
-                                      size: 20.0, color: Color(0xBE5CC6DE))
-                              ),
+                                      size: 20.0, color: Color(0xBE5CC6DE))),
                             ),
-                          )
-                      ),
+                          )),
                     ),
                     SizedBox(
                         height: height - 50,
                         child: Container(
-                          margin: const EdgeInsets.only(left: 24, right: 24, top: 32),
+                          margin: const EdgeInsets.only(
+                              left: 24, right: 24, top: 32),
                           decoration: const BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(2.0)),
@@ -124,56 +122,62 @@ class _InicioCarreraState extends State<InicioCarrera> {
                                   margin: const EdgeInsets.all(15),
                                   elevation: 10,
                                   child: InkWell(
-                                  onTap: () {//validacion carrera
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => InformacionCarrera(busquedaActiva![index])),
+                                    onTap: () {
+                                      //validacion carrera
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                InformacionCarrera(
+                                                    busquedaActiva![index])),
                                       );
-                                  },
-                                  child: ListTile(
-                                    leading: ConstrainedBox(
-                                      constraints: const BoxConstraints(
-                                        maxWidth: 104,
-                                        maxHeight: 104,
-                                      ),
-                                      child: Image.network(
-                                        busquedaActiva![index].IMG!,
-                                        isAntiAlias: true,
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-
-                                    //leading: Image.network(users[index].IMG!),
-                                    title: Text.rich(TextSpan(
-                                      text: ' ', // default text style
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                            text: busquedaActiva![index].Categoria!,
-                                            style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              backgroundColor:
-                                                  const Color(0xFF388E9F).withOpacity(0.5),
-                                              color:
-                                                  const Color(0xFF388E9F),
-                                            )),
-                                        const TextSpan(text: ' \n '),
-                                        TextSpan(
-                                          text: busquedaActiva![index].Nombre!,
-                                          style: const TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                              color: Color(0xFF1C2D4B)),
+                                    },
+                                    child: ListTile(
+                                      leading: ConstrainedBox(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 104,
+                                          maxHeight: 104,
                                         ),
-                                      ],
-                                    )),
-                                    subtitle: Text(
-                                      busquedaActiva![index].Resumen!,
-                                      style: const TextStyle(
-                                          fontSize: 16, color: Color(0xFF1C2D4B)),
+                                        child: Image.network(
+                                          busquedaActiva![index].IMG!,
+                                          isAntiAlias: true,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+
+                                      //leading: Image.network(users[index].IMG!),
+                                      title: Text.rich(TextSpan(
+                                        text: ' ', // default text style
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: busquedaActiva![index]
+                                                  .Categoria!,
+                                              style: TextStyle(
+                                                fontStyle: FontStyle.italic,
+                                                backgroundColor:
+                                                    const Color(0xFF388E9F)
+                                                        .withOpacity(0.5),
+                                                color: const Color(0xFF388E9F),
+                                              )),
+                                          const TextSpan(text: ' \n '),
+                                          TextSpan(
+                                            text:
+                                                busquedaActiva![index].Nombre!,
+                                            style: const TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF1C2D4B)),
+                                          ),
+                                        ],
+                                      )),
+                                      subtitle: Text(
+                                        busquedaActiva![index].Resumen!,
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Color(0xFF1C2D4B)),
+                                      ),
                                     ),
                                   ),
-                                ),
                                 );
                               }),
                         )),
@@ -182,7 +186,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
         ));
   }
 
-  void buscarCarrera(String carreraE){
+  void buscarCarrera(String carreraE) {
     var sugerencias = users?.where((element) {
       var sugerencia = element.Nombre?.toString().toLowerCase();
       var escrito = carreraE.toString().toLowerCase();
@@ -193,7 +197,6 @@ class _InicioCarreraState extends State<InicioCarrera> {
       busquedaActiva = sugerencias;
     });
   }
-
 }
 
 class Secciones extends StatelessWidget {
@@ -201,6 +204,7 @@ class Secciones extends StatelessWidget {
   var tamano = 24.0;
 
   Secciones({
+    super.key,
     required this.texto,
     required this.tamano,
   });
@@ -217,4 +221,3 @@ class Secciones extends StatelessWidget {
     );
   }
 }
-
