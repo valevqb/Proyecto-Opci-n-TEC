@@ -48,7 +48,7 @@ class _InformacionBusState extends State<InformacionBus> {
             icon: const Icon(Icons.arrow_circle_left_rounded,
                 size: 40.0, color: Color(0xFFCBEFF7)),
           ),
-          title: Text("Buses",
+          title: const Text("Buses",
               style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -60,44 +60,40 @@ class _InformacionBusState extends State<InformacionBus> {
             ? Container(
 
         )
-            : Container(
-            child: ListView.builder(
+            : ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 1,
                 itemBuilder: (BuildContext context, int index) {
                   return Align(
                     alignment: Alignment.topLeft,
-                    child: Container(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            seleccionOrigen(context, servicioBus),
-                            SizedBox(
-                              child: Container(//Lista
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                                ),
-                                child: ListView.builder(
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: 1,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return Align(
-                                        alignment: Alignment.topLeft,
-                                        child: informacionServicio(context, servicioBus),
-                                      );
-                                    }
-                                ),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          seleccionOrigen(context, servicioBus),
+                          SizedBox(
+                            child: Container(//Lista
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(6.0)),
                               ),
-                            )
-                          ]
-                      ),
+                              child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 1,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return Align(
+                                      alignment: Alignment.topLeft,
+                                      child: informacionServicio(context, servicioBus),
+                                    );
+                                  }
+                              ),
+                            ),
+                          )
+                        ]
                     ),
                   );
                 }
             )
-        )
     );
   }
 
@@ -118,7 +114,7 @@ class _InformacionBusState extends State<InformacionBus> {
         children: [
           Container(
             margin: const EdgeInsets.only(top: 44.00),
-            child: Text("Buses",
+            child: const Text("Buses",
                 style: TextStyle( //Titulo principal
                     fontFamily: 'Poppins',
                     fontSize: 24,
@@ -167,14 +163,14 @@ class _InformacionBusState extends State<InformacionBus> {
             ),
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 56,
                   child: dropInformacionOrigen (
                       context,
                       listaOrigenes,
                       servicioBus),
                 ),
-                Container(
+                SizedBox(
                   height: 56,
                   child: dropInformacionDestino (
                       context,

@@ -31,22 +31,16 @@ class _InicioMasState extends State<InicioMas> {
         //theme: ThemeData(scaffoldBackgroundColor:Color(0xFFCBEFF7) ),
         home: Scaffold(
           appBar: AppBar(
-            title: Text('Más Información',
+            title: const Text('Más Información',
                 style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF1C2D4B))),
             elevation: 0,
             backgroundColor: Colors.white,
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.account_circle_sharp, size: 40.0, color : Color(0xBE5CC6DE)),
-              ),
-            ],
           ),
           body: (isLoading)
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
                   child: Column(
                   children: <Widget>[
@@ -81,28 +75,6 @@ class _InicioMasState extends State<InicioMas> {
                                 ));
                               },
                             ),
-                            /*Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  new IconButton(
-                                    icon: const Icon(
-                                        Icons.monetization_on_outlined,
-                                        size: 18.0,
-                                        color: Colors.blueGrey),
-                                    onPressed: () {
-                                      Navigator.of(context)
-                                          .push(MaterialPageRoute(
-                                        builder: (context) => Costos_y_Becas(),
-                                      ));
-                                    },
-                                  ),
-                                  Text('Costos y becas',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.blue.shade900)),
-                                ],
-                              )*/
                           ),
                           SizedBox(
                             height: 120,
@@ -230,12 +202,12 @@ class Secciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Text(this.texto,
+      padding: const EdgeInsets.all(20),
+      child: Text(texto,
           style: TextStyle(
-              fontSize: this.tamano,
+              fontSize: tamano,
               fontWeight: FontWeight.bold,
-              color: this.color)),
+              color: color)),
     );
   }
 }

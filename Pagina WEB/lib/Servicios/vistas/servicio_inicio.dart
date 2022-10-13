@@ -27,20 +27,13 @@ class _InicioServicioState extends State<InicioServicio> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Servicios',
+            title: const Text('Servicios',
                 style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.white)),
             elevation: 0,
             backgroundColor: Color(0xFF1C2D4B),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.account_circle_sharp,
-                    size: 40.0, color: Color(0xFFCBEFF7)),
-              ),
-            ],
           ),
           body: (isLoading)
           ? Container(
@@ -113,7 +106,7 @@ class _InicioServicioState extends State<InicioServicio> {
       margin: const EdgeInsets.only(bottom: 16.0, top: 32.00),
       child: Text( //Titutlo de cada tipo de servicio
           tipoServicio,
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: 'Poppins',
               fontSize: 18,
               fontWeight: FontWeight. bold,
@@ -131,7 +124,7 @@ class _InicioServicioState extends State<InicioServicio> {
             itemBuilder: (BuildContext context, int index) {
               return Align(
                 alignment: Alignment.topLeft,
-                child: Container(
+                child: SizedBox(
                   width: 151,
                   height: 168,
                   child: cartas(context, servicio![index]),
@@ -166,48 +159,46 @@ class _InicioServicioState extends State<InicioServicio> {
           }
           //print("tapped " +  users[index].firstName!);
         },
-        child: Container(
-          child: Row(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                    child: Image.network( // Imagen del servicio
-                      servicio.Fotos![1].toString(),
-                      fit: BoxFit.fill,
-                      width: 143,
-                      height: 90,
-                    ),
+        child: Row(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
                   ),
-                  Container(
-                      margin: const EdgeInsets.only(top: 8.0, left: 16),
-                      child: CircleAvatar ( //avatar representativo del servicio
-                        radius: 16,
-                        backgroundImage: NetworkImage(
-                          servicio.Icon.toString(), //HAY QUE PONERLE CERO
-                        ),
-                      )
+                  child: Image.network( // Imagen del servicio
+                    servicio.Fotos![1].toString(),
+                    fit: BoxFit.fill,
+                    width: 143,
+                    height: 90,
                   ),
-                  Container(
+                ),
+                Container(
                     margin: const EdgeInsets.only(top: 8.0, left: 16),
-                    child: Text ( //nombre del servicio
-                      servicio.Nombre!,
-                      style: TextStyle(
-                          fontFamily: 'Mulish',
-                          fontSize: 14,
-                          fontWeight: FontWeight. bold),
-                    ),
+                    child: CircleAvatar ( //avatar representativo del servicio
+                      radius: 16,
+                      backgroundImage: NetworkImage(
+                        servicio.Icon.toString(), //HAY QUE PONERLE CERO
+                      ),
+                    )
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 8.0, left: 16),
+                  child: Text ( //nombre del servicio
+                    servicio.Nombre!,
+                    style: const TextStyle(
+                        fontFamily: 'Mulish',
+                        fontSize: 14,
+                        fontWeight: FontWeight. bold),
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
