@@ -76,11 +76,10 @@ class _InicioState extends State<Inicio> {
                           children: <Widget>[
                             Container(
                               width: width,
-                              //height: 190,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xFF1C2D4B),
                               ),
-                              padding: EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
@@ -88,18 +87,11 @@ class _InicioState extends State<Inicio> {
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
-                                      /*Container(
-                                        width: 25,
-                                        height: 190,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF1C2D4B),
-                                        ),
-                                      ),*/
                                       Container(
                                         width: width /2,
-                                        padding: EdgeInsets.all(20),
+                                        padding: const EdgeInsets.all(20),
                                         height: 200,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Color(0xFF1C2D4B),
                                         ),
                                         child: Column(
@@ -114,7 +106,7 @@ class _InicioState extends State<Inicio> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                Text('El futuro es',
+                                                const Text('El futuro es',
                                                     style: TextStyle(
                                                         fontSize: 20,
                                                         fontWeight:
@@ -122,7 +114,7 @@ class _InicioState extends State<Inicio> {
                                                         color: Colors.white)),
                                                 Row(
 
-                                                  children: <Widget>[
+                                                  children: const <Widget>[
                                                     Text('con ',
                                                         style: TextStyle(
                                                             fontSize: 20,
@@ -142,7 +134,7 @@ class _InicioState extends State<Inicio> {
                                               ],
                                             ),
 
-                                            Text(
+                                            const Text(
                                                 '¡Explorá las carreras \nque el TEC te ofrece \ny encontrá la tuya!',
                                                 style: TextStyle(
                                                     fontSize: 14,
@@ -151,7 +143,7 @@ class _InicioState extends State<Inicio> {
                                             Row(
 
                                               children: <Widget>[
-                                                Text('Ver carreras',
+                                                const Text('Ver carreras',
                                                     style: TextStyle(
                                                         fontSize: 14,
                                                         fontWeight:
@@ -287,7 +279,7 @@ class _InicioState extends State<Inicio> {
                             Secciones(
                                 texto: 'Próximos eventos',
                                 tamano: 24.0,
-                                color: Color(0xFF1C2D4B)),
+                                color: const Color(0xFF1C2D4B)),
                             Secciones(
                                 texto: ' ',
                                 tamano: 14.0,
@@ -298,7 +290,7 @@ class _InicioState extends State<Inicio> {
                                 width: width - 50,
                                 decoration: BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(6.0)),
+                                      const BorderRadius.all(Radius.circular(6.0)),
                                   color: Colors.indigo.shade50,
                                 ),
                                 child: Row(
@@ -312,7 +304,7 @@ class _InicioState extends State<Inicio> {
                                         mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
+                                        children: const <Widget>[
                                           Text('Calendario',
                                               style: TextStyle(
                                                   fontSize: 18,
@@ -327,16 +319,12 @@ class _InicioState extends State<Inicio> {
                                         ],
                                       ),
                                     ),
-                                    new IconButton(
+                                    IconButton(
                                       icon: const Icon(
                                           Icons.arrow_circle_right_rounded,
                                           size: 40.0,
                                           color: Color(0xBE3154E5)),
                                       onPressed: () {
-                                        /*
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Calendario(),
-                              ));*/
                                       },
                                     ),
                                   ],
@@ -355,20 +343,11 @@ class _InicioState extends State<Inicio> {
       var sugerencia = element.Nombre?.toLowerCase();
       var escrito = carreraE.toLowerCase();
 
-      print("object");
-      print(escrito.toString());
-      print(sugerencia.toString());
-      //print("Tiene sugerencias");
-      //print(escrito);
-      //print(sugerencia.toString());
-
       return sugerencia!.contains(escrito);
     }).toList();
 
     setState(() {
       busquedaActiva = sugerencias;
-      print("Cambia");
-      print(busquedaActiva![0].Nombre.toString());
     });
   }
 }
@@ -387,12 +366,12 @@ class Secciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Text(this.texto,
+      padding: const EdgeInsets.all(20),
+      child: Text(texto,
           style: TextStyle(
-              fontSize: this.tamano,
+              fontSize: tamano,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF1C2D4B))),
+              color: const Color(0xFF1C2D4B))),
     );
   }
 }
@@ -417,7 +396,7 @@ class Busqueda extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, bottom: 15),
         margin: EdgeInsets.symmetric(horizontal: width / 15),
         decoration: BoxDecoration(
-          color: Color(0xFFF0F2F5),
+          color: const Color(0xFFF0F2F5),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Align(
@@ -436,7 +415,6 @@ class Busqueda extends StatelessWidget {
                 focusedBorder: InputBorder.none,
                 prefixIcon: const Icon(Icons.search_rounded,
                     size: 40.0, color: Colors.lightBlue)),
-            //onChanged: buscarCarrera,
           ),
         ));
   }

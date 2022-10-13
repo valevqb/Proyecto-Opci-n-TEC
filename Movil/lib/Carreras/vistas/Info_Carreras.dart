@@ -106,39 +106,38 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
 
   Widget informacionTextListaLista (BuildContext context, texto){
     //print(texto?[0].Nombre.toString());
-    return Container(
-        child: SizedBox( //lista de los tipos de servicios
-            child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: texto.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Align(
-                      alignment: Alignment.topLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                              padding: const EdgeInsets.only(
-                                  top: 4, left: 24, right: 24
-                              ),
-                              margin: const EdgeInsets.only(top: 16.0),
-                              child: Text (texto[index].Nombre.toString(), //Labor del servicio
-                              style: const TextStyle(
-                                  fontFamily: 'Mulish',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF2B436D))
-                          )
-                        ),
-                          Container(
-                            child: informacionTextLista(context, (texto[index].Opciones)),
-                          )
-                      ])
-                  );
-                })
-        ));
+    return SizedBox( //lista de los tipos de servicios
+        child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: texto.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.only(
+                              top: 4, left: 24, right: 24
+                          ),
+                          margin: const EdgeInsets.only(top: 16.0),
+                          child: Text (texto[index].Nombre.toString(), //Labor del servicio
+                          style: const TextStyle(
+                              fontFamily: 'Mulish',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF2B436D))
+                      )
+                    ),
+                      Container(
+                        child: informacionTextLista(context, (texto[index].Opciones)),
+                      )
+                  ])
+              );
+            })
+    );
   }
 
   Widget informacionTextLista (BuildContext context, texto){
@@ -154,14 +153,12 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
                 itemBuilder: (BuildContext context, int index) {
                   return Align(
                       alignment: Alignment.topLeft,
-                        child: Container(
-                            child: Text (texto[index].toString(), //Labor del servicio
-                                style: const TextStyle(
-                                    fontFamily: 'Mulish',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    color: Color(0xFF2B436D))
-                            )
+                        child: Text (texto[index].toString(), //Labor del servicio
+                            style: const TextStyle(
+                                fontFamily: 'Mulish',
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFF2B436D))
                         )
                   );
             })
@@ -233,7 +230,7 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
                 onPressed: _launchURLApp,
                 child: Text('Ver plan'),
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF2B436D),
+                  primary: const Color(0xFF2B436D),
                 )
               )
             )

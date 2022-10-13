@@ -149,7 +149,7 @@ class _LogInState extends State<LogIn> {
               borderRadius: BorderRadius.circular(16.0),
             ),
             filled: true,
-            fillColor: Color(0xFFF0F2F5),
+            fillColor: const Color(0xFFF0F2F5),
             hintText: palabras,
             hintStyle: TextStyle(
                 fontFamily: 'Mulish',
@@ -165,8 +165,6 @@ class _LogInState extends State<LogIn> {
   }
 
   Widget boxTextContra(BuildContext context, palabras){
-    print("Es el nombre");
-    print(email.text.toString());
     return SizedBox(
         width: width-24.0,
         child: TextField(
@@ -179,7 +177,7 @@ class _LogInState extends State<LogIn> {
               borderRadius: BorderRadius.circular(16.0),
             ),
             filled: true,
-            fillColor: Color(0xFFF0F2F5),
+            fillColor: const Color(0xFFF0F2F5),
             hintText: palabras,
             hintStyle: TextStyle(
                 fontFamily: 'Mulish',
@@ -198,9 +196,9 @@ class _LogInState extends State<LogIn> {
     return SizedBox(
       width: width-24,
       child: Card(
-        color: Color(0xFFCBEFF7),
+        color: const Color(0xFFCBEFF7),
         elevation: 5,
-        margin: EdgeInsets.only(top: 60.0),
+        margin: const EdgeInsets.only(top: 60.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
@@ -273,7 +271,7 @@ class _LogInState extends State<LogIn> {
             borderRadius: BorderRadius.circular(16.0),
           ),
           filled: true,
-          fillColor: Color(0xFFF0F2F5),
+          fillColor: const Color(0xFFF0F2F5),
           hintText: "Escriba su correo",
           hintStyle: TextStyle(
               fontFamily: 'Mulish',

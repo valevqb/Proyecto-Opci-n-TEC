@@ -31,7 +31,7 @@ class _InicioMasState extends State<InicioMas> {
         //theme: ThemeData(scaffoldBackgroundColor:Color(0xFFCBEFF7) ),
         home: Scaffold(
           appBar: AppBar(
-            title: Text('Más Información',
+            title: const Text('Más Información',
                 style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
@@ -46,7 +46,7 @@ class _InicioMasState extends State<InicioMas> {
             ],
           ),
           body: (isLoading)
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
                   child: Column(
                   children: <Widget>[
@@ -230,12 +230,12 @@ class Secciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Text(this.texto,
+      padding: const EdgeInsets.all(20),
+      child: Text(texto,
           style: TextStyle(
-              fontSize: this.tamano,
+              fontSize: tamano,
               fontWeight: FontWeight.bold,
-              color: this.color)),
+              color: color)),
     );
   }
 }

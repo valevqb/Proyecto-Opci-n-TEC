@@ -43,7 +43,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
         theme: ThemeData(primarySwatch: Colors.cyan),
         home: Scaffold(
           appBar: AppBar(
-            title: Text('Conocé las carreras',
+            title: const Text('Conocé las carreras',
                 style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.account_circle_sharp, size: 40.0, color : Color(0xBE5CC6DE)),
+                icon: const Icon(Icons.account_circle_sharp, size: 40.0, color : Color(0xBE5CC6DE)),
               ),
             ],
           ),
@@ -79,7 +79,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: Color(0xFFDCDCDC),
+                              color: const Color(0xFFDCDCDC),
                               //style: BorderStyle.solid,
                               width: 1,
                             ),

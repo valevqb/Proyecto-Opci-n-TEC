@@ -54,37 +54,21 @@ class _Info_BecasState extends State<Info_Becas> {
           backgroundColor: Colors.grey.shade100,
         ),
         body: (isLoading)
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              /*Container(
-                      width: width - 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                        color: Colors.cyan.shade100,
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          new Image.network(
-                            'https://picsum.photos/250?image=9',
-                            width: (width - 50) / 5,
-                          ),
-                        ],
-                      ),
-                    ),*/
               Center(
                 child: Container(
                   width: width - 50,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(6.0)),
                     color: Color(0xFFCBEFF7),
                   ),
                   child: Row(
                     children: <Widget>[
-
-                      new Image.network(
+                      Image.network(
                         'https://picsum.photos/250?image=9',
                         width: (width - 50) / 5,
                       ),
@@ -130,16 +114,6 @@ class _Info_BecasState extends State<Info_Becas> {
                       tamano: 12.0,
                       width: width - 25,
                       color: Colors.black87)),
-              /*ListView.builder(
-                        itemCount: InfoBeneficios!.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Secciones(
-                              texto:
-                                  "   - " + InfoBeneficios![index].toString(),
-                              tamano: 12.0,
-                              width: width - 25,
-                              color: Colors.black87);
-                        }),*/
               Center(
                   child: SizedBox(
                     width: width - 40,
@@ -152,10 +126,10 @@ class _Info_BecasState extends State<Info_Becas> {
                               color: Colors.blue.shade900)),
                       // <-- Text
                       backgroundColor: Colors.lightBlue.shade200,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius:
                           BorderRadius.all(Radius.circular(15.0))),
-                      icon: Icon(
+                      icon: const Icon(
                         // <-- Icon
                         Icons.chrome_reader_mode_outlined,
                         size: 24.0,
@@ -191,16 +165,16 @@ class Secciones extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30)),
       ),
-      padding: EdgeInsets.all(20),
-      child: Text(this.texto,
+      padding: const EdgeInsets.all(20),
+      child: Text(texto,
           textAlign: TextAlign.justify,
           style: TextStyle(
-              fontSize: this.tamano,
+              fontSize: tamano,
               fontWeight: FontWeight.bold,
-              color: this.color)),
+              color: color)),
     );
   }
 }
