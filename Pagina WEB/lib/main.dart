@@ -6,7 +6,7 @@ import 'package:opciontec/Servicios/servicios/datos_bus.dart';
 import 'package:opciontec/Servicios/servicios/datos_servicio.dart';
 import 'Admision/controladores/datos_Admision.dart';
 import 'Barra.dart';
-import 'package:opciontec/Sesion/vistas/Login.dart';
+import 'package:opciontec/Sesion/vistas/login.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +15,7 @@ import 'Carreras/servicios/datos_carrera.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   ///Set preferred orientation to portrait
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   setupLocators();
@@ -35,5 +36,4 @@ void main() {
       child: MaterialApp(home: LogIn()),
     ),
   );
-
 }

@@ -4,7 +4,7 @@ import 'Carreras/vistas/carrera_inicio.dart';
 import 'Inicio/vistas/inicio_start.dart';
 import 'Servicios/vistas/servicio_inicio.dart';
 import 'Admision/vistas/Admision_inicio.dart';
-import 'Sesion/vistas/Login.dart';
+import 'Sesion/vistas/login.dart';
 import 'Estilos/Estilos.dart';
 
 class PrototipoBarra extends StatefulWidget {
