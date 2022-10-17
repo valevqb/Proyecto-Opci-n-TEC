@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:opciontec/Sesion/vistas/Registrarme.dart';
-import 'package:provider/provider.dart';
-import 'package:opciontec/Sesion/servicios/datos_Login.dart';
-import '../../locators.dart';
 
 class LogIn extends StatefulWidget {
   @override
@@ -14,7 +10,7 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   final controller = TextEditingController();
   var width = 0.0;
-  TextEditingController _textFieldController = TextEditingController();
+  final TextEditingController _textFieldController = TextEditingController();
 
   @override
   void initState() {
@@ -33,7 +29,7 @@ class _LogInState extends State<LogIn> {
         home: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text('Iniciar sesión',
+              title: const Text('Iniciar sesión',
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -42,7 +38,7 @@ class _LogInState extends State<LogIn> {
               actions: [
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.account_circle_sharp,
+                  icon: const Icon(Icons.account_circle_sharp,
                       size: 40.0, color: Color(0xFFCBEFF7)),
                 ),
               ],
@@ -67,26 +63,26 @@ class _LogInState extends State<LogIn> {
                       ),
                       Container(
                           margin: const EdgeInsets.only(top: 33.0),
-                          child: Text('Completa la siguiente información',
+                          child: const Text('Completa la siguiente información',
                               style: TextStyle(
                                   fontFamily: 'Mulish',
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.normal,
                                   color: Color(0xFF2B436D)))),
                       letter(context, "Correo"),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxText(context, "Escribe tu correo"),
                       letter(context, "Contraseña"),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxText(context, "Escribe tu contraseña"),
                       logInBotton(context),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
+                      const Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
                         onTap: () {
                           olvideContrasenia(context);
                         },
                         child: Container(
-                            child: Text('¿Olvidaste la contraseña?',
+                            child: const Text('¿Olvidaste la contraseña?',
                                 style: TextStyle(
                                     fontFamily: 'Mulish',
                                     fontSize: 14.0,
@@ -94,7 +90,7 @@ class _LogInState extends State<LogIn> {
                                     decoration: TextDecoration.underline,
                                     color: Color(0xFF2B436D)))),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 20.0)),
+                      const Padding(padding: EdgeInsets.only(top: 20.0)),
                       InkWell(
                         onTap: () {
                           Navigator.push(
@@ -102,13 +98,12 @@ class _LogInState extends State<LogIn> {
                             MaterialPageRoute(builder: (context) => Registro()),
                           );
                         },
-                        child: Container(
-                            child: Text('Registrarme',
-                                style: TextStyle(
-                                    fontFamily: 'Mulish',
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Color(0xFF2B436D)))),
+                        child: const Text('Registrarme',
+                            style: TextStyle(
+                                fontFamily: 'Mulish',
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.normal,
+                                color: Color(0xFF2B436D))),
                       )
                     ],
                   )),
@@ -119,7 +114,7 @@ class _LogInState extends State<LogIn> {
     return Container(
         margin: const EdgeInsets.only(top: 32.0),
         child: Text(palabras.toString(),
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontSize: 14.0,
                 fontWeight: FontWeight.normal,
@@ -134,10 +129,9 @@ class _LogInState extends State<LogIn> {
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.0),
-              //color: Color(0xFFF0F2F5),
             ),
             filled: true,
-            fillColor: Color(0xFFF0F2F5),
+            fillColor: const Color(0xFFF0F2F5),
             hintText: palabras,
             hintStyle: TextStyle(
                 fontFamily: 'Mulish',
@@ -146,8 +140,6 @@ class _LogInState extends State<LogIn> {
                 color: Colors.black.withOpacity(0.5)),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            //prefixIcon: const Icon(Icons.search_rounded,
-            //size: 20.0, color: Color(0xBE5CC6DE))
           ),
         ));
   }
@@ -156,9 +148,9 @@ class _LogInState extends State<LogIn> {
     return SizedBox(
       width: width - 24,
       child: Card(
-        color: Color(0xFFCBEFF7),
+        color: const Color(0xFFCBEFF7),
         elevation: 5,
-        margin: EdgeInsets.only(top: 60.0),
+        margin: const EdgeInsets.only(top: 60.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
@@ -167,7 +159,7 @@ class _LogInState extends State<LogIn> {
           child: Container(
             alignment: Alignment.center,
             height: 60,
-            child: Text(
+            child: const Text(
               "Iniciar sesión",
               style: TextStyle(
                   fontFamily: 'Mulish',
@@ -186,7 +178,7 @@ class _LogInState extends State<LogIn> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Recuperar contraseña',
+            title: const Text('Recuperar contraseña',
                 style: TextStyle(
                     fontFamily: 'Mulish',
                     fontSize: 16.0,

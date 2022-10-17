@@ -12,18 +12,29 @@ const postLogeo =  async (req,res) => {
 
 
 const postRegistro = async(req,res) => {
-    console.debug(req["body"])
+   
     var nombre = req["body"]["nombre"];
-    var apellido = req["body"]["apellido"];
     var correo = req["body"]["correo"];
     var contrasena = req["body"]["contrasena"];
     
-    Consulta= "Select registrar("+"'"+nombre+"'"+","+"'"+apellido+"'"+","+"'"+correo+"'"+","+"'"+contrasena+"'"+")";
+    Consulta= "Select registrar("+"'"+nombre+"'"+","+"'"+correo+"'"+","+"'"+contrasena+"'"+")";
+    console.debug(req["body"])
     const response =  await pool.query(Consulta);
     res.json(response.rows[0]["registrar"]["respuesta"])
-    console.debug(response.rows[0]["registrar"]["respuesta"])
-    console.debug(response.rows[0]["registrar"])
+    };
+
+    
+const postCambiarContrasena = async(req,res) => {
+    var nueva = req["query"]["nueva"];
+    var correo = req["query"]["correo"];
+    var contrasena = req["query"]["contrasena"];
+    Consulta = "Select cambiaContrasena("+"'"+correo+"'"+","+"'"+contrasena+"'"+","+"'"+nueva+"'"+")";
+   
+    const response =  await pool.query(Consulta);
+    res.json(response.rows[0]["cambiacontrasena"]["respuesta"])
+    console.debug(response.rows[0]["cambiacontrasena"]["respuesta"])
+    
     };
 
 
-module.exports = {postLogeo,postRegistro};
+module.exports = {postLogeo,postRegistro,postCambiarContrasena};
