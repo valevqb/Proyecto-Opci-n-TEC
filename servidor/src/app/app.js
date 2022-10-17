@@ -15,6 +15,8 @@ app.use("/api",require('../routes/carreras.routes'))
 app.use("/api",require('../routes/costes.routes'))
 app.use("/api",require('../routes/preguntas.routes'))
 app.use("/api",require('../routes/servicios.routes'))
+app.use("/api",require('../routes/usuarios.routes'))
+app.use("/api",require('../routes/eventos.routes'))
 
 
 app.use('/', function (req, res, next) {

@@ -1,11 +1,40 @@
 const {pool} = require('../database/postgeSQL');
 
-const getBus =  async (req,res) => {
-    var Cantidad =  await pool.query('SELECT count(id) FROM Servicios_Bus');
-    var newJson = {"Cantidad":Cantidad,"Datos":[{}]}
-    const response =  await pool.query('SELECT * FROM Servicios_Bus');
-    newJson["Datos"]=response.rows
-    res.json(newJson)
+const postLogeo =  async (req,res) => {
+   
+    var usuario = req["body"]["correo"];
+    var contrasena = req["body"]["contrasena"];
+    console.debug("SELECT Inicio_Secion("+usuario+","+contrasena+")");
+    const response =  await pool.query("SELECT Inicio_Secion("+"'"+usuario+"'"+","+"'"+contrasena+"'"+")");
+    res.json(response.rows[0]["inicio_secion"]["respuesta"])
+    console.debug(response.rows[0]["inicio_secion"]["respuesta"]);
 }
 
-module.exports = {getBus};
+
+const postRegistro = async(req,res) => {
+   
+    var nombre = req["body"]["nombre"];
+    var correo = req["body"]["correo"];
+    var contrasena = req["body"]["contrasena"];
+    
+    Consulta= "Select registrar("+"'"+nombre+"'"+","+"'"+correo+"'"+","+"'"+contrasena+"'"+")";
+    console.debug(req["body"])
+    const response =  await pool.query(Consulta);
+    res.json(response.rows[0]["registrar"]["respuesta"])
+    };
+
+    
+const postCambiarContrasena = async(req,res) => {
+    var nueva = req["query"]["nueva"];
+    var correo = req["query"]["correo"];
+    var contrasena = req["query"]["contrasena"];
+    Consulta = "Select cambiaContrasena("+"'"+correo+"'"+","+"'"+contrasena+"'"+","+"'"+nueva+"'"+")";
+   
+    const response =  await pool.query(Consulta);
+    res.json(response.rows[0]["cambiacontrasena"]["respuesta"])
+    console.debug(response.rows[0]["cambiacontrasena"]["respuesta"])
+    
+    };
+
+
+module.exports = {postLogeo,postRegistro,postCambiarContrasena};

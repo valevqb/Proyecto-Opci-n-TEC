@@ -8,8 +8,8 @@ import 'package:opciontec/Calendario/modelos/eventos.dart';
 import '../../Config.dart';
 
 class DatosEventos extends ChangeNotifier {
-  String userUrl = Config.dirServer + 'Eventos';
-
+  String eventosUrl = Config.dirServer + 'Eventos';
+  String posteventosUrl = Config.dirServer + 'Eventos';
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
@@ -20,7 +20,7 @@ class DatosEventos extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    final result = await http.get(Uri.parse(userUrl)).catchError((e) {
+    final result = await http.get(Uri.parse(eventosUrl)).catchError((e) {
       print("Error Fetching Users" + e.toString());
     });
 
@@ -40,6 +40,25 @@ class DatosEventos extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
       throw Exception('Error - ${result.statusCode}');
+    }
+  }
+
+  Future<void> postEvento(nombre, inicio, fin, descripcion, estododia) async {
+    final result = await http.post(Uri.parse(posteventosUrl), body: {
+      'nombre': nombre,
+      'fechainicio': inicio,
+      'fechafin': fin,
+      'estododia': estododia,
+      'descripcion': descripcion
+    }).catchError((e) {
+      if (kDebugMode) {
+        print("Error Fetching Users$e");
+      }
+    });
+    if (result.body == "8000") {
+      Config.error = "Evento registrado satisfactoriamente";
+    } else {
+      Config.error = "Evento Existente";
     }
   }
 }

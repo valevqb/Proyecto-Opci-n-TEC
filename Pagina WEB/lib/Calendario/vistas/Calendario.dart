@@ -85,10 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               view: CalendarView.month,
                               showNavigationArrow: true,
                               dataSource: Eventos(eventos),
-
-                              // by default the month appointment display mode set as Indicator, we can
-                              // change the display mode as appointment using the appointment display
-                              // mode property
                               monthViewSettings: const MonthViewSettings(
                                   appointmentDisplayMode:
                                       MonthAppointmentDisplayMode.appointment),
@@ -113,9 +109,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             body: SfCalendar(
                                 view: CalendarView.schedule,
                                 dataSource: Eventos(eventos),
-                                scheduleViewSettings: ScheduleViewSettings(
-                                    appointmentItemHeight: 70,
-                                    hideEmptyScheduleWeek: true),
+                                scheduleViewSettings:
+                                    const ScheduleViewSettings(
+                                        appointmentItemHeight: 70,
+                                        hideEmptyScheduleWeek: true),
                                 showDatePickerButton: true),
                           ),
                         ),
@@ -125,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              Text(" "),
+              const Text(" "),
               SizedBox(
                 height: 50,
                 width: (width - 40) / 4,
@@ -171,71 +168,3 @@ class _MyHomePageState extends State<MyHomePage> {
     return meetings;
   }
 }
-/*
-/// An object to set the appointment collection data source to calendar, which
-/// used to map the custom appointment data to the calendar appointment, and
-/// allows to add, remove or reset the appointment collection.
-class MeetingDataSource extends CalendarDataSource {
-  /// Creates a meeting data source, which used to set the appointment
-  /// collection to the calendar
-  MeetingDataSource(List<Meeting> source) {
-    appointments = source;
-  }
-
-  @override
-  DateTime getStartTime(int index) {
-    return _getMeetingData(index).from;
-  }
-
-  @override
-  DateTime getEndTime(int index) {
-    return _getMeetingData(index).to;
-  }
-
-  @override
-  String getSubject(int index) {
-    return _getMeetingData(index).eventName;
-  }
-
-  @override
-  Color getColor(int index) {
-    return _getMeetingData(index).background;
-  }
-
-  @override
-  bool isAllDay(int index) {
-    return _getMeetingData(index).isAllDay;
-  }
-
-  Meeting _getMeetingData(int index) {
-    final dynamic meeting = appointments![index];
-    late final Meeting meetingData;
-    if (meeting is Meeting) {
-      meetingData = meeting;
-    }
-
-    return meetingData;
-  }
-}
-
-/// Custom business object class which contains properties to hold the detailed
-/// information about the event data which will be rendered in calendar.
-class Meeting {
-  /// Creates a meeting class with required details.
-  Meeting(this.eventName, this.from, this.to, this.background, this.isAllDay);
-
-  /// Event name which is equivalent to subject property of [Appointment].
-  String eventName;
-
-  /// From which is equivalent to start time property of [Appointment].
-  DateTime from;
-
-  /// To which is equivalent to end time property of [Appointment].
-  DateTime to;
-
-  /// Background which is equivalent to color property of [Appointment].
-  Color background;
-
-  /// IsAllDay which is equivalent to isAllDay property of [Appointment].
-  bool isAllDay;
-}*/
