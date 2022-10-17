@@ -208,7 +208,7 @@ class _RegistroState extends State<Registro> {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return validaciones(context, "Debe escribir el email, la contraseña y el nombre");
+                  return validaciones(context, "Error", "Debe escribir el email, la contraseña y el nombre");
                 },
               );
             } else {
@@ -236,13 +236,13 @@ class _RegistroState extends State<Registro> {
     );
   }
 
-  Widget validaciones(BuildContext context, palabras) {
+  Widget validaciones(BuildContext context, titulo, palabras) {
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
-          child: const Text('Error',
-              style: TextStyle(
+          child: Text(titulo.toString(),
+              style: const TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
@@ -295,7 +295,14 @@ class _RegistroState extends State<Registro> {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return validaciones(context, "El email ya se encuentra registrado, favor ingresar");
+                          return validaciones(context, "Error", "El email ya se encuentra registrado, favor ingresar");
+                        },
+                      );
+                    } else{
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return validaciones(context, "Registrado", "El nuevo usuario fue registrado con éxito");
                         },
                       );
                     }

@@ -209,7 +209,7 @@ class _LogInState extends State<LogIn> {
               context: context,
               builder: (BuildContext context) {
                 return validaciones(
-                    context, "Debe escribir el email y la contraseña");
+                    context, "Error", "Debe escribir el email y la contraseña");
               },
             );
           } else {
@@ -221,11 +221,18 @@ class _LogInState extends State<LogIn> {
                   context: context,
                   builder: (BuildContext context) {
                     return validaciones(
-                        context, "Contraseña o correo incorrecto");
+                        context, "Error", "Contraseña o correo incorrecto");
                   },
                 );
               }
               else {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return validaciones(
+                        context, "Bienvenido", "Ingreso exitoso");
+                  },
+                );
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -295,13 +302,13 @@ class _LogInState extends State<LogIn> {
     );
   }
 
-  Widget validaciones(BuildContext context, message) {
+  Widget validaciones(BuildContext context, titulo, message) {
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
-          child: const Text('Error',
-              style: TextStyle(
+          child: Text(titulo.toString(),
+              style: const TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
