@@ -267,9 +267,9 @@ class _LogInState extends State<LogIn> {
           child: const Text('Cambiar contraseña',
               style: TextStyle(
                   fontFamily: 'Mulish',
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1C2D4B)))),
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black))),
       content: TextField(
         controller: emailRecuperacion,
         textAlignVertical: TextAlignVertical.center,
