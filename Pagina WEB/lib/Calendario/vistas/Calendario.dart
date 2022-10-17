@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:opciontec/Calendario/modelos/eventos.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
+import '../../locators.dart';
+import '../controladores/datos_eventos.dart';
 import 'Agregar_Evento.dart';
 /*
 void main() {
@@ -27,13 +30,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void initState() {
+    super.initState();
+
+    locator<DatosEventos>().fetchUsers();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
-
-
+    List<DataEventos>? eventos = Provider.of<DatosEventos>(context).eventos;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -43,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
           icon: const Icon(Icons.arrow_circle_left_rounded,
               size: 40.0, color: Color(0xBE5CC6DE)),
         ),
-        title: Text('Calendario',
+        title: const Text('Calendario',
             style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
@@ -77,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               //locale: 'pl_PL',
                               view: CalendarView.month,
                               showNavigationArrow: true,
-                              dataSource: Eventos(_getDataSource()),
+                              dataSource: Eventos(eventos),
 
                               // by default the month appointment display mode set as Indicator, we can
                               // change the display mode as appointment using the appointment display
@@ -105,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Scaffold(
                             body: SfCalendar(
                                 view: CalendarView.schedule,
-                                dataSource: Eventos(_getDataSource()),
+                                dataSource: Eventos(eventos),
                                 scheduleViewSettings: ScheduleViewSettings(
                                     appointmentItemHeight: 70,
                                     hideEmptyScheduleWeek: true),
