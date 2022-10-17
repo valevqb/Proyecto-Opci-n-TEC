@@ -4,6 +4,7 @@ import 'package:opciontec/Admision/vistas/Admision_inicio.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:opciontec/Sesion/vistas/Login.dart';
 import 'package:opciontec/Sesion/vistas/Editar_Sesion.dart';
+import 'package:opciontec/Sesion/vistas/Ver_Sesion.dart';
 import 'package:provider/provider.dart';
 
 import '../../locators.dart';
@@ -54,7 +55,7 @@ class _InicioState extends State<Inicio> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => EditarSesion()),
+                            builder: (context) => VerLaSesion()),
                       );
                     }
                   },
