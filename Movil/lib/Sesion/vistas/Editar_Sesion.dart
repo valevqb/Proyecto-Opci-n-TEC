@@ -82,7 +82,8 @@ class _EditarSesionState extends State<EditarSesion> {
                       letter(context, "Contraseña"),
                       const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxTextContra(context, Config.Sesion.contrasena),
-                      EditarSesionBotton(context)
+                      EditarSesionBotton(context),
+                      const Padding(padding: EdgeInsets.only(top: 12.0)),
                     ],
                   )),
             )));

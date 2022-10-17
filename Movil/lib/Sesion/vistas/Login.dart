@@ -56,7 +56,6 @@ class _LogInState extends State<LogIn> {
             ),
             body: SingleChildScrollView(
               child: SizedBox(
-                  height: height,
                   width: width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -121,6 +120,7 @@ class _LogInState extends State<LogIn> {
                                     fontWeight: FontWeight.normal,
                                     color: Color(0xFF2B436D)))
                         ),
+                      const Padding(padding: EdgeInsets.only(top: 20.0)),
                     ],
                   )),
             )));

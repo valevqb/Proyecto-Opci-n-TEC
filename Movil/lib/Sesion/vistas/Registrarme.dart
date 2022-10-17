@@ -49,7 +49,6 @@ class _RegistroState extends State<Registro> {
             ),
             body: SingleChildScrollView(
               child: SizedBox(
-                  height: height,
                   width: width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,7 +81,8 @@ class _RegistroState extends State<Registro> {
                       letter(context, "Contraseña"),
                       const Padding(padding: EdgeInsets.only(top: 12.0)),
                       boxTextContra(context, "Escribe tu contraseña"),
-                      RegistroBotton(context)
+                      RegistroBotton(context),
+                      const Padding(padding: EdgeInsets.only(top: 12.0)),
                     ],
                   )),
             )));
