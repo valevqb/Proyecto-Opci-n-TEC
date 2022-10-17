@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:opciontec/Mas/modelos/eventos.dart';
+import 'package:opciontec/Calendario/modelos/eventos.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 /*
 void main() {
@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -52,43 +52,40 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
             children: <Widget>[
-
-                    SizedBox(
-                      width: width-50,
-                      height: 3*height/5,
-                      child: Stack(
-                        children: <Widget>[
-                          Positioned(
-                              left: 0,
-                              top: 0,
-                              right: 0,
-                              //height: width / 2,
-                              //width: width - 50,
-                              bottom: 0,
-                              child:Scaffold(
-                                  body: SfCalendar(
-                                    //locale: 'pl_PL',
-                                    view: CalendarView.month,
-                                    showNavigationArrow: true,
-                                    dataSource: Eventos(_getDataSource()),
-
-                                    // by default the month appointment display mode set as Indicator, we can
-                                    // change the display mode as appointment using the appointment display
-                                    // mode property
-                                    monthViewSettings: const MonthViewSettings(
-                                        appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
-                                  ))
-                          ),
-                        ],
-                        //Stack
-                      ), //Center
-                    ),
-
-                    Text(" "),
-
               SizedBox(
-                width: width-50,
-                height: 3*height/5,
+                width: width - 50,
+                height: 3 * height / 5,
+                child: Stack(
+                  children: <Widget>[
+                    Positioned(
+                        left: 0,
+                        top: 0,
+                        right: 0,
+                        //height: width / 2,
+                        //width: width - 50,
+                        bottom: 0,
+                        child: Scaffold(
+                            body: SfCalendar(
+                          //locale: 'pl_PL',
+                          view: CalendarView.month,
+                          showNavigationArrow: true,
+                          dataSource: Eventos(_getDataSource()),
+
+                          // by default the month appointment display mode set as Indicator, we can
+                          // change the display mode as appointment using the appointment display
+                          // mode property
+                          monthViewSettings: const MonthViewSettings(
+                              appointmentDisplayMode:
+                                  MonthAppointmentDisplayMode.appointment),
+                        ))),
+                  ],
+                  //Stack
+                ), //Center
+              ),
+              Text(" "),
+              SizedBox(
+                width: width - 50,
+                height: 3 * height / 5,
                 child: Stack(
                   children: <Widget>[
                     Positioned(
@@ -98,32 +95,26 @@ class _MyHomePageState extends State<MyHomePage> {
                       //height: width / 2,
                       //width: width - 50,
                       bottom: 0,
-                      child:Scaffold(
+                      child: Scaffold(
                         body: SfCalendar(
                             view: CalendarView.schedule,
                             dataSource: Eventos(_getDataSource()),
-                            scheduleViewSettings: ScheduleViewSettings(appointmentItemHeight: 70,hideEmptyScheduleWeek: true),
+                            scheduleViewSettings: ScheduleViewSettings(
+                                appointmentItemHeight: 70,
+                                hideEmptyScheduleWeek: true),
                             showDatePickerButton: true),
                       ),
                     ),
-
-
                   ],
                   //Stack
                 ), //Center
               ),
-
-                  ],
-                  //Stack
-                ), //Center
-              ),
-
-
-
-        )
-      ,)
-
-    ;
+            ],
+            //Stack
+          ), //Center
+        ),
+      ),
+    );
   }
 
   List<DataEventos> _getDataSource() {
@@ -131,9 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
     final DateTime today = DateTime.now();
     final DateTime startTime = DateTime(today.year, today.month, today.day, 9);
     final DateTime endTime = startTime.add(const Duration(hours: 2));
-    meetings.add(
-        DataEventos(
-             "Holis", startTime, endTime, const Color(0xFF0F8644), false));
+    meetings.add(DataEventos(
+        "Holis", startTime, endTime, const Color(0xFF0F8644), false));
 
     return meetings;
   }

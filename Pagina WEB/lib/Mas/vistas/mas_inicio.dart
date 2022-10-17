@@ -5,6 +5,7 @@ import 'package:opciontec/Mas/vistas/Costos_y_Becas.dart';
 import 'package:opciontec/Mas/vistas/Info_Preguntas.dart';
 import 'package:provider/provider.dart';
 
+import '../../Calendario/vistas/Calendario.dart';
 import '../../locators.dart';
 
 class InicioMas extends StatefulWidget {
@@ -44,8 +45,10 @@ class _InicioMasState extends State<InicioMas> {
               : SingleChildScrollView(
                   child: Column(
                   children: <Widget>[
-                    Secciones(texto: 'Te pueden interesar', tamano: 24.0, color: Color(
-                        0xFF1C2D4B)),
+                    Secciones(
+                        texto: 'Te pueden interesar',
+                        tamano: 24.0,
+                        color: const Color(0xFF1C2D4B)),
                     Row(
                         children: <Widget>[
                           SizedBox(
@@ -57,18 +60,17 @@ class _InicioMasState extends State<InicioMas> {
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
-                                      color:Color(0xFF1C2D4B))),
+                                      color: Color(0xFF1C2D4B))),
                               // <-- Text
                               backgroundColor: Color(0xFFF3E8CB),
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15.0))),
                               icon: Icon(
-                                // <-- Icon
-                                Icons.monetization_on_outlined,
-                                size: 24.0,
-                                  color : Color(0xFFF1AE03)
-                              ),
+                                  // <-- Icon
+                                  Icons.monetization_on_outlined,
+                                  size: 24.0,
+                                  color: Color(0xFFF1AE03)),
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => Costos_y_Becas(),
@@ -91,20 +93,28 @@ class _InicioMasState extends State<InicioMas> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15.0))),
                               icon: Icon(
-                                // <-- Icon
-                                Icons.calendar_month_rounded,
-                                size: 24.0,
-                                  color : Color(0xBE3154E5)
-                              ),
-                              onPressed: () {},
+                                  // <-- Icon
+                                  Icons.calendar_month_rounded,
+                                  size: 24.0,
+                                  color: Color(0xBE3154E5)),
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => CalendarApp(),
+                                ));
+                              },
                             ),
                           ),
                         ],
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         mainAxisSize: MainAxisSize.max),
-                    Secciones(texto: 'Preguntas frecuentes', tamano: 24.0, color: Color(
-                        0xFF1C2D4B)),
-                    Secciones(texto: 'Admisión', tamano: 14.0, color:  Color(0xFF1C2D4B)),
+                    Secciones(
+                        texto: 'Preguntas frecuentes',
+                        tamano: 24.0,
+                        color: Color(0xFF1C2D4B)),
+                    Secciones(
+                        texto: 'Admisión',
+                        tamano: 14.0,
+                        color: Color(0xFF1C2D4B)),
                     SizedBox(
                       height: 230,
                       child: Container(
@@ -134,7 +144,8 @@ class _InicioMasState extends State<InicioMas> {
                                       onPressed: () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
-                                          builder: (context) => Info_Pregunta(Preguntas![1][index]),
+                                          builder: (context) => Info_Pregunta(
+                                              Preguntas![1][index]),
                                         ));
                                       },
                                     ),
@@ -142,9 +153,12 @@ class _InicioMasState extends State<InicioMas> {
                                 );
                               })),
                     ),
-                    Secciones(texto: 'Matricula', tamano: 14.0, color:  Color(0xFF1C2D4B)),
+                    Secciones(
+                        texto: 'Matricula',
+                        tamano: 14.0,
+                        color: Color(0xFF1C2D4B)),
                     SizedBox(
-                      height: height/4,
+                      height: height / 4,
                       child: Container(
                           decoration: BoxDecoration(
                             borderRadius:
@@ -157,8 +171,7 @@ class _InicioMasState extends State<InicioMas> {
                                   elevation: 5,
                                   child: ListTile(
                                     title: Text(
-                                      Preguntas[0
-                                      ][index].Pregunta!,
+                                      Preguntas[0][index].Pregunta!,
                                       style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
@@ -173,7 +186,8 @@ class _InicioMasState extends State<InicioMas> {
                                       onPressed: () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
-                                          builder: (context) => Info_Pregunta(Preguntas![0][index]),
+                                          builder: (context) => Info_Pregunta(
+                                              Preguntas![0][index]),
                                         ));
                                       },
                                     ),
@@ -205,9 +219,7 @@ class Secciones extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Text(texto,
           style: TextStyle(
-              fontSize: tamano,
-              fontWeight: FontWeight.bold,
-              color: color)),
+              fontSize: tamano, fontWeight: FontWeight.bold, color: color)),
     );
   }
 }
