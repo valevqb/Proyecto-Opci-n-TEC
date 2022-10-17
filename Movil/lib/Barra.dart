@@ -50,7 +50,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
           onTap: onTabTapped,
           selectedItemColor: Colors.cyan,
           type: BottomNavigationBarType.fixed,
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home), label: "Inicio"
             ),

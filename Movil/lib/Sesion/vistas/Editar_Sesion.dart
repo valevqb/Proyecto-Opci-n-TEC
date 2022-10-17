@@ -203,11 +203,11 @@ class _EditarSesionState extends State<EditarSesion> {
         ),
         child: InkWell(
           onTap: () {
-            if (nombreCompleto.text.toString().isEmpty || email.text.toString().isEmpty || contra.text.toString().isEmpty) {
+            if (nombreCompleto.text.toString().isEmpty && email.text.toString().isEmpty && contra.text.toString().isEmpty) {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return validaciones(context, "Ningún dato fue cambiado");
+                  return validaciones(context, "Error", "Ningún dato fue cambiado");
                 },
               );
             } else {
@@ -235,13 +235,13 @@ class _EditarSesionState extends State<EditarSesion> {
     );
   }
 
-  Widget validaciones(BuildContext context, palabras) {
+  Widget validaciones(BuildContext context, titulo, palabras) {
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
-          child: const Text('Error',
-              style: TextStyle(
+          child: Text(titulo.toString(),
+              style: const TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
@@ -284,21 +284,14 @@ class _EditarSesionState extends State<EditarSesion> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return validaciones(context, "Aceptado", "Los datos fueron cambiados");
+                    },
+                  );
                   Navigator.of(context).pop();
-                  /*Navigator.of(context).pop();
-                  usuarios
-                      .registrar(nombreCompleto.text.toString(),
-                      email.text.toString(), contra.text.toString())
-                      .then((value) {
-                    if (Config.error.toString() == "Usuario Existente"){
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return validaciones(context, "El email ya se encuentra registrado, favor ingresar");
-                        },
-                      );
-                    }
-                  });*/
+                  Navigator.of(context).pop();
                 }),
             TextButton(
                 child: const Text("Modificar"),
