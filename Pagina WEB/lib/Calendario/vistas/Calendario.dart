@@ -144,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               ),
-              List<Step> lista_pasos = [];
+              //List<Step> lista_pasos = [];
             ],
             //Stack
           ), //Center
