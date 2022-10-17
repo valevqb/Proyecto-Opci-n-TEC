@@ -44,36 +44,39 @@ class _InicioMasState extends State<InicioMas> {
               ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
                   child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Secciones(
                         texto: 'Te pueden interesar',
                         tamano: 24.0,
                         color: const Color(0xFF1C2D4B)),
                     Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
                           SizedBox(
                             height: 120,
                             width: (width - 40) / 2,
                             child: FloatingActionButton.extended(
                               heroTag: UniqueKey(),
-                              label: Text('Costos y becas',
+                              label: const Text('Costos y becas',
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Color(0xFF1C2D4B))),
                               // <-- Text
-                              backgroundColor: Color(0xFFF3E8CB),
-                              shape: RoundedRectangleBorder(
+                              backgroundColor: const Color(0xFFF3E8CB),
+                              shape: const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15.0))),
-                              icon: Icon(
+                              icon: const Icon(
                                   // <-- Icon
                                   Icons.monetization_on_outlined,
                                   size: 24.0,
                                   color: Color(0xFFF1AE03)),
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Costos_y_Becas(),
+                                  builder: (context) => const Costos_y_Becas(),
                                 ));
                               },
                             ),
@@ -82,17 +85,17 @@ class _InicioMasState extends State<InicioMas> {
                             height: 120,
                             width: (width - 40) / 2,
                             child: FloatingActionButton.extended(
-                              label: Text('Calendario',
+                              label: const Text('Calendario',
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Color(0xFF1C2D4B))),
                               // <-- Text
                               backgroundColor: Colors.indigo.shade50,
-                              shape: RoundedRectangleBorder(
+                              shape: const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15.0))),
-                              icon: Icon(
+                              icon: const Icon(
                                   // <-- Icon
                                   Icons.calendar_month_rounded,
                                   size: 24.0,
@@ -104,23 +107,21 @@ class _InicioMasState extends State<InicioMas> {
                               },
                             ),
                           ),
-                        ],
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        mainAxisSize: MainAxisSize.max),
+                        ]),
                     Secciones(
                         texto: 'Preguntas frecuentes',
                         tamano: 24.0,
-                        color: Color(0xFF1C2D4B)),
+                        color: const Color(0xFF1C2D4B)),
                     Secciones(
                         texto: 'Admisión',
                         tamano: 14.0,
-                        color: Color(0xFF1C2D4B)),
+                        color: const Color(0xFF1C2D4B)),
                     SizedBox(
                       height: 230,
                       child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(6.0)),
+                                BorderRadius.all(const Radius.circular(6.0)),
                           ),
                           child: ListView.builder(
                               itemCount: Preguntas![1].length,
@@ -130,10 +131,10 @@ class _InicioMasState extends State<InicioMas> {
                                   child: ListTile(
                                     title: Text(
                                       Preguntas[1][index].Pregunta!,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xFF1C2D4B)),
+                                          color: const Color(0xFF1C2D4B)),
                                     ),
                                     trailing: IconButton(
                                       icon: const Icon(
@@ -156,11 +157,11 @@ class _InicioMasState extends State<InicioMas> {
                     Secciones(
                         texto: 'Matricula',
                         tamano: 14.0,
-                        color: Color(0xFF1C2D4B)),
+                        color: const Color(0xFF1C2D4B)),
                     SizedBox(
                       height: height / 4,
                       child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(6.0)),
                           ),
@@ -172,7 +173,7 @@ class _InicioMasState extends State<InicioMas> {
                                   child: ListTile(
                                     title: Text(
                                       Preguntas[0][index].Pregunta!,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFF1C2D4B)),
@@ -196,7 +197,6 @@ class _InicioMasState extends State<InicioMas> {
                               })),
                     ),
                   ],
-                  crossAxisAlignment: CrossAxisAlignment.start,
                 )),
         ));
   }

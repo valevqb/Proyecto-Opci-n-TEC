@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:opciontec/Calendario/modelos/eventos.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+
+import 'Agregar_Evento.dart';
 /*
 void main() {
   return runApp(CalendarApp());
@@ -29,6 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -36,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Navigator.of(context).pop();
           },
           icon: const Icon(Icons.arrow_circle_left_rounded,
-              size: 40.0, color: Colors.lightBlueAccent),
+              size: 40.0, color: Color(0xBE5CC6DE)),
         ),
         title: Text('Calendario',
             style: TextStyle(
@@ -52,63 +57,94 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
             children: <Widget>[
-              SizedBox(
-                width: width - 50,
-                height: 3 * height / 5,
-                child: Stack(
-                  children: <Widget>[
-                    Positioned(
-                        left: 0,
-                        top: 0,
-                        right: 0,
-                        //height: width / 2,
-                        //width: width - 50,
-                        bottom: 0,
-                        child: Scaffold(
-                            body: SfCalendar(
-                          //locale: 'pl_PL',
-                          view: CalendarView.month,
-                          showNavigationArrow: true,
-                          dataSource: Eventos(_getDataSource()),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  SizedBox(
+                    width: width / 2,
+                    height: 3 * height / 5,
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                            left: 0,
+                            top: 0,
+                            right: 0,
+                            //height: width / 2,
+                            //width: width / 2,
+                            bottom: 0,
+                            child: Scaffold(
+                                body: SfCalendar(
+                              //locale: 'pl_PL',
+                              view: CalendarView.month,
+                              showNavigationArrow: true,
+                              dataSource: Eventos(_getDataSource()),
 
-                          // by default the month appointment display mode set as Indicator, we can
-                          // change the display mode as appointment using the appointment display
-                          // mode property
-                          monthViewSettings: const MonthViewSettings(
-                              appointmentDisplayMode:
-                                  MonthAppointmentDisplayMode.appointment),
-                        ))),
-                  ],
-                  //Stack
-                ), //Center
+                              // by default the month appointment display mode set as Indicator, we can
+                              // change the display mode as appointment using the appointment display
+                              // mode property
+                              monthViewSettings: const MonthViewSettings(
+                                  appointmentDisplayMode:
+                                      MonthAppointmentDisplayMode.appointment),
+                            ))),
+                      ],
+                      //Stack
+                    ), //Center
+                  ),
+                  SizedBox(
+                    width: width / 2,
+                    height: 3 * height / 5,
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          left: 0,
+                          top: 65,
+                          right: 0,
+                          //height: width / 2,
+                          //width: width - 50,
+                          bottom: 0,
+                          child: Scaffold(
+                            body: SfCalendar(
+                                view: CalendarView.schedule,
+                                dataSource: Eventos(_getDataSource()),
+                                scheduleViewSettings: ScheduleViewSettings(
+                                    appointmentItemHeight: 70,
+                                    hideEmptyScheduleWeek: true),
+                                showDatePickerButton: true),
+                          ),
+                        ),
+                      ],
+                      //Stack
+                    ), //Center
+                  ),
+                ],
               ),
               Text(" "),
               SizedBox(
-                width: width - 50,
-                height: 3 * height / 5,
-                child: Stack(
-                  children: <Widget>[
-                    Positioned(
-                      left: 0,
-                      top: 65,
-                      right: 0,
-                      //height: width / 2,
-                      //width: width - 50,
-                      bottom: 0,
-                      child: Scaffold(
-                        body: SfCalendar(
-                            view: CalendarView.schedule,
-                            dataSource: Eventos(_getDataSource()),
-                            scheduleViewSettings: ScheduleViewSettings(
-                                appointmentItemHeight: 70,
-                                hideEmptyScheduleWeek: true),
-                            showDatePickerButton: true),
-                      ),
-                    ),
-                  ],
-                  //Stack
-                ), //Center
+                height: 50,
+                width: (width - 40) / 4,
+                child: FloatingActionButton.extended(
+                  label: const Text('Agregar Evento',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1C2D4B))),
+                  // <-- Text
+                  backgroundColor: Colors.lightBlue.shade100,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                  icon: const Icon(
+                      // <-- Icon
+                      Icons.add_rounded,
+                      size: 24.0,
+                      color: Color(0xBE5CC6DE)),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AgregarEvento(),
+                    ));
+                  },
+                ),
               ),
+              List<Step> lista_pasos = [];
             ],
             //Stack
           ), //Center

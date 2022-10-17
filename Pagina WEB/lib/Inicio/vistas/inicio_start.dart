@@ -65,7 +65,7 @@ class _InicioState extends State<Inicio> {
                                 children: <Widget>[
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
                                       /*Container(
                                         width: 25,
@@ -75,7 +75,7 @@ class _InicioState extends State<Inicio> {
                                         ),
                                       ),*/
                                       Container(
-                                        width: width /2,
+                                        width: width / 2,
                                         padding: EdgeInsets.all(20),
                                         height: 200,
                                         decoration: const BoxDecoration(
@@ -100,7 +100,6 @@ class _InicioState extends State<Inicio> {
                                                             FontWeight.bold,
                                                         color: Colors.white)),
                                                 Row(
-
                                                   children: const <Widget>[
                                                     Text('con ',
                                                         style: TextStyle(
@@ -120,7 +119,6 @@ class _InicioState extends State<Inicio> {
                                                 ),
                                               ],
                                             ),
-
                                             const Text(
                                                 '¡Explorá las carreras \nque el TEC te ofrece \ny encontrá la tuya!',
                                                 style: TextStyle(
@@ -128,7 +126,6 @@ class _InicioState extends State<Inicio> {
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.white)),
                                             Row(
-
                                               children: <Widget>[
                                                 const Text('Ver carreras',
                                                     style: TextStyle(
@@ -152,7 +149,9 @@ class _InicioState extends State<Inicio> {
                                           ],
                                         ),
                                       ),
-                                      Image.asset(width :(width/2)-50 , 'lib/Fotos/Inicio1.png'),
+                                      Image.asset(
+                                          width: (width / 2) - 50,
+                                          'lib/Fotos/Inicio1.png'),
                                     ],
                                   ),
                                 ],
@@ -219,16 +218,17 @@ class _InicioState extends State<Inicio> {
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
-                                    Image.asset(width :(width/2)-75 ,'lib/Fotos/Start.png'),
+                                    Image.asset(
+                                        width: (width / 2) - 75,
+                                        'lib/Fotos/Start.png'),
                                     Container(
                                       width: 3 * (width - 80) / 5,
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                            MainAxisAlignment.spaceEvenly,
                                         children: <Widget>[
-
                                           Text('¿Harás el examen de admisión?',
                                               style: TextStyle(
                                                   fontSize: 16,
@@ -258,7 +258,6 @@ class _InicioState extends State<Inicio> {
                                       ),
                                     ),
                                   ],
-
                                   mainAxisSize: MainAxisSize.max,
                                 ),
                               ),
@@ -276,21 +275,22 @@ class _InicioState extends State<Inicio> {
                                 height: 80,
                                 width: width - 50,
                                 decoration: BoxDecoration(
-                                  borderRadius:
-                                      const BorderRadius.all(Radius.circular(6.0)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(6.0)),
                                   color: Colors.indigo.shade50,
                                 ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Container(
                                       width: 3 * (width - 50) / 5,
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                            MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: const <Widget>[
                                           Text('Calendario',
                                               style: TextStyle(
@@ -319,8 +319,6 @@ class _InicioState extends State<Inicio> {
                                       },
                                     ),
                                   ],
-
-
                                 ),
                               ),
                             ),

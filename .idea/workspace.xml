@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb28e36d-f172-4305-96f6-0a3df9909a56" name="Changes" comment="" />
+    <list default="true" id="fb28e36d-f172-4305-96f6-0a3df9909a56" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Pagina WEB/lib/Barra.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Pagina WEB/lib/Barra.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pagina WEB/lib/Inicio/vistas/inicio_start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Pagina WEB/lib/Inicio/vistas/inicio_start.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pagina WEB/lib/Mas/vistas/mas_inicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Pagina WEB/lib/Mas/vistas/mas_inicio.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pagina WEB/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Pagina WEB/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

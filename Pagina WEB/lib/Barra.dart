@@ -42,12 +42,10 @@ class _PrototipoBarra extends State<PrototipoBarra> {
       //ThemeData(primarySwatch: Colors.cyan),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('OpciónTEC',
-              style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1C2D4B))),
-          backgroundColor: Colors.white,
+          title: Image.asset(
+              //width :(width/2)-50 ,
+              'lib/Fotos/opcionTEC.png'),
+          backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [
             TextButton(
@@ -120,7 +118,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
                   );
                 },
                 icon: const Icon(Icons.account_circle_sharp,
-                    size: 40.0, color: Color(0xFF1C2D4B)),
+                    size: 40.0, color: Color(0xFFCBEFF7)),
               ),
             )
           ],
