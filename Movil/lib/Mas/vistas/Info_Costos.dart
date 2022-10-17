@@ -28,20 +28,20 @@ class _Info_CostosState extends State<Info_Costos> {
     bool isLoading = Provider.of<DatosCostos>(context).isLoading;
 
     void showAlertDialog(BuildContext context) {
-      int _creditos = 1;
-      int _costos_creditos = 20595;
-      int _costos_matricula = 5485;
+      int creditos = 1;
+      int CostosCreditos = 20595;
+      int CostosMatricula = 5485;
 
       // Bottones
       Widget SumaButton = IconButton(
         icon: const Icon(Icons.add_circle_rounded,
             size: 40.0, color: Colors.lightBlue),
         onPressed: () {
-          if (_creditos > 0) {
+          if (creditos > 0) {
             setState(() {
-              _creditos++;
-              if (_creditos <= 12) {
-                _costos_creditos = _creditos * 20595;
+              creditos++;
+              if (creditos <= 12) {
+                CostosCreditos = creditos * 20595;
               }
             });
           }
@@ -52,11 +52,11 @@ class _Info_CostosState extends State<Info_Costos> {
         icon: const Icon(Icons.remove_circle,
             size: 40.0, color: Colors.lightBlue),
         onPressed: () {
-          if (_creditos > 0) {
+          if (creditos > 0) {
             setState(() {
-              _creditos--;
-              if (_creditos <= 12) {
-                _costos_creditos = _creditos * 20595;
+              creditos--;
+              if (creditos <= 12) {
+                CostosCreditos = creditos * 20595;
               }
             });
           }
@@ -76,8 +76,9 @@ class _Info_CostosState extends State<Info_Costos> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   RestaButton,
-                  Text('  ' + '$_creditos' + '  ',
-                      style: const TextStyle(fontSize: 24, color: Colors.lightBlue)),
+                  Text('  ' + '$creditos' + '  ',
+                      style: const TextStyle(
+                          fontSize: 24, color: Colors.lightBlue)),
                   SumaButton,
                 ],
               ),
@@ -90,9 +91,9 @@ class _Info_CostosState extends State<Info_Costos> {
                   const Text("Créditos                ",
                       style:
                           TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
-                  Text('₡ ' + _costos_creditos.toString(),
-                      style:
-                          const TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+                  Text('₡ ' + CostosCreditos.toString(),
+                      style: const TextStyle(
+                          fontSize: 11, fontWeight: FontWeight.bold)),
                 ],
               ),
               const Text("                 ", style: TextStyle(fontSize: 5)),
@@ -105,7 +106,7 @@ class _Info_CostosState extends State<Info_Costos> {
                         fontWeight: FontWeight.bold,
                         //color: Colors.blue.shade900
                       )),
-                  Text('₡  ' + _costos_matricula.toString(),
+                  Text('₡  ' + CostosMatricula.toString(),
                       style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -139,8 +140,7 @@ class _Info_CostosState extends State<Info_Costos> {
                           color: Colors.blue)),
                   Text(
                       '₡' +
-                          (_costos_creditos + _costos_matricula + 1915)
-                              .toString(),
+                          (CostosCreditos + CostosMatricula + 1915).toString(),
                       style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -256,7 +256,8 @@ class _Info_CostosState extends State<Info_Costos> {
                                               Center(
                                                 child: Container(
                                                   //margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-                                                  decoration: const BoxDecoration(
+                                                  decoration:
+                                                      const BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
                                                         BorderRadius.all(
