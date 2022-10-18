@@ -409,7 +409,7 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
               locator<DatosEventos>()
-                  .EliminarEvento(evento.appointments![0].id);
+                  .EliminarEvento(evento.appointments![0].nombre);
             }),
       ],
     );
