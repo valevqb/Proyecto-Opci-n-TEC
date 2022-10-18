@@ -10,6 +10,7 @@ import '../../Config.dart';
 class DatosEventos extends ChangeNotifier {
   String eventosUrl = Config.dirServer + 'Eventos';
   String posteventosUrl = Config.dirServer + 'PostEventos';
+  String EliminareventosUrl = Config.dirServer + 'EliminarEventos';
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
@@ -57,6 +58,20 @@ class DatosEventos extends ChangeNotifier {
     });
     if (result.body == "8000") {
       Config.error = "Evento registrado satisfactoriamente";
+    } else {
+      Config.error = "Evento Existente";
+    }
+  }
+
+  Future<void> EliminarEvento(id) async {
+    final result = await http.post(Uri.parse(EliminareventosUrl),
+        body: {'id': id + ""}).catchError((e) {
+      if (kDebugMode) {
+        print("Error Fetching Users$e");
+      }
+    });
+    if (result.body == "8000") {
+      Config.error = "Evento Eliminado satisfactoriamente";
     } else {
       Config.error = "Evento Existente";
     }

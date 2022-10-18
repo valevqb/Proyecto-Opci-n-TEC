@@ -61,7 +61,8 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                         ),
                         child: Row(
                           children: <Widget>[
-                            Image.asset('lib/Fotos/Costo.png'),/*
+                            Image.asset('lib/Fotos/Costo.png'),
+                            /*
                             new Image.network(
                               'https://picsum.photos/250?image=9',
                               width: (width - 50) / 5,
@@ -128,7 +129,8 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                       onPressed: () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
-                                          builder: (context) => Info_Becas(Becas![0][index]),
+                                          builder: (context) =>
+                                              Info_Becas(Becas![0][index]),
                                         ));
                                       },
                                     ),
@@ -166,7 +168,8 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                       onPressed: () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
-                                          builder: (context) => Info_Becas(Becas![1][index]),
+                                          builder: (context) =>
+                                              Info_Becas(Becas![1][index]),
                                         ));
                                       },
                                     ),

@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../../locators.dart';
+import '../controladores/datos_eventos.dart';
 
 class ModificarEliminarEvento extends StatefulWidget {
   CalendarTapDetails evento;
@@ -279,11 +280,14 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
         ),
         child: InkWell(
           onTap: () {
-            if (nombre.toString() == "null" && fechaInicial.toString().isEmpty && detalles.toString() == "null") {
+            if (nombre.toString() == "null" &&
+                fechaInicial.toString().isEmpty &&
+                detalles.toString() == "null") {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return validaciones(context, "Error", "No se editó ningún dato");
+                  return validaciones(
+                      context, "Error", "No se editó ningún dato");
                 },
               );
             } else {
@@ -366,7 +370,8 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return validaciones(context, "Modificado", "Se modificó la noticia con éxito");
+                      return validaciones(context, "Modificado",
+                          "Se modificó la noticia con éxito");
                     },
                   );
                   Navigator.of(context).pop();
@@ -403,6 +408,8 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
               validaciones(context, "Eliminado", "Evento eliminado con éxito");
               Navigator.of(context).pop();
               Navigator.of(context).pop();
+              locator<DatosEventos>()
+                  .EliminarEvento(evento.appointments![0].id);
             }),
       ],
     );
