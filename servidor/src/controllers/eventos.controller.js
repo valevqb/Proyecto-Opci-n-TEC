@@ -14,14 +14,11 @@ const postEventos =  async (req,res) => {
     var fechafin = req["body"]["fechafin"];
     var estododia = req["body"]["estododia"];
     var descripcion = req["body"]["descripcion"];
-
+    console.debug("SELECT AgregarEvento("+"'"+nombre+"'"+","+"'"+fechainicio+"'"+","+"'"+fechafin+"'"+","+"'"+descripcion+"'"+","+"'"+estododia+"'"+")");
+    const response =  await pool.query("SELECT AgregarEvento("+"'"+nombre+"'"+","+"'"+fechainicio+"'"+","+"'"+fechafin+"'"+","+"'"+descripcion+"'"+","+"'"+estododia+"'"+")");
     
-
-    
-    const response =  await pool.query("SELECT AgregarEvento("+"'"+nombre+"'"+","+"'"+fechainicio+"'"+"'"+fechafin+"'"+","+"'"+descripcion+"'"+"'"+estododia+")");
-    console.debug("SELECT AgregarEvento("+"'"+nombre+"'"+","+"'"+fechainicio+"'"+"'"+fechafin+"'"+","+"'"+descripcion+"'"+"'"+estododia+")");
-    res.json(response.rows[0]["AgregarEvento"]["respuesta"])
-    console.debug(response.rows[0]["inicio_secion"]["respuesta"]);
+    res.json(response.rows[0]["agregarevento"]["respuesta"])
+    console.debug(response.rows[0]["agregarevento"]["respuesta"]);
 }
 
 

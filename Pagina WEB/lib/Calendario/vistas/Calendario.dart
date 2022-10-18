@@ -6,6 +6,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import '../../locators.dart';
 import '../controladores/datos_eventos.dart';
 import 'Agregar_Evento.dart';
+import 'ModificarEliminar_Evento.dart';
 /*
 void main() {
   return runApp(CalendarApp());
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   SizedBox(
-                    width: width / 2,
+                    width: (width - 40) / 2,
                     height: 3 * height / 5,
                     child: Stack(
                       children: <Widget>[
@@ -83,9 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 body: SfCalendar(
                               //locale: 'pl_PL',
                               view: CalendarView.month,
-                              showNavigationArrow: true,
+                              cellBorderColor: Colors.transparent,
+                              //showNavigationArrow: true,
                               dataSource: Eventos(eventos),
                               monthViewSettings: const MonthViewSettings(
+                                  showAgenda: true,
                                   appointmentDisplayMode:
                                       MonthAppointmentDisplayMode.appointment),
                             ))),
@@ -93,8 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       //Stack
                     ), //Center
                   ),
+                  Text(" "),
                   SizedBox(
-                    width: width / 2,
+                    width: (width - 40) / 2,
                     height: 3 * height / 5,
                     child: Stack(
                       children: <Widget>[
@@ -109,6 +113,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             body: SfCalendar(
                                 view: CalendarView.schedule,
                                 dataSource: Eventos(eventos),
+                                onTap: (CalendarTapDetails details) {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ModificarEliminarEvento(details),
+                                  ));
+                                },
                                 scheduleViewSettings:
                                     const ScheduleViewSettings(
                                         appointmentItemHeight: 70,
@@ -120,6 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       //Stack
                     ), //Center
                   ),
+                  Text(" "),
                 ],
               ),
               const Text(" "),

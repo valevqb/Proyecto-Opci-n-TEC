@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
+import 'package:opciontec/Estilos/Estilos.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -325,7 +326,7 @@ class _AgregarEventoState extends State<AgregarEvento> {
                       nombre,
                       fechaInicial.text.toString(),
                       fechaFinal.text.toString(),
-                      enlace,
+                      detalles + " " + enlace,
                       "TRUE");
                   Navigator.of(context).pop();
                 }),

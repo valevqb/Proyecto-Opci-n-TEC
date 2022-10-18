@@ -9,7 +9,7 @@ import '../../Config.dart';
 
 class DatosEventos extends ChangeNotifier {
   String eventosUrl = Config.dirServer + 'Eventos';
-  String posteventosUrl = Config.dirServer + 'Eventos';
+  String posteventosUrl = Config.dirServer + 'PostEventos';
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
