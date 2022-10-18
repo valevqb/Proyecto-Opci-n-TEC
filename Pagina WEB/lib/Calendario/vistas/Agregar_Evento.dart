@@ -333,7 +333,6 @@ class _AgregarEventoState extends State<AgregarEvento> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
-                  print("dasdasdasd");
                   locator<DatosEventos>().postEvento(
                       nombre,
                       fechaInicial.text.toString(),
@@ -341,7 +340,7 @@ class _AgregarEventoState extends State<AgregarEvento> {
                       detalles,
                       "TRUE");
                   Navigator.of(context).pop();
-                  Navigator.of(context).pop();
+                  //Navigator.of(context).pop();
                   validaciones(context, "Agregado",
                       "Se agregó noticia en el calendario");
                 }),

@@ -375,7 +375,7 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                     },
                   );
                   Navigator.of(context).pop();
-                  Navigator.of(context).pop();
+                  //Navigator.of(context).pop();
                 }),
             TextButton(
                 child: const Text("Modificar"),
@@ -406,10 +406,12 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
             child: const Text("Aceptar"),
             onPressed: () {
               validaciones(context, "Eliminado", "Evento eliminado con éxito");
-              Navigator.of(context).pop();
+              /*Navigator.of(context).pop();
               Navigator.of(context).pop();
               locator<DatosEventos>()
-                  .EliminarEvento(evento.appointments![0].nombre);
+                  .EliminarEvento(evento.appointments![0].nombre);*/
+              Navigator.of(context).pop();
+              //Navigator.of(context).pop();
             }),
       ],
     );
