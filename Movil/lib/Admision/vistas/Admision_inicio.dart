@@ -4,6 +4,9 @@ import 'package:opciontec/Admision/modelos/Admisiones.dart';
 import 'package:opciontec/Admision/vistas/Info_Admin.dart';
 import 'package:provider/provider.dart';
 
+import '../../Config.dart';
+import '../../Sesion/vistas/Login.dart';
+import '../../Sesion/vistas/Ver_Sesion.dart';
 import '../../locators.dart';
 
 class InicioAdmision extends StatefulWidget {
@@ -39,7 +42,19 @@ class _InicioAdmisionState extends State<InicioAdmision> {
               backgroundColor: Color(0xFF1C2D4B),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (Config.Sesion.contrasena.toString() == "null") {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LogIn()),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => VerLaSesion()),
+                      );
+                    }
+                  },
                   icon: const Icon(Icons.account_circle_sharp,
                       size: 40.0, color: Color(0xFFCBEFF7)),
                 ),
@@ -103,7 +118,8 @@ class _InicioAdmisionState extends State<InicioAdmision> {
                                         color: Colors.white,
                                       ),
                                       padding: const EdgeInsets.all(20),
-                                      child: const Text("\n Opciones de ingreso",
+                                      child: const Text(
+                                          "\n Opciones de ingreso",
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(
                                               fontSize: 20,
@@ -122,7 +138,8 @@ class _InicioAdmisionState extends State<InicioAdmision> {
                                                   (BuildContext context,
                                                       int index) {
                                                 return Card(
-                                                  color: const Color(0xFFCBEFF7),
+                                                  color:
+                                                      const Color(0xFFCBEFF7),
                                                   elevation: 5,
                                                   margin: const EdgeInsets.only(
                                                       top: 15.0,
@@ -197,9 +214,7 @@ class Secciones extends StatelessWidget {
       child: Text(texto,
           textAlign: TextAlign.justify,
           style: TextStyle(
-              fontSize: tamano,
-              fontWeight: font,
-              color: Colors.white)),
+              fontSize: tamano, fontWeight: font, color: Colors.white)),
     );
   }
 }

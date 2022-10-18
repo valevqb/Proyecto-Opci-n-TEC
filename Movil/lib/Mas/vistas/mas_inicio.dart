@@ -5,6 +5,9 @@ import 'package:opciontec/Mas/vistas/Costos_y_Becas.dart';
 import 'package:opciontec/Mas/vistas/Info_Preguntas.dart';
 import 'package:provider/provider.dart';
 
+import '../../Config.dart';
+import '../../Sesion/vistas/Login.dart';
+import '../../Sesion/vistas/Ver_Sesion.dart';
 import '../../locators.dart';
 import 'Calendario.dart';
 
@@ -43,7 +46,19 @@ class _InicioMasState extends State<InicioMas> {
             backgroundColor: Colors.white,
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (Config.Sesion.contrasena.toString() == "null") {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LogIn()),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => VerLaSesion()),
+                    );
+                  }
+                },
                 icon: const Icon(Icons.account_circle_sharp,
                     size: 40.0, color: const Color(0xBE5CC6DE)),
               ),

@@ -36,5 +36,7 @@ const postCambiarContrasena = async(req,res) => {
     
     };
 
+    
+
 
 module.exports = {postLogeo,postRegistro,postCambiarContrasena};

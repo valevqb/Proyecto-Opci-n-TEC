@@ -54,7 +54,7 @@ class _CalendarAppState extends State<CalendarApp> {
             children: <Widget>[
               SizedBox(
                 width: width - 50,
-                height: 3 * height / 5,
+                height: (3 * height) / 5,
                 child: Stack(
                   children: <Widget>[
                     Positioned(
@@ -90,7 +90,7 @@ class _CalendarAppState extends State<CalendarApp> {
                   children: <Widget>[
                     Positioned(
                       left: 0,
-                      top: 65,
+                      top: 55,
                       right: 0,
                       //height: width / 2,
                       //width: width - 50,

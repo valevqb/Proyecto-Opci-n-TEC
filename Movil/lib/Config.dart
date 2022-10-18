@@ -8,5 +8,3 @@ class Config {
   static Usuario Sesion = Usuario();
   static String error = "";
 }
-
-

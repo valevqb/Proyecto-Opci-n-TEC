@@ -5,6 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:opciontec/Servicios/vistas/servicio_informacion.dart';
 import 'package:opciontec/Servicios/vistas/servicio_bus.dart';
 
+import '../../Config.dart';
+import '../../Sesion/vistas/Login.dart';
+import '../../Sesion/vistas/Ver_Sesion.dart';
 import '../../locators.dart';
 
 class InicioServicio extends StatefulWidget {
@@ -36,7 +39,19 @@ class _InicioServicioState extends State<InicioServicio> {
               backgroundColor: const Color(0xFF1C2D4B),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (Config.Sesion.contrasena.toString() == "null") {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LogIn()),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => VerLaSesion()),
+                      );
+                    }
+                  },
                   icon: const Icon(Icons.account_circle_sharp,
                       size: 40.0, color: Color(0xFFCBEFF7)),
                 ),
