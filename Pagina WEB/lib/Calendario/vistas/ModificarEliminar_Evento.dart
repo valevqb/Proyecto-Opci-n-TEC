@@ -280,9 +280,9 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
         ),
         child: InkWell(
           onTap: () {
-            if (nombre.toString() == "null" &&
-                fechaInicial.toString().isEmpty &&
-                detalles.toString() == "null") {
+            if (nombre.toString() == evento.appointments![0].nombre.toString() &&
+                fechaInicial.toString() == DateFormat('yyyy-MM-dd').format(evento.appointments![0].inicio).toString() &&
+                detalles.toString() == evento.appointments![0].descripcion.toString()) {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
