@@ -21,6 +21,7 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
   var nombre;
   var detalles;
   var enlace;
+  var bandera = 0;
   TextEditingController fechaInicial =
       TextEditingController(); //se obtiene con fechaInicial.text.toString()
   TextEditingController fechaFinal =
@@ -40,15 +41,15 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
     double height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
-    nombre = evento.appointments![0].nombre;
-    detalles = evento.appointments![0].descripcion;
-    fechaInicial.text =
-        DateFormat('yyyy-MM-dd').format(evento.appointments![0].inicio);
-    fechaFinal.text =
-        DateFormat('yyyy-MM-dd').format(evento.appointments![0].fin);
-
-    print("Pez evento");
-    print(evento.appointments![0].descripcion);
+    if (bandera == 0) {
+      nombre = evento.appointments![0].nombre;
+      detalles = evento.appointments![0].descripcion;
+      fechaInicial.text =
+          DateFormat('yyyy-MM-dd').format(evento.appointments![0].inicio);
+      fechaFinal.text =
+          DateFormat('yyyy-MM-dd').format(evento.appointments![0].fin);
+    }
+    bandera = 1;
 
     return MaterialApp(
         title: "Modificar evento",
