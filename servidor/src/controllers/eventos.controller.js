@@ -20,8 +20,8 @@ const postEventos =  async (req,res) => {
 }
 
 const postEliminarEventos =  async (req,res) => {
-    var id = req["body"]["id"];
-    const response =  await pool.query("SELECT eliminarevento("+"'"+id+"'"+")");
+    var nombre = req["body"]["nombre"];
+    const response =  await pool.query("SELECT eliminarevento("+"'"+nombre+"'"+")");
     console.debug(response.rows[0]["eliminarevento"]["respuesta"]);
     res.json(response.rows[0]["eliminarevento"]["respuesta"])
 }

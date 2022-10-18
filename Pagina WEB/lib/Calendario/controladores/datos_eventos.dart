@@ -63,9 +63,9 @@ class DatosEventos extends ChangeNotifier {
     }
   }
 
-  Future<void> EliminarEvento(id) async {
+  Future<void> EliminarEvento(nombre) async {
     final result = await http.post(Uri.parse(EliminareventosUrl),
-        body: {'id': id + ""}).catchError((e) {
+        body: {'nombre': nombre}).catchError((e) {
       if (kDebugMode) {
         print("Error Fetching Users$e");
       }

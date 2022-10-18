@@ -252,7 +252,8 @@ class _AgregarEventoState extends State<AgregarEvento> {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return validaciones(context, "Error", "Todas las casillas deben tener contenido");
+                  return validaciones(context, "Error",
+                      "Todas las casillas deben tener contenido");
                 },
               );
             } else {
@@ -332,15 +333,17 @@ class _AgregarEventoState extends State<AgregarEvento> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
+                  print("dasdasdasd");
                   locator<DatosEventos>().postEvento(
                       nombre,
                       fechaInicial.text.toString(),
                       fechaFinal.text.toString(),
-                      detalles + " " + enlace,
+                      detalles,
                       "TRUE");
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
-                  validaciones(context, "Agregado", "Se agregó noticia en el calendario");
+                  validaciones(context, "Agregado",
+                      "Se agregó noticia en el calendario");
                 }),
             TextButton(
                 child: const Text("Modificar"),
