@@ -397,7 +397,9 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
         TextButton(
             child: const Text("Aceptar"),
             onPressed: () {
-              //Navigator.of(context).pop(); //se elimina
+              validaciones(context, "Eliminado", "Evento eliminado con éxito");
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
             }),
       ],
     );
