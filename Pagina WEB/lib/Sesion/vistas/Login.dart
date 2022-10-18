@@ -261,7 +261,6 @@ class _LogInState extends State<LogIn> {
   }
 
   Widget validaciones(BuildContext context, titulo, message) {
-    print(titulo.toString());
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
