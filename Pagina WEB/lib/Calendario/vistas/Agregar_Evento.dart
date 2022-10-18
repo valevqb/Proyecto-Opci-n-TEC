@@ -252,7 +252,7 @@ class _AgregarEventoState extends State<AgregarEvento> {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return validaciones(context);
+                  return validaciones(context, "Error", "Todas las casillas deben tener contenido");
                 },
               );
             } else {
@@ -282,13 +282,23 @@ class _AgregarEventoState extends State<AgregarEvento> {
     );
   }
 
-  Widget validaciones(BuildContext context) {
+  Widget validaciones(BuildContext context, titulo, message) {
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
-          child: const Text('Error')),
-      content: const Text("Todas las casillas deben tener contenido"),
+          child: Text(titulo.toString(),
+              style: const TextStyle(
+                  fontFamily: 'Mulish',
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1C2D4B)))),
+      content: Text(message.toString(),
+          style: const TextStyle(
+              fontFamily: 'Mulish',
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF1C2D4B))),
       actions: <Widget>[
         TextButton(
             child: const Text("Aceptar"),
@@ -329,6 +339,8 @@ class _AgregarEventoState extends State<AgregarEvento> {
                       detalles + " " + enlace,
                       "TRUE");
                   Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  validaciones(context, "Agregado", "Se agregó noticia en el calendario");
                 }),
             TextButton(
                 child: const Text("Modificar"),

@@ -276,13 +276,11 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
         ),
         child: InkWell(
           onTap: () {
-            if (nombre.toString() == "null" ||
-                fechaInicial.toString().isEmpty ||
-                detalles.toString() == "null") {
+            if (nombre.toString() == "null" && fechaInicial.toString().isEmpty && detalles.toString() == "null") {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return validaciones(context);
+                  return validaciones(context, "Error", "No se editó ningún dato");
                 },
               );
             } else {
@@ -312,13 +310,23 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
     );
   }
 
-  Widget validaciones(BuildContext context) {
+  Widget validaciones(BuildContext context, titulo, message) {
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
-          child: const Text('Error')),
-      content: const Text("Todas las casillas deben tener contenido"),
+          child: Text(titulo.toString(),
+              style: const TextStyle(
+                  fontFamily: 'Mulish',
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1C2D4B)))),
+      content: Text(message.toString(),
+          style: const TextStyle(
+              fontFamily: 'Mulish',
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF1C2D4B))),
       actions: <Widget>[
         TextButton(
             child: const Text("Aceptar"),
@@ -350,12 +358,19 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
         Row(
           children: [
             TextButton(
-                child: Text("Aceptar"),
+                child: const Text("Aceptar"),
                 onPressed: () {
-                  //Navigator.of(context).pop();
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return validaciones(context, "Modificado", "Se modificó la noticia con éxito");
+                    },
+                  );
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
                 }),
             TextButton(
-                child: Text("Modificar"),
+                child: const Text("Modificar"),
                 onPressed: () {
                   Navigator.of(context).pop();
                 })
