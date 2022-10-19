@@ -19,8 +19,6 @@ class _PrototipoBarra extends State<PrototipoBarra> {
   final controller = TextEditingController();
   var textoFinal = "Carrera, becas, servicios, etc.";
   final List<Widget> _children = [
-    //Plantilla(),
-    //Plantilla2(),
     Inicio(),
     InicioAdmision(),
     InicioCarrera(),

@@ -23,7 +23,6 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
   var detalles;
   var enlace;
   var bandera = 0;
-  var id;
   TextEditingController fechaInicial =
       TextEditingController(); //se obtiene con fechaInicial.text.toString()
   TextEditingController fechaFinal =
@@ -50,7 +49,6 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
           DateFormat('yyyy-MM-dd').format(evento.appointments![0].inicio);
       fechaFinal.text =
           DateFormat('yyyy-MM-dd').format(evento.appointments![0].fin);
-      id = evento.appointments![0].id;
     }
     bandera = 1;
 
@@ -59,13 +57,6 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
         theme: ThemeData(primaryColor: Colors.white),
         home: Scaffold(
             appBar: AppBar(
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: const Icon(Icons.arrow_circle_left_rounded,
-                    size: 40.0, color: Color(0xBE5CC6DE)),
-              ),
               centerTitle: true,
               title: const Text('Modificar evento',
                   style: TextStyle(
@@ -111,6 +102,13 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFF2B436D))),
                           textTittle(context, "* Fecha"),
+                          textInfo(context, "Utilice solo uno de los formatos"),
+                          const SizedBox(height: 10),
+                          textTittle2(context, "Primer formato"),
+                          textInfo(context, "Fecha única"),
+                          fechas(context, 0, fechaInicial),
+                          const SizedBox(height: 10),
+                          textTittle2(context, "Segundo formato"),
                           Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -282,9 +280,14 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
         ),
         child: InkWell(
           onTap: () {
-            if (nombre.toString() == "null" &&
-                fechaInicial.toString().isEmpty &&
-                detalles.toString() == "null") {
+            if (nombre.toString() ==
+                    evento.appointments![0].nombre.toString() &&
+                fechaInicial.toString() ==
+                    DateFormat('yyyy-MM-dd')
+                        .format(evento.appointments![0].inicio)
+                        .toString() &&
+                detalles.toString() ==
+                    evento.appointments![0].descripcion.toString()) {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -369,15 +372,6 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
-                  locator<DatosEventos>().ModificarEvento(
-                      id,
-                      nombre,
-                      fechaInicial.text.toString(),
-                      fechaFinal.text.toString(),
-                      detalles,
-                      "TRUE");
-                  Navigator.of(context).pop();
-
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -385,6 +379,8 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                           "Se modificó la noticia con éxito");
                     },
                   );
+                  Navigator.of(context).pop();
+                  //Navigator.of(context).pop();
                 }),
             TextButton(
                 child: const Text("Modificar"),
@@ -414,18 +410,13 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
         TextButton(
             child: const Text("Aceptar"),
             onPressed: () {
+              validaciones(context, "Eliminado", "Evento eliminado con éxito");
+              /*Navigator.of(context).pop();
+              Navigator.of(context).pop();
               locator<DatosEventos>()
-                  .EliminarEvento(evento.appointments![0].id);
+                  .EliminarEvento(evento.appointments![0].nombre);*/
               Navigator.of(context).pop();
-
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return validaciones(
-                      context, "Eliminado", "Evento eliminado con éxito");
-                },
-              );
-              Navigator.of(context).pop();
+              //Navigator.of(context).pop();
             }),
       ],
     );

@@ -1,29 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:opciontec/Calendario/modelos/eventos.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
+import 'package:opciontec/Estilos/Estilos.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../../locators.dart';
 import '../controladores/datos_eventos.dart';
 
-class ModificarEliminarEvento extends StatefulWidget {
-  CalendarTapDetails evento;
-  ModificarEliminarEvento(this.evento);
+class AgregarEvento extends StatefulWidget {
   @override
-  _ModificarEliminarEventoState createState() =>
-      _ModificarEliminarEventoState();
+  _AgregarEventoState createState() => _AgregarEventoState();
 }
 
-class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
-  late CalendarTapDetails evento;
+class _AgregarEventoState extends State<AgregarEvento> {
   var nombre;
   var detalles;
   var enlace;
-  var bandera = 0;
-  var id;
   TextEditingController fechaInicial =
       TextEditingController(); //se obtiene con fechaInicial.text.toString()
   TextEditingController fechaFinal =
@@ -35,7 +28,6 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
   void initState() {
     width = 0.0;
     super.initState();
-    evento = widget.evento;
   }
 
   @override
@@ -43,31 +35,14 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
     double height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
-    if (bandera == 0) {
-      nombre = evento.appointments![0].nombre;
-      detalles = evento.appointments![0].descripcion;
-      fechaInicial.text =
-          DateFormat('yyyy-MM-dd').format(evento.appointments![0].inicio);
-      fechaFinal.text =
-          DateFormat('yyyy-MM-dd').format(evento.appointments![0].fin);
-      id = evento.appointments![0].id;
-    }
-    bandera = 1;
 
     return MaterialApp(
-        title: "Modificar evento",
+        title: "Agregar Evento",
         theme: ThemeData(primaryColor: Colors.white),
         home: Scaffold(
             appBar: AppBar(
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: const Icon(Icons.arrow_circle_left_rounded,
-                    size: 40.0, color: Color(0xBE5CC6DE)),
-              ),
               centerTitle: true,
-              title: const Text('Modificar evento',
+              title: const Text('Agregar evento',
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -87,30 +62,19 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          InkWell(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return verificarEliminar(context);
-                                  },
-                                );
-                              },
-                              child: Container(
-                                  margin: const EdgeInsets.only(bottom: 25),
-                                  child: const Text('Eliminar Evento',
-                                      style: TextStyle(
-                                          fontFamily: 'Mulish',
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.normal,
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.red)))),
-                          const Text("* Información Obligatoria *",
+                          const Text("* Información Obligatoria",
                               style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFF2B436D))),
                           textTittle(context, "* Fecha"),
+                          textInfo(context, "Utilice solo uno de los formatos"),
+                          const SizedBox(height: 10),
+                          textTittle2(context, "Primer formato"),
+                          textInfo(context, "Fecha única"),
+                          fechas(context, 0, fechaInicial),
+                          const SizedBox(height: 10),
+                          textTittle2(context, "Segundo formato"),
                           Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -135,14 +99,14 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                               ]),
                           textTittle(context, "* Nombre"),
                           textInfo(context, "Escriba el nombre del evento"),
-                          textForms(context, nombre.toString(), 0),
+                          textForms(context, "Nombre del evento", 0),
                           textTittle(context, "* Detalle"),
                           textInfo(context, "Escriba los detalles del evento"),
-                          textForms(context, detalles.toString(), 1),
+                          textForms(context, "Detalles del evento", 1),
                           textTittle(context, "Enlace"),
                           textInfo(context, "Escriba el enlace del evento"),
                           textForms(context, "Enlace del evento", 2),
-                          ModificarEliminarEventoBotton(context),
+                          AgregarEventoBotton(context),
                         ],
                       ),
                     ),
@@ -270,7 +234,7 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                 color: Color(0xFF2B436D))));
   }
 
-  Widget ModificarEliminarEventoBotton(BuildContext context) {
+  Widget AgregarEventoBotton(BuildContext context) {
     return SizedBox(
       width: width - 24,
       child: Card(
@@ -282,14 +246,14 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
         ),
         child: InkWell(
           onTap: () {
-            if (nombre.toString() == "null" &&
-                fechaInicial.toString().isEmpty &&
+            if (nombre.toString() == "null" ||
+                fechaInicial.toString().isEmpty ||
                 detalles.toString() == "null") {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return validaciones(
-                      context, "Error", "No se editó ningún dato");
+                  return validaciones(context, "Error",
+                      "Todas las casillas deben tener contenido");
                 },
               );
             } else {
@@ -306,7 +270,7 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
             alignment: Alignment.center,
             height: 60,
             child: const Text(
-              "Modificar evento",
+              "Agregar evento",
               style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 18.0,
@@ -348,10 +312,10 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
 
   Widget aceptacion(BuildContext context) {
     return AlertDialog(
-      contentPadding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
-        margin: EdgeInsets.only(bottom: 15),
-        child: Text('Confirmar datos'),
+        margin: const EdgeInsets.only(bottom: 15),
+        child: const Text('Confirmar datos'),
       ),
       content: Column(mainAxisSize: MainAxisSize.min, children: [
         letter(context, "* Confirme que los datos sean correctos *"),
@@ -369,22 +333,16 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
-                  locator<DatosEventos>().ModificarEvento(
-                      id,
+                  locator<DatosEventos>().postEvento(
                       nombre,
                       fechaInicial.text.toString(),
                       fechaFinal.text.toString(),
                       detalles,
                       "TRUE");
                   Navigator.of(context).pop();
-
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return validaciones(context, "Modificado",
-                          "Se modificó la noticia con éxito");
-                    },
-                  );
+                  //Navigator.of(context).pop();
+                  validaciones(context, "Agregado",
+                      "Se agregó noticia en el calendario");
                 }),
             TextButton(
                 child: const Text("Modificar"),
@@ -394,40 +352,6 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
           ],
         ),
       ]),
-    );
-  }
-
-  Widget verificarEliminar(BuildContext context) {
-    return AlertDialog(
-      contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
-      title: Container(
-          margin: const EdgeInsets.only(bottom: 15),
-          child: const Text('Eliminar elemento')),
-      content: Text(
-          "Seguro que deseas eliminar el elemento " + nombre.toString() + "?"),
-      actions: <Widget>[
-        TextButton(
-            child: const Text("Cancelar"),
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
-        TextButton(
-            child: const Text("Aceptar"),
-            onPressed: () {
-              locator<DatosEventos>()
-                  .EliminarEvento(evento.appointments![0].id);
-              Navigator.of(context).pop();
-
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return validaciones(
-                      context, "Eliminado", "Evento eliminado con éxito");
-                },
-              );
-              Navigator.of(context).pop();
-            }),
-      ],
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../../locators.dart';
 import '../controladores/datos_eventos.dart';
+import 'Calendario.dart';
 
 class AgregarEvento extends StatefulWidget {
   @override
@@ -41,6 +42,13 @@ class _AgregarEventoState extends State<AgregarEvento> {
         theme: ThemeData(primaryColor: Colors.white),
         home: Scaffold(
             appBar: AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(Icons.arrow_circle_left_rounded,
+                    size: 40.0, color: Color(0xBE5CC6DE)),
+              ),
               centerTitle: true,
               title: const Text('Agregar evento',
                   style: TextStyle(
@@ -68,13 +76,6 @@ class _AgregarEventoState extends State<AgregarEvento> {
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFF2B436D))),
                           textTittle(context, "* Fecha"),
-                          textInfo(context, "Utilice solo uno de los formatos"),
-                          const SizedBox(height: 10),
-                          textTittle2(context, "Primer formato"),
-                          textInfo(context, "Fecha única"),
-                          fechas(context, 0, fechaInicial),
-                          const SizedBox(height: 10),
-                          textTittle2(context, "Segundo formato"),
                           Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -339,10 +340,16 @@ class _AgregarEventoState extends State<AgregarEvento> {
                       fechaFinal.text.toString(),
                       detalles,
                       "TRUE");
+
                   Navigator.of(context).pop();
-                  //Navigator.of(context).pop();
-                  validaciones(context, "Agregado",
-                      "Se agregó noticia en el calendario");
+
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return validaciones(
+                          context, "Agregado", "Evento Agregado con éxito");
+                    },
+                  );
                 }),
             TextButton(
                 child: const Text("Modificar"),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:opciontec/Calendario/modelos/eventos.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-
 import '../../locators.dart';
 import '../controladores/datos_eventos.dart';
 import 'Agregar_Evento.dart';
@@ -33,8 +32,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
-
-    locator<DatosEventos>().fetchUsers();
   }
 
   @override
@@ -42,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     List<DataEventos>? eventos = Provider.of<DatosEventos>(context).eventos;
+    locator<DatosEventos>().fetchUsers();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -88,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               //showNavigationArrow: true,
                               dataSource: Eventos(eventos),
                               monthViewSettings: const MonthViewSettings(
-                                  showAgenda: true,
+                                  //showAgenda: true,
                                   appointmentDisplayMode:
                                       MonthAppointmentDisplayMode.appointment),
                             ))),

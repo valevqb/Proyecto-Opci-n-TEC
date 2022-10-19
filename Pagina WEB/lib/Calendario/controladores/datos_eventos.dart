@@ -11,6 +11,7 @@ class DatosEventos extends ChangeNotifier {
   String eventosUrl = Config.dirServer + 'Eventos';
   String posteventosUrl = Config.dirServer + 'PostEventos';
   String EliminareventosUrl = Config.dirServer + 'EliminarEventos';
+  String ModificareventosUrl = Config.dirServer + 'ModificarEvento';
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
@@ -63,9 +64,30 @@ class DatosEventos extends ChangeNotifier {
     }
   }
 
-  Future<void> EliminarEvento(nombre) async {
+  Future<void> ModificarEvento(
+      id, nombre, inicio, fin, descripcion, estododia) async {
+    final result = await http.post(Uri.parse(ModificareventosUrl), body: {
+      'id': "$id",
+      'nombre': nombre,
+      'fechainicio': inicio,
+      'fechafin': fin,
+      'estododia': estododia,
+      'descripcion': descripcion
+    }).catchError((e) {
+      if (kDebugMode) {
+        print("Error Fetching Users$e");
+      }
+    });
+    if (result.body == "8000") {
+      Config.error = "Evento Modificado satisfactoriamente";
+    } else {
+      Config.error = "Evento No modificado";
+    }
+  }
+
+  Future<void> EliminarEvento(id) async {
     final result = await http.post(Uri.parse(EliminareventosUrl),
-        body: {'nombre': nombre}).catchError((e) {
+        body: {'id': "$id"}).catchError((e) {
       if (kDebugMode) {
         print("Error Fetching Users$e");
       }
