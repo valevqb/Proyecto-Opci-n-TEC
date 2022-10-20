@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import '../../Config.dart';
 
 class DatosBus extends ChangeNotifier {
-  String userUrl = Config.dirServer + 'Buses';
+  String userUrl = Config.dirServer+'Buses';
 
   bool _isLoading = false;
 
@@ -23,7 +23,8 @@ class DatosBus extends ChangeNotifier {
       print("Error Fetching Users" + e.toString());
     });
 
-    if (result.statusCode == 200) {
+
+    if(result.statusCode == 200){
       Map<String, dynamic> _datos = json.decode(result.body);
 
       var _buses = _datos["Datos"];
@@ -36,10 +37,13 @@ class DatosBus extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
       return servicioBus;
-    } else {
+    }
+    else{
       _isLoading = false;
       notifyListeners();
       throw Exception('Error - ${result.statusCode}');
     }
+
+
   }
 }

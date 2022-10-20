@@ -37,7 +37,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
             icon: const Icon(Icons.arrow_circle_left_rounded,
                 size: 40.0, color: Colors.lightBlueAccent),
           ),
-          title: Text('Costos y becas',
+          title: const Text('Costos y becas',
               style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -46,22 +46,23 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
           backgroundColor: Colors.white,
         ),
         body: (isLoading)
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(''),
+                    const Text(''),
                     Center(
                       child: Container(
                         width: width - 50,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(6.0)),
                           color: Color(0xFFCBEFF7),
                         ),
                         child: Row(
                           children: <Widget>[
-                            Image.asset('lib/Fotos/Costo.png'),/*
+                            Image.asset('lib/Fotos/Costo.png'),
+                            /*
                             new Image.network(
                               'https://picsum.photos/250?image=9',
                               width: (width - 50) / 5,
@@ -92,20 +93,6 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                 ));
                               },
                             ),
-
-                            /*FloatingActionButton.extended(
-                              label: Text(''),
-                              //backgroundColor: Colors.lightBlue,
-                              */ /*shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0))),*/ /*
-                              icon: Icon(
-                                // <-- Icon
-                                Icons.arrow_circle_right_rounded,
-                                size: 24.0,
-                              ),
-                              onPressed: () {},
-                            ),*/
                           ],
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           mainAxisSize: MainAxisSize.max,
@@ -116,7 +103,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                     SizedBox(
                       height: height / 3,
                       child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(6.0)),
                           ),
@@ -128,7 +115,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                   child: ListTile(
                                     title: Text(
                                       Becas![0][index].Nombre!,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFF1C2D4B)),
@@ -142,7 +129,8 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                       onPressed: () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
-                                          builder: (context) => Info_Becas(Becas![0][index]),
+                                          builder: (context) =>
+                                              Info_Becas(Becas![0][index]),
                                         ));
                                       },
                                     ),
@@ -154,7 +142,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                     SizedBox(
                       height: height / 3,
                       child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(6.0)),
                           ),
@@ -166,7 +154,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                   child: ListTile(
                                     title: Text(
                                       Becas![1][index].Nombre!,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFF1C2D4B)),
@@ -180,7 +168,8 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                       onPressed: () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
-                                          builder: (context) => Info_Becas(Becas![1][index]),
+                                          builder: (context) =>
+                                              Info_Becas(Becas![1][index]),
                                         ));
                                       },
                                     ),
@@ -208,12 +197,12 @@ class Secciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Text(this.texto,
+      padding: const EdgeInsets.all(20),
+      child: Text(texto,
           style: TextStyle(
-              fontSize: this.tamano,
+              fontSize: tamano,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF1C2D4B))),
+              color: const Color(0xFF1C2D4B))),
     );
   }
 }

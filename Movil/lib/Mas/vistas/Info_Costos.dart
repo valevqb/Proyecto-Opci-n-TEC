@@ -27,44 +27,23 @@ class _Info_CostosState extends State<Info_Costos> {
     List<DataCostos>? Costos = Provider.of<DatosCostos>(context).costos;
     bool isLoading = Provider.of<DatosCostos>(context).isLoading;
 
-    /*
-    void changeText() {
-      print("pez_mas");
-      if (_creditos >= 0) {
-        setState(() {
-          _creditos++;
-          if (_creditos < 12) {
-            _costos_creditos = _creditos * 20595;
-            precio_creditos = _costos_creditos.toString();
-          }
-        });
-        print(_creditos);
-        print(_costos_creditos);
-        print(precio_creditos);
-      }
-    }*/
-
     void showAlertDialog(BuildContext context) {
-      // variables a modificar
-      int _creditos = 1;
-      int _costos_creditos = 20595;
-      int _costos_matricula = 5485;
+      int creditos = 1;
+      int CostosCreditos = 20595;
+      int CostosMatricula = 5485;
 
       // Bottones
       Widget SumaButton = IconButton(
         icon: const Icon(Icons.add_circle_rounded,
             size: 40.0, color: Colors.lightBlue),
         onPressed: () {
-          print("pez_menas");
-          if (_creditos > 0) {
+          if (creditos > 0) {
             setState(() {
-              _creditos++;
-              if (_creditos <= 12) {
-                _costos_creditos = _creditos * 20595;
+              creditos++;
+              if (creditos <= 12) {
+                CostosCreditos = creditos * 20595;
               }
             });
-            print(_creditos);
-            print(_costos_creditos);
           }
           ;
         },
@@ -73,115 +52,101 @@ class _Info_CostosState extends State<Info_Costos> {
         icon: const Icon(Icons.remove_circle,
             size: 40.0, color: Colors.lightBlue),
         onPressed: () {
-          print("pez_menos");
-          if (_creditos > 0) {
+          if (creditos > 0) {
             setState(() {
-              _creditos--;
-              if (_creditos <= 12) {
-                _costos_creditos = _creditos * 20595;
+              creditos--;
+              if (creditos <= 12) {
+                CostosCreditos = creditos * 20595;
               }
             });
-            print(_creditos);
-            print(_costos_creditos);
           }
           ;
         },
       );
       // set up the AlertDialog
       AlertDialog alert = AlertDialog(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          /* title: Text("Calculando costo ", style: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-        color: Colors.blue.shade900),),*/
           content: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              DropdownButtonExample(),
+              const DropdownButtonExample(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   RestaButton,
-                  Text('  ' + '$_creditos' + '  ',
-                      style: TextStyle(fontSize: 24, color: Colors.lightBlue)),
+                  Text('  ' + '$creditos' + '  ',
+                      style: const TextStyle(
+                          fontSize: 24, color: Colors.lightBlue)),
                   SumaButton,
                 ],
               ),
-              Text("Créditos ",
+              const Text("Créditos ",
                   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
-              Text("                 ", style: TextStyle(fontSize: 10)),
+              const Text("                 ", style: TextStyle(fontSize: 10)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text("Créditos                ",
+                  const Text("Créditos                ",
                       style:
                           TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
-                  Text('₡ ' + _costos_creditos.toString(),
-                      style:
-                          TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+                  Text('₡ ' + CostosCreditos.toString(),
+                      style: const TextStyle(
+                          fontSize: 11, fontWeight: FontWeight.bold)),
                 ],
               ),
-              Text("                 ", style: TextStyle(fontSize: 5)),
+              const Text("                 ", style: TextStyle(fontSize: 5)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text("Matricula                    ",
+                  const Text("Matricula                    ",
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
                         //color: Colors.blue.shade900
                       )),
-                  Text('₡  ' + _costos_matricula.toString(),
-                      style: TextStyle(
+                  Text('₡  ' + CostosMatricula.toString(),
+                      style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
-                        //color: Colors.blue.shade900
                       )),
                 ],
               ),
-              Text("                 ", style: TextStyle(fontSize: 5)),
+              const Text("                 ", style: TextStyle(fontSize: 5)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
+                children: const <Widget>[
                   Text("Bienestar Estudiantil ",
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
-                        //color: Colors.blue.shade900
                       )),
                   Text("₡  1915",
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
-                        //color: Colors.blue.shade900
                       )),
                 ],
               ),
-              Text("----------------------"),
+              const Text("----------------------"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text("Total           ",
+                  const Text("Total           ",
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue)),
                   Text(
                       '₡' +
-                          (_costos_creditos + _costos_matricula + 1915)
-                              .toString(),
-                      style: TextStyle(
+                          (CostosCreditos + CostosMatricula + 1915).toString(),
+                      style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue)),
                 ],
               ),
-              /*actions: [
-      RestaButton,
-      SumaButton,
-    ],*/
             ],
           ));
 
@@ -210,30 +175,15 @@ class _Info_CostosState extends State<Info_Costos> {
           backgroundColor: Color(0xFFCBEFF7),
         ),
         body: (isLoading)
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    /*Container(
-                      width: width - 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                        color: Colors.cyan.shade100,
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          new Image.network(
-                            'https://picsum.photos/250?image=9',
-                            width: (width - 50) / 5,
-                          ),
-                        ],
-                      ),
-                    ),*/
                     Center(
                       child: Container(
                         width: width,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(5.0),
                               bottomRight: Radius.circular(5.0)),
@@ -262,7 +212,7 @@ class _Info_CostosState extends State<Info_Costos> {
                         height: 3.8 * height / 8,
                         width: width - 50,
                         child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30)),
                             ),
@@ -271,15 +221,13 @@ class _Info_CostosState extends State<Info_Costos> {
                                 itemBuilder: (BuildContext context, int index) {
                                   return Card(
                                       elevation: 5,
-                                      color: new Color(
+                                      color: Color(
                                           int.parse(Costos[index].Color!)),
                                       child: ListTile(
-                                        //selectedColor: Colors.deepOrange,
-                                        //selectedColorolor: Costos[index].Color!,
                                         title: Text(
                                           //" Pez costos",
                                           Costos[index].Nombre! + '\n',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 24,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white),
@@ -308,7 +256,8 @@ class _Info_CostosState extends State<Info_Costos> {
                                               Center(
                                                 child: Container(
                                                   //margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-                                                  decoration: BoxDecoration(
+                                                  decoration:
+                                                      const BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
                                                         BorderRadius.all(
@@ -355,10 +304,10 @@ class _Info_CostosState extends State<Info_Costos> {
                                 color: Colors.blue.shade900)),
                         // <-- Text
                         backgroundColor: Color(0xFFCBEFF7),
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0))),
-                        icon: Icon(
+                        icon: const Icon(
                           // <-- Icon
                           Icons.monetization_on_outlined,
                           size: 24.0,
@@ -392,7 +341,7 @@ class Secciones extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30)),
       ),
       padding: EdgeInsets.all(20),

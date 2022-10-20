@@ -6,10 +6,11 @@ import 'package:opciontec/Servicios/servicios/datos_bus.dart';
 import 'package:opciontec/Servicios/servicios/datos_servicio.dart';
 import 'Admision/controladores/datos_Admision.dart';
 import 'Barra.dart';
-import 'package:opciontec/Sesion/vistas/login.dart';
+import 'package:opciontec/Sesion/vistas/Login.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'Calendario/controladores/datos_eventos.dart';
 import 'locators.dart';
 import 'Carreras/servicios/datos_carrera.dart';
 
@@ -32,6 +33,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => locator<DatosCostos>()),
         ChangeNotifierProvider(create: (_) => locator<DatosBus>()),
         ChangeNotifierProvider(create: (_) => locator<DatosAdmisiones>()),
+        ChangeNotifierProvider(create: (_) => locator<DatosEventos>())
       ],
       child: MaterialApp(home: LogIn()),
     ),

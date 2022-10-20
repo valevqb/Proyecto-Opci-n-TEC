@@ -27,26 +27,19 @@ class _InicioAdmisionState extends State<InicioAdmision> {
     bool isLoading = Provider.of<DatosAdmisiones>(context).isLoading;
     return MaterialApp(
         title: "Pez Admin",
-        theme: ThemeData(scaffoldBackgroundColor: Color(0xFF1C2D4B)),
+        theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF1C2D4B)),
         home: Scaffold(
             appBar: AppBar(
-              title: Text('Admisión',
+              title: const Text('Admisión',
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.white)),
               elevation: 0,
-              backgroundColor: Color(0xFF1C2D4B),
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.account_circle_sharp,
-                      size: 40.0, color: Color(0xFFCBEFF7)),
-                ),
-              ],
+              backgroundColor: const Color(0xFF1C2D4B),
             ),
             body: (isLoading)
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
                     child: SizedBox(
                         height: height,
@@ -61,7 +54,7 @@ class _InicioAdmisionState extends State<InicioAdmision> {
                                     Container(
                                       width: width,
                                       height: 230,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0xFF1C2D4B),
                                       ),
                                       child:
@@ -69,11 +62,7 @@ class _InicioAdmisionState extends State<InicioAdmision> {
                                     ),
                                     Container(
                                       width: width,
-                                      decoration: BoxDecoration(
-                                        /*borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(50),
-                          bottomLeft: Radius.circular(50),
-                        ),*/
+                                      decoration: const BoxDecoration(
                                         color: Color(0xFF1C2D4B),
                                       ),
                                       child: Column(
@@ -98,16 +87,16 @@ class _InicioAdmisionState extends State<InicioAdmision> {
                                     ),
                                     Container(
                                       width: width,
-                                      margin: EdgeInsets.only(top: 10),
-                                      decoration: BoxDecoration(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(50),
                                           topLeft: Radius.circular(50),
                                         ),
                                         color: Colors.white,
                                       ),
-                                      padding: EdgeInsets.all(20),
-                                      child: Text("\n Opciones de ingreso",
+                                      padding: const EdgeInsets.all(20),
+                                      child: const Text("\n Opciones de ingreso",
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(
                                               fontSize: 20,
@@ -117,7 +106,7 @@ class _InicioAdmisionState extends State<InicioAdmision> {
                                     SizedBox(
                                       height: height,
                                       child: Container(
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             color: Colors.white,
                                           ),
                                           child: ListView.builder(
@@ -128,7 +117,7 @@ class _InicioAdmisionState extends State<InicioAdmision> {
                                                 return Card(
                                                   color: Color(0xFFCBEFF7),
                                                   elevation: 5,
-                                                  margin: EdgeInsets.only(
+                                                  margin: const EdgeInsets.only(
                                                       top: 15.0,
                                                       right: 30,
                                                       left: 30),
@@ -156,7 +145,7 @@ class _InicioAdmisionState extends State<InicioAdmision> {
                                                       child: Text(
                                                         Admisiones[index]
                                                             .Nombre!,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -194,15 +183,15 @@ class Secciones extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30)),
       ),
-      padding: EdgeInsets.all(20),
-      child: Text(this.texto,
+      padding: const EdgeInsets.all(20),
+      child: Text(texto,
           textAlign: TextAlign.justify,
           style: TextStyle(
-              fontSize: this.tamano,
-              fontWeight: this.font,
+              fontSize: tamano,
+              fontWeight: font,
               color: Colors.white)),
     );
   }

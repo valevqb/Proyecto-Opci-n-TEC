@@ -21,7 +21,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
   @override
   void initState() {
     super.initState();
-    _valor = this.widget.servicioSeleccionado;
+    _valor = widget.servicioSeleccionado;
     locator<DatosServicio>().fetchServicios();
   }
 
@@ -38,50 +38,46 @@ class _InformacionServicioState extends State<InformacionServicio> {
                 size: 40.0, color: Color(0xFFCBEFF7)),
           ),
           elevation: 0,
-          backgroundColor: Color(0xFF1C2D4B),
+          backgroundColor: const Color(0xFF1C2D4B),
         ),
         body: (isLoading)
           ? Container(
 
         )
-          : Container(
-            child: ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 1,
-            itemBuilder: (BuildContext context, int index) {
-              return Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      tituloImagenPrincipal(context, _valor),
-                      SizedBox(
-                        child: Container( //Lista
-                          decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                          ),
-                          child: ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: 1,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Align(
-                                  alignment: Alignment.topLeft,
-                                  child: informacionServicio(context, _valor),
-                                );
-                              }
-                          ),
-                        ),
-                      )
-                    ]
-                  ),
-                ),
-              );
-            }
+          : ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 1,
+          itemBuilder: (BuildContext context, int index) {
+            return Align(
+              alignment: Alignment.topLeft,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  tituloImagenPrincipal(context, _valor),
+                  SizedBox(
+                    child: Container( //Lista
+                      decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                      ),
+                      child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: 1,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Align(
+                              alignment: Alignment.topLeft,
+                              child: informacionServicio(context, _valor),
+                            );
+                          }
+                      ),
+                    ),
+                  )
+                ]
+              ),
+            );
+          }
           )
-      )
     );
   }
 
@@ -109,18 +105,18 @@ class _InformacionServicioState extends State<InformacionServicio> {
                 top: 30.75, left: 24, right: 24
             ),
             child: Text (servicioSeleccion.Nombre, //Nombre del servicio
-              style: TextStyle(
+              style: const TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 18,
                   fontWeight: FontWeight. bold,
-                  color: Color(0xFFB2B436D)),
+                  color: const Color(0xFFB2B436D)),
             ),
           ),
           Container(
             padding: const EdgeInsets.only(
                 top: 24, left: 24, right: 24
             ),
-            child: Text ('Su labor', //Labor del servicio
+            child: const Text ('Su labor', //Labor del servicio
               style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 16,
@@ -133,7 +129,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
                 top: 4, left: 24, right: 24
             ),
             child: Text (servicioSeleccion.Descripcion, //Labor del servicio
-              style: TextStyle(
+              style: const TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 14,
                   fontWeight: FontWeight. bold),
@@ -143,7 +139,7 @@ class _InformacionServicioState extends State<InformacionServicio> {
             padding: const EdgeInsets.only(
                 top: 24, left: 24, right: 24
             ),
-            child: Text ('Fotos', //Labor del servicio
+            child: const Text ('Fotos', //Labor del servicio
               style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 16,
@@ -163,21 +159,19 @@ class _InformacionServicioState extends State<InformacionServicio> {
                     itemCount: servicioSeleccion?.Fotos.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Align(
-                        child: Container(
+                        child: SizedBox(
                             width: 120,
                             height: 120,
-                            child: Container(
-                              child: Card(
-                                semanticContainer: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                                  child: Image.network( // Imagen del servicio
-                                    servicioSeleccion?.Fotos[index]!,
-                                    fit: BoxFit.fill,
-                                  ),
+                            child: Card(
+                              semanticContainer: true,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                child: Image.network( // Imagen del servicio
+                                  servicioSeleccion?.Fotos[index]!,
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                             )

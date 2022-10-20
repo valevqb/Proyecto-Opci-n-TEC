@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc1b69c3-003a-4717-81cb-72cf2b153be9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Movil/lib/Sesion/vistas/Editar_Sesion.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Movil/lib/Sesion/vistas/Editar_Sesion.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Movil/lib/Sesion/vistas/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Movil/lib/Sesion/vistas/login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servidor/src/controllers/usuarios.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/servidor/src/controllers/usuarios.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servidor/src/routes/usuarios.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/servidor/src/routes/usuarios.routes.js" afterDir="false" />
+    <list default="true" id="fb28e36d-f172-4305-96f6-0a3df9909a56" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Pagina WEB/lib/Barra.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Pagina WEB/lib/Barra.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pagina WEB/lib/Inicio/vistas/inicio_start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Pagina WEB/lib/Inicio/vistas/inicio_start.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pagina WEB/lib/Mas/vistas/mas_inicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Pagina WEB/lib/Mas/vistas/mas_inicio.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pagina WEB/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Pagina WEB/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +18,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2GGfCceMBcQLd5at2Ti4kFhnMN6" />
+  <component name="ProjectId" id="2FmBQcU3eTNSRRetWFvXQ7CgheR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -26,16 +29,17 @@
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Movil" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dc1b69c3-003a-4717-81cb-72cf2b153be9" name="Changes" comment="" />
-      <created>1666019728878</created>
+      <changelist id="fb28e36d-f172-4305-96f6-0a3df9909a56" name="Changes" comment="" />
+      <created>1665087368744</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1666019728878</updated>
+      <updated>1665087368744</updated>
     </task>
     <servers />
   </component>

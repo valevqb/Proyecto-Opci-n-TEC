@@ -36,7 +36,12 @@ dependencies:
   web_socket_channel: ^2.1.0 # Add this line to it.
   flutter_screenutil: ^0.4.2
   url_launcher: ^6.1.5
-
+  flutter_email_sender: ^5.1.0
+  firebase_messaging: ^13.1.0
+  mailer: ^5.2.0
+  google_sign_in: ^5.4.2
+  syncfusion_flutter_datepicker: ^20.3.49
+  syncfusion_flutter_calendar: ^20.3.49
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
 
@@ -80,6 +85,7 @@ flutter:
      - lib/Fotos/Start.png
      - lib/Fotos/LogIn.png
      - lib/Fotos/Registro.png
+     - lib/Fotos/VerSesion.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

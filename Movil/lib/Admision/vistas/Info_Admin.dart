@@ -67,7 +67,7 @@ class _Info_AdminState extends State<Info_Admin> {
             icon: const Icon(Icons.arrow_circle_left_rounded,
                 size: 40.0, color: Color(0xFFCBEFF7)),
           ),
-          title: Text("Admisión",
+          title: const Text("Admisión",
               style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -84,8 +84,8 @@ class _Info_AdminState extends State<Info_Admin> {
                     Center(
                       child: Container(
                         width: width - 50,
-                        margin: EdgeInsets.only(top: 15),
-                        decoration: BoxDecoration(
+                        margin: const EdgeInsets.only(top: 15),
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(6.0)),
                           color: Color(0xFFCBEFF7),
                         ),
@@ -142,7 +142,7 @@ class Secciones extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30)),
       ),
       padding: EdgeInsets.all(20),

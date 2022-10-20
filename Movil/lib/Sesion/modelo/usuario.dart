@@ -1,27 +1,28 @@
-class Data {
+class Usuario {
   int? id;
   String? nombre;
-  String? Apellido;
-  String? Carrera;
-  String? Correo;
+  String? apellido;
+  String? carrera;
+  String? correo;
+  String? contrasena;
 
-  Data({this.id, this.nombre, this.Apellido, this.Carrera, this.Correo});
+  Usuario({this.id, this.nombre, this.apellido, this.carrera, this.correo});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Usuario.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     nombre = json['nombre'];
-    Apellido = json['Apellido'];
-    Carrera = json['Carrera'];
-    Correo = json['Correo'];
+    apellido = json['Apellido'];
+    carrera = json['Carrera'];
+    correo = json['Correo'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['nombre'] = this.nombre;
-    data['Apellido'] = this.Apellido;
-    data['Carrera'] = this.Carrera;
-    data['Correo'] = this.Correo;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['nombre'] = nombre;
+    data['Apellido'] = apellido;
+    data['Carrera'] = carrera;
+    data['Correo'] = correo;
     return data;
   }
 }

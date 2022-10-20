@@ -30,7 +30,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
     return MaterialApp(
       title: "Pez Prueba",
       theme: ThemeData(
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           titleLarge: pantallaPrincipal, //titulo mas grande
           titleMedium: titulosTipos, //tipos de carreras, etc
           titleSmall: tituloContenedor, //el titulo principal de las cartas
@@ -50,7 +50,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
           onTap: onTabTapped,
           selectedItemColor: Colors.cyan,
           type: BottomNavigationBarType.fixed,
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home), label: "Inicio"
             ),

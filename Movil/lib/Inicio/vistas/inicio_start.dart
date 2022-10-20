@@ -1,13 +1,20 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
-import 'package:opciontec/Carreras/vistas/Info_Carreras.dart';
 import 'package:opciontec/Admision/vistas/Admision_inicio.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
-import 'package:opciontec/Sesion/vistas/login.dart';
+import 'package:opciontec/Sesion/vistas/Login.dart';
+import 'package:opciontec/Sesion/vistas/Editar_Sesion.dart';
+import 'package:opciontec/Sesion/vistas/Ver_Sesion.dart';
 import 'package:provider/provider.dart';
 
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+
+import '../../Carreras/vistas/carrera_inicio.dart';
+import '../../Mas/controladores/datos_eventos.dart';
+import '../../Mas/modelos/eventos.dart';
+import '../../Mas/vistas/Calendario.dart';
 import '../../locators.dart';
+import '../../Config.dart';
 
 class Inicio extends StatefulWidget {
   @override
@@ -24,6 +31,7 @@ class _InicioState extends State<Inicio> {
     textoFinal = "Carrera, becas, servicios, etc.";
     super.initState();
     locator<DatosCarrera>().fetchUsers();
+    locator<DatosEventos>().fetchUsers();
   }
 
   @override
@@ -33,7 +41,7 @@ class _InicioState extends State<Inicio> {
     List<DataCarrera>? users = Provider.of<DatosCarrera>(context).carreras;
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
     busquedaActiva = users;
-
+    List<DataEventos>? eventos = Provider.of<DatosEventos>(context).eventos;
     return MaterialApp(
         title: "Inicio",
         theme: ThemeData(primarySwatch: Colors.cyan),
@@ -44,13 +52,19 @@ class _InicioState extends State<Inicio> {
               actions: [
                 IconButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LogIn()),
-                    );
+                    if (Config.Sesion.contrasena.toString() == "null") {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LogIn()),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => VerLaSesion()),
+                      );
+                    }
                   },
-                  icon: Icon(Icons.account_circle_sharp,
+                  icon: const Icon(Icons.account_circle_sharp,
                       size: 40.0, color: Color(0xFFCBEFF7)),
                 ),
               ],
@@ -68,30 +82,23 @@ class _InicioState extends State<Inicio> {
                           children: <Widget>[
                             Container(
                               width: width,
-                              //height: 190,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xFF1C2D4B),
                               ),
-                              padding: EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
-                                      /*Container(
-                                        width: 25,
-                                        height: 190,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF1C2D4B),
-                                        ),
-                                      ),*/
                                       Container(
-                                        width: width /2,
-                                        padding: EdgeInsets.all(20),
-                                        height: 200,
-                                        decoration: BoxDecoration(
+                                        width: width / 2,
+                                        padding: const EdgeInsets.all(20),
+                                        //height: 200,
+                                        height: height / 4,
+                                        decoration: const BoxDecoration(
                                           color: Color(0xFF1C2D4B),
                                         ),
                                         child: Column(
@@ -106,15 +113,14 @@ class _InicioState extends State<Inicio> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                Text('El futuro es',
+                                                const Text('El futuro es',
                                                     style: TextStyle(
                                                         fontSize: 20,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         color: Colors.white)),
                                                 Row(
-
-                                                  children: <Widget>[
+                                                  children: const <Widget>[
                                                     Text('con ',
                                                         style: TextStyle(
                                                             fontSize: 20,
@@ -133,17 +139,15 @@ class _InicioState extends State<Inicio> {
                                                 ),
                                               ],
                                             ),
-
-                                            Text(
+                                            const Text(
                                                 '¡Explorá las carreras \nque el TEC te ofrece \ny encontrá la tuya!',
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.white)),
                                             Row(
-
                                               children: <Widget>[
-                                                Text('Ver carreras',
+                                                const Text('Ver carreras',
                                                     style: TextStyle(
                                                         fontSize: 14,
                                                         fontWeight:
@@ -152,7 +156,11 @@ class _InicioState extends State<Inicio> {
                                                             Color(0xFFCBEFF7))),
                                                 IconButton(
                                                   onPressed: () {
-                                                    Navigator.of(context).pop();
+                                                    Navigator.of(context)
+                                                        .push(MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          InicioCarrera(),
+                                                    ));
                                                   },
                                                   icon: const Icon(
                                                       Icons
@@ -165,7 +173,9 @@ class _InicioState extends State<Inicio> {
                                           ],
                                         ),
                                       ),
-                                      Image.asset(width :(width/2)-50 , 'lib/Fotos/Inicio1.png'),
+                                      Image.asset(
+                                          width: (width / 2) - 50,
+                                          'lib/Fotos/Inicio1.png'),
                                     ],
                                   ),
                                 ],
@@ -175,49 +185,43 @@ class _InicioState extends State<Inicio> {
                                 texto: ' ',
                                 tamano: 14.0,
                                 color: Colors.transparent),
-                            Positioned(
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              child: Container(
-                                  height: 42,
-                                  width: width - 25,
-                                  padding: const EdgeInsets.only(left: 20),
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: width / 15),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
-                                      color: Color(0xFFDCDCDC),
-                                      //style: BorderStyle.solid,
-                                      width: 1,
-                                    ),
+                            Container(
+                                height: 42,
+                                width: width - 25,
+                                padding: const EdgeInsets.only(left: 20),
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: width / 15),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: Color(0xFFDCDCDC),
+                                    //style: BorderStyle.solid,
+                                    width: 1,
                                   ),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: TextField(
-                                      controller: controller,
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      onChanged: buscarCarrera,
-                                      decoration: InputDecoration(
-                                          //isCollapsed: true,
-                                          hintText: textoFinal,
-                                          hintStyle: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black
-                                                  .withOpacity(0.5)),
-                                          enabledBorder: InputBorder.none,
-                                          focusedBorder: InputBorder.none,
-                                          prefixIcon: const Icon(
-                                              Icons.search_rounded,
-                                              size: 20.0,
-                                              color: Color(0xBE5CC6DE))),
-                                    ),
-                                  )),
-                            ),
+                                ),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: TextField(
+                                    controller: controller,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    onChanged: buscarCarrera,
+                                    decoration: InputDecoration(
+                                        //isCollapsed: true,
+                                        hintText: textoFinal,
+                                        hintStyle: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold,
+                                            color:
+                                                Colors.black.withOpacity(0.5)),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        prefixIcon: const Icon(
+                                            Icons.search_rounded,
+                                            size: 20.0,
+                                            color: Color(0xBE5CC6DE))),
+                                  ),
+                                )),
                             Secciones(
                                 texto: ' ',
                                 tamano: 14.0,
@@ -225,23 +229,24 @@ class _InicioState extends State<Inicio> {
                             Center(
                               child: Container(
                                 width: width - 50,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(6.0)),
                                   color: Color(0xFFCBEFF7),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
-                                    Image.asset(width :(width/2)-75 ,'lib/Fotos/Start.png'),
+                                    Image.asset(
+                                        width: (width / 2) - 75,
+                                        'lib/Fotos/Start.png'),
                                     Container(
                                       width: 3 * (width - 80) / 5,
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                            MainAxisAlignment.spaceEvenly,
                                         children: <Widget>[
-
                                           Text('¿Harás el examen de admisión?',
                                               style: TextStyle(
                                                   fontSize: 16,
@@ -271,7 +276,6 @@ class _InicioState extends State<Inicio> {
                                       ),
                                     ),
                                   ],
-
                                   mainAxisSize: MainAxisSize.max,
                                 ),
                               ),
@@ -279,7 +283,36 @@ class _InicioState extends State<Inicio> {
                             Secciones(
                                 texto: 'Próximos eventos',
                                 tamano: 24.0,
-                                color: Color(0xFF1C2D4B)),
+                                color: const Color(0xFF1C2D4B)),
+                            /*SizedBox(
+                              width: width - 50,
+                              height: 3 * height / 5,
+                              child: Stack(
+                                children: <Widget>[
+                                  Positioned(
+                                    left: 0,
+                                    top: 65,
+                                    right: 0,
+                                    //height: width / 2,
+                                    //width: width - 50,
+                                    bottom: 0,
+                                    child: 
+
+                            Scaffold(
+                              body: SfCalendar(
+                                  view: CalendarView.schedule,
+                                  dataSource: Eventos(eventos),
+                                  scheduleViewSettings: ScheduleViewSettings(
+                                      appointmentItemHeight: 70,
+                                      hideEmptyScheduleWeek: true),
+                                  showDatePickerButton: true),
+                            ),
+/
+                                  ),
+                                ],
+                                //Stack
+                              ), //Center
+                            ),*/
                             Secciones(
                                 texto: ' ',
                                 tamano: 14.0,
@@ -289,22 +322,23 @@ class _InicioState extends State<Inicio> {
                                 height: 80,
                                 width: width - 50,
                                 decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.0)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(6.0)),
                                   color: Colors.indigo.shade50,
                                 ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Container(
                                       width: 3 * (width - 50) / 5,
                                       child: Column(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
+                                            MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: const <Widget>[
                                           Text('Calendario',
                                               style: TextStyle(
                                                   fontSize: 18,
@@ -319,21 +353,19 @@ class _InicioState extends State<Inicio> {
                                         ],
                                       ),
                                     ),
-                                    new IconButton(
+                                    IconButton(
                                       icon: const Icon(
                                           Icons.arrow_circle_right_rounded,
                                           size: 40.0,
                                           color: Color(0xBE3154E5)),
                                       onPressed: () {
-                                        /*
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Calendario(),
-                              ));*/
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) => CalendarApp(),
+                                        ));
                                       },
                                     ),
                                   ],
-
-
                                 ),
                               ),
                             ),
@@ -347,20 +379,11 @@ class _InicioState extends State<Inicio> {
       var sugerencia = element.Nombre?.toLowerCase();
       var escrito = carreraE.toLowerCase();
 
-      print("object");
-      print(escrito.toString());
-      print(sugerencia.toString());
-      //print("Tiene sugerencias");
-      //print(escrito);
-      //print(sugerencia.toString());
-
       return sugerencia!.contains(escrito);
     }).toList();
 
     setState(() {
       busquedaActiva = sugerencias;
-      print("Cambia");
-      print(busquedaActiva![0].Nombre.toString());
     });
   }
 }
@@ -379,12 +402,12 @@ class Secciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Text(this.texto,
+      padding: const EdgeInsets.all(20),
+      child: Text(texto,
           style: TextStyle(
-              fontSize: this.tamano,
+              fontSize: tamano,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF1C2D4B))),
+              color: const Color(0xFF1C2D4B))),
     );
   }
 }
@@ -409,7 +432,7 @@ class Busqueda extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, bottom: 15),
         margin: EdgeInsets.symmetric(horizontal: width / 15),
         decoration: BoxDecoration(
-          color: Color(0xFFF0F2F5),
+          color: const Color(0xFFF0F2F5),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Align(
@@ -428,7 +451,6 @@ class Busqueda extends StatelessWidget {
                 focusedBorder: InputBorder.none,
                 prefixIcon: const Icon(Icons.search_rounded,
                     size: 40.0, color: Colors.lightBlue)),
-            //onChanged: buscarCarrera,
           ),
         ));
   }

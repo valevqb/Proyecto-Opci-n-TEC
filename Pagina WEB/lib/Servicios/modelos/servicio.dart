@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new
-
 class Servicios {
   List<List<DataServicio>>? servicios = [];
   int? total;
@@ -15,13 +13,13 @@ class Servicios {
     if (json['Datos'] != null) {
       servicios = [];
       json['Datos'].forEach((v) {
-        if (v['info']['Categoria'] == "Facilidades") {
-          facilidades.add(DataServicio.fromJson(v));
-        } else if (v['info']['Categoria'] == "Salud y Bienestar") {
-          saludBienestar.add(DataServicio.fromJson(v));
-        } else if (v['info']['Categoria'] == "Para el estudio") {
+        if(v['info']['Categoria'] == "Facilidades"){
+          facilidades.add(new DataServicio.fromJson(v));
+        } else if(v['info']['Categoria'] == "Salud y Bienestar"){
+          saludBienestar.add(new DataServicio.fromJson(v));
+        } else  if(v['info']['Categoria'] == "Para el estudio"){
           estudio.add(new DataServicio.fromJson(v));
-        } else {
+        } else{
           masServicios.add(new DataServicio.fromJson(v));
         }
       });
@@ -33,6 +31,7 @@ class Servicios {
       print("JOO");
       print(servicios);
     }
+
   }
 }
 
@@ -46,17 +45,10 @@ class DataServicio {
   List<dynamic>? Horarios;
   List<dynamic>? Fotos;
   String? Icon;
-  DataServicio(
-      {this.Nombre,
-      this.Categoria,
-      this.Descripcion,
-      this.Precio,
-      this.Ubicacion,
-      this.Horarios,
-      this.Fotos,
-      this.Icon});
+  DataServicio({this.Nombre, this.Categoria, this.Descripcion, this.Precio, this.Ubicacion, this.Horarios, this.Fotos, this.Icon});
 
   DataServicio.fromJson(Map<String, dynamic> json) {
+
     id = json['id'];
     Nombre = json['info']['Nombre'];
     Categoria = json['info']['Categoria'];
@@ -69,16 +61,16 @@ class DataServicio {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['Nombre'] = Nombre;
-    data['Categoria'] = Categoria;
-    data['Descripcion'] = Descripcion;
-    data['Precio'] = Precio;
-    data['Ubicacion'] = Ubicacion;
-    data['Horarios'] = Horarios;
-    data['IMG'] = Fotos;
-    data['Icon'] = Icon;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data[ 'id' ] = id;
+    data[ 'Nombre' ] = Nombre;
+    data[ 'Categoria' ] = Categoria;
+    data[ 'Descripcion' ] = Descripcion;
+    data[ 'Precio' ] = Precio;
+    data[ 'Ubicacion' ] = Ubicacion;
+    data[ 'Horarios' ] = Horarios;
+    data[ 'IMG' ] = Fotos;
+    data[ 'Icon' ] = Icon;
     return data;
   }
 }

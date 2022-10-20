@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:opciontec/Mas/modelos/Costos.dart';
 import 'package:opciontec/Mas/modelos/Becas.dart';
 import 'package:provider/provider.dart';
 import 'package:opciontec/Mas/controladores/datos_becas.dart';
@@ -8,6 +7,8 @@ import 'package:opciontec/Mas/vistas/Info_Costos.dart';
 import '../../locators.dart';
 
 class Costos_y_Becas extends StatefulWidget {
+  const Costos_y_Becas({Key? key}) : super(key: key);
+
   @override
   _Costos_y_BecasState createState() => _Costos_y_BecasState();
 }
@@ -51,7 +52,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const Text(''),
+                    Text(''),
                     Center(
                       child: Container(
                         width: width - 50,
@@ -60,8 +61,6 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                           color: Color(0xFFCBEFF7),
                         ),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
                             Image.asset('lib/Fotos/Costo.png'),
                             /*
@@ -95,21 +94,9 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                 ));
                               },
                             ),
-
-                            /*FloatingActionButton.extended(
-                              label: Text(''),
-                              //backgroundColor: Colors.lightBlue,
-                              */ /*shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0))),*/ /*
-                              icon: Icon(
-                                // <-- Icon
-                                Icons.arrow_circle_right_rounded,
-                                size: 24.0,
-                              ),
-                              onPressed: () {},
-                            ),*/
                           ],
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisSize: MainAxisSize.max,
                         ),
                       ),
                     ),
@@ -117,7 +104,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                     SizedBox(
                       height: height / 3,
                       child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(6.0)),
                           ),
@@ -129,7 +116,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                   child: ListTile(
                                     title: Text(
                                       Becas![0][index].Nombre!,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFF1C2D4B)),
@@ -156,7 +143,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                     SizedBox(
                       height: height / 3,
                       child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(6.0)),
                           ),
@@ -168,7 +155,7 @@ class _Costos_y_BecasState extends State<Costos_y_Becas> {
                                   child: ListTile(
                                     title: Text(
                                       Becas![1][index].Nombre!,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFF1C2D4B)),
@@ -211,12 +198,12 @@ class Secciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Text(this.texto,
+      padding: const EdgeInsets.all(20),
+      child: Text(texto,
           style: TextStyle(
-              fontSize: this.tamano,
+              fontSize: tamano,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF1C2D4B))),
+              color: const Color(0xFF1C2D4B))),
     );
   }
 }
