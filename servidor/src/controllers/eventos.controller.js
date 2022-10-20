@@ -35,7 +35,6 @@ const postModificarEventos =  async (req,res) => {
     var estododia = req["body"]["estododia"];
     var descripcion = req["body"]["descripcion"];
     const response =  await pool.query("SELECT ModificarEvento("+"'"+id+"'"+","+"'"+nombre+"'"+","+"'"+fechainicio+"'"+","+"'"+fechafin+"'"+","+"'"+descripcion+"'"+","+"'"+estododia+"'"+")");
- 
     res.json(response.rows[0]["modificarevento"]["respuesta"]);
 }
 
