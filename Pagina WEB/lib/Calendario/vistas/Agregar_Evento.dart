@@ -350,6 +350,11 @@ class _AgregarEventoState extends State<AgregarEvento> {
                           context, "Agregado", "Evento Agregado con éxito");
                     },
                   );
+
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        CalendarApp(),
+                  ));
                 }),
             TextButton(
                 child: const Text("Modificar"),

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:opciontec/Calendario/modelos/eventos.dart';
+import 'package:opciontec/Calendario/vistas/Calendario.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -385,6 +385,11 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                           "Se modificó la noticia con éxito");
                     },
                   );
+
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        CalendarApp(),
+                  ));
                 }),
             TextButton(
                 child: const Text("Modificar"),
@@ -426,6 +431,10 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                 },
               );
               Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                  CalendarApp(),
+              ));
             }),
       ],
     );
