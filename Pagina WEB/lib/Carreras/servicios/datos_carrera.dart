@@ -5,6 +5,20 @@ import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:http/http.dart' as http;
 import '';
 import '../../Config.dart';
+
+class AreaLaboralCarrera{
+  String nombre = "";
+  List<String> opciones = [];
+
+  AreaLaboralCarrera(this.nombre, this.opciones);
+
+  Map toJson() => {
+    'Nombre': nombre,
+    'Opciones': opciones,
+  };
+
+}
+
 class DatosCarrera extends ChangeNotifier {
 
 

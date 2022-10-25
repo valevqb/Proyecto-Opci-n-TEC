@@ -5,6 +5,7 @@ import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:opciontec/Carreras/vistas/Info_Carreras.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:provider/provider.dart';
+import 'package:opciontec/Carreras/vistas/Agregar_Carrera.dart';
 
 import '../../locators.dart';
 
@@ -60,6 +61,35 @@ class _InicioCarreraState extends State<InicioCarrera> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Secciones(texto: ' ', tamano: 14.0),
+                    Container(
+                      alignment: Alignment.topRight,
+                      margin: const EdgeInsets.only(right: 24),
+                      child: SizedBox(
+                        height: 50,
+                        width: (width - 40) / 4,
+                        child: FloatingActionButton.extended(
+                          label: const Text('Agregar Carrera',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF1C2D4B))),
+                          // <-- Text
+                          backgroundColor: Colors.lightBlue.shade100,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                          icon: const Icon(
+                            // <-- Icon
+                              Icons.add_rounded,
+                              size: 24.0,
+                              color: Color(0xBE5CC6DE)),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AgregarCarrera(),
+                            ));
+                          },
+                        ),
+                      ),
+                    ),
                     Positioned(
                       bottom: 0,
                       left:0,
@@ -68,7 +98,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                           height: 42,
                           width: width-25,
                           padding: const EdgeInsets.only(left: 20),
-                          margin: EdgeInsets.symmetric(horizontal: width/15),
+                          margin: const EdgeInsets.only(left: 24, right: 24, top: 32),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
