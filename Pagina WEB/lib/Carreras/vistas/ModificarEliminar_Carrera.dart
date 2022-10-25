@@ -1,36 +1,45 @@
-//import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
+import 'package:opciontec/Carreras/modelos/usuario.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
-import 'package:opciontec/Carreras/vistas/carrera_inicio.dart';
 import 'package:provider/provider.dart';
-//import 'package:intl/intl.dart';
+import 'package:opciontec/Carreras/vistas/carrera_inicio.dart';
 import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../locators.dart';
 //import '../controladores/datos_eventos.dart';
 //import 'Calendario.dart';
 
-class AgregarCarrera extends StatefulWidget {
+class ModificarCarrera extends StatefulWidget {
+  final DataCarrera carreraSeleccionado;
+  ModificarCarrera(this.carreraSeleccionado);
+
   @override
-  _AgregarCarreraState createState() => _AgregarCarreraState();
+  _ModificarCarreraState createState() => _ModificarCarreraState();
 }
 
-class _AgregarCarreraState extends State<AgregarCarrera> {
-  var nombre;
-  var resumen;
-  var descripcion;
-  var video;
-  var sede;
-  var grado;
-  var horario;
-  var corte;
-  var acreditacion;
+class _ModificarCarreraState extends State<ModificarCarrera> {
+  late DataCarrera _valor;
+  var bandera = 0;
+  TextEditingController nombre = TextEditingController();
+  TextEditingController resumen = TextEditingController();
+  TextEditingController descripcion = TextEditingController();
+  TextEditingController video = TextEditingController();
+  TextEditingController sede = TextEditingController();
+  TextEditingController grado = TextEditingController();
+  TextEditingController horario = TextEditingController();
+  TextEditingController corte = TextEditingController();
+  TextEditingController acreditacion = TextEditingController();
+  TextEditingController intereses1 = TextEditingController();
+  TextEditingController habilidades1 = TextEditingController();
+  TextEditingController areaLaboral1 = TextEditingController();
   var intereses = [];
   var habilidades = [];
   var areaLaboral = [];
-  var areaCompleto;
-  var planEstudios;
+  TextEditingController areaCompleto = TextEditingController();
+  TextEditingController planEstudios = TextEditingController();
   var width = 0.0;
   GlobalKey llave = GlobalKey<FormState>();
   List<Map> sedes = [
@@ -46,14 +55,16 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
     {"nombre": "Maestría", "revisado": false},
     {"nombre": "Técnico", "revisado": false}
   ];
- List<Map> horarios = [
+  List<Map> horarios = [
     {"nombre": "Diurno", "revisado": false},
     {"nombre": "Nocturno", "revisado": false}
   ];
 
+
   @override
   void initState() {
     width = 0.0;
+    _valor = this.widget.carreraSeleccionado;
     super.initState();
   }
 
@@ -62,8 +73,31 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
     width = MediaQuery.of(context).size.width;
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
 
+    if (bandera == 0) {
+      nombre.text = _valor.Nombre!;
+      resumen.text = _valor.Resumen!;
+      descripcion.text = _valor.Descripcion!;
+      video.text = _valor.IMG!;
+      sede.text = _valor.Sede!;
+      grado.text = _valor.Grado!;
+      horario.text = _valor.Horario!;
+      corte.text = _valor.Corte!;
+      acreditacion.text = _valor.Acreditacion!;
+      planEstudios.text = _valor.Plan!;
+
+      intereses = _valor.Intereses!;
+      habilidades = _valor.Habilidades!;
+      //areaLaboral = _valor.AreaLaboral! as List;
+
+    }
+    bandera = 1;
+
+    selectedFiles(context, sedes, sede);
+    selectedFiles(context, grados, grado);
+    selectedFiles(context, horarios, horario);
+
     return MaterialApp(
-        title: "Agregar Carrera",
+        title: "Modificar Carrera",
         theme: ThemeData(primaryColor: Colors.white),
         home: Scaffold(
             appBar: AppBar(
@@ -75,7 +109,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                     size: 40.0, color: Color(0xBE5CC6DE)),
               ),
               centerTitle: true,
-              title: const Text('Agregar evento',
+              title: const Text('Modificar evento',
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -102,13 +136,13 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                                 color: Color(0xFF2B436D))),
                         textTittle(context, "* Nombre"),
                         textInfo(context, "Escriba el nombre de la carrera"),
-                        textForms(context, "Ej. Ingeniería en..", 0),
+                        textForms(context, nombre, 0),
                         textTittle(context, "* Breve descripción"),
                         textInfo(context, "Escriba los descripción de la carrera"),
-                        textForms(context, "Descripción", 1),
+                        textForms(context, resumen, 1),
                         textTittle(context, "* Video"),
                         textInfo(context, "Escriba el enlace de video"),
-                        textForms(context, "Enlace", 2),
+                        textForms(context, video, 2),
                         textTittle(context, "* Sedes"),
                         textInfo(context, "Seleccione las sedes donde se impartirá la carrera"),
                         infoSede(),
@@ -120,30 +154,41 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                         infoHorario(),
                         textTittle(context, "* Corte"),
                         textInfo(context, "Escriba la nota de corte para el examen de admisión del año anterior"),
-                        textForms(context, "Ej. 560", 5),
+                        textForms(context, corte, 5),
                         textTittle(context, "* Descripción extendida"),
                         textInfo(context, "Escriba la descripción de la carrera"),
-                        textForms(context, "Descripción", 3),
+                        textForms(context, descripcion, 3),
                         textTittle(context, "* Acreditación"),
                         textInfo(context, "Escriba los detalles sobre la acreditación"),
-                        textForms(context, "Ej. tipo de acreditación", 4),
+                        textForms(context, acreditacion, 4),
                         textTittle(context, "* Intereses"),
                         textInfo(context, "Escriba los intereses de la carrera, sepárelos por ;"),
-                        textForms(context, "Ej. Innovación tecnológica", 6),
+                        //textForms(context, intereses.join(", ").toString(), 6),
                         textTittle(context, "* Habilidades"),
                         textInfo(context, "Escriba los habilidades de la carrera, sepárelos por ;"),
-                        textForms(context, "Ej. Trabajo en equipo", 7),
+                        //textForms(context, habilidades.join(", ").toString(), 7),
                         textTittle(context, "* Area laboral"),
-                        textInfo(context, "Escriba el área laboral en el formato solicitado Nombre[Opción1, Opción2] (separe cada área por ;)"),
-                        textForms(context, "Ej. Trabajo en equipo", 8),
+                        textInfo(context, "Escriba el área laboral en el formato solicitado Nombre: Opción1, Opción2 (separe cada área por ;)"),
+                        //textForms(context, "Ej. Trabajo en equipo", 8),
                         textTittle(context, "* Plan estudios"),
                         textInfo(context, "Escriba el enlace de la imagen de plan de estudios"),
-                        textForms(context, "Enlace", 9),
-                        AgregarCarreraBotton(context),
+                        textForms(context, planEstudios, 9),
+                        ModificarCarreraBotton(context),
                       ],
                     ),
                   ),
                 ))));
+  }
+
+  void selectedFiles(BuildContext context, datas, data){
+    datas.map((marked){
+      var nameData = data.text.toString().split(", ");
+      var dataFinal = nameData[nameData.length-1].toString().split(" y ");
+      nameData = nameData + dataFinal;
+      if (nameData.contains(marked["nombre"].toString())){
+        marked["revisado"] = true;
+      }
+    }).toList();
   }
 
   Widget textTittle(BuildContext context, titulo) {
@@ -176,14 +221,14 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                 color: Color(0xFF2B436D))));
   }
 
-  Widget textForms(BuildContext context, palabras, tipo) {
+  Widget textForms(BuildContext context, controlador, tipo) {
     return Container(
         margin: const EdgeInsets.only(top: 5.0),
-        child: TextFormField(
+        child: TextField(
+          controller: controlador,
           decoration: InputDecoration(
               filled: true,
               fillColor: const Color(0xFFF0F2F5),
-              hintText: palabras.toString(),
               hintStyle: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
@@ -195,30 +240,25 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
               )),
           onChanged: (value) {
             if (tipo == 0) {
-              nombre = value.toString();
+              nombre.text = value.toString();
             } else if (tipo == 1) {
-              resumen = value.toString();
+              resumen.text  = value.toString();
             } else if (tipo == 2) {
-              video = value.toString();
+              video.text  = value.toString();
             } else if (tipo == 3) {
-              descripcion = value.toString();
+              descripcion.text  = value.toString();
             } else if (tipo == 4) {
-              acreditacion = value.toString();
+              acreditacion.text  = value.toString();
             } else if (tipo == 5) {
-              corte = value.toString();
+              corte.text = value.toString();
             } else if (tipo == 6) {
               intereses = value.toString().split(";");
             } else if (tipo == 7) {
               habilidades = value.toString().split(";");
             } else if (tipo == 8) { //revisar como le funciona
-              areaCompleto = value.toString();
+              areaCompleto.text  = value.toString();
             } else if (tipo == 9) {
-              planEstudios = value.toString();
-            }
-          },
-          validator: (value) {
-            if (value.toString().isEmpty) {
-              return "Llenar este campo";
+              planEstudios.text  = value.toString();
             }
           },
         ));
@@ -226,20 +266,20 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
 
   Widget infoSede() {
     return Container(
-      margin: const EdgeInsets.only(top: 5.0),
-      child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: sedes.map((sedeSeleccion){
-        return CheckboxListTile(
-            value: sedeSeleccion["revisado"],
-            title: Text(sedeSeleccion["nombre"]),
-            onChanged: (newValue){
-              setState(() {
-                sedeSeleccion["revisado"] = newValue;
-              });
-            });
-      }).toList(),
-    ));
+        margin: const EdgeInsets.only(top: 5.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: sedes.map((sedeSeleccion){
+            return CheckboxListTile(
+                value: sedeSeleccion["revisado"],
+                title: Text(sedeSeleccion["nombre"]),
+                onChanged: (newValue){
+                  setState(() {
+                    sedeSeleccion["revisado"] = newValue;
+                  });
+                });
+          }).toList(),
+        ));
   }
 
   Widget infoGrado() {
@@ -289,7 +329,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                 color: Color(0xFF2B436D))));
   }
 
-  Widget AgregarCarreraBotton(BuildContext context) {
+  Widget ModificarCarreraBotton(BuildContext context) {
     return SizedBox(
       width: width - 24,
       child: Card(
@@ -310,7 +350,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
               });
               var listaFinal = list.join("");
               listaFinal = listaFinal.substring(0, listaFinal.length - 2);
-              sede = listaFinal.toString();
+              sede.text = listaFinal.toString();
 
               list = [];
               grados.forEach((element) {
@@ -320,7 +360,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
               });
               listaFinal = list.join("");
               listaFinal = listaFinal.substring(0, listaFinal.length - 2);
-              grado = listaFinal.toString();
+              grado.text = listaFinal.toString();
 
               list = [];
               horarios.forEach((element) {
@@ -330,7 +370,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
               });
               listaFinal = list.join("");
               listaFinal = listaFinal.substring(0, listaFinal.length - 2);
-              horario = listaFinal.toString();
+              horario.text = listaFinal.toString();
 
               var diferentesAreas = areaCompleto.toString().split(";"); //json de las areas laborales
               for( var i = 0; i < diferentesAreas.length; i++){
@@ -364,7 +404,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
             alignment: Alignment.center,
             height: 60,
             child: const Text(
-              "Agregar Carrera",
+              "Modificar Carrera",
               style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 18.0,
