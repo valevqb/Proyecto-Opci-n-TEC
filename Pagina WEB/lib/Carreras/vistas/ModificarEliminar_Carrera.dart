@@ -38,7 +38,6 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
   var intereses = [];
   var habilidades = [];
   var areaLaboral = [];
-  TextEditingController areaCompleto = TextEditingController();
   TextEditingController planEstudios = TextEditingController();
   var width = 0.0;
   GlobalKey llave = GlobalKey<FormState>();
@@ -64,7 +63,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
   @override
   void initState() {
     width = 0.0;
-    _valor = this.widget.carreraSeleccionado;
+    _valor = widget.carreraSeleccionado;
     super.initState();
   }
 
@@ -84,11 +83,21 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
       corte.text = _valor.Corte!;
       acreditacion.text = _valor.Acreditacion!;
       planEstudios.text = _valor.Plan!;
-
       intereses = _valor.Intereses!;
       habilidades = _valor.Habilidades!;
-      //areaLaboral = _valor.AreaLaboral! as List;
 
+      intereses1.text = _valor.Intereses!.join("; ");
+      habilidades1.text = _valor.Habilidades!.join("; ");
+
+      for(var i = 0; i < _valor.AreaLaboral?.total; i++){
+        if(areaLaboral1.text.toString().isEmpty){
+          areaLaboral1.text = "${(_valor.AreaLaboral?.areas?[i].Nombre.toString())!}: ${(_valor.AreaLaboral?.areas?[i].Opciones?.join(", ").toString())!}";
+        }
+        else{
+          areaLaboral1.text = "${areaLaboral1.text}; ${(_valor.AreaLaboral?.areas?[i].Nombre.toString())!}${(_valor.AreaLaboral?.areas?[i].Opciones?.join(", ").toString())!}";
+        }
+
+      }
     }
     bandera = 1;
 
@@ -109,7 +118,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                     size: 40.0, color: Color(0xBE5CC6DE)),
               ),
               centerTitle: true,
-              title: const Text('Modificar evento',
+              title: const Text('Modificar carrera',
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -129,6 +138,24 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        InkWell(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return verificarEliminar(context);
+                                },
+                              );
+                            },
+                            child: Container(
+                                margin: const EdgeInsets.only(bottom: 25),
+                                child: const Text('Eliminar Carrera',
+                                    style: TextStyle(
+                                        fontFamily: 'Mulish',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.red)))),
                         const Text("* Información Obligatoria",
                             style: TextStyle(
                                 fontSize: 18.0,
@@ -163,13 +190,13 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                         textForms(context, acreditacion, 4),
                         textTittle(context, "* Intereses"),
                         textInfo(context, "Escriba los intereses de la carrera, sepárelos por ;"),
-                        //textForms(context, intereses.join(", ").toString(), 6),
+                        textForms(context, intereses1, 6),
                         textTittle(context, "* Habilidades"),
                         textInfo(context, "Escriba los habilidades de la carrera, sepárelos por ;"),
-                        //textForms(context, habilidades.join(", ").toString(), 7),
+                        textForms(context, habilidades1, 7),
                         textTittle(context, "* Area laboral"),
                         textInfo(context, "Escriba el área laboral en el formato solicitado Nombre: Opción1, Opción2 (separe cada área por ;)"),
-                        //textForms(context, "Ej. Trabajo en equipo", 8),
+                        textForms(context, areaLaboral1, 8),
                         textTittle(context, "* Plan estudios"),
                         textInfo(context, "Escriba el enlace de la imagen de plan de estudios"),
                         textForms(context, planEstudios, 9),
@@ -256,7 +283,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
             } else if (tipo == 7) {
               habilidades = value.toString().split(";");
             } else if (tipo == 8) { //revisar como le funciona
-              areaCompleto.text  = value.toString();
+              areaLaboral1.text  = value.toString();
             } else if (tipo == 9) {
               planEstudios.text  = value.toString();
             }
@@ -343,43 +370,43 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
           onTap: () {
             try{
               var list = [];
-              sedes.forEach((element) {
+              for (var element in sedes) {
                 if(element["revisado"] == true){
                   list.add(element["nombre"] + "," + " ");
                 }
-              });
+              }
               var listaFinal = list.join("");
               listaFinal = listaFinal.substring(0, listaFinal.length - 2);
               sede.text = listaFinal.toString();
 
               list = [];
-              grados.forEach((element) {
+              for (var element in grados) {
                 if(element["revisado"] == true){
                   list.add(element["nombre"] + "," + " ");
                 }
-              });
+              }
               listaFinal = list.join("");
               listaFinal = listaFinal.substring(0, listaFinal.length - 2);
               grado.text = listaFinal.toString();
 
               list = [];
-              horarios.forEach((element) {
+              for (var element in horarios) {
                 if(element["revisado"] == true){
                   list.add(element["nombre"] + "," + " ");
                 }
-              });
+              }
               listaFinal = list.join("");
               listaFinal = listaFinal.substring(0, listaFinal.length - 2);
               horario.text = listaFinal.toString();
 
-              var diferentesAreas = areaCompleto.toString().split(";"); //json de las areas laborales
+              var diferentesAreas = areaLaboral1.text.toString().split(";"); //json de las areas laborales
               for( var i = 0; i < diferentesAreas.length; i++){
                 var separacion = diferentesAreas[i].toString().split(":");
                 try{
                   var listaOpciones = separacion[1].toString().split(",");
                   areaLaboral.add(AreaLaboralCarrera(separacion[0].toString(), listaOpciones));
                 } catch (_){
-                };
+                }
               }
 
               showDialog(
@@ -446,7 +473,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
 
   Widget aceptacion(BuildContext context) {
     String jsonTags = jsonEncode(areaLaboral); //json del area laboral
-    print(jsonTags);
+    print(jsonTags); //aqui esta el json del area laboral
 
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
@@ -493,6 +520,44 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
           ],
         ),
       ]),
+    );
+  }
+
+  Widget verificarEliminar(BuildContext context) {
+    return AlertDialog(
+      contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      title: Container(
+          margin: const EdgeInsets.only(bottom: 15),
+          child: const Text('Eliminar carrera')),
+      content: Text(
+          "Seguro que deseas eliminar la carrera $nombre?"),
+      actions: <Widget>[
+        TextButton(
+            child: const Text("Cancelar"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+        TextButton(
+            child: const Text("Aceptar"),
+            onPressed: () {
+              /*locator<DatosEventos>()
+                  .EliminarEvento(evento.appointments![0].id);
+              Navigator.of(context).pop();*/
+
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return validaciones(
+                      context, "Eliminado", "Carrera eliminada con éxito");
+                },
+              );
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    InicioCarrera(),
+              ));
+            }),
+      ],
     );
   }
 }

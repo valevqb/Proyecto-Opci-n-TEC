@@ -80,7 +80,7 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
     double width = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.topRight,
-      margin: const EdgeInsets.only(right: 24),
+      margin: const EdgeInsets.only(right: 24, bottom: 10),
       child: SizedBox(
         height: 50,
         width: (width - 40) / 4,

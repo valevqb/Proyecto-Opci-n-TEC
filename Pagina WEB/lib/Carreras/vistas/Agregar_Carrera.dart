@@ -207,9 +207,9 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
             } else if (tipo == 5) {
               corte = value.toString();
             } else if (tipo == 6) {
-              intereses = value.toString().split(";");
+              intereses = value.toString().split("; ");
             } else if (tipo == 7) {
-              habilidades = value.toString().split(";");
+              habilidades = value.toString().split("; ");
             } else if (tipo == 8) { //revisar como le funciona
               areaCompleto = value.toString();
             } else if (tipo == 9) {
@@ -332,11 +332,11 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
               listaFinal = listaFinal.substring(0, listaFinal.length - 2);
               horario = listaFinal.toString();
 
-              var diferentesAreas = areaCompleto.toString().split(";"); //json de las areas laborales
+              var diferentesAreas = areaCompleto.toString().split("; "); //json de las areas laborales
               for( var i = 0; i < diferentesAreas.length; i++){
-                var separacion = diferentesAreas[i].toString().split(":");
+                var separacion = diferentesAreas[i].toString().split(": ");
                 try{
-                  var listaOpciones = separacion[1].toString().split(",");
+                  var listaOpciones = separacion[1].toString().split(", ");
                   areaLaboral.add(AreaLaboralCarrera(separacion[0].toString(), listaOpciones));
                 } catch (_){
                 };
