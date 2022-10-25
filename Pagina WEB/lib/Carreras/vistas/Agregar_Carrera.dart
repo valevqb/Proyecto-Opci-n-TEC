@@ -1,6 +1,8 @@
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
+import 'package:opciontec/Carreras/vistas/carrera_inicio.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
@@ -299,52 +301,55 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
         ),
         child: InkWell(
           onTap: () {
-            var list = [];
-            sedes.forEach((element) {
-              if(element["revisado"] == true){
-                list.add(element["nombre"] + "," + " ");
+            try{
+              var list = [];
+              sedes.forEach((element) {
+                if(element["revisado"] == true){
+                  list.add(element["nombre"] + "," + " ");
+                }
+              });
+              var listaFinal = list.join("");
+              listaFinal = listaFinal.substring(0, listaFinal.length - 2);
+              sede = listaFinal.toString();
+
+              list = [];
+              grados.forEach((element) {
+                if(element["revisado"] == true){
+                  list.add(element["nombre"] + "," + " ");
+                }
+              });
+              listaFinal = list.join("");
+              listaFinal = listaFinal.substring(0, listaFinal.length - 2);
+              grado = listaFinal.toString();
+
+              list = [];
+              horarios.forEach((element) {
+                if(element["revisado"] == true){
+                  list.add(element["nombre"] + "," + " ");
+                }
+              });
+              listaFinal = list.join("");
+              listaFinal = listaFinal.substring(0, listaFinal.length - 2);
+              horario = listaFinal.toString();
+
+              var diferentesAreas = areaCompleto.toString().split(";"); //json de las areas laborales
+              for( var i = 0; i < diferentesAreas.length; i++){
+                var separacion = diferentesAreas[i].toString().split(":");
+                try{
+                  var listaOpciones = separacion[1].toString().split(",");
+                  areaLaboral.add(AreaLaboralCarrera(separacion[0].toString(), listaOpciones));
+                } catch (_){
+                };
               }
-            });
-            var listaFinal = list.join("");
-            listaFinal = listaFinal.substring(0, listaFinal.length - 2);
-            sede = listaFinal.toString();
 
-            list = [];
-            grados.forEach((element) {
-              if(element["revisado"] == true){
-                list.add(element["nombre"] + "," + " ");
-              }
-            });
-            listaFinal = list.join("");
-            listaFinal = listaFinal.substring(0, listaFinal.length - 2);
-            grado = listaFinal.toString();
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return aceptacion(context);
+                },
+              );
 
-            list = [];
-            horarios.forEach((element) {
-              if(element["revisado"] == true){
-                list.add(element["nombre"] + "," + " ");
-              }
-            });
-            listaFinal = list.join("");
-            listaFinal = listaFinal.substring(0, listaFinal.length - 2);
-            horario = listaFinal.toString();
-
-            var diferentesAreas = areaCompleto.toString().split(";"); //json de las areas laborales
-            for( var i = 0; i < diferentesAreas.length; i++){
-              var separacion = diferentesAreas[i].toString().split(":");
-              try{
-                var listaOpciones = separacion[1].toString().split(",");
-                areaLaboral.add(AreaLaboralCarrera(separacion[0].toString(), listaOpciones));
-              } catch (_){
-              };
-            }
-
-            String jsonTags = jsonEncode(areaLaboral);
-            print(jsonTags);
-
-            /*if (nombre.toString() == "null" ||
-                fechaInicial.toString().isEmpty ||
-                detalles.toString() == "null") {
+            } catch (_){
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -352,14 +357,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                       "Todas las casillas deben tener contenido");
                 },
               );
-            } else {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return aceptacion(context);
-                },
-              );
-            }*/
+            }
             //codigo al presionarse
           },
           child: Container(
@@ -406,29 +404,25 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
     );
   }
 
-  /*Widget aceptacion(BuildContext context) {
+  Widget aceptacion(BuildContext context) {
+    String jsonTags = jsonEncode(areaLaboral); //json del area laboral
+    print(jsonTags);
+
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
         margin: const EdgeInsets.only(bottom: 15),
-        child: const Text('Confirmar datos'),
+        child: textTittle(context, 'Confirmar datos'),
       ),
       content: Column(mainAxisSize: MainAxisSize.min, children: [
-        letter(context, "* Confirme que los datos sean correctos *"),
-        /*letter(context, "Fecha inicial: " + fechaInicial.text.toString()),
-        letter(
-            context,
-            "Fecha final (si es diferente a la inicial): " +
-                fechaFinal.text.toString()),
-        letter(context, "Nombre: " + nombre.toString()),
-        letter(context, "Detalles: " + detalles.toString()),
-        letter(context, "Enlaces extras: " + enlace.toString()),*/
+        letter(context, "* Los datos escritos son correctos? *"),
+        letter(context, "Si desea revisarlos, presione modificar"),
         const SizedBox(height: 30),
         Row(
           children: [
             TextButton(
                 child: const Text("Aceptar"),
-                onPressed: () {
+                onPressed: () { //aqui se mandan los datos
                   /*locator<DatosEventos>().postEvento(
                       nombre,
                       fechaInicial.text.toString(),
@@ -444,12 +438,12 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                       return validaciones(
                           context, "Agregado", "Evento Agregado con éxito");
                     },
-                  );
+                  );*/
 
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
-                        CalendarApp(),
-                  ));*/
+                        InicioCarrera(),
+                  ));
                 }),
             TextButton(
                 child: const Text("Modificar"),
@@ -460,5 +454,5 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
         ),
       ]),
     );
-  }*/
+  }
 }
