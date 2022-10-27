@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:opciontec/Mas/controladores/datos_becas.dart';
+import 'package:opciontec/Mas/controladores/Datos_Becas.dart';
 import 'package:opciontec/Mas/modelos/Becas.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
