@@ -19,6 +19,8 @@ app.use("/api",require('../routes/usuarios.routes'))
 app.use("/api",require('../routes/eventos.routes'))
 
 
+
+
 app.use('/', function (req, res, next) {
     res.sendStatus(404);
 });
