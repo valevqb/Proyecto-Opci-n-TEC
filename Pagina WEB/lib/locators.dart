@@ -16,22 +16,12 @@ GetIt locator = GetIt.I;
 /// needs to be called at in the main
 /// it creates the instances of servicios
 void setupLocators() {
-  locator.registerLazySingleton<DatosCarrera>(
-    () => DatosCarrera(),
-  );
-  locator.registerLazySingleton<DatosServicio>(
-    () => DatosServicio(),
-  );
-  locator.registerLazySingleton<DatosPreguntas>(
-    () => DatosPreguntas(),
-  );
-  locator.registerLazySingleton<DatosBecas>(
-    () => DatosBecas(),
-  );
-  locator.registerLazySingleton<DatosCostos>(
-    () => DatosCostos(),
-  );
+  locator.registerLazySingleton<DatosCarrera>(() => DatosCarrera());
+  locator.registerLazySingleton<DatosServicio>(() => DatosServicio());
+  locator.registerLazySingleton<DatosBecas>(() => DatosBecas());
+  locator.registerLazySingleton<DatosCostos>(() => DatosCostos());
   locator.registerLazySingleton<DatosBus>(() => DatosBus());
   locator.registerLazySingleton<DatosAdmisiones>(() => DatosAdmisiones());
   locator.registerLazySingleton<DatosEventos>(() => DatosEventos());
+  locator.registerLazySingleton<DatosPreguntas>(() => DatosPreguntas());
 }

@@ -29,7 +29,7 @@ class _InicioMasState extends State<InicioMas> {
         Provider.of<DatosPreguntas>(context).preguntas;
     bool isLoading = Provider.of<DatosPreguntas>(context).isLoading;
     return MaterialApp(
-        title: "Pez Prueba",
+        title: "Mas",
         //theme: ThemeData(scaffoldBackgroundColor:Color(0xFFCBEFF7) ),
         home: Scaffold(
           appBar: AppBar(
@@ -128,9 +128,10 @@ class _InicioMasState extends State<InicioMas> {
                           // <-- Text
                           backgroundColor: Colors.lightBlue.shade100,
                           shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0))),
                           icon: const Icon(
-                            // <-- Icon
+                              // <-- Icon
                               Icons.add_rounded,
                               size: 24.0,
                               color: Color(0xBE5CC6DE)),

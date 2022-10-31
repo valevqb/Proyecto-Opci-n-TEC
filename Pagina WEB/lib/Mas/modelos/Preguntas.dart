@@ -12,22 +12,16 @@ class Preguntas {
     if (json['Datos'] != null) {
       datos = [];
       json['Datos'].forEach((v) {
-        if(v['info']['Categoria']=="Matricula"){
+        if (v['info']['Categoria'] == "Matricula") {
           Matricula.add(new DataPreguntas.fromJson(v));
-        }else {
+        } else {
           admision.add(new DataPreguntas.fromJson(v));
         }
       });
     }
     datos?.add(Matricula);
     datos?.add(admision);
-    datos!.forEach((v) {
-      v.forEach((e) {
-        print(e.Pregunta);
-      });
-    });
   }
-
 }
 
 class DataPreguntas {

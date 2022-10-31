@@ -1,10 +1,8 @@
 const {pool} = require('../database/postgeSQL');
-
+const {transporter} = require ('../controllers/correos.controller');
 const postLogeo =  async (req,res) => {
-   
     var usuario = req["body"]["correo"];
     var contrasena = req["body"]["contrasena"];
-    console.debug("SELECT Inicio_Secion("+usuario+","+contrasena+")");
     const response =  await pool.query("SELECT Inicio_Secion("+"'"+usuario+"'"+","+"'"+contrasena+"'"+")");
     res.json(response.rows[0]["inicio_secion"]["respuesta"])
    
@@ -20,6 +18,7 @@ const postRegistro = async(req,res) => {
     Consulta= "Select registrar("+"'"+nombre+"'"+","+"'"+correo+"'"+","+"'"+contrasena+"'"+")";
     const response =  await pool.query(Consulta);
     res.json(response.rows[0]["registrar"]["respuesta"])
+    
     };
 
     

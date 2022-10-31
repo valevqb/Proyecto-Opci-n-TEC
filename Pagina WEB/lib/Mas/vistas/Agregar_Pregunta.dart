@@ -1,12 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
+import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 import 'package:opciontec/Mas/vistas/mas_inicio.dart';
-
 import '../../locators.dart';
-import '../controladores/datos_Preguntas.dart';
+
 //import 'Calendario.dart';
 
 class AgregarPregunta extends StatefulWidget {
@@ -26,6 +23,7 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
     {"nombre": "Admisión", "revisado": false},
     {"nombre": "Matrícula", "revisado": false}
   ];
+  var tema = " ";
 
   @override
   void initState() {
@@ -37,7 +35,7 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
+    bool isLoading = Provider.of<DatosPreguntas>(context).isLoading;
 
     return MaterialApp(
         title: "Agregar Pregunta",
@@ -62,41 +60,45 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
             ),
             body: (isLoading)
                 ? const Center(
-              child: CircularProgressIndicator(),
-            )
+                    child: CircularProgressIndicator(),
+                  )
                 : SingleChildScrollView(
-                child: Container(
-                  margin: const EdgeInsets.all(10.0),
-                  child: Form(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Text("* Información Obligatoria",
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF2B436D))),
-                        textTittle(context, "* Pregunta"),
-                        textInfo(context, "Escriba la pregunta"),
-                        textForms(context, "¿Qué, cómo, dónde...?", 0),
-                        textTittle(context, "* Tema"),
-                        textInfo(context, "Seleccione el grupo en el que puede agrupar este tema"),
-                        infoTema(),
-                        textTittle(context, "* Respuesta"),
-                        textInfo(context, "Escriba la respuesta de la pregunta"),
-                        textForms(context, "/R", 1),
-                        textTittle(context, "Enlaces"),
-                        textInfo(context, "Escriba los para información extra, sepárelos por ;"),
-                        textForms(context, "Ej. Enlace1; Enlace2; Enlace3", 2),
-                        textTittle(context, "Imagen"),
-                        textInfo(context, "Coloque el enlace de una imagen"),
-                        textForms(context, "Enlace", 3),
-                        AgregarPreguntaBotton(context),
-                      ],
+                    child: Container(
+                    margin: const EdgeInsets.all(10.0),
+                    child: Form(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text("* Información Obligatoria",
+                              style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF2B436D))),
+                          textTittle(context, "* Pregunta"),
+                          textInfo(context, "Escriba la pregunta"),
+                          textForms(context, "¿Qué, cómo, dónde...?", 0),
+                          textTittle(context, "* Tema"),
+                          textInfo(context,
+                              "Seleccione el grupo en el que puede agrupar este tema"),
+                          infoTema(),
+                          textTittle(context, "* Respuesta"),
+                          textInfo(
+                              context, "Escriba la respuesta de la pregunta"),
+                          textForms(context, "/R", 1),
+                          textTittle(context, "Enlaces"),
+                          textInfo(context,
+                              "Escriba los para información extra, sepárelos por ;"),
+                          textForms(
+                              context, "Ej. Enlace1; Enlace2; Enlace3", 2),
+                          textTittle(context, "Imagen"),
+                          textInfo(context, "Coloque el enlace de una imagen"),
+                          textForms(context, "Enlace", 3),
+                          AgregarPreguntaBotton(context),
+                        ],
+                      ),
                     ),
-                  ),
-                ))));
+                  ))));
   }
 
   Widget infoTema() {
@@ -104,13 +106,14 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
         margin: const EdgeInsets.only(top: 5.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: temas.map((sedeSeleccion){
+          children: temas.map((sedeSeleccion) {
             return CheckboxListTile(
                 value: sedeSeleccion["revisado"],
                 title: Text(sedeSeleccion["nombre"]),
-                onChanged: (newValue){
+                onChanged: (newValue) {
                   setState(() {
                     sedeSeleccion["revisado"] = newValue;
+                    tema = sedeSeleccion["nombre"];
                   });
                 });
           }).toList(),
@@ -170,7 +173,7 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
             } else if (tipo == 1) {
               respuesta = value.toString();
             } else if (tipo == 2) {
-              enlaces = value.toString().split("; ");
+              enlaces = value.toString().split(";");
             } else if (tipo == 3) {
               IMG = value.toString();
             }
@@ -201,7 +204,9 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
         ),
         child: InkWell(
           onTap: () {
-            if (pregunta.toString() == "null" || respuesta.toString() == "null" || temas.toString() == "null") {
+            if (pregunta.toString() == "null" ||
+                respuesta.toString() == "null" ||
+                temas.toString() == "null") {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -281,15 +286,8 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
-                  /*locator<DatosPreguntas>().postPregunta(
-                      nombre,
-                      fechaInicial.text.toString(),
-                      fechaFinal.text.toString(),
-                      detalles,
-                      "TRUE");*/
-
-                  Navigator.of(context).pop();
-
+                  locator<DatosPreguntas>()
+                      .postPregunta(pregunta, respuesta, IMG, enlaces, tema);
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -299,9 +297,9 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
                   );
 
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        InicioMas(),
+                    builder: (context) => InicioMas(),
                   ));
+                  Navigator.of(context).pop();
                 }),
             TextButton(
                 child: const Text("Modificar"),

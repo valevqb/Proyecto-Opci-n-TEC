@@ -4,12 +4,7 @@ import 'package:opciontec/Mas/modelos/Preguntas.dart';
 import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
 import 'package:provider/provider.dart';
 import 'package:opciontec/Mas/vistas/mas_inicio.dart';
-//import 'dart:convert';
-//import 'package:url_launcher/url_launcher.dart';
-
 import '../../locators.dart';
-//import '../controladores/datos_eventos.dart';
-//import 'Calendario.dart';
 
 class ModificarPregunta extends StatefulWidget {
   final DataPreguntas PreguntaSeleccionado;
@@ -261,7 +256,7 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
                   return aceptacion(context);
                 },
               );
-            } catch (_){
+            } catch (_) {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -331,13 +326,15 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
           children: [
             TextButton(
                 child: const Text("Aceptar"),
-                onPressed: () { //aqui se mandan los datos
-                  /*locator<DatosEventos>().postEvento(
-                      nombre,
-                      fechaInicial.text.toString(),
-                      fechaFinal.text.toString(),
-                      detalles,
-                      "TRUE");
+                onPressed: () {
+                  //aqui se mandan los datos
+                  locator<DatosPreguntas>().ModificarPregunta(
+                      _valor.id,
+                      pregunta.text,
+                      respuesta.text,
+                      IMG.text,
+                      enlaces,
+                      categoria.text);
 
                   Navigator.of(context).pop();
 
@@ -347,11 +344,10 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
                       return validaciones(
                           context, "Agregado", "Evento Agregado con éxito");
                     },
-                  );*/
+                  );
 
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        InicioMas(),
+                    builder: (context) => InicioMas(),
                   ));
                 }),
             TextButton(
@@ -371,8 +367,7 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
           child: const Text('Eliminar pregunta')),
-      content: Text(
-          "Seguro que deseas eliminar la pregunta: ${pregunta.text}"),
+      content: Text("Seguro que deseas eliminar la pregunta: ${pregunta.text}"),
       actions: <Widget>[
         TextButton(
             child: const Text("Cancelar"),
@@ -382,9 +377,8 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
         TextButton(
             child: const Text("Aceptar"),
             onPressed: () {
-              /*locator<DatosEventos>()
-                  .EliminarEvento(evento.appointments![0].id);
-              Navigator.of(context).pop();*/
+              locator<DatosPreguntas>().EliminarPregunta(_valor.id);
+              Navigator.of(context).pop();
 
               showDialog(
                 context: context,
@@ -395,8 +389,7 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
               );
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    InicioMas(),
+                builder: (context) => InicioMas(),
               ));
             }),
       ],
