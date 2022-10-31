@@ -77,7 +77,7 @@ class DataCarrera {
 
 class AreasLaborales {
   List<DataAreaLaboral>? areas = [];
-  int? total;
+  var total;
 
   AreasLaborales();
 
@@ -87,6 +87,7 @@ class AreasLaborales {
         areas!.add(new DataAreaLaboral.fromJson(v));
       });
     }
+    total = areas?.length;
   }
 }
 

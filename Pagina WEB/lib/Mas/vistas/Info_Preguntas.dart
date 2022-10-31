@@ -4,6 +4,7 @@ import 'package:opciontec/Mas/modelos/Preguntas.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../locators.dart';
+import 'package:opciontec/Mas/vistas/ModificarEliminar_Pregunta.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Info_Pregunta extends StatefulWidget {
@@ -29,8 +30,8 @@ class _Info_PreguntaState extends State<Info_Pregunta> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    String Categoria = "Pregunta frecuente de " + PreguntaSelec.Categoria.toString();
-
+    String Categoria = "Pregunta frecuente de ${PreguntaSelec.Categoria}";
+    print(PreguntaSelec);
     bool isLoading = Provider.of<DatosPreguntas>(context).isLoading;
     return MaterialApp(
       title: "Pez Info becas",
@@ -55,73 +56,107 @@ class _Info_PreguntaState extends State<Info_Pregunta> {
         body: (isLoading)
             ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Center(
-                child: Container(
-                  width: width - 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                    color: Colors.grey.shade100,
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      new Image.network(
-                        'https://picsum.photos/250?image=9',
-                        width: (width - 50) / 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Center(
+                      child: Container(
+                        width: width - 50,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(6.0)),
+                          color: Colors.grey.shade100,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            Image.network(
+                              'https://picsum.photos/250?image=9',
+                              width: (width - 50) / 5,
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    mainAxisSize: MainAxisSize.max,
-                  ),
+                    ),
+                    Center(
+                        child: Secciones(
+                            texto: PreguntaSelec.Pregunta.toString(),
+                            tamano: 20.0,
+                            width: width - 25,
+                            color: Colors.blue.shade900)),
+                    Center(
+                        child: Secciones(
+                            texto: PreguntaSelec.Respuesta.toString(),
+                            tamano: 12.0,
+                            width: width - 25,
+                            color: Colors.black87)),
+                    Center(
+                        child: SizedBox(
+                      width: width - 40,
+                      child: FloatingActionButton.extended(
+                        heroTag: UniqueKey(),
+                        label: Text('Leer más',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue.shade900)),
+                        // <-- Text
+                        backgroundColor: Colors.lightBlue.shade200,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0))),
+                        icon: const Icon(
+                          // <-- Icon
+                          Icons.chrome_reader_mode_outlined,
+                          size: 24.0,
+                        ),
+                        onPressed: () {
+                          launchUrlString(
+                              "https://www.tec.ac.cr/preguntas-frecuentes");
+                        },
+                      ),
+                    )),
+                    editarEliminarPregunta(context, PreguntaSelec)
+                  ],
                 ),
               ),
-              Center(
-                  child: Secciones(
-                      texto: PreguntaSelec.Pregunta.toString(),
-                      tamano: 20.0,
-                      width: width - 25,
-                      color: Colors.blue.shade900)),
-              Center(
-                  child: Secciones(
-                      texto: PreguntaSelec.Respuesta.toString(),
-                      tamano: 12.0,
-                      width: width - 25,
-                      color: Colors.black87)),
-
-              Center(
-                  child: SizedBox(
-                    width: width - 40,
-                    child: FloatingActionButton.extended(
-                      heroTag: UniqueKey(),
-                      label: Text('Leer más',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue.shade900)),
-                      // <-- Text
-                      backgroundColor: Colors.lightBlue.shade200,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(15.0))),
-                      icon: const Icon(
-                        // <-- Icon
-                        Icons.chrome_reader_mode_outlined,
-                        size: 24.0,
-                      ),
-                      onPressed: () {
-                        launchUrlString(
-                            "https://www.tec.ac.cr/preguntas-frecuentes");
-                      },
-                    ),
-                  ))
-            ],
-          ),
-        ),
       ),
     );
   }
+}
+
+Widget editarEliminarPregunta(BuildContext context, _valor) {
+  double width = MediaQuery.of(context).size.width;
+  return Container(
+    alignment: Alignment.topRight,
+    margin: const EdgeInsets.only(right: 24, bottom: 10, top: 20),
+    child: SizedBox(
+      height: 50,
+      width: (width - 40) / 4,
+      child: FloatingActionButton.extended(
+        label: const Text('Editar Pregunta',
+            style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF1C2D4B))),
+        // <-- Text
+        backgroundColor: Colors.lightBlue.shade100,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0))),
+        icon: const Icon(
+            // <-- Icon
+            Icons.add_rounded,
+            size: 24.0,
+            color: Color(0xBE5CC6DE)),
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ModificarPregunta(_valor),
+          ));
+        },
+      ),
+    ),
+  );
 }
 
 class Secciones extends StatelessWidget {
@@ -148,9 +183,7 @@ class Secciones extends StatelessWidget {
       child: Text(texto,
           textAlign: TextAlign.justify,
           style: TextStyle(
-              fontSize: tamano,
-              fontWeight: FontWeight.bold,
-              color: color)),
+              fontSize: tamano, fontWeight: FontWeight.bold, color: color)),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:opciontec/Mas/controladores/datos_becas.dart';
-import 'package:opciontec/Mas/controladores/datos_costos.dart';
+import 'package:opciontec/Mas/controladores/Datos_Becas.dart';
+import 'package:opciontec/Mas/controladores/Datos_Costos.dart';
 import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
 import 'package:opciontec/Servicios/servicios/datos_bus.dart';
 import 'package:opciontec/Servicios/servicios/datos_servicio.dart';

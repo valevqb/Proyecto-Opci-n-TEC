@@ -4,6 +4,7 @@ import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
 import 'package:opciontec/Mas/vistas/Costos_y_Becas.dart';
 import 'package:opciontec/Mas/vistas/Info_Preguntas.dart';
 import 'package:provider/provider.dart';
+import 'package:opciontec/Mas/vistas/Agregar_Pregunta.dart';
 
 import '../../Calendario/vistas/Calendario.dart';
 import '../../locators.dart';
@@ -28,7 +29,7 @@ class _InicioMasState extends State<InicioMas> {
         Provider.of<DatosPreguntas>(context).preguntas;
     bool isLoading = Provider.of<DatosPreguntas>(context).isLoading;
     return MaterialApp(
-        title: "Pez Prueba",
+        title: "Mas",
         //theme: ThemeData(scaffoldBackgroundColor:Color(0xFFCBEFF7) ),
         home: Scaffold(
           appBar: AppBar(
@@ -112,6 +113,36 @@ class _InicioMasState extends State<InicioMas> {
                         texto: 'Preguntas frecuentes',
                         tamano: 24.0,
                         color: const Color(0xFF1C2D4B)),
+                    Container(
+                      alignment: Alignment.topRight,
+                      margin: const EdgeInsets.only(right: 24),
+                      child: SizedBox(
+                        height: 50,
+                        width: (width - 40) / 4,
+                        child: FloatingActionButton.extended(
+                          label: const Text('Agregar Pregunta',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF1C2D4B))),
+                          // <-- Text
+                          backgroundColor: Colors.lightBlue.shade100,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0))),
+                          icon: const Icon(
+                              // <-- Icon
+                              Icons.add_rounded,
+                              size: 24.0,
+                              color: Color(0xBE5CC6DE)),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AgregarPregunta(),
+                            ));
+                          },
+                        ),
+                      ),
+                    ),
                     Secciones(
                         texto: 'Admisión',
                         tamano: 14.0,

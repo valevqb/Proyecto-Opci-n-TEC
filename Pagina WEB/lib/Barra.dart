@@ -49,7 +49,7 @@ class _PrototipoBarra extends State<PrototipoBarra> {
             TextButton(
               child: const Text("Inicio",
                   style: TextStyle(
-                      fontSize: 1.0,
+                      fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF1C2D4B))),
               onPressed: () => {

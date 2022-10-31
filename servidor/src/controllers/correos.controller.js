@@ -1,4 +1,4 @@
- //Requerimos el paquete
+/* //Requerimos el paquete
  var nodemailer = require('nodemailer');
 
  //Creamos el objeto de transporte
@@ -28,3 +28,5 @@
  });
 
  module.exports = transporter;
+
+ */
