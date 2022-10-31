@@ -56,11 +56,10 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
       enlaces = _valor.Enlaces!;
 
       enlaces1.text = _valor.Enlaces!.join("; ");
+      selectedFiles(context, categorias, categoria);
     }
 
     bandera = 1;
-
-    selectedFiles(context, categorias, categoria);
 
     return MaterialApp(
         title: "Modificar Pregunta",
@@ -120,19 +119,19 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
                                 color: Color(0xFF2B436D))),
                         textTittle(context, "* Pregunta"),
                         textInfo(context, "Escriba la pregunta"),
-                        textForms(context, pregunta, 0),
+                        textForms(context, pregunta.text.toString(), 0),
                         textTittle(context, "* Tema"),
                         textInfo(context, "Seleccione el grupo en el que puede agrupar este tema"),
                         infoTema(),
                         textTittle(context, "* Respuesta"),
                         textInfo(context, "Escriba la respuesta de la pregunta"),
-                        textForms(context, respuesta, 1),
+                        textForms(context, respuesta.text.toString(), 1),
                         textTittle(context, "Enlace"),
                         textInfo(context, "Pegue el enlace de la información"),
-                        textForms(context, enlaces1, 2),
+                        textForms(context, enlaces1.text.toString(), 2),
                         textTittle(context, "Imagen"),
                         textInfo(context, "Coloque el enlace de una imagen"),
-                        textForms(context, IMG, 3),
+                        textForms(context, IMG.text.toString(), 3),
                         ModificarPreguntaBotton(context),
                       ],
                     ),
@@ -199,12 +198,12 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
                 color: Color(0xFF2B436D))));
   }
 
-  Widget textForms(BuildContext context, controlador, tipo) {
+  Widget textForms(BuildContext context, palabras, tipo) {
     return Container(
         margin: const EdgeInsets.only(top: 5.0),
-        child: TextField(
-          controller: controlador,
+        child: TextFormField(
           decoration: InputDecoration(
+              hintText: palabras.toString(),
               filled: true,
               fillColor: const Color(0xFFF0F2F5),
               hintStyle: TextStyle(
