@@ -89,6 +89,10 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
       intereses1.text = _valor.Intereses!.join("; ");
       habilidades1.text = _valor.Habilidades!.join("; ");
 
+      selectedFiles(context, sedes, sede);
+      selectedFiles(context, grados, grado);
+      selectedFiles(context, horarios, horario);
+
       for(var i = 0; i < _valor.AreaLaboral?.total; i++){
         if(areaLaboral1.text.toString().isEmpty){
           areaLaboral1.text = "${(_valor.AreaLaboral?.areas?[i].Nombre.toString())!}: ${(_valor.AreaLaboral?.areas?[i].Opciones?.join(", ").toString())!}";
@@ -100,10 +104,6 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
       }
     }
     bandera = 1;
-
-    selectedFiles(context, sedes, sede);
-    selectedFiles(context, grados, grado);
-    selectedFiles(context, horarios, horario);
 
     return MaterialApp(
         title: "Modificar Carrera",
@@ -248,12 +248,12 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                 color: Color(0xFF2B436D))));
   }
 
-  Widget textForms(BuildContext context, controlador, tipo) {
+  Widget textForms(BuildContext context, palabras, tipo) {
     return Container(
         margin: const EdgeInsets.only(top: 5.0),
-        child: TextField(
-          controller: controlador,
+        child: TextFormField(
           decoration: InputDecoration(
+              hintText: palabras.text.toString(),
               filled: true,
               fillColor: const Color(0xFFF0F2F5),
               hintStyle: TextStyle(

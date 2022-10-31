@@ -106,19 +106,6 @@ class _PrototipoBarra extends State<PrototipoBarra> {
                 }),
               },
             ),
-            Container(
-              margin: const EdgeInsets.only(right: 15),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LogIn()),
-                  );
-                },
-                icon: const Icon(Icons.account_circle_sharp,
-                    size: 40.0, color: Color(0xFFCBEFF7)),
-              ),
-            )
           ],
         ),
         body: _children[_currentIndex],
