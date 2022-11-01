@@ -387,8 +387,7 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
                   );
 
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        CalendarApp(),
+                    builder: (context) => CalendarApp(),
                   ));
                 }),
             TextButton(
@@ -432,8 +431,7 @@ class _ModificarEliminarEventoState extends State<ModificarEliminarEvento> {
               );
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                  CalendarApp(),
+                builder: (context) => CalendarApp(),
               ));
             }),
       ],

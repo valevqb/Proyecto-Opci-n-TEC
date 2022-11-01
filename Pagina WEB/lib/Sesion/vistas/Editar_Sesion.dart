@@ -1,13 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:opciontec/Carreras/modelos/Carrera.dart';
-import 'package:opciontec/Carreras/vistas/Info_Carreras.dart';
-import 'package:opciontec/Admision/vistas/Admision_inicio.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
-import 'package:opciontec/Sesion/vistas/Editar_Sesion.dart';
 import 'package:provider/provider.dart';
-
-import '../../locators.dart';
 
 class EditarSesion extends StatefulWidget {
   @override
@@ -19,7 +12,6 @@ class _EditarSesionState extends State<EditarSesion> {
   var contra = TextEditingController();
   var nombreCompleto = TextEditingController();
   var width = 0.0;
-
 
   @override
   void initState() {
@@ -47,8 +39,7 @@ class _EditarSesionState extends State<EditarSesion> {
               elevation: 0,
               actions: [
                 IconButton(
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                   icon: const Icon(Icons.account_circle_sharp,
                       size: 40.0, color: Color(0xFFCBEFF7)),
                 ),
@@ -57,50 +48,50 @@ class _EditarSesionState extends State<EditarSesion> {
             ),
             body: (isLoading)
                 ? const Center(
-              child: CircularProgressIndicator(),
-            )
+                    child: CircularProgressIndicator(),
+                  )
                 : SingleChildScrollView(
-              child: SizedBox(
-                  height: height,
-                  width: width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        margin: const EdgeInsets.only(top: 23.0),
-                        height: 181.95,
-                        width: 234.25,
-                        child: FittedBox(
-                          fit: BoxFit.fill,
-                          child: Image.asset('lib/Fotos/Registro.png'),
-                        ),
-                      ),
-                      Container(
-                          margin: const EdgeInsets.only(top: 33.0),
-                          child: const Text('Completa la siguiente información',
-                              style: TextStyle(
-                                  fontFamily: 'Mulish',
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color(0xFF2B436D)))
-                      ),
-                      letter(context, "Nombre completo"),
-                      const Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxTextNombre(context, "Escribe tu nombre"),
-                      letter(context, "Correo"),
-                      const Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxTextCorreo(context, "Escribe tu correo"),
-                      letter(context, "Contraseña"),
-                      const Padding(padding: EdgeInsets.only(top: 12.0)),
-                      boxTextContra(context, "Escribe tu contraseña"),
-                      EditarSesionBotton(context)
-                    ],
-                  )),
-            )));
+                    child: SizedBox(
+                        height: height,
+                        width: width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: const EdgeInsets.only(top: 23.0),
+                              height: 181.95,
+                              width: 234.25,
+                              child: FittedBox(
+                                fit: BoxFit.fill,
+                                child: Image.asset('lib/Fotos/Registro.png'),
+                              ),
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(top: 33.0),
+                                child: const Text(
+                                    'Completa la siguiente información',
+                                    style: TextStyle(
+                                        fontFamily: 'Mulish',
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color(0xFF2B436D)))),
+                            letter(context, "Nombre completo"),
+                            const Padding(padding: EdgeInsets.only(top: 12.0)),
+                            boxTextNombre(context, "Escribe tu nombre"),
+                            letter(context, "Correo"),
+                            const Padding(padding: EdgeInsets.only(top: 12.0)),
+                            boxTextCorreo(context, "Escribe tu correo"),
+                            letter(context, "Contraseña"),
+                            const Padding(padding: EdgeInsets.only(top: 12.0)),
+                            boxTextContra(context, "Escribe tu contraseña"),
+                            EditarSesionBotton(context)
+                          ],
+                        )),
+                  )));
   }
 
-  Widget letter(BuildContext context, palabras){
+  Widget letter(BuildContext context, palabras) {
     return Container(
         margin: const EdgeInsets.only(top: 32.0),
         child: Text(palabras.toString(),
@@ -108,13 +99,12 @@ class _EditarSesionState extends State<EditarSesion> {
                 fontFamily: 'Mulish',
                 fontSize: 16.0,
                 fontWeight: FontWeight.normal,
-                color: Color(0xFF2B436D)))
-    );
+                color: Color(0xFF2B436D))));
   }
 
-  Widget boxTextNombre(BuildContext context, palabras){
+  Widget boxTextNombre(BuildContext context, palabras) {
     return SizedBox(
-        width: width-24.0,
+        width: width - 24.0,
         child: TextField(
           controller: nombreCompleto,
           textAlignVertical: TextAlignVertical.center,
@@ -129,18 +119,16 @@ class _EditarSesionState extends State<EditarSesion> {
                 fontFamily: 'Mulish',
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
-            ),
+                color: Colors.black.withOpacity(0.5)),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
           ),
-        )
-    );
+        ));
   }
 
-  Widget boxTextCorreo(BuildContext context, palabras){
+  Widget boxTextCorreo(BuildContext context, palabras) {
     return SizedBox(
-        width: width-24.0,
+        width: width - 24.0,
         child: TextField(
           controller: email,
           textAlignVertical: TextAlignVertical.center,
@@ -155,18 +143,16 @@ class _EditarSesionState extends State<EditarSesion> {
                 fontFamily: 'Mulish',
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
-            ),
+                color: Colors.black.withOpacity(0.5)),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
           ),
-        )
-    );
+        ));
   }
 
-  Widget boxTextContra(BuildContext context, palabras){
+  Widget boxTextContra(BuildContext context, palabras) {
     return SizedBox(
-        width: width-24.0,
+        width: width - 24.0,
         child: TextField(
           controller: contra,
           textAlignVertical: TextAlignVertical.center,
@@ -181,18 +167,16 @@ class _EditarSesionState extends State<EditarSesion> {
                 fontFamily: 'Mulish',
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.5)
-            ),
+                color: Colors.black.withOpacity(0.5)),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
           ),
-        )
-    );
+        ));
   }
 
-  Widget EditarSesionBotton(BuildContext context){
+  Widget EditarSesionBotton(BuildContext context) {
     return SizedBox(
-      width: width-24,
+      width: width - 24,
       child: Card(
         color: const Color(0xFFCBEFF7),
         elevation: 5,
@@ -201,12 +185,12 @@ class _EditarSesionState extends State<EditarSesion> {
           borderRadius: BorderRadius.circular(24),
         ),
         child: InkWell(
-          onTap: () {
-          },
+          onTap: () {},
           child: Container(
             alignment: Alignment.center,
             height: 60,
-            child: const Text( "Editar Datos",
+            child: const Text(
+              "Editar Datos",
               style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 16,
@@ -217,6 +201,5 @@ class _EditarSesionState extends State<EditarSesion> {
         ),
       ),
     );
-
   }
 }

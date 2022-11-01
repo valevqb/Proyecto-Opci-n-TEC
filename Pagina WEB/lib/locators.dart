@@ -6,7 +6,6 @@ import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
 import 'package:opciontec/Mas/controladores/Datos_Becas.dart';
 import 'package:opciontec/Servicios/servicios/datos_bus.dart';
 import 'package:opciontec/Servicios/servicios/datos_servicio.dart';
-import 'package:opciontec/Calendario/controladores/datos_eventos.dart';
 
 import 'Carreras/servicios/datos_carrera.dart';
 

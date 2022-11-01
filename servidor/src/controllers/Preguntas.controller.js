@@ -1,5 +1,7 @@
 const {pool} = require('../database/postgeSQL');
 
+
+
 const getPreguntas =  async (req,res) => {
     var newJson = {"Cantidad":2,"Datos":[{}]}
     const response =  await pool.query('SELECT * FROM Preguntas');
@@ -41,7 +43,24 @@ const eliminarPregunta =  async (req,res) => {
 }
 
 const cambiarPregunta =  async (req,res) => {
-    eliminarPregunta(req);
+  try {
+         var id = req["body"]["id"];
+        var pregunta = "\"Pregunta\":"+"\""+req["body"]["pregunta"]+"\",";
+        var respuesta = "\"Respuesta\":"+"\""+req["body"]["respuesta"]+"\",";
+        var IMG = "\"IMG\":"+"\""+req["body"]["IMG"]+"\",";
+
+        var enlaces ="\"Enlaces\": [" +"\""+req["body"]["enlaces"]+"\"],";
+        
+        var tema = "\"Categoria\":"+"\""+req["body"]["tema"]+"\"";
+        
+        var Consulta = "Select ModificarPregunta(',"+id+",{"+pregunta+respuesta+IMG+enlaces+tema+"}')";
+        console.debug(Consulta);
+        const response =  await pool.query(Consulta);
+        res.json(Consulta)
+    } catch (error) {
+        console.debug(error);
+        res.json("Error");
+    }
    
 }
 

@@ -1,14 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
-import 'package:opciontec/Carreras/modelos/usuario.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:provider/provider.dart';
 import 'package:opciontec/Carreras/vistas/carrera_inicio.dart';
 import 'dart:convert';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../../locators.dart';
 //import '../controladores/datos_eventos.dart';
 //import 'Calendario.dart';
 
@@ -17,6 +13,7 @@ class ModificarCarrera extends StatefulWidget {
   ModificarCarrera(this.carreraSeleccionado);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ModificarCarreraState createState() => _ModificarCarreraState();
 }
 
@@ -59,7 +56,6 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
     {"nombre": "Nocturno", "revisado": false}
   ];
 
-
   @override
   void initState() {
     width = 0.0;
@@ -86,21 +82,21 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
       intereses = _valor.Intereses!;
       habilidades = _valor.Habilidades!;
 
-      intereses1.text = _valor.Intereses!.join("; ");
-      habilidades1.text = _valor.Habilidades!.join("; ");
+      intereses1.text = _valor.Intereses!.join(";");
+      habilidades1.text = _valor.Habilidades!.join(";");
 
       selectedFiles(context, sedes, sede);
       selectedFiles(context, grados, grado);
       selectedFiles(context, horarios, horario);
 
-      for(var i = 0; i < _valor.AreaLaboral?.total; i++){
-        if(areaLaboral1.text.toString().isEmpty){
-          areaLaboral1.text = "${(_valor.AreaLaboral?.areas?[i].Nombre.toString())!}: ${(_valor.AreaLaboral?.areas?[i].Opciones?.join(", ").toString())!}";
+      for (var i = 0; i < _valor.AreaLaboral?.total; i++) {
+        if (areaLaboral1.text.toString().isEmpty) {
+          areaLaboral1.text =
+              "${(_valor.AreaLaboral?.areas?[i].Nombre.toString())!}: ${(_valor.AreaLaboral?.areas?[i].Opciones?.join(", ").toString())!}";
+        } else {
+          areaLaboral1.text =
+              "${areaLaboral1.text}; ${(_valor.AreaLaboral?.areas?[i].Nombre.toString())!}${(_valor.AreaLaboral?.areas?[i].Opciones?.join(", ").toString())!}";
         }
-        else{
-          areaLaboral1.text = "${areaLaboral1.text}; ${(_valor.AreaLaboral?.areas?[i].Nombre.toString())!}${(_valor.AreaLaboral?.areas?[i].Opciones?.join(", ").toString())!}";
-        }
-
       }
     }
     bandera = 1;
@@ -128,91 +124,102 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
             ),
             body: (isLoading)
                 ? const Center(
-              child: CircularProgressIndicator(),
-            )
+                    child: CircularProgressIndicator(),
+                  )
                 : SingleChildScrollView(
-                child: Container(
-                  margin: const EdgeInsets.all(10.0),
-                  child: Form(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return verificarEliminar(context);
-                                },
-                              );
-                            },
-                            child: Container(
-                                margin: const EdgeInsets.only(bottom: 25),
-                                child: const Text('Eliminar Carrera',
-                                    style: TextStyle(
-                                        fontFamily: 'Mulish',
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.normal,
-                                        decoration: TextDecoration.underline,
-                                        color: Colors.red)))),
-                        const Text("* Información Obligatoria",
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF2B436D))),
-                        textTittle(context, "* Nombre"),
-                        textInfo(context, "Escriba el nombre de la carrera"),
-                        textForms(context, nombre, 0),
-                        textTittle(context, "* Breve descripción"),
-                        textInfo(context, "Escriba los descripción de la carrera"),
-                        textForms(context, resumen, 1),
-                        textTittle(context, "* Video"),
-                        textInfo(context, "Escriba el enlace de video"),
-                        textForms(context, video, 2),
-                        textTittle(context, "* Sedes"),
-                        textInfo(context, "Seleccione las sedes donde se impartirá la carrera"),
-                        infoSede(),
-                        textTittle(context, "* Grados"),
-                        textInfo(context, "Seleccione los grados de la carrera"),
-                        infoGrado(),
-                        textTittle(context, "* Horarios"),
-                        textInfo(context, "Seleccione los horarios de la carrera"),
-                        infoHorario(),
-                        textTittle(context, "* Corte"),
-                        textInfo(context, "Escriba la nota de corte para el examen de admisión del año anterior"),
-                        textForms(context, corte, 5),
-                        textTittle(context, "* Descripción extendida"),
-                        textInfo(context, "Escriba la descripción de la carrera"),
-                        textForms(context, descripcion, 3),
-                        textTittle(context, "* Acreditación"),
-                        textInfo(context, "Escriba los detalles sobre la acreditación"),
-                        textForms(context, acreditacion, 4),
-                        textTittle(context, "* Intereses"),
-                        textInfo(context, "Escriba los intereses de la carrera, sepárelos por ;"),
-                        textForms(context, intereses1, 6),
-                        textTittle(context, "* Habilidades"),
-                        textInfo(context, "Escriba los habilidades de la carrera, sepárelos por ;"),
-                        textForms(context, habilidades1, 7),
-                        textTittle(context, "* Area laboral"),
-                        textInfo(context, "Escriba el área laboral en el formato solicitado Nombre: Opción1, Opción2 (separe cada área por ;)"),
-                        textForms(context, areaLaboral1, 8),
-                        textTittle(context, "* Plan estudios"),
-                        textInfo(context, "Escriba el enlace de la imagen de plan de estudios"),
-                        textForms(context, planEstudios, 9),
-                        ModificarCarreraBotton(context),
-                      ],
+                    child: Container(
+                    margin: const EdgeInsets.all(10.0),
+                    child: Form(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return verificarEliminar(context);
+                                  },
+                                );
+                              },
+                              child: Container(
+                                  margin: const EdgeInsets.only(bottom: 25),
+                                  child: const Text('Eliminar Carrera',
+                                      style: TextStyle(
+                                          fontFamily: 'Mulish',
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.normal,
+                                          decoration: TextDecoration.underline,
+                                          color: Colors.red)))),
+                          const Text("* Información Obligatoria",
+                              style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF2B436D))),
+                          textTittle(context, "* Nombre"),
+                          textInfo(context, "Escriba el nombre de la carrera"),
+                          textForms(context, nombre, 0),
+                          textTittle(context, "* Breve descripción"),
+                          textInfo(
+                              context, "Escriba los descripción de la carrera"),
+                          textForms(context, resumen, 1),
+                          textTittle(context, "* Video"),
+                          textInfo(context, "Escriba el enlace de video"),
+                          textForms(context, video, 2),
+                          textTittle(context, "* Sedes"),
+                          textInfo(context,
+                              "Seleccione las sedes donde se impartirá la carrera"),
+                          infoSede(),
+                          textTittle(context, "* Grados"),
+                          textInfo(
+                              context, "Seleccione los grados de la carrera"),
+                          infoGrado(),
+                          textTittle(context, "* Horarios"),
+                          textInfo(
+                              context, "Seleccione los horarios de la carrera"),
+                          infoHorario(),
+                          textTittle(context, "* Corte"),
+                          textInfo(context,
+                              "Escriba la nota de corte para el examen de admisión del año anterior"),
+                          textForms(context, corte, 5),
+                          textTittle(context, "* Descripción extendida"),
+                          textInfo(
+                              context, "Escriba la descripción de la carrera"),
+                          textForms(context, descripcion, 3),
+                          textTittle(context, "* Acreditación"),
+                          textInfo(context,
+                              "Escriba los detalles sobre la acreditación"),
+                          textForms(context, acreditacion, 4),
+                          textTittle(context, "* Intereses"),
+                          textInfo(context,
+                              "Escriba los intereses de la carrera, sepárelos por ;"),
+                          textForms(context, intereses1, 6),
+                          textTittle(context, "* Habilidades"),
+                          textInfo(context,
+                              "Escriba los habilidades de la carrera, sepárelos por ;"),
+                          textForms(context, habilidades1, 7),
+                          textTittle(context, "* Area laboral"),
+                          textInfo(context,
+                              "Escriba el área laboral en el formato solicitado Nombre: Opción1, Opción2 (separe cada área por ;)"),
+                          textForms(context, areaLaboral1, 8),
+                          textTittle(context, "* Plan estudios"),
+                          textInfo(context,
+                              "Escriba el enlace de la imagen de plan de estudios"),
+                          textForms(context, planEstudios, 9),
+                          ModificarCarreraBotton(context),
+                        ],
+                      ),
                     ),
-                  ),
-                ))));
+                  ))));
   }
 
-  void selectedFiles(BuildContext context, datas, data){
-    datas.map((marked){
+  void selectedFiles(BuildContext context, datas, data) {
+    datas.map((marked) {
       var nameData = data.text.toString().split(", ");
-      var dataFinal = nameData[nameData.length-1].toString().split(" y ");
+      var dataFinal = nameData[nameData.length - 1].toString().split(" y ");
       nameData = nameData + dataFinal;
-      if (nameData.contains(marked["nombre"].toString())){
+      if (nameData.contains(marked["nombre"].toString())) {
         marked["revisado"] = true;
       }
     }).toList();
@@ -269,23 +276,24 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
             if (tipo == 0) {
               nombre.text = value.toString();
             } else if (tipo == 1) {
-              resumen.text  = value.toString();
+              resumen.text = value.toString();
             } else if (tipo == 2) {
-              video.text  = value.toString();
+              video.text = value.toString();
             } else if (tipo == 3) {
-              descripcion.text  = value.toString();
+              descripcion.text = value.toString();
             } else if (tipo == 4) {
-              acreditacion.text  = value.toString();
+              acreditacion.text = value.toString();
             } else if (tipo == 5) {
               corte.text = value.toString();
             } else if (tipo == 6) {
               intereses = value.toString().split(";");
             } else if (tipo == 7) {
               habilidades = value.toString().split(";");
-            } else if (tipo == 8) { //revisar como le funciona
-              areaLaboral1.text  = value.toString();
+            } else if (tipo == 8) {
+              //revisar como le funciona
+              areaLaboral1.text = value.toString();
             } else if (tipo == 9) {
-              planEstudios.text  = value.toString();
+              planEstudios.text = value.toString();
             }
           },
         ));
@@ -296,11 +304,11 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
         margin: const EdgeInsets.only(top: 5.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: sedes.map((sedeSeleccion){
+          children: sedes.map((sedeSeleccion) {
             return CheckboxListTile(
                 value: sedeSeleccion["revisado"],
                 title: Text(sedeSeleccion["nombre"]),
-                onChanged: (newValue){
+                onChanged: (newValue) {
                   setState(() {
                     sedeSeleccion["revisado"] = newValue;
                   });
@@ -314,11 +322,11 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
         margin: const EdgeInsets.only(top: 5.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: grados.map((gradoSeleccion){
+          children: grados.map((gradoSeleccion) {
             return CheckboxListTile(
                 value: gradoSeleccion["revisado"],
                 title: Text(gradoSeleccion["nombre"]),
-                onChanged: (newValue){
+                onChanged: (newValue) {
                   setState(() {
                     gradoSeleccion["revisado"] = newValue;
                   });
@@ -332,11 +340,11 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
         margin: const EdgeInsets.only(top: 5.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: horarios.map((horarioSeleccion){
+          children: horarios.map((horarioSeleccion) {
             return CheckboxListTile(
                 value: horarioSeleccion["revisado"],
                 title: Text(horarioSeleccion["nombre"]),
-                onChanged: (newValue){
+                onChanged: (newValue) {
                   setState(() {
                     horarioSeleccion["revisado"] = newValue;
                   });
@@ -368,10 +376,10 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
         ),
         child: InkWell(
           onTap: () {
-            try{
+            try {
               var list = [];
               for (var element in sedes) {
-                if(element["revisado"] == true){
+                if (element["revisado"] == true) {
                   list.add(element["nombre"] + "," + " ");
                 }
               }
@@ -381,7 +389,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
 
               list = [];
               for (var element in grados) {
-                if(element["revisado"] == true){
+                if (element["revisado"] == true) {
                   list.add(element["nombre"] + "," + " ");
                 }
               }
@@ -391,7 +399,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
 
               list = [];
               for (var element in horarios) {
-                if(element["revisado"] == true){
+                if (element["revisado"] == true) {
                   list.add(element["nombre"] + "," + " ");
                 }
               }
@@ -399,14 +407,16 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
               listaFinal = listaFinal.substring(0, listaFinal.length - 2);
               horario.text = listaFinal.toString();
 
-              var diferentesAreas = areaLaboral1.text.toString().split(";"); //json de las areas laborales
-              for( var i = 0; i < diferentesAreas.length; i++){
+              var diferentesAreas = areaLaboral1.text
+                  .toString()
+                  .split(";"); //json de las areas laborales
+              for (var i = 0; i < diferentesAreas.length; i++) {
                 var separacion = diferentesAreas[i].toString().split(":");
-                try{
+                try {
                   var listaOpciones = separacion[1].toString().split(",");
-                  areaLaboral.add(AreaLaboralCarrera(separacion[0].toString(), listaOpciones));
-                } catch (_){
-                }
+                  areaLaboral.add(AreaLaboralCarrera(
+                      separacion[0].toString(), listaOpciones));
+                } catch (_) {}
               }
 
               showDialog(
@@ -415,8 +425,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                   return aceptacion(context);
                 },
               );
-
-            } catch (_){
+            } catch (_) {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -489,7 +498,8 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
           children: [
             TextButton(
                 child: const Text("Aceptar"),
-                onPressed: () { //aqui se mandan los datos
+                onPressed: () {
+                  //aqui se mandan los datos
                   /*locator<DatosEventos>().postEvento(
                       nombre,
                       fechaInicial.text.toString(),
@@ -508,8 +518,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                   );*/
 
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        InicioCarrera(),
+                    builder: (context) => InicioCarrera(),
                   ));
                 }),
             TextButton(
@@ -529,8 +538,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
           child: const Text('Eliminar carrera')),
-      content: Text(
-          "Seguro que deseas eliminar la carrera $nombre?"),
+      content: Text("Seguro que deseas eliminar la carrera $nombre?"),
       actions: <Widget>[
         TextButton(
             child: const Text("Cancelar"),
@@ -553,8 +561,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
               );
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    InicioCarrera(),
+                builder: (context) => InicioCarrera(),
               ));
             }),
       ],

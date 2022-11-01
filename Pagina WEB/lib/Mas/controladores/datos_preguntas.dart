@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:opciontec/Mas/modelos/Preguntas.dart';
 import 'package:http/http.dart' as http;
-import 'package:opciontec/Mas/vistas/Agregar_Pregunta.dart';
+
 import '../../Config.dart';
 
 class DatosPreguntas extends ChangeNotifier {

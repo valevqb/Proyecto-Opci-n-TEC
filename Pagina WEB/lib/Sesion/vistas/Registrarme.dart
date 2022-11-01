@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
-import 'package:opciontec/Mas/modelos/usuario.dart';
 import 'package:provider/provider.dart';
 import 'package:opciontec/Sesion/servicios/datos_Usuarios.dart';
 import '../../Config.dart';
-import '../../locators.dart';
 
 class Registro extends StatefulWidget {
   @override

@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:opciontec/Carreras/vistas/ModificarEliminar_Carrera.dart';
-import 'package:opciontec/Carreras/modelos/usuario.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -44,39 +42,34 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
             elevation: 0,
             backgroundColor: Colors.white,
           ),
-          body:(isLoading)
-            ? Container(
-
-        )
-            : SingleChildScrollView(
-            child: Column(
-                children: [
-                  editarEliminarCarrera(context, _valor),
-                  tituloImagenPrincipal(context),
-                  Container( //Lista
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                                ),
-                                child: ListView.builder(
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: 1,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return Align(
-                                        alignment: Alignment.topLeft,
-                                        child: informacionServicio(context),
-                                      );
-                                    }
-                                ),
-                              ),
-                          ]
+          body: (isLoading)
+              ? Container()
+              : SingleChildScrollView(
+                  child: Column(children: [
+                    editarEliminarCarrera(context, _valor),
+                    tituloImagenPrincipal(context),
+                    Container(
+                      //Lista
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
                       ),
+                      child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: 1,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Align(
+                              alignment: Alignment.topLeft,
+                              child: informacionServicio(context),
+                            );
+                          }),
                     ),
-            )
-        );
+                  ]),
+                ),
+        ));
   }
 
-  Widget editarEliminarCarrera (BuildContext context, _valor){
+  Widget editarEliminarCarrera(BuildContext context, _valor) {
     double width = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.topRight,
@@ -95,7 +88,7 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(15.0))),
           icon: const Icon(
-            // <-- Icon
+              // <-- Icon
               Icons.add_rounded,
               size: 24.0,
               color: Color(0xBE5CC6DE)),
@@ -109,39 +102,39 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
     );
   }
 
-  Widget tituloImagenPrincipal (BuildContext context) { //titulo de la pagina e imagen
-    return Container( //La imagen donde dice servicios
+  Widget tituloImagenPrincipal(BuildContext context) {
+    //titulo de la pagina e imagen
+    return Container(
+      //La imagen donde dice servicios
       height: 286,
       width: (MediaQuery.of(context).size.width),
       decoration: const BoxDecoration(
         color: Color(0xFF2B436D),
       ),
-      child: Image.network( // Imagen del servicio
+      child: Image.network(
+        // Imagen del servicio
         _valor.IMG.toString(),
         fit: BoxFit.fill,
       ),
     );
   }
 
-  Widget informacionText (BuildContext context, texto){
+  Widget informacionText(BuildContext context, texto) {
     return Container(
-        padding: const EdgeInsets.only(
-        top: 4, left: 24, right: 24
-        ),
-        child:Text (texto.toString(), //Labor del servicio
+        padding: const EdgeInsets.only(top: 4, left: 24, right: 24),
+        child: Text(texto.toString(), //Labor del servicio
             style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontSize: 16,
                 fontWeight: FontWeight.normal,
-                color: Color(0xFF2B436D))
-        )
-    );
+                color: Color(0xFF2B436D))));
   }
 
-  Widget informacionTextListaLista (BuildContext context, texto){
+  Widget informacionTextListaLista(BuildContext context, texto) {
     //print(texto?[0].Nombre.toString());
     return Container(
-        child: SizedBox( //lista de los tipos de servicios
+        child: SizedBox(
+            //lista de los tipos de servicios
             child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -150,37 +143,35 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
                   return Align(
                       alignment: Alignment.topLeft,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                              padding: const EdgeInsets.only(
-                                  top: 4, left: 24, right: 24
-                              ),
-                              margin: const EdgeInsets.only(top: 16.0),
-                              child: Text (texto[index].Nombre.toString(), //Labor del servicio
-                              style: const TextStyle(
-                                  fontFamily: 'Mulish',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF2B436D))
-                          )
-                        ),
-                          Container(
-                            child: informacionTextLista(context, (texto[index].Opciones)),
-                          )
-                      ])
-                  );
-                })
-        ));
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                                padding: const EdgeInsets.only(
+                                    top: 4, left: 24, right: 24),
+                                margin: const EdgeInsets.only(top: 16.0),
+                                child: Text(
+                                    texto[index]
+                                        .Nombre
+                                        .toString(), //Labor del servicio
+                                    style: const TextStyle(
+                                        fontFamily: 'Mulish',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF2B436D)))),
+                            Container(
+                              child: informacionTextLista(
+                                  context, (texto[index].Opciones)),
+                            )
+                          ]));
+                })));
   }
 
-  Widget informacionTextLista (BuildContext context, texto){
+  Widget informacionTextLista(BuildContext context, texto) {
     return Container(
-        padding: const EdgeInsets.only(
-            top: 4, left: 24, right: 24
-        ),
-        child: SizedBox( //lista de los tipos de servicios
+        padding: const EdgeInsets.only(top: 4, left: 24, right: 24),
+        child: SizedBox(
+            //lista de los tipos de servicios
             child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -188,51 +179,45 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
                 itemBuilder: (BuildContext context, int index) {
                   return Align(
                       alignment: Alignment.topLeft,
-                        child: Container(
-                            child: Text (texto[index].toString(), //Labor del servicio
-                                style: const TextStyle(
-                                    fontFamily: 'Mulish',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    color: Color(0xFF2B436D))
-                            )
-                        )
-                  );
-            })
-        ));
+                      child: Container(
+                          child: Text(
+                              texto[index].toString(), //Labor del servicio
+                              style: const TextStyle(
+                                  fontFamily: 'Mulish',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  color: Color(0xFF2B436D)))));
+                })));
   }
 
-  Widget subtitulo (BuildContext context, texto){
+  Widget subtitulo(BuildContext context, texto) {
     return Container(
-        padding: const EdgeInsets.only(
-        top: 24, left: 24, right: 24
-        ),
-        child: Text (texto.toString(), //Labor del servicio
+        padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
+        child: Text(
+          texto.toString(), //Labor del servicio
           style: const TextStyle(
               fontFamily: 'Mulish',
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Color(0xFF2B436D)),
-        )
-    );
+        ));
   }
 
-  Widget titulos (BuildContext context, texto){
+  Widget titulos(BuildContext context, texto) {
     return Container(
-        padding: const EdgeInsets.only(
-        top: 30.75, left: 24, right: 24
-        ),
-        child: Text (texto.toString(), //Nombre del servicio
+        padding: const EdgeInsets.only(top: 30.75, left: 24, right: 24),
+        child: Text(
+          texto.toString(), //Nombre del servicio
           style: const TextStyle(
               fontFamily: 'Poppins',
               fontSize: 18,
-              fontWeight: FontWeight. bold,
+              fontWeight: FontWeight.bold,
               color: Color(0xFFB2B436D)),
-        )
-    );
+        ));
   }
 
-  Widget informacionServicio (BuildContext context){ //list users son las imagenes, carga la info de los servicios
+  Widget informacionServicio(BuildContext context) {
+    //list users son las imagenes, carga la info de los servicios
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,25 +244,20 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
           informacionTextListaLista(context, _valor.AreaLaboral?.areas),
           titulos(context, "Plan de Estudios"),
           Container(
-            padding: const EdgeInsets.only(
-            top: 4, left: 24, right: 24, bottom: 20
-            ),
-            child: (
-              ElevatedButton(
-                onPressed: _launchURLApp,
-                child: Text('Ver plan'),
-                style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF2B436D),
-                )
-              )
-            )
-          )
-        ]
-    );
+              padding: const EdgeInsets.only(
+                  top: 4, left: 24, right: 24, bottom: 20),
+              child: (ElevatedButton(
+                  onPressed: _launchURLApp,
+                  child: Text('Ver plan'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2B436D),
+                  ))))
+        ]);
   }
 
   _launchURLApp() async {
-    var url = Uri.parse("https://github.com/valevqb/Fotografias/blob/main/Computacion.jpg?raw=true/");
+    var url = Uri.parse(
+        "https://github.com/valevqb/Fotografias/blob/main/Computacion.jpg?raw=true/");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -285,4 +265,3 @@ class _InformacionCarreraState extends State<InformacionCarrera> {
     }
   }
 }
-

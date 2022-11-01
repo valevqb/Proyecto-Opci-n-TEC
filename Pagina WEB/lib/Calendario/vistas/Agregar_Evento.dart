@@ -352,8 +352,7 @@ class _AgregarEventoState extends State<AgregarEvento> {
                   );
 
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        CalendarApp(),
+                    builder: (context) => CalendarApp(),
                   ));
                 }),
             TextButton(

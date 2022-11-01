@@ -9,10 +9,9 @@ class Carreras {
     if (json['Datos'] != null) {
       datos = [];
       json['Datos'].forEach((v) {
-        datos!.add(new DataCarrera.fromJson(v));
+        datos!.add(DataCarrera.fromJson(v));
       });
     }
-
   }
 }
 
@@ -32,10 +31,23 @@ class DataCarrera {
   String? IMG;
   String? Plan;
   int? id;
-  DataCarrera({this.Plan, this.Grado, this.Categoria, this.AreaLaboral, this.Resumen, this.Acreditacion, this.Corte, this.Descripcion, this.Habilidades, this.Horario,this.Intereses,this.Nombre,this.Sede,this.IMG});
+  DataCarrera(
+      {this.Plan,
+      this.Grado,
+      this.Categoria,
+      this.AreaLaboral,
+      this.Resumen,
+      this.Acreditacion,
+      this.Corte,
+      this.Descripcion,
+      this.Habilidades,
+      this.Horario,
+      this.Intereses,
+      this.Nombre,
+      this.Sede,
+      this.IMG});
 
   DataCarrera.fromJson(Map<String, dynamic> json) {
-
     id = json['id'];
     Resumen = json['info']['Resumen'];
     Grado = json['info']['Grado'];
@@ -44,7 +56,7 @@ class DataCarrera {
     Corte = json['info']['Corte'];
     AreaLaboral = AreasLaborales.fromJson(json['info']['Area Laboral']);
     Descripcion = json['info']['Descripcion'];
-    Habilidades= json['info']['Habilidades'];
+    Habilidades = json['info']['Habilidades'];
     Horario = json['info']['Horario'];
     Intereses = json['info']['Intereses'];
     Nombre = json['info']['Nombre'];
@@ -55,23 +67,22 @@ class DataCarrera {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data[ 'id' ] = id;
-    data[ 'Categoria' ] = Categoria;
-    data[ 'Grado' ] = Grado;
-    data[ 'Acreditacion' ] = Acreditacion;
-    data[ 'Cortes' ] = Corte;
-    data[ 'Resumen' ] = Resumen;
-    data[ 'Area Laboral' ] = AreaLaboral;
-    data[ 'Descripcion' ] = Descripcion;
-    data[ 'Habilidades' ]= Habilidades;
-    data[ 'Horario' ] = Horario;
-    data[ 'Intereses' ] = Intereses;
-    data[ 'Nombre' ] = Nombre;
-    data[ 'Sede' ] = Sede;
-    data[ 'IMG' ] = IMG;
-    data[ 'Plan' ] = Plan;
+    data['id'] = id;
+    data['Categoria'] = Categoria;
+    data['Grado'] = Grado;
+    data['Acreditacion'] = Acreditacion;
+    data['Cortes'] = Corte;
+    data['Resumen'] = Resumen;
+    data['Area Laboral'] = AreaLaboral;
+    data['Descripcion'] = Descripcion;
+    data['Habilidades'] = Habilidades;
+    data['Horario'] = Horario;
+    data['Intereses'] = Intereses;
+    data['Nombre'] = Nombre;
+    data['Sede'] = Sede;
+    data['IMG'] = IMG;
+    data['Plan'] = Plan;
     return data;
-
   }
 }
 
@@ -82,10 +93,10 @@ class AreasLaborales {
   AreasLaborales();
 
   AreasLaborales.fromJson(List<dynamic> json) {
-    if(json.isNotEmpty) {
-      json.forEach((v) {
-        areas!.add(new DataAreaLaboral.fromJson(v));
-      });
+    if (json.isNotEmpty) {
+      for (var v in json) {
+        areas!.add(DataAreaLaboral.fromJson(v));
+      }
     }
     total = areas?.length;
   }
@@ -98,16 +109,14 @@ class DataAreaLaboral {
   DataAreaLaboral({this.Nombre, this.Opciones});
 
   DataAreaLaboral.fromJson(Map<String, dynamic> json) {
-
     Nombre = json['Nombre'];
     Opciones = json['Opciones'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data[ 'Nombre' ] = Nombre;
-    data[ 'Opciones' ] = Opciones;
+    data['Nombre'] = Nombre;
+    data['Opciones'] = Opciones;
     return data;
-
   }
 }

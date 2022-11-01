@@ -1,13 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:opciontec/Calendario/modelos/eventos.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-
-import '../../locators.dart';
-import '../controladores/datos_eventos.dart';
 
 class ModificarEliminarEvento extends StatefulWidget {
   CalendarTapDetails evento;
