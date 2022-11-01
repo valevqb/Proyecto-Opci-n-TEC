@@ -447,12 +447,12 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                       horario,
                       corte,
                       acreditacion,
-                      intereses,
-                      habilidades,
-                      areaLaboral,
-                      areaCompleto,
+                      jsonEncode(intereses),
+                      jsonEncode(habilidades),
+                      jsonEncode(areaLaboral),
+                      "",
                       planEstudios,
-                      categoria);
+                      "Tecnologia");
 
                   Navigator.of(context).pop();
 

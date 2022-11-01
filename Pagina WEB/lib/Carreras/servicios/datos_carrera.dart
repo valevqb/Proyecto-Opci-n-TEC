@@ -71,13 +71,6 @@ class DatosCarrera extends ChangeNotifier {
       areaCompleto,
       planEstudios,
       categoria) async {
-    String interes = "";
-    String habilidad = "";
-    String areaLabora = "";
-    intereses.forEach((element) => interes += "\"" + element + "\",");
-    habilidades.forEach((element) => habilidad += element + ",");
-    areaLaboral.forEach((element) => areaLabora += element + ",");
-
     final result = await http.post(Uri.parse(agregarUrl), body: {
       'Nombre': nombre,
       'Resumen': resumen,
@@ -86,9 +79,9 @@ class DatosCarrera extends ChangeNotifier {
       'Grado': grado,
       'Horario': horario,
       'Acreditacion': acreditacion,
-      'Intereses': interes,
-      'Habilidades': habilidad,
-      'Area Laboral': areaLabora,
+      'Intereses': intereses.toString(),
+      'Habilidades': habilidades.toString(),
+      'Area Laboral': areaLaboral.toString(),
       'areaCompleto': areaCompleto,
       'Plan': planEstudios,
       'Corte': corte,

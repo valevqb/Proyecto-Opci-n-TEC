@@ -7,17 +7,16 @@ const getCarreras =  async (req,res) => {
 
 
 const postCarrera =  async (req,res) => {
-    console.debug("Error");
     try {
         var Resumen = "\"Resumen\":"+"\""+req["body"]["Resumen"]+"\",";
         var Acreditacion = "\"Acreditacion\":"+"\""+req["body"]["Acreditacion"]+"\",";
         var Corte = "\"Corte\":"+"\""+req["body"]["Corte"]+"\",";
         var Grado ="\"Grado\": " +"\""+req["body"]["Grado"]+"\",";
         var Descripcion = "\"Descripcion\":"+"\""+req["body"]["Descripcion"]+"\",";
-        var Habilidades = "\"Habilidades\":["+"\""+req["body"]["Habilidades"]+"\"],";
+        var Habilidades = "\"Habilidades\":"+req["body"]["Habilidades"]+",";
         var Horario = "\"Horario\":"+"\""+req["body"]["Horario"]+"\",";
-        var Intereses = "\"Intereses\":["+"\""+req["body"]["Intereses"]+"\"],";
-        var Area_Laboral = "\"Area Laboral\":["+"\""+req["body"]["Area Laboral"]+"\"],";
+        var Intereses = "\"Intereses\":"+req["body"]["Intereses"]+",";
+        var Area_Laboral = "\"Area Laboral\":"+req["body"]["Area Laboral"]+",";
         var Nombre = "\"Nombre\":"+"\""+req["body"]["Nombre"]+"\",";
         var Sede = "\"Sede\":"+"\""+req["body"]["Sede"]+"\",";
         var IMG = "\"IMG\":"+"\""+req["body"]["IMG"]+"\",";
@@ -38,11 +37,19 @@ const postCarrera =  async (req,res) => {
 
 };
 const eliminarCarrera =  async (req,res) => {
+ try {
     var id = req["body"]["id"];
-   
+    console.debug("ID A eliminar: "+id);
     const response =  await pool.query("SELECT eliminarCarrera("+"'"+id+"'"+")");
-    console.debug(response.rows[0]["eliminarCarrera"]["respuesta"]);
-    res.json(response.rows[0]["eliminarCarrera"]["respuesta"]);
+    console.debug(response.rows[0]["eliminarcarrera"]["respuesta"]);
+    res.json(response.rows[0]["eliminarcarrera"]["respuesta"]);
+
+    } catch (error) {
+        console.debug(error);
+        res.json("Error");
+    }
+    
+   
 }
 
 module.exports = {getCarreras,postCarrera,eliminarCarrera};

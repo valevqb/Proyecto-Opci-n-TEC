@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:opciontec/Carreras/vistas/carrera_inicio.dart';
 import 'dart:convert';
 
+import '../../locators.dart';
+
 //import '../controladores/datos_eventos.dart';
 //import 'Calendario.dart';
 
@@ -499,23 +501,23 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
-                  //aqui se mandan los datos
-                  /*locator<DatosEventos>().postEvento(
-                      nombre,
-                      fechaInicial.text.toString(),
-                      fechaFinal.text.toString(),
-                      detalles,
-                      "TRUE");
-
-                  Navigator.of(context).pop();
-
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return validaciones(
-                          context, "Agregado", "Evento Agregado con éxito");
-                    },
-                  );*/
+                  locator<DatosCarrera>().ModificarPregunta(
+                      _valor.id,
+                      nombre.text,
+                      resumen.text,
+                      descripcion.text,
+                      video.text,
+                      sede.text,
+                      grado.text,
+                      horario.text,
+                      corte.text,
+                      acreditacion.text,
+                      jsonEncode(intereses),
+                      jsonEncode(habilidades),
+                      jsonEncode(areaLaboral),
+                      "",
+                      planEstudios.text,
+                      "Tecnologia");
 
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => InicioCarrera(),
@@ -548,9 +550,8 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
         TextButton(
             child: const Text("Aceptar"),
             onPressed: () {
-              /*locator<DatosEventos>()
-                  .EliminarEvento(evento.appointments![0].id);
-              Navigator.of(context).pop();*/
+              locator<DatosCarrera>().EliminarCarrera(_valor.id);
+              Navigator.of(context).pop();
 
               showDialog(
                 context: context,

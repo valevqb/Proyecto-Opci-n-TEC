@@ -50,6 +50,7 @@ class DatosPreguntas extends ChangeNotifier {
   Future<void> postPregunta(pregunta, respuesta, IMG, enlaces, tema) async {
     String enlaza = "";
     enlaces.forEach((element) => enlaza += element + ",");
+    enlaza = enlaza.substring(0, enlaza.length - 2);
 
     final result = await http.post(Uri.parse(agregarUrl), body: {
       'pregunta': pregunta,
