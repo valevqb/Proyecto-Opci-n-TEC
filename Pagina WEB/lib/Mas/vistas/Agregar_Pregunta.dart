@@ -20,8 +20,8 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
   var width = 0.0;
   GlobalKey llave = GlobalKey<FormState>();
   List<Map> temas = [
-    {"nombre": "Admisión", "revisado": false},
-    {"nombre": "Matrícula", "revisado": false}
+    {"nombre": "Admision", "revisado": false},
+    {"nombre": "Matricula", "revisado": false}
   ];
   var tema = " ";
 
@@ -273,12 +273,15 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       title: Container(
         margin: const EdgeInsets.only(bottom: 15),
-        child: const Text('Confirmar datos'),
+        child: const Text('Confirmar datos', style: TextStyle(
+            fontFamily: 'Mulish',
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF2B436D))),
       ),
       content: Column(mainAxisSize: MainAxisSize.min, children: [
         letter(context, "* Confirme que los datos sean correctos *"),
         letter(context, "Pregunta: $pregunta"),
-        letter(context, "Tema: $temas"),
         letter(context, "Respuesta: $respuesta"),
         const SizedBox(height: 30),
         Row(
@@ -299,7 +302,6 @@ class _AgregarPreguntaState extends State<AgregarPregunta> {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => InicioMas(),
                   ));
-                  Navigator.of(context).pop();
                 }),
             TextButton(
                 child: const Text("Modificar"),

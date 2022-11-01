@@ -1,4 +1,5 @@
 //import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Mas/modelos/Preguntas.dart';
 import 'package:opciontec/Mas/controladores/datos_preguntas.dart';
@@ -250,12 +251,24 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
             try{
               enlaces = enlaces1.text.toString().split("; ");
 
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return aceptacion(context);
-                },
-              );
+              if (IMG.text == _valor.IMG! && categoria.text == _valor.Categoria! &&
+                  pregunta.text == _valor.Pregunta! && respuesta.text == _valor.Respuesta! && listEquals(enlaces, _valor.Enlaces!) == true){
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return validaciones(
+                        context, "Error", "No se editó ningún dato");
+                  },
+                );
+              }
+              else{
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return aceptacion(context);
+                  },
+                );
+              }
             } catch (_) {
               showDialog(
                 context: context,
