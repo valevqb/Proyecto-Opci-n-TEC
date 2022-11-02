@@ -20,7 +20,7 @@ class _InicioState extends State<Inicio> {
   void initState() {
     textoFinal = "Carrera, becas, servicios, etc.";
     super.initState();
-    locator<DatosCarrera>().fetchUsers();
+    locator<DatosCarrera>().fetch();
   }
 
   @override

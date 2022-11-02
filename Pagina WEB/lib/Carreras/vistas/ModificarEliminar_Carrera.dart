@@ -503,26 +503,33 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
-                  locator<DatosCarrera>().ModificarPregunta(
-                      _valor.id,
-                      nombre.text,
-                      resumen.text,
-                      descripcion.text,
-                      video.text,
-                      sede.text,
-                      grado.text,
-                      horario.text,
-                      corte.text,
-                      acreditacion.text,
-                      jsonEncode(intereses),
-                      jsonEncode(habilidades),
-                      jsonEncode(areaLaboral),
-                      "",
-                      planEstudios.text,
-                      "Tecnologia").then((value) => locator<DatosCarrera>().fetchUsers().
-                  then((value) => locator<DatosCarrera>().fetchUsers().then((value) => {Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PrototipoBarra(indexActual: 2),
-                  ))})));
+                  locator<DatosCarrera>()
+                      .ModificarPregunta(
+                          _valor.id,
+                          nombre.text,
+                          resumen.text,
+                          descripcion.text,
+                          video.text,
+                          sede.text,
+                          grado.text,
+                          horario.text,
+                          corte.text,
+                          acreditacion.text,
+                          jsonEncode(intereses),
+                          jsonEncode(habilidades),
+                          jsonEncode(areaLaboral),
+                          "",
+                          planEstudios.text,
+                          "Tecnologia")
+                      .then((value) => locator<DatosCarrera>().fetch().then(
+                          (value) =>
+                              locator<DatosCarrera>().fetch().then((value) => {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          PrototipoBarra(indexActual: 2),
+                                    ))
+                                  })));
                 }),
             TextButton(
                 child: const Text("Modificar"),
@@ -551,10 +558,12 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
         TextButton(
             child: const Text("Aceptar"),
             onPressed: () {
-              locator<DatosCarrera>().EliminarCarrera(_valor.id).then((value) => locator<DatosCarrera>().fetchUsers().
-              then((value){Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => PrototipoBarra(indexActual: 2),
-              ));}));
+              locator<DatosCarrera>().EliminarCarrera(_valor.id).then(
+                  (value) => locator<DatosCarrera>().fetch().then((value) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PrototipoBarra(indexActual: 2),
+                        ));
+                      }));
             }),
       ],
     );

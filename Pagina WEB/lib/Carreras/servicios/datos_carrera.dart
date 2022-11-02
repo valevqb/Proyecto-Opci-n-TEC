@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:http/http.dart' as http;
+import 'package:opciontec/locators.dart';
 import '../../Config.dart';
 
 class AreaLaboralCarrera {
@@ -28,7 +29,7 @@ class DatosCarrera extends ChangeNotifier {
 
   List<DataCarrera>? carreras = [];
 
-  Future<List<DataCarrera>?> fetchUsers() async {
+  Future<List<DataCarrera>?> fetch() async {
     _isLoading = true;
     notifyListeners();
 
@@ -139,22 +140,23 @@ class DatosCarrera extends ChangeNotifier {
       areaCompleto,
       planEstudios,
       categoria) async {
-    postCarrera(
-        nombre,
-        resumen,
-        descripcion,
-        imagen,
-        sede,
-        grado,
-        horario,
-        corte,
-        acreditacion,
-        intereses,
-        habilidades,
-        areaLaboral,
-        areaCompleto,
-        planEstudios,
-        categoria);
     EliminarCarrera(id);
+    postCarrera(
+            nombre,
+            resumen,
+            descripcion,
+            imagen,
+            sede,
+            grado,
+            horario,
+            corte,
+            acreditacion,
+            intereses,
+            habilidades,
+            areaLaboral,
+            areaCompleto,
+            planEstudios,
+            categoria)
+        .then((value) => fetch());
   }
 }

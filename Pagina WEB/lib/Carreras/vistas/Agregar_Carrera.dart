@@ -1,7 +1,6 @@
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
-import 'package:opciontec/Carreras/vistas/carrera_inicio.dart';
 import 'package:opciontec/Barra.dart';
 import 'package:provider/provider.dart';
 //import 'package:intl/intl.dart';
@@ -349,9 +348,9 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                   .toString()
                   .split(";"); //json de las areas laborales
               for (var i = 0; i < diferentesAreas.length; i++) {
-                var separacion = diferentesAreas[i].toString().split(": ");
+                var separacion = diferentesAreas[i].toString().split(":");
                 try {
-                  var listaOpciones = separacion[1].toString().split(", ");
+                  var listaOpciones = separacion[1].toString().split(",");
                   areaLaboral.add(AreaLaboralCarrera(
                       separacion[0].toString(), listaOpciones));
                 } catch (_) {}
@@ -438,26 +437,30 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
-                  locator<DatosCarrera>().postCarrera(
-                      nombre,
-                      resumen,
-                      descripcion,
-                      imagen,
-                      sede,
-                      grado,
-                      horario,
-                      corte,
-                      acreditacion,
-                      jsonEncode(intereses),
-                      jsonEncode(habilidades),
-                      jsonEncode(areaLaboral),
-                      "",
-                      planEstudios,
-                      "Tecnologia").
-                  then((value) => locator<DatosCarrera>().fetchUsers().
-                  then((value){Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PrototipoBarra(indexActual: 2),
-                  ));}));
+                  locator<DatosCarrera>()
+                      .postCarrera(
+                          nombre,
+                          resumen,
+                          descripcion,
+                          imagen,
+                          sede,
+                          grado,
+                          horario,
+                          corte,
+                          acreditacion,
+                          jsonEncode(intereses),
+                          jsonEncode(habilidades),
+                          jsonEncode(areaCompleto),
+                          jsonEncode(areaCompleto),
+                          planEstudios,
+                          "Tecnologia")
+                      .then((value) =>
+                          locator<DatosCarrera>().fetch().then((value) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  PrototipoBarra(indexActual: 2),
+                            ));
+                          }));
                 }),
             TextButton(
                 child: const Text("Modificar"),
