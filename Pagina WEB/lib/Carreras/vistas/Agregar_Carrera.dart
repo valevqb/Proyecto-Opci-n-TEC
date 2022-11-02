@@ -144,7 +144,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                           textForms(context, "Ej. Trabajo en equipo", 7),
                           textTittle(context, "* Area laboral"),
                           textInfo(context,
-                              "Escriba el área laboral en el formato solicitado Nombre[Opción1, Opción2] (separe cada área por ;)"),
+                              "Escriba el área laboral en el formato solicitado Nombre: Opción1, Opción2 (separe cada área por ;)"),
                           textForms(context, "Ej. Trabajo en equipo", 8),
                           textTittle(context, "* Plan estudios"),
                           textInfo(context,
@@ -218,9 +218,9 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
             } else if (tipo == 5) {
               corte = value.toString();
             } else if (tipo == 6) {
-              intereses = value.toString().split(";");
+              intereses = value.toString().split("; ");
             } else if (tipo == 7) {
-              habilidades = value.toString().split(";");
+              habilidades = value.toString().split("; ");
             } else if (tipo == 8) {
               //revisar como le funciona
               areaCompleto = value.toString();
@@ -346,11 +346,11 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
 
               var diferentesAreas = areaCompleto
                   .toString()
-                  .split(";"); //json de las areas laborales
+                  .split("; "); //json de las areas laborales
               for (var i = 0; i < diferentesAreas.length; i++) {
-                var separacion = diferentesAreas[i].toString().split(":");
+                var separacion = diferentesAreas[i].toString().split(": ");
                 try {
-                  var listaOpciones = separacion[1].toString().split(",");
+                  var listaOpciones = separacion[1].toString().split(", ");
                   areaLaboral.add(AreaLaboralCarrera(
                       separacion[0].toString(), listaOpciones));
                 } catch (_) {}

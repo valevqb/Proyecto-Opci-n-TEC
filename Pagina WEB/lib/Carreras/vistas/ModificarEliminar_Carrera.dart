@@ -87,8 +87,8 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
       intereses = _valor.Intereses!;
       habilidades = _valor.Habilidades!;
 
-      intereses1.text = _valor.Intereses!.join(";");
-      habilidades1.text = _valor.Habilidades!.join(";");
+      intereses1.text = _valor.Intereses!.join("; ");
+      habilidades1.text = _valor.Habilidades!.join("; ");
 
       selectedFiles(context, sedes, sede);
       selectedFiles(context, grados, grado);
@@ -291,9 +291,9 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
             } else if (tipo == 5) {
               corte.text = value.toString();
             } else if (tipo == 6) {
-              intereses = value.toString().split(";");
+              intereses = value.toString().split("; ");
             } else if (tipo == 7) {
-              habilidades = value.toString().split(";");
+              habilidades = value.toString().split("; ");
             } else if (tipo == 8) {
               //revisar como le funciona
               areaLaboral1.text = value.toString();
@@ -414,11 +414,11 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
 
               var diferentesAreas = areaLaboral1.text
                   .toString()
-                  .split(";"); //json de las areas laborales
+                  .split("; "); //json de las areas laborales
               for (var i = 0; i < diferentesAreas.length; i++) {
-                var separacion = diferentesAreas[i].toString().split(":");
+                var separacion = diferentesAreas[i].toString().split(": ");
                 try {
-                  var listaOpciones = separacion[1].toString().split(",");
+                  var listaOpciones = separacion[1].toString().split(", ");
                   areaLaboral.add(AreaLaboralCarrera(
                       separacion[0].toString(), listaOpciones));
                 } catch (_) {}
