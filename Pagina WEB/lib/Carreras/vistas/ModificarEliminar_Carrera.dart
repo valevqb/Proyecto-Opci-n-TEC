@@ -520,9 +520,9 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                       "",
                       planEstudios.text,
                       "Tecnologia").then((value) => locator<DatosCarrera>().fetchUsers().
-                  then((value){Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PrototipoBarra(indexActual: 2),
-                  ));}));
+                  then((value) => locator<DatosCarrera>().fetchUsers().then((value) => {Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => PrototipoBarra(indexActual: 2),
+                  ))})));
                 }),
             TextButton(
                 child: const Text("Modificar"),
