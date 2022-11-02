@@ -519,11 +519,10 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                       jsonEncode(areaLaboral),
                       "",
                       planEstudios.text,
-                      "Tecnologia");
-                  Navigator.of(context).push(MaterialPageRoute(
+                      "Tecnologia").then((value) => locator<DatosCarrera>().fetchUsers().
+                  then((value){Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => PrototipoBarra(indexActual: 2),
-                  ));
-                  sleep(const Duration(seconds:1));
+                  ));}));
                 }),
             TextButton(
                 child: const Text("Modificar"),
@@ -552,22 +551,10 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
         TextButton(
             child: const Text("Aceptar"),
             onPressed: () {
-              locator<DatosCarrera>().EliminarCarrera(_valor.id);
-              Navigator.of(context).pop();
-
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return validaciones(
-                      context, "Eliminado", "Carrera eliminada con éxito");
-                },
-              );
-
-              Navigator.of(context).pop();
-              InicioCarrera();
-              Navigator.of(context).push(MaterialPageRoute(
+              locator<DatosCarrera>().EliminarCarrera(_valor.id).then((value) => locator<DatosCarrera>().fetchUsers().
+              then((value){Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => PrototipoBarra(indexActual: 2),
-              ));
+              ));}));
             }),
       ],
     );

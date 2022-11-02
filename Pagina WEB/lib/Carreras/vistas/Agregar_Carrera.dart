@@ -453,21 +453,11 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                       jsonEncode(areaLaboral),
                       "",
                       planEstudios,
-                      "Tecnologia");
-
-                  Navigator.of(context).pop();
-
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return validaciones(
-                          context, "Agregado", "Evento Agregado con éxito");
-                    },
-                  );
-
-                  Navigator.of(context).push(MaterialPageRoute(
+                      "Tecnologia").
+                  then((value) => locator<DatosCarrera>().fetchUsers().
+                  then((value){Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => PrototipoBarra(indexActual: 2),
-                  ));
+                  ));}));
                 }),
             TextButton(
                 child: const Text("Modificar"),
