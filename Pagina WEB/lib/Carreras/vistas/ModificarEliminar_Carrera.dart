@@ -485,7 +485,6 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
 
   Widget aceptacion(BuildContext context) {
     String jsonTags = jsonEncode(areaLaboral); //json del area laboral
-    print(jsonTags); //aqui esta el json del area laboral
 
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
@@ -519,10 +518,9 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                       "",
                       planEstudios.text,
                       "Tecnologia");
-
-                  Navigator.of(context).pop();
+                  InicioCarrera();
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PrototipoBarra(),
+                    builder: (context) => PrototipoBarra(indexActual: 2),
                   ));
                 }),
             TextButton(
@@ -542,7 +540,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
       title: Container(
           margin: const EdgeInsets.only(bottom: 15),
           child: const Text('Eliminar carrera')),
-      content: Text("Seguro que deseas eliminar la carrera $nombre?"),
+      content: Text("Seguro que deseas eliminar la carrera ${nombre.text}"),
       actions: <Widget>[
         TextButton(
             child: const Text("Cancelar"),
@@ -564,8 +562,9 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
               );
 
               Navigator.of(context).pop();
+              InicioCarrera();
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => InicioCarrera(),
+                builder: (context) => PrototipoBarra(indexActual: 2),
               ));
             }),
       ],

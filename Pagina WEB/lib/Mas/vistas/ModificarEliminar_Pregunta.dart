@@ -355,7 +355,7 @@ class _ModificarPreguntaState extends State<ModificarPregunta> {
                     context: context,
                     builder: (BuildContext context) {
                       return validaciones(
-                          context, "Agregado", "Evento Agregado con éxito");
+                          context, "Modificada", "Pregunta modificada con éxito");
                     },
                   );
 

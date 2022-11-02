@@ -286,7 +286,7 @@ class _LogInState extends State<LogIn> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => PrototipoBarra()),
+                      builder: (context) => PrototipoBarra(indexActual: 0)),
                 );
               }
             }),

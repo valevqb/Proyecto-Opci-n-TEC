@@ -8,14 +8,15 @@ import 'Sesion/vistas/Login.dart';
 import 'Estilos/Estilos.dart';
 
 class PrototipoBarra extends StatefulWidget {
-  const PrototipoBarra({super.key});
+  PrototipoBarra({Key? key, required this.indexActual}): super (key: key);
+  var indexActual;
 
   @override
   State<StatefulWidget> createState() => _PrototipoBarra();
 }
 
 class _PrototipoBarra extends State<PrototipoBarra> {
-  int _currentIndex = 0;
+  var _currentIndex;
   final controller = TextEditingController();
   var textoFinal = "Carrera, becas, servicios, etc.";
   final List<Widget> _children = [
@@ -25,6 +26,10 @@ class _PrototipoBarra extends State<PrototipoBarra> {
     InicioServicio(),
     InicioMas(),
   ];
+
+  void initState() {
+    _currentIndex = this.widget.indexActual;
+  }
 
   @override
   Widget build(BuildContext context) {
