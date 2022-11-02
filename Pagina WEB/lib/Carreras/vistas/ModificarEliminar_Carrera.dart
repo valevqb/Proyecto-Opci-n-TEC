@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
@@ -518,10 +520,10 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                       "",
                       planEstudios.text,
                       "Tecnologia");
-                  InicioCarrera();
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => PrototipoBarra(indexActual: 2),
                   ));
+                  sleep(const Duration(seconds:1));
                 }),
             TextButton(
                 child: const Text("Modificar"),

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:opciontec/Carreras/vistas/carrera_inicio.dart';
+import 'package:opciontec/Barra.dart';
 import 'package:provider/provider.dart';
 //import 'package:intl/intl.dart';
 import 'dart:convert';
@@ -465,7 +466,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                   );
 
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => InicioCarrera(),
+                    builder: (context) => PrototipoBarra(indexActual: 2),
                   ));
                 }),
             TextButton(

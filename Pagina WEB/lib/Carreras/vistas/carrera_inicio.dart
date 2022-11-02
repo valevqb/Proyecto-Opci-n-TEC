@@ -82,7 +82,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
                               size: 24.0,
                               color: Color(0xBE5CC6DE)),
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
+                            Navigator.push(context, MaterialPageRoute(
                               builder: (context) => AgregarCarrera(),
                             ));
                           },
