@@ -354,7 +354,6 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                   areaLaboral.add(AreaLaboralCarrera(
                       separacion[0].toString(), listaOpciones));
                 } catch (_) {}
-                ;
               }
 
               showDialog(
@@ -420,7 +419,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
 
   Widget aceptacion(BuildContext context) {
     String jsonTags = jsonEncode(areaLaboral); //json del area laboral
-    print(jsonTags);
+    print(jsonEncode(areaLaboral));
 
     return AlertDialog(
       contentPadding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
@@ -450,8 +449,8 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
                           acreditacion,
                           jsonEncode(intereses),
                           jsonEncode(habilidades),
-                          jsonEncode(areaCompleto),
-                          jsonEncode(areaCompleto),
+                          jsonEncode(areaLaboral),
+                          jsonEncode(areaLaboral),
                           planEstudios,
                           "Tecnologia")
                       .then((value) =>
