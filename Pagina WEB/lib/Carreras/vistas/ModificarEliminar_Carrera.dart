@@ -169,8 +169,8 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                           textInfo(
                               context, "Escriba los descripción de la carrera"),
                           textForms(context, resumen, 1),
-                          textTittle(context, "* Video"),
-                          textInfo(context, "Escriba el enlace de video"),
+                          textTittle(context, "* Imagen"),
+                          textInfo(context, "Escriba el enlace de la imagen"),
                           textForms(context, video, 2),
                           textTittle(context, "* Sedes"),
                           textInfo(context,
