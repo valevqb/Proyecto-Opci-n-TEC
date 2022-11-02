@@ -3,6 +3,7 @@ import 'package:opciontec/Carreras/modelos/Carrera.dart';
 import 'package:opciontec/Carreras/servicios/datos_carrera.dart';
 import 'package:provider/provider.dart';
 import 'package:opciontec/Carreras/vistas/carrera_inicio.dart';
+import 'package:opciontec/Barra.dart';
 import 'dart:convert';
 
 import '../../locators.dart';
@@ -519,8 +520,9 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                       planEstudios.text,
                       "Tecnologia");
 
+                  Navigator.of(context).pop();
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => InicioCarrera(),
+                    builder: (context) => PrototipoBarra(),
                   ));
                 }),
             TextButton(
@@ -560,6 +562,7 @@ class _ModificarCarreraState extends State<ModificarCarrera> {
                       context, "Eliminado", "Carrera eliminada con éxito");
                 },
               );
+
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => InicioCarrera(),
