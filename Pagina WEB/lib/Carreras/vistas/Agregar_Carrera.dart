@@ -225,6 +225,7 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
             } else if (tipo == 8) {
               //revisar como le funciona
               areaCompleto = value.toString();
+              print(areaCompleto);
             } else if (tipo == 9) {
               planEstudios = value.toString();
             }
@@ -438,26 +439,30 @@ class _AgregarCarreraState extends State<AgregarCarrera> {
             TextButton(
                 child: const Text("Aceptar"),
                 onPressed: () {
-                  locator<DatosCarrera>().postCarrera(
-                      nombre,
-                      resumen,
-                      descripcion,
-                      imagen,
-                      sede,
-                      grado,
-                      horario,
-                      corte,
-                      acreditacion,
-                      jsonEncode(intereses),
-                      jsonEncode(habilidades),
-                      jsonEncode(areaLaboral),
-                      "",
-                      planEstudios,
-                      "Tecnologia").
-                  then((value) => locator<DatosCarrera>().fetchUsers().
-                  then((value){Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PrototipoBarra(indexActual: 2),
-                  ));}));
+                  locator<DatosCarrera>()
+                      .postCarrera(
+                          nombre,
+                          resumen,
+                          descripcion,
+                          imagen,
+                          sede,
+                          grado,
+                          horario,
+                          corte,
+                          acreditacion,
+                          jsonEncode(intereses),
+                          jsonEncode(habilidades),
+                          jsonEncode(areaCompleto),
+                          jsonEncode(areaCompleto),
+                          planEstudios,
+                          "Tecnologia")
+                      .then((value) =>
+                          locator<DatosCarrera>().fetch().then((value) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  PrototipoBarra(indexActual: 2),
+                            ));
+                          }));
                 }),
             TextButton(
                 child: const Text("Modificar"),

@@ -23,7 +23,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
   void initState() {
     textoFinal = "Nombre de la carrera";
     super.initState();
-    locator<DatosCarrera>().fetchUsers();
+    locator<DatosCarrera>().fetch();
   }
 
   @override
@@ -32,6 +32,7 @@ class _InicioCarreraState extends State<InicioCarrera> {
     double width = MediaQuery.of(context).size.width;
     users = Provider.of<DatosCarrera>(context).carreras;
     bool isLoading = Provider.of<DatosCarrera>(context).isLoading;
+
     if (firstime == 0) {
       busquedaActiva = users;
     }
@@ -82,9 +83,11 @@ class _InicioCarreraState extends State<InicioCarrera> {
                               size: 24.0,
                               color: Color(0xBE5CC6DE)),
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) => AgregarCarrera(),
-                            ));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AgregarCarrera(),
+                                ));
                           },
                         ),
                       ),
